@@ -1,5 +1,5 @@
 /// A class containing static constants for common API response status codes.
-class APIResponseCodes {
+abstract class APIResponseCodes {
   // Success status codes
   static const int success = 200;
   static const int noContent = 201;

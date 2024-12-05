@@ -1,157 +1,64 @@
-import 'package:dio/dio.dart';
-import 'package:car_mate/core/errors/api/api_response_codes.dart';
-import 'package:car_mate/core/errors/api/api_response_message.dart';
-import 'package:car_mate/core/errors/error_handler.dart';
-import 'package:car_mate/core/errors/failures.dart';
-import 'package:car_mate/config/themes/text_manager.dart';
-import 'package:easy_localization/easy_localization.dart';
+import '../../../config/themes/text_manager.dart';
+import '../error_handler_service.dart';
+import '../failures.dart';
+import 'api_response_codes.dart';
 
-class BadResponseErrorHandler implements ErrorHandler {
+class ConnectionTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    final response = (exception as DioException).response?.data;
-    final code = response['code'];
-    final data = response['data'];
-    final message = response['message'];
-
-    if (code == null) {
-      return ServerFailure(
-        message: APIResponseMessages.unknown,
-        code: APIResponseCodes.unknown,
-      );
-    }
-
-    switch (code) {
-      // Client errors
-      case APIResponseCodes.badRequest:
-        return ServerFailure(
-          code: APIResponseCodes.badRequest,
-          message: message ?? APIResponseMessages.badRequest,
-        );
-      case APIResponseCodes.unprocessableEntity:
-        // Handle different unauthorized cases
-        String message = APIResponseMessages.unknown;
-
-        // Register errors
-        if (data['phone'] != null) {
-          message = TextManager.phoneAlreadyExists.tr();
-        }
-
-        return ServerFailure(
-          code: APIResponseCodes.unprocessableEntity,
-          message: message,
-        );
-      case APIResponseCodes.conflict:
-        return ServerFailure(
-          code: APIResponseCodes.conflict,
-          message: APIResponseMessages.conflict,
-        );
-      case APIResponseCodes.methodNotAllowed:
-        return ServerFailure(
-          code: APIResponseCodes.methodNotAllowed,
-          message: APIResponseMessages.conflict,
-        );
-      case APIResponseCodes.unauthorized:
-        return ServerFailure(
-          code: APIResponseCodes.unauthorized,
-          message: message ?? APIResponseMessages.unauthorized.tr,
-        );
-      case APIResponseCodes.forbidden:
-        String message = APIResponseMessages.forbidden;
-
-        return ServerFailure(
-          code: APIResponseCodes.forbidden,
-          message: message,
-        );
-      case APIResponseCodes.notFound:
-        return ServerFailure(
-          code: APIResponseCodes.notFound,
-          message: APIResponseMessages.notFound,
-        );
-
-      // Server error
-      case APIResponseCodes.internalServerError:
-        return ServerFailure(
-          code: APIResponseCodes.internalServerError,
-          message: APIResponseMessages.internalServerError,
-        );
-
-      // Default case for unknown status codes
-      default:
-        return ServerFailure(
-          code: APIResponseCodes.unknown,
-          message: APIResponseMessages.unknown,
-        );
-    }
-  }
-}
-
-class ConnectionTimeOutErrorHandler implements ErrorHandler {
-  @override
-  Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.connectTimeout,
-      message: APIResponseMessages.connectTimeout,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.connectTimeout,
+      message: TextManager.connectTimeout,
     );
   }
 }
 
-class SendTimeOutErrorHandler implements ErrorHandler {
+class SendTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.sendTimeout,
-      message: APIResponseMessages.sendTimeout,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.sendTimeout,
+      message: TextManager.sendTimeout,
     );
   }
 }
 
-class ReceiveTimeOutErrorHandler implements ErrorHandler {
+class ReceiveTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.receiveTimeout,
-      message: APIResponseMessages.receiveTimeout,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.receiveTimeout,
+      message: TextManager.receiveTimeout,
     );
   }
 }
 
-class CancelErrorHandler implements ErrorHandler {
+class CancelErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.cancel,
-      message: APIResponseMessages.cancel,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.cancel,
+      message: TextManager.cancelMessage,
     );
   }
 }
 
-class BadCertificateErrorHandler implements ErrorHandler {
+class BadCertificateErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.badRequest,
-      message: APIResponseMessages.badRequest,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.badRequest,
+      message: TextManager.badRequest,
     );
   }
 }
 
-class ConnectionErrorHandler implements ErrorHandler {
+class UnknownErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.connectTimeout,
-      message: APIResponseMessages.connectTimeout,
-    );
-  }
-}
-
-class UnknownErrorHandler implements ErrorHandler {
-  @override
-  Failure handle(Exception exception) {
-    return ServerFailure(
-      code: APIResponseCodes.unknown,
-      message: APIResponseMessages.unknown,
+    return const ServerFailure(
+      statusCode: APIResponseCodes.unknown,
+      message: TextManager.unknown,
     );
   }
 }

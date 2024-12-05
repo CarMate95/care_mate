@@ -1,36 +1,28 @@
-import 'package:equatable/equatable.dart';
-
-abstract class Failure extends Equatable {
+abstract class Failure {
   final String message;
 
-  const Failure({
-    required this.message,
-  });
-
-  @override
-  List<Object?> get props => [message];
+  const Failure({required this.message});
 }
 
+/// This class is used to return failure
+/// when error occured with api (dio)
 class ServerFailure extends Failure {
-  final int code;
+  final int statusCode;
 
-  /// This class is used to return failure
-  /// when error occured with api (dio)
   const ServerFailure({
     required super.message,
-    required this.code,
+    required this.statusCode,
   });
-
-  @override
-  List<Object?> get props => [message, code];
 }
 
+/// This class is used to return firebase failure
 class FirebaseFailure extends Failure {
   const FirebaseFailure({
     required super.message,
   });
 }
 
+/// This class is used to return cache failure
 class CacheFailure extends Failure {
   const CacheFailure({
     required super.message,
