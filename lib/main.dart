@@ -23,7 +23,7 @@ void main() async {
         Locale('ar'),
       ],
       fallbackLocale: const Locale('en'),
-      startLocale: const Locale('en'),
+      startLocale: const Locale('ar'),
       child: const MyApp(),
     ),
   );

@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 import 'package:car_mate/core/errors/api/api_response_codes.dart';
 import 'package:car_mate/core/errors/api/api_response_message.dart';
 import 'package:car_mate/core/errors/error_handler.dart';
 import 'package:car_mate/core/errors/failures.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BadResponseErrorHandler implements ErrorHandler {
   @override
@@ -34,7 +34,7 @@ class BadResponseErrorHandler implements ErrorHandler {
 
         // Register errors
         if (data['phone'] != null) {
-          message = TextManager.phoneAlreadyExists.tr;
+          message = TextManager.phoneAlreadyExists.tr();
         }
 
         return ServerFailure(

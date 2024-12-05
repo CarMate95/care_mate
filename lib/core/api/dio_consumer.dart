@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
-import 'package:car_mate/config/routes/page_name.dart';
-import 'package:car_mate/config/routes/route_manager.dart';
 import 'package:car_mate/core/api/api_consumer.dart';
 import 'package:car_mate/core/api/end_points.dart';
 import 'package:car_mate/core/errors/api/api_response_codes.dart';
@@ -75,10 +73,10 @@ class DioConsumer implements ApiConsumer {
               // Clear cashed data
 
               // Navigate to login page
-              RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-                PageName.login,
-                (route) => false,
-              );
+              // RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
+              //   PageName.login,
+              //   (route) => false,
+              // );
             } else {
               return handler.next(error);
             }

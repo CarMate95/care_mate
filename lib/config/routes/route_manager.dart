@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:car_mate/features/splash/presentation/pages/splash_view.dart';
+import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
+import '../../features/layout/presentation/pages/layout_screen.dart';
 import 'page_name.dart';
 
 class RouteManager {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  static BuildContext? get ctx => navigatorKey.currentContext;
+  static BuildContext? ctx;
 
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case PageName.splash:
+      case PageName.splashScreen:
         return _getPageTransition(
-          const SplashView(),
+          const SplashScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.layoutScreen:
+        return _getPageTransition(
+          const LayoutScreen(),
           settings: routeSettings,
         );
 
@@ -26,7 +33,6 @@ class RouteManager {
     }
   }
 
-  // ignore: unused_element
   static PageTransition<dynamic> _getPageTransition(
     Widget screen, {
     RouteSettings? settings,

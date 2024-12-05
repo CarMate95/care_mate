@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RouteManager.ctx = context;
     return ScreenUtilInit(
       designSize: const Size(370, 700),
       minTextAdapt: true,
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light,
         themeMode: ThemeMode.light,
         navigatorKey: RouteManager.navigatorKey,
-        initialRoute: PageName.splash,
+        initialRoute: PageName.layoutScreen,
         onGenerateRoute: RouteManager.onGenerateRoute,
       ),
     );

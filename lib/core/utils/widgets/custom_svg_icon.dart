@@ -1,30 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:car_mate/config/themes/color_manager.dart';
+
+import '../responsive_methods.dart';
 
 class CustomSvgIcon extends StatelessWidget {
   final String iconPath;
-  final double width;
-  final double height;
-  final Color color;
+  final double size;
+  final Color? color;
+  final BoxFit fit;
   const CustomSvgIcon({
     super.key,
     required this.iconPath,
-    this.width = 40,
-    this.height = 32,
-    this.color = ColorManager.black,
+    this.size = 30,
+    this.color,
+    this.fit = BoxFit.contain,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      iconPath,
-      width: width.w,
-      height: height.h,
-      colorFilter: ColorFilter.mode(
-        color,
-        BlendMode.srcIn,
+    return SizedBox(
+      width: (size * (isTablet(context) ? 0.75 : 1)).w,
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: SvgPicture.asset(
+          iconPath,
+          colorFilter:
+              color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+          fit: fit,
+        ),
       ),
     );
   }

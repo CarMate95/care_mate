@@ -1,11 +1,5 @@
 /// This class contains all keys, and then use these keys in translation files.
 abstract class TextManager {
-  static const String login = 'login';
-
-  // in translation files:
-  // 'login': 'Login',
-  // 'login': 'تسجيل الدخول',
-
   /// Response messages
   static const String success = "success";
   static const String noContent = "noContent";
@@ -37,4 +31,11 @@ abstract class TextManager {
   static const String phoneAlreadyExists = 'phoneAlreadyExists';
   static const String loading = 'loading';
   static const String noInternet = "noInternet";
+  
+  // CarMate
+  static const String home = "home";
+  static const String repair = "repair";
+  static const String myCar = "myCar";
+  static const String aiChat = "aiChat";
+
 }
