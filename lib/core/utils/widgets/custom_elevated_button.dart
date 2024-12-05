@@ -29,11 +29,11 @@ class CustomElevatedButton extends StatelessWidget {
     this.buttonAlignment = Alignment.center,
     this.width = 1,
     this.shadow = false,
-    this.height = 60,
+    this.height = 48,
     this.borderRadius = 16,
     this.borderColor = ColorManager.primaryColor,
     required this.text,
-    this.textColor = ColorManager.white,
+    this.textColor = Colors.white,
     this.backgroundColor = ColorManager.primaryColor,
     this.size = 16,
     this.isDisabled = false,
@@ -47,19 +47,15 @@ class CustomElevatedButton extends StatelessWidget {
     }
 
     return SizedBox(
-      height: isTablet(context) ? 65.h : height.h,
+      height: isTablet(context) ? 55.h : height.h,
       width: width == 1 ? width.sw : width.w,
       child: ElevatedButton(
-        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-              backgroundColor: WidgetStateProperty.all<Color>(
-                  isDisabled ? ColorManager.grey2 : backgroundColor),
-              side: WidgetStatePropertyAll(
-                BorderSide(
-                  color: ColorManager.transparent,
-                  width: 1.5.sp,
-                ),
-              ),
-            ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+        ),
         onPressed: isDisabled ? null : onPressed,
         child: CustomText(
           text: text,

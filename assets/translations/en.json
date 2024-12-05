@@ -2,5 +2,17 @@
     "home": "Home",
     "repair": "Repair",
     "myCar": "My Car",
-    "aiChat": "Ai Chat"
+    "aiChat": "Ai Chat",
+    "pleaseEnterAValidEmailAddress": "Please enter a valid email address",
+    "welcomeBack": "Welcome back",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password",
+    "logInntoYourAccount": "Log in to your account",
+    "needAnAccount": "Need an account?",
+    "signUp": "Sign Up",
+    "rememberMe": "Remember me",
+    "feildRequired": "This field is required"
 }

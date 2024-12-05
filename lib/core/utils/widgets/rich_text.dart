@@ -9,7 +9,7 @@ class RichTextItem extends StatelessWidget {
   final String text2;
   final String? text3;
   final double fontSize;
-  
+
   const RichTextItem({
     super.key,
     required this.text1,
@@ -26,7 +26,7 @@ class RichTextItem extends StatelessWidget {
           TextSpan(
             text: "${context.tr(text1)} ",
             style: getBoldStyle(
-              color: ColorManager.black,
+              color: Colors.black,
               fontSize: fontSize.sp,
             ),
           ),
@@ -41,7 +41,7 @@ class RichTextItem extends StatelessWidget {
             TextSpan(
               text: "${context.tr(text3!)} ",
               style: getBoldStyle(
-                color: ColorManager.black,
+                color: Colors.black,
                 fontSize: fontSize.sp,
               ),
             ),

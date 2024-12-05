@@ -2,143 +2,149 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/config/themes/color_manager.dart';
-import 'package:car_mate/config/themes/text_style.dart';
 
-class CustomTextFormField extends StatelessWidget {
-  final String? label;
-  final String? textHint;
-  final double? width;
-  final double height;
-  final double borderRadius;
+import '../../../config/themes/color_manager.dart';
+import '../../../config/themes/text_manager.dart';
+import '../../../config/themes/text_style.dart';
+import '../functions/input_decoration_getter.dart';
+import '../responsive_methods.dart';
+
+class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
+  final String? labelText;
+  final TextStyle? labelStyle;
+  final TextStyle? style;
+  final Iterable<String>? autofillHints;
+  final String? hintText;
+  final double suffixIconEndPadding;
+  final String? initialValue;
   final Widget? prefixIcon;
-  final Icon? suffixIcon;
   final bool obscureText;
-  final bool suffix;
-  final bool isSuffixWidget;
-  final Color textColor;
   final Widget? suffixWidget;
   final String? Function(String?)? validator;
   final Function(String?)? onchangeFun;
   final TextEditingController? controller;
   final TextInputType keyboardType;
-  final bool hasBorder;
-  final Color fillColor;
-  final int maxLength;
-  final double fontSize;
   final bool isEn;
+  final bool readOnly;
   final Function? onEditingComplete;
-  final Color colorBorder;
-  final Color hintColor;
-  final Function? passwordVisibility;
   final int maxLines;
   final bool enabled;
   final void Function(String)? onFieldSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool isRequired;
   final double verticalPadding;
+  final double horizontalPadding;
+  final double? borderRadius;
+  final Color? borderColor;
+  final Color fillColor;
+  final bool enabletopLable;
+  final Color textValueColor;
+  final String? suffixText;
+  final int? minLines;
+  final int? maxLength;
 
   const CustomTextFormField({
     super.key,
-    this.label,
-    this.textHint,
-    this.textColor = ColorManager.primaryColor,
-    this.hintColor = ColorManager.primaryColor,
-    this.maxLines = 4,
+    this.readOnly = false,
+    this.textValueColor = ColorManager.grey,
+    this.labelStyle,
+    this.suffixText,
+    this.autofillHints,
+    this.suffixIconEndPadding = 16,
+    this.labelText,
+    this.style,
+    this.inputFormatters,
+    this.hintText,
+    this.fillColor = ColorManager.lightBlack,
+    // this.borderRadius = 5,
+    this.borderRadius = 15,
+    this.verticalPadding = 12,
+    this.horizontalPadding = 12,
+    this.maxLines = 1,
+    this.initialValue,
     this.onchangeFun,
-    this.passwordVisibility,
-    this.isSuffixWidget = false,
     this.suffixWidget,
-    this.suffix = false,
-    this.width,
-    this.borderRadius = 16,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
-    this.suffixIcon,
     this.obscureText = false,
     this.validator,
     this.controller,
     this.onEditingComplete,
     this.enabled = true,
-    this.colorBorder = ColorManager.lightGrey,
-    this.hasBorder = true,
-    this.fillColor = ColorManager.white,
-    this.maxLength = 10000,
-    this.fontSize = 16,
     this.isEn = false,
-    this.height = 52,
     this.onFieldSubmitted,
-    this.verticalPadding = 20,
+    this.isRequired = true,
+    this.borderColor = Colors.transparent,
+    this.enabletopLable = false,
+    this.minLines = 1,
+    this.maxLength,
   });
-
   @override
   Widget build(BuildContext context) {
-    String updatedHintText = textHint == null ? "" : context.tr(textHint!);
-
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.h),
-      child: Container(
-        constraints: BoxConstraints(
-          minHeight: height.h,
-        ),
-        width: width?.w,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-        ),
-        child: TextFormField(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        TextFormField(
+          readOnly: readOnly,
+          autofillHints: autofillHints,
+          maxLength: maxLength,
+          initialValue: initialValue,
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.start,
+          scrollPadding: EdgeInsets.zero,
           onFieldSubmitted: onFieldSubmitted,
           enabled: enabled,
           keyboardType: keyboardType,
-          cursorHeight: 25.h,
-          cursorColor: ColorManager.black,
-          // maxLines: maxLines,
-          // minLines: 1,
-          style: getMediumStyle(
-            fontSize: fontSize,
-            color: textColor,
+          cursorHeight: isMobile(context) ? 20.h : 30.h,
+          cursorColor: Colors.black,
+          maxLines: maxLines,
+          minLines: minLines,
+          obscuringCharacter: '*',
+          buildCounter: isTablet(context) && maxLength != null
+              ? (
+                  context, {
+                  required currentLength,
+                  required isFocused,
+                  required maxLength,
+                }) {
+                  return Text(
+                    "$currentLength/$maxLength",
+                    style: getRegularStyle(color: ColorManager.grey),
+                  );
+                }
+              : null,
+          style: getMediumStyle(fontSize: 16, color: textValueColor),
+          decoration: getInputDecoration(
+            context: context,
+            hintText: hintText,
+            enabled: enabled,
+            isRequired: isRequired,
+            fillColor: fillColor,
+            prefixIcon: prefixIcon,
+            // labelText: labelText,
+            suffixText: suffixText,
+            suffixWidget: suffixWidget,
+            suffixIconEndPadding: suffixIconEndPadding,
+            borderRadius: borderRadius ?? 15.r,
+            verticalPadding: verticalPadding.h,
+            horizontalPadding: horizontalPadding,
+            borderColor: borderColor,
+            labelText: labelText,
           ),
           onChanged: onchangeFun,
           controller: controller,
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
           obscureText: obscureText,
-          validator: validator,
-          decoration: InputDecoration(
-            alignLabelWithHint: true,
-            filled: true,
-            border: hasBorder ? null : InputBorder.none,
-            focusedBorder: hasBorder ? null : InputBorder.none,
-            enabledBorder: hasBorder ? null : InputBorder.none,
-            errorBorder: hasBorder ? null : InputBorder.none,
-            focusedErrorBorder: hasBorder ? null : InputBorder.none,
-            suffixIcon: suffixWidget,
-            fillColor: fillColor,
-            label: label == null
-                ? null
-                : CustomText(
-                    text: label!,
-                    style: getRegularStyle(
-                      fontSize: 16,
-                      color: ColorManager.primaryColor,
-                    ),
-                    textAlign: TextAlign.start,
-                  ),
-            hintText: updatedHintText,
-            contentPadding: EdgeInsets.symmetric(
-              vertical: verticalPadding.h,
-              horizontal: 16.w,
-            ),
-            //hintMaxLines: 1,
-            prefixIcon: prefixIcon,
-            suffixStyle: getRegularStyle(
-              fontSize: 14,
-              color: ColorManager.primaryColor,
-            ),
-          ),
-          // control the number of digits in the text field
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(maxLength),
-          ],
+          validator: validator ??
+              (value) {
+                if (value == null || value.isEmpty) {
+                  return TextManager.feildRequired.tr();
+                }
+                return null;
+              },
+          inputFormatters: inputFormatters,
         ),
-      ),
+      ],
     );
   }
 }

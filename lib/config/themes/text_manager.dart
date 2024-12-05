@@ -31,11 +31,25 @@ abstract class TextManager {
   static const String phoneAlreadyExists = 'phoneAlreadyExists';
   static const String loading = 'loading';
   static const String noInternet = "noInternet";
-  
+
   // CarMate
   static const String home = "home";
   static const String repair = "repair";
   static const String myCar = "myCar";
   static const String aiChat = "aiChat";
 
+  // text feild
+  static const String feildRequired = "feildRequired";
+  static const String pleaseEnterAValidEmailAddress =
+      "pleaseEnterAValidEmailAddress";
+  static const String welcomeBack = "welcomeBack";
+  static const String logInntoYourAccount = "logInntoYourAccount";
+  static const String password = "password";
+  static const String confirmPassword = "confirmPassword";
+  static const String email = "email";
+  static const String rememberMe = "rememberMe";
+  static const String login = "login";
+  static const String needAnAccount = "needAnAccount";
+  static const String signUp = "signUp";
+  static const String forgetPassword = "forgetPassword";
 }

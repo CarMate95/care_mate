@@ -2,5 +2,17 @@
     "home": "الرئيسية",
     "repair": "صيانة",
     "myCar": "سيارتي",
-    "aiChat": "الدردشة"
+    "aiChat": "الدردشة",
+    "pleaseEnterAValidEmailAddress": "الرجاء ادخال بريد الكتروني صحيح",
+    "welcomeBack": "مرحبا بعودتك",
+    "login": "تسجيل الدخول",
+    "email": "البريد الالكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تاكيد كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور",
+    "logInntoYourAccount": "تسجيل الدخول الى حسابك",
+    "needAnAccount": "تحتاج حساب؟",
+    "signUp": "تسجيل",
+    "rememberMe": "تذكرني",
+    "feildRequired": "هذا الحقل مطلوب"
 }

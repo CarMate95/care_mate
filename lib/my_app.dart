@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.light,
-        themeMode: ThemeMode.light,
+        theme: AppTheme.dark,
+        // themeMode: ThemeMode.dark,
         navigatorKey: RouteManager.navigatorKey,
-        initialRoute: PageName.layoutScreen,
+        initialRoute: PageName.loginScreen,
         onGenerateRoute: RouteManager.onGenerateRoute,
       ),
     );

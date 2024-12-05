@@ -7,12 +7,12 @@ abstract class AppTheme {
   // static const double radius = 25;
   // static const double iconSize = 24;
   static final light = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: ColorManager.white,
+    scaffoldBackgroundColor: Colors.white,
     primaryColor: ColorManager.primaryColor,
   );
 
   static final dark = ThemeData.dark().copyWith(
-    // scaffoldBackgroundColor: ColorManager.black,
+    scaffoldBackgroundColor: Colors.black,
     primaryColor: ColorManager.primaryColor,
   );
 }
