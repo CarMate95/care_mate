@@ -1,64 +1,61 @@
+import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final bool isEmpty;
-  final Widget? leadingWidget;
-  final Widget? titleWidget;
-  final List<Widget>? actions;
+import '../../../config/themes/color_manager.dart';
 
+class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
-    this.isEmpty = false,
-    this.leadingWidget,
-    this.titleWidget,
-    this.actions,
+    this.onBack,
+    this.title,
+    this.suffex,
+    this.enbleBackIcon = true,
   });
+  final void Function()? onBack;
+  final String? title;
+  final Widget? suffex;
+  final bool enbleBackIcon;
 
   @override
   Widget build(BuildContext context) {
-    return isEmpty
-        ? AppBar(
-            leading: const SizedBox(),
-            toolbarHeight: 10.h,
-          )
-        : AppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-
-            leadingWidth: 70.w,
-            leading: Padding(
-              padding: EdgeInsetsDirectional.only(start: 15.w),
-              child: leadingWidget,
+    return Container(
+      padding: EdgeInsets.only(top: 16.h),
+      child: Row(
+        children: [
+          if (enbleBackIcon) ...{
+            IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: context.isDarkMode
+                    ? ColorManager.white
+                    : ColorManager.black,
+                size: 24.sp,
+              ),
+              onPressed: onBack ??
+                  () {
+                    Navigator.pop(context);
+                  },
             ),
-
-            title: titleWidget,
-
-            // trailing is circle avatar with notification icon
-            // with stacked circle avatar containing number of notifications
-            actions: actions,
-
-            // make a gradient color for the app bar
-            // flexibleSpace: Container(
-            //   decoration: BoxDecoration(
-            //     color: Theme.of(context).scaffoldBackgroundColor,
-            //     gradient: LinearGradient(
-            //       colors: [
-            //         ColorManager.primary.withOpacity(0.7),
-            //         Theme.of(context).scaffoldBackgroundColor,
-            //       ],
-            //       // from the top to the bottom
-            //       begin: Alignment.topCenter,
-            //       end: Alignment.bottomCenter,
-            //     ),
-            //   ),
-            // ),
-
-            // set padding for the app bar
-            titleSpacing: 0,
-            elevation: 0.3.sp,
-          );
+          },
+          if (title != null) ...{
+            const Spacer(),
+            CustomText(
+              text: title!,
+              style: getBoldStyle(
+                fontSize: 20,
+                color: context.isDarkMode
+                    ? ColorManager.white
+                    : ColorManager.black,
+              ),
+            ),
+          },
+          const Spacer(),
+          if (suffex != null) suffex!,
+        ],
+      ),
+    );
   }
-
-  @override
-  Size get preferredSize => Size.fromHeight(80.h);
 }

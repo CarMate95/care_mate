@@ -31,11 +31,39 @@ abstract class TextManager {
   static const String phoneAlreadyExists = 'phoneAlreadyExists';
   static const String loading = 'loading';
   static const String noInternet = "noInternet";
-  
+
   // CarMate
   static const String home = "home";
   static const String repair = "repair";
   static const String myCar = "myCar";
   static const String aiChat = "aiChat";
 
+  // text feild
+  static const String feildRequired = "feildRequired";
+  static const String pleaseEnterAValidEmailAddress =
+      "pleaseEnterAValidEmailAddress";
+  static const String welcomeBack = "welcomeBack";
+  static const String logInntoYourAccount = "logInntoYourAccount";
+  static const String password = "password";
+  static const String confirmPassword = "confirmPassword";
+  static const String email = "email";
+  static const String rememberMe = "rememberMe";
+  static const String login = "login";
+  static const String needAnAccount = "needAnAccount";
+  static const String signUp = "signUp";
+  static const String forgetPassword = "forgetPassword";
+  static const String passwordValidation = "passwordValidation";
+  static const String createYourAccount = "createYourAccount";
+  static const String letsGetYouStarted = "letsGetYouStarted";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String selectYourRoleToContinue = "selectYourRoleToContinue";
+  static const String alreadyHaveAnAccount = "alreadyHaveAnAccount";
+  static const String chooseYourRole = "chooseYourRole";
+  static const String personalDriver = "personalDriver";
+  static const String vehicleWorker = "vehicleWorker";
+  static const String location = "location";
+  static const String enterYourLocation = "enterYourLocation";
+  static const String phoneNumber = "phoneNumber";
+  static const String phoneNumberMustBe11Digits = "phoneNumberMustBe11Digits";
 }

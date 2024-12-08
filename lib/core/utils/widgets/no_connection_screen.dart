@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/config/themes/assets_manager.dart';
-import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 
@@ -24,7 +23,7 @@ class NoConnectionScreen extends StatelessWidget {
           SvgPicture.asset(
             AssetsManager.noConnection,
             colorFilter: const ColorFilter.mode(
-              ColorManager.black,
+              Colors.black,
               BlendMode.srcIn,
             ),
           ),
