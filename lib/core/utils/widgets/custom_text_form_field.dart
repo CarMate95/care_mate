@@ -1,3 +1,4 @@
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -55,7 +56,7 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
     this.style,
     this.inputFormatters,
     this.hintText,
-    this.fillColor = ColorManager.lightBlack,
+    this.fillColor = ColorManager.darkGrey,
     // this.borderRadius = 5,
     this.borderRadius = 15,
     this.verticalPadding = 12,
@@ -81,70 +82,67 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextFormField(
-          readOnly: readOnly,
-          autofillHints: autofillHints,
-          maxLength: maxLength,
-          initialValue: initialValue,
-          textAlignVertical: TextAlignVertical.center,
-          textAlign: TextAlign.start,
-          scrollPadding: EdgeInsets.zero,
-          onFieldSubmitted: onFieldSubmitted,
-          enabled: enabled,
-          keyboardType: keyboardType,
-          cursorHeight: isMobile(context) ? 20.h : 30.h,
-          cursorColor: Colors.black,
-          maxLines: maxLines,
-          minLines: minLines,
-          obscuringCharacter: '*',
-          buildCounter: isTablet(context) && maxLength != null
-              ? (
-                  context, {
-                  required currentLength,
-                  required isFocused,
-                  required maxLength,
-                }) {
-                  return Text(
-                    "$currentLength/$maxLength",
-                    style: getRegularStyle(color: ColorManager.grey),
-                  );
-                }
-              : null,
-          style: getMediumStyle(fontSize: 16, color: textValueColor),
-          decoration: getInputDecoration(
-            context: context,
-            hintText: hintText,
-            enabled: enabled,
-            isRequired: isRequired,
-            fillColor: fillColor,
-            prefixIcon: prefixIcon,
-            // labelText: labelText,
-            suffixText: suffixText,
-            suffixWidget: suffixWidget,
-            suffixIconEndPadding: suffixIconEndPadding,
-            borderRadius: borderRadius ?? 15.r,
-            verticalPadding: verticalPadding.h,
-            horizontalPadding: horizontalPadding,
-            borderColor: borderColor,
-            labelText: labelText,
-          ),
-          onChanged: onchangeFun,
-          controller: controller,
-          onTapOutside: (event) => FocusScope.of(context).unfocus(),
-          obscureText: obscureText,
-          validator: validator ??
-              (value) {
-                if (value == null || value.isEmpty) {
-                  return TextManager.feildRequired.tr();
-                }
-                return null;
-              },
-          inputFormatters: inputFormatters,
-        ),
-      ],
+    return TextFormField(
+      readOnly: readOnly,
+      autofillHints: autofillHints,
+      maxLength: maxLength,
+      initialValue: initialValue,
+      textAlignVertical: TextAlignVertical.center,
+      textAlign: TextAlign.start,
+      scrollPadding: EdgeInsets.zero,
+      onFieldSubmitted: onFieldSubmitted,
+      enabled: enabled,
+      keyboardType: keyboardType,
+      cursorHeight: isMobile(context) ? 20.h : 30.h,
+      cursorColor: Colors.black,
+      maxLines: maxLines,
+      minLines: minLines,
+      obscuringCharacter: '*',
+      buildCounter: isTablet(context) && maxLength != null
+          ? (
+              context, {
+              required currentLength,
+              required isFocused,
+              required maxLength,
+            }) {
+              return Text(
+                "$currentLength/$maxLength",
+                style: getRegularStyle(color: ColorManager.grey),
+              );
+            }
+          : null,
+      style: getMediumStyle(fontSize: 16, color: textValueColor),
+      decoration: getInputDecoration(
+        context: context,
+        hintText: hintText,
+        enabled: enabled,
+        isRequired: isRequired,
+        fillColor:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.white,
+        prefixIcon: prefixIcon,
+        // labelText: labelText,
+        suffixText: suffixText,
+        suffixWidget: suffixWidget,
+        suffixIconEndPadding: suffixIconEndPadding,
+        borderRadius: borderRadius ?? 15.r,
+        verticalPadding: verticalPadding.h,
+        horizontalPadding: horizontalPadding,
+        borderColor: borderColor,
+        labelText: labelText,
+        labelStyle: labelStyle,
+      ),
+      onChanged: onchangeFun,
+      controller: controller,
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
+      obscureText: obscureText,
+      validator: validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return TextManager.feildRequired.tr();
+            }
+            return null;
+          },
+      inputFormatters: inputFormatters,
     );
   }
 }

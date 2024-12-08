@@ -1,4 +1,6 @@
+import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +23,8 @@ class CustomLayoutButtonNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            color: Colors.black54,
+            color:
+                context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
           ),
           child: GNav(
             gap: 8,
@@ -30,18 +33,22 @@ class CustomLayoutButtonNavBar extends StatelessWidget {
             duration: const Duration(milliseconds: 400),
             tabs: [
               customNavBarItem(
+                context: context,
                 text: TextManager.home,
                 iconPath: AssetsManager.homeIcon,
               ),
               customNavBarItem(
+                context: context,
                 text: TextManager.repair,
                 iconPath: AssetsManager.repairIcon,
               ),
               customNavBarItem(
+                context: context,
                 text: TextManager.myCar,
                 iconPath: AssetsManager.carIcon,
               ),
               customNavBarItem(
+                context: context,
                 text: TextManager.aiChat,
                 iconPath: AssetsManager.robotIcon,
               ),

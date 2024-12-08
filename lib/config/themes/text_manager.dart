@@ -52,4 +52,18 @@ abstract class TextManager {
   static const String needAnAccount = "needAnAccount";
   static const String signUp = "signUp";
   static const String forgetPassword = "forgetPassword";
+  static const String passwordValidation = "passwordValidation";
+  static const String createYourAccount = "createYourAccount";
+  static const String letsGetYouStarted = "letsGetYouStarted";
+  static const String firstName = "firstName";
+  static const String lastName = "lastName";
+  static const String selectYourRoleToContinue = "selectYourRoleToContinue";
+  static const String alreadyHaveAnAccount = "alreadyHaveAnAccount";
+  static const String chooseYourRole = "chooseYourRole";
+  static const String personalDriver = "personalDriver";
+  static const String vehicleWorker = "vehicleWorker";
+  static const String location = "location";
+  static const String enterYourLocation = "enterYourLocation";
+  static const String phoneNumber = "phoneNumber";
+  static const String phoneNumberMustBe11Digits = "phoneNumberMustBe11Digits";
 }

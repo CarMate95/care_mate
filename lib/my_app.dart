@@ -1,5 +1,7 @@
+import 'package:car_mate/config/theme_cubit/theme_cubit_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/routes/page_name.dart';
 import 'config/routes/route_manager.dart';
@@ -15,16 +17,26 @@ class MyApp extends StatelessWidget {
       designSize: const Size(370, 700),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) => MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.dark,
-        // themeMode: ThemeMode.dark,
-        navigatorKey: RouteManager.navigatorKey,
-        initialRoute: PageName.loginScreen,
-        onGenerateRoute: RouteManager.onGenerateRoute,
+      builder: (_, child) => BlocProvider(
+        create: (context) => ThemeCubit(),
+        child: Builder(builder: (context) {
+          return BlocBuilder<ThemeCubit, ThemeState>(
+            builder: (context, state) {
+              return MaterialApp(
+                localizationsDelegates: context.localizationDelegates,
+                supportedLocales: context.supportedLocales,
+                locale: context.locale,
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.light,
+                darkTheme: AppTheme.dark,
+                themeMode: ThemeCubit.themeMode,
+                navigatorKey: RouteManager.navigatorKey,
+                initialRoute: PageName.loginScreen,
+                onGenerateRoute: RouteManager.onGenerateRoute,
+              );
+            },
+          );
+        }),
       ),
     );
   }

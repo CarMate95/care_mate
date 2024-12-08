@@ -1,5 +1,7 @@
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/widgets/custom_text_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../config/themes/assets_manager.dart';
@@ -29,7 +31,6 @@ class _PasswordFeildState extends State<PasswordFeild> {
       controller: widget.controller,
       hintText: widget.hintText,
       labelText: widget.labelText,
-      fillColor: ColorManager.lightBlack,
       obscureText: !_isPasswordVisible,
       suffixWidget: IconButton(
         icon: Icon(
@@ -47,6 +48,14 @@ class _PasswordFeildState extends State<PasswordFeild> {
         iconPath: AssetsManager.lockIcon,
         size: 22,
       ),
+      validator: (value) {
+        if (value!.isEmpty) {
+          return TextManager.feildRequired.tr();
+        } else if (value.length < 8) {
+          return TextManager.passwordValidation.tr();
+        }
+        return null;
+      },
     );
   }
 }

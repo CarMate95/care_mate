@@ -1,4 +1,6 @@
+import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,25 +17,25 @@ class LayoutScreen extends StatelessWidget {
         Center(
           child: Text(
             'Home',
-            style: getBoldStyle(color: Colors.black),
+            style: getBoldStyle(color: ColorManager.primaryColor),
           ),
         ),
         Center(
           child: Text(
             'Repair',
-            style: getBoldStyle(color: Colors.black),
+            style: getBoldStyle(color: ColorManager.primaryColor),
           ),
         ),
         Center(
           child: Text(
             'My Car ',
-            style: getBoldStyle(color: Colors.black),
+            style: getBoldStyle(color: ColorManager.primaryColor),
           ),
         ),
         Center(
           child: Text(
             'Ai Chat',
-            style: getBoldStyle(color: Colors.black),
+            style: getBoldStyle(color: ColorManager.primaryColor),
           ),
         ),
       ]),
@@ -41,7 +43,7 @@ class LayoutScreen extends StatelessWidget {
         builder: (context, state) {
           var layoutCubit = LayoutCubit.get(context);
           return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: context.scaffoldBackgroundColor,
             body: layoutCubit.screens[layoutCubit.currentIndex],
             bottomNavigationBar: const CustomLayoutButtonNavBar(),
           );

@@ -58,10 +58,11 @@ mixin InputDecorationGetter {
         fontSize: 16,
         color: ColorManager.grey,
       ),
-      labelStyle: getRegularStyle(
-        fontSize: 16,
-        color: ColorManager.grey,
-      ),
+      labelStyle: labelStyle ??
+          getRegularStyle(
+            fontSize: 16,
+            color: ColorManager.grey,
+          ),
       contentPadding: EdgeInsetsDirectional.symmetric(
           vertical: verticalPadding.h, horizontal: horizontalPadding.w),
       fillColor: fillColor,

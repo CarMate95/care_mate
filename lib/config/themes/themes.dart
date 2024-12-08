@@ -3,16 +3,21 @@ import 'package:flutter/material.dart';
 import 'color_manager.dart';
 
 abstract class AppTheme {
-  // static const double borderRadius = 20;
-  // static const double radius = 25;
-  // static const double iconSize = 24;
   static final light = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: ColorManager.primaryColor,
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: ColorManager.whiteBackground,
+    // colorScheme: const ColorScheme.light(
+    //   primary: ColorManager.primaryColor,
+    //   onPrimary: ColorManager.lightPrimaryColor,
+    //   secondary: ColorManager.grey,
+    //   onSecondary: ColorManager.white,
+    //   tertiary: ColorManager.white,
+    //   onTertiary: ColorManager.lightBlack,
+    // ),
   );
 
   static final dark = ThemeData.dark().copyWith(
-    scaffoldBackgroundColor: Colors.black,
-    primaryColor: ColorManager.primaryColor,
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: ColorManager.black,
   );
 }

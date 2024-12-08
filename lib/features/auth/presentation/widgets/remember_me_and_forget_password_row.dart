@@ -1,8 +1,10 @@
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../config/themes/color_manager.dart';
 import '../../../../config/themes/text_manager.dart';
 
 class RememberMeAndForgetPasswordRow extends StatefulWidget {
@@ -28,7 +30,7 @@ class _RememberMeAndForgetPasswordRowState
           },
           icon: Icon(
             _isRememberMe ? Icons.check_circle_outline : Icons.circle_outlined,
-            color: Colors.white,
+            color: context.isDarkMode ? ColorManager.white : ColorManager.black,
             size: 20.sp,
           ),
         ),
@@ -36,7 +38,7 @@ class _RememberMeAndForgetPasswordRowState
           text: TextManager.rememberMe,
           style: getMediumStyle(
             fontSize: 12,
-            color: Colors.white,
+            color: context.isDarkMode ? ColorManager.white : ColorManager.black,
           ),
         ),
         const Spacer(),
@@ -46,7 +48,8 @@ class _RememberMeAndForgetPasswordRowState
             text: TextManager.forgetPassword,
             style: getMediumStyle(
               fontSize: 12,
-              color: Colors.white,
+              color:
+                  context.isDarkMode ? ColorManager.white : ColorManager.black,
               decoration: TextDecoration.underline,
             ),
           ),
