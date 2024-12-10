@@ -37,7 +37,7 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
   final double horizontalPadding;
   final double? borderRadius;
   final Color? borderColor;
-  final Color fillColor;
+  final Color? fillColor;
   final bool enabletopLable;
   final Color textValueColor;
   final String? suffixText;
@@ -56,8 +56,7 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
     this.style,
     this.inputFormatters,
     this.hintText,
-    this.fillColor = ColorManager.darkGrey,
-    // this.borderRadius = 5,
+    this.fillColor,
     this.borderRadius = 15,
     this.verticalPadding = 12,
     this.horizontalPadding = 12,
@@ -117,8 +116,7 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
         hintText: hintText,
         enabled: enabled,
         isRequired: isRequired,
-        fillColor:
-            context.isDarkMode ? ColorManager.darkGrey : ColorManager.white,
+        fillColor: context.tertiaryColor,
         prefixIcon: prefixIcon,
         // labelText: labelText,
         suffixText: suffixText,

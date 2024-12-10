@@ -1,4 +1,3 @@
-import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +25,7 @@ class CustomAccountHintRow extends StatelessWidget {
           text: text,
           style: getMediumStyle(
             fontSize: 12,
-            color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+            color: context.secondaryColor,
           ),
         ),
         horizontalSpace(4),
@@ -37,9 +36,7 @@ class CustomAccountHintRow extends StatelessWidget {
             text: buttonText,
             style: getMediumStyle(
               fontSize: 12,
-              color: context.isDarkMode
-                  ? ColorManager.lightPrimaryColor
-                  : ColorManager.primaryColor,
+              color: context.onPrimayColor,
               decoration: TextDecoration.underline,
             ),
           ),

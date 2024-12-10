@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import '../../../config/themes/assets_manager.dart';
 import '../../../config/themes/text_manager.dart';
 
-class LocationFeild extends StatelessWidget {
-  const LocationFeild({super.key, this.controller});
+class LocationField extends StatelessWidget {
+  const LocationField({super.key, this.controller});
   final TextEditingController? controller;
 
   @override

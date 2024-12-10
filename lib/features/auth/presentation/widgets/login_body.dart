@@ -2,14 +2,13 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/page_name.dart';
-import '../../../../config/themes/color_manager.dart';
 import '../../../../config/themes/text_manager.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/functions/spacing.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
-import '../../../../core/utils/widgets/email_feild.dart';
-import '../../../../core/utils/widgets/password_feild.dart';
+import '../../../../core/utils/widgets/email_field.dart';
+import '../../../../core/utils/widgets/password_field.dart';
 import 'custom_account_hint_row.dart';
 import 'remember_me_and_forget_password_row.dart';
 
@@ -24,13 +23,21 @@ class _LoginBodyState extends State<LoginBody> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  bool enableValidation = false;
+  bool startValidation = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    formKey.currentState?.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      autovalidateMode: enableValidation
+      autovalidateMode: startValidation
           ? AutovalidateMode.onUserInteraction
           : AutovalidateMode.disabled,
       child: Column(
@@ -43,9 +50,7 @@ class _LoginBodyState extends State<LoginBody> {
               text: TextManager.welcomeBack,
               style: getBoldStyle(
                 fontSize: 36,
-                color: context.isDarkMode
-                    ? ColorManager.white
-                    : ColorManager.black,
+                color: context.secondaryColor,
               ),
             ),
           ),
@@ -54,18 +59,17 @@ class _LoginBodyState extends State<LoginBody> {
             text: TextManager.logInntoYourAccount,
             style: getSemiBoldStyle(
               fontSize: 16,
-              color:
-                  context.isDarkMode ? ColorManager.white : ColorManager.black,
+              color: context.secondaryColor.withOpacity(0.8),
             ),
           ),
           verticalSpace(24),
           // email
-          EmailFeild(
+          EmailField(
             controller: emailController,
           ),
           verticalSpace(24),
           // password
-          PasswordFeild(
+          PasswordField(
             labelText: TextManager.password,
             controller: passwordController,
           ),
@@ -77,10 +81,10 @@ class _LoginBodyState extends State<LoginBody> {
           CustomElevatedButton(
             onPressed: () {
               setState(() {
-                enableValidation = true;
+                startValidation = true;
               });
 
-              // to validate the form
+              // validate the form
               if (!formKey.currentState!.validate()) return;
 
               Navigator.pushNamedAndRemoveUntil(

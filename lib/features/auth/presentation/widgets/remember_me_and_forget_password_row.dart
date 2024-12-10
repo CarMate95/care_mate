@@ -4,7 +4,7 @@ import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/themes/color_manager.dart';
+import '../../../../config/routes/page_name.dart';
 import '../../../../config/themes/text_manager.dart';
 
 class RememberMeAndForgetPasswordRow extends StatefulWidget {
@@ -22,6 +22,7 @@ class _RememberMeAndForgetPasswordRowState
   Widget build(BuildContext context) {
     return Row(
       children: [
+        // remember me checkbox
         IconButton(
           onPressed: () {
             setState(() {
@@ -30,7 +31,7 @@ class _RememberMeAndForgetPasswordRowState
           },
           icon: Icon(
             _isRememberMe ? Icons.check_circle_outline : Icons.circle_outlined,
-            color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+            color: context.secondaryColor,
             size: 20.sp,
           ),
         ),
@@ -38,18 +39,21 @@ class _RememberMeAndForgetPasswordRowState
           text: TextManager.rememberMe,
           style: getMediumStyle(
             fontSize: 12,
-            color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+            color: context.secondaryColor,
           ),
         ),
         const Spacer(),
+        // forget password
         InkWell(
-          onTap: () {},
+          onTap: () {
+            // navigate to reset password screen
+            Navigator.pushNamed(context, PageName.resetPasswordScreen);
+          },
           child: CustomText(
             text: TextManager.forgetPassword,
             style: getMediumStyle(
               fontSize: 12,
-              color:
-                  context.isDarkMode ? ColorManager.white : ColorManager.black,
+              color: context.secondaryColor,
               decoration: TextDecoration.underline,
             ),
           ),

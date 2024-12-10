@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/widgets/custom_scaffold.dart';
 import '../widgets/login_body.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -8,15 +8,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: const SingleChildScrollView(
-            // login body
-            child: LoginBody(),
-          ),
-        ),
+    return const CustomScaffold(
+      body: SingleChildScrollView(
+        // login body
+        child: LoginBody(),
       ),
     );
   }

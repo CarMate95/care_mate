@@ -18,14 +18,14 @@ GButton customNavBarItem({
     icon: Icons.home,
     text: text.tr(),
     textStyle: getSemiBoldStyle(
-      color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+      color: context.secondaryColor,
       fontSize: 16,
     ),
-    backgroundColor:
+    backgroundColor: //TODO: check colors
         context.isDarkMode ? ColorManager.black : ColorManager.grey,
     leading: CustomSvgIcon(
       iconPath: iconPath,
-      color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+      color: context.secondaryColor,
       size: 24,
     ),
     active: false,
