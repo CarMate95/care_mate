@@ -66,4 +66,7 @@ abstract class TextManager {
   static const String enterYourLocation = "enterYourLocation";
   static const String phoneNumber = "phoneNumber";
   static const String phoneNumberMustBe11Digits = "phoneNumberMustBe11Digits";
+  static const String sendCode = "sendCode";
+  static const String resetPassword = "resetPassword";
+  static const String resetPasswordSubtitle = "resetPasswordSubtitle";
 }

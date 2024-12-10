@@ -1,8 +1,7 @@
-import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/widgets/email_feild.dart';
-import 'package:car_mate/core/utils/widgets/password_feild.dart';
+import 'package:car_mate/core/utils/widgets/email_field.dart';
+import 'package:car_mate/core/utils/widgets/password_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/themes/text_style.dart';
@@ -11,8 +10,8 @@ import '../../../../core/utils/functions/spacing.dart';
 import '../../../../core/utils/widgets/custom_app_bar.dart';
 import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
-import '../../../../core/utils/widgets/location_feild.dart';
-import '../../../../core/utils/widgets/phone_feild.dart';
+import '../../../../core/utils/widgets/location_field.dart';
+import '../../../../core/utils/widgets/phone_field.dart';
 import 'custom_account_hint_row.dart';
 import 'custom_role.dart';
 import 'first_name_and_last_name.dart';
@@ -26,7 +25,6 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   UserType? userTypeValidate;
-  bool isButtonTapped = false;
   final formKey = GlobalKey<FormState>();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -36,6 +34,8 @@ class _SignUpBodyState extends State<SignUpBody> {
       TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
+
+  bool startValidation = false;
 
   @override
   void dispose() {
@@ -47,13 +47,14 @@ class _SignUpBodyState extends State<SignUpBody> {
     confirmPasswordController.dispose();
     locationController.dispose();
     phoneController.dispose();
+    formKey.currentState?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      autovalidateMode: isButtonTapped
+      autovalidateMode: startValidation
           ? AutovalidateMode.onUserInteraction
           : AutovalidateMode.disabled,
       child: Column(
@@ -86,9 +87,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               text: TextManager.createYourAccount,
               style: getBoldStyle(
                 fontSize: 36,
-                color: context.isDarkMode
-                    ? ColorManager.white
-                    : ColorManager.black,
+                color: context.secondaryColor,
               ),
             ),
           ),
@@ -97,8 +96,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             text: TextManager.letsGetYouStarted,
             style: getSemiBoldStyle(
               fontSize: 16,
-              color:
-                  context.isDarkMode ? ColorManager.white : ColorManager.black,
+              color: context.secondaryColor.withOpacity(0.8),
             ),
           ),
           verticalSpace(24),
@@ -109,18 +107,18 @@ class _SignUpBodyState extends State<SignUpBody> {
           ),
           verticalSpace(24),
           // email
-          EmailFeild(
+          EmailField(
             controller: emailController,
           ),
           verticalSpace(24),
           // password
-          PasswordFeild(
+          PasswordField(
             labelText: TextManager.password,
             controller: passwordController,
           ),
           verticalSpace(24),
           // confirm password
-          PasswordFeild(
+          PasswordField(
             labelText: TextManager.confirmPassword,
             controller: confirmPasswordController,
           ),
@@ -134,7 +132,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             },
           ),
           // if user type is not selected
-          if (userTypeValidate == null && isButtonTapped) ...{
+          if (userTypeValidate == null && startValidation) ...{
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: CustomText(
@@ -152,12 +150,12 @@ class _SignUpBodyState extends State<SignUpBody> {
           // if user type is mechanic
           if (userTypeValidate == UserType.vehicleWorker) ...{
             // location feild
-            LocationFeild(
+            LocationField(
               controller: locationController,
             ),
             verticalSpace(24),
             // phone number
-            PhoneFeild(
+            PhoneField(
               controller: phoneController,
             ),
             verticalSpace(24),
@@ -167,7 +165,7 @@ class _SignUpBodyState extends State<SignUpBody> {
           CustomElevatedButton(
             onPressed: () {
               setState(() {
-                isButtonTapped = true;
+                startValidation = true;
               });
               if (!formKey.currentState!.validate()) return;
             },

@@ -1,4 +1,3 @@
-import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +22,7 @@ class CustomLayoutButtonNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            color:
-                context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+            color: context.tertiaryColor,
           ),
           child: GNav(
             gap: 8,

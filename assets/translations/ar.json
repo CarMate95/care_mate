@@ -29,5 +29,8 @@
     "enterYourLocation": "ادخل موقعك",
     "phoneNumber": "رقم الهاتف",
     "phoneNumberMustBe11Digits": "رقم الهاتف يجب ان يكون 11 رقم",
-    "forgetPassword": "نسيت كلمة المرور"
+    "forgetPassword": "نسيت كلمة المرور",
+    "resetPassword": "اعادة تعيين كلمة المرور",
+    "resetPasswordSubtitle": "أدخل البريد الإلكتروني المرتبط بحسابك وسنرسل لك بريدًا إلكترونيًا يحتوي على تعليمات لإعادة تعيين كلمة المرور الخاصة بك.",
+    "sendCode": "ارسال الكود"
 }
