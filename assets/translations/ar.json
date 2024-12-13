@@ -29,5 +29,7 @@
     "enterYourLocation": "ادخل موقعك",
     "phoneNumber": "رقم الهاتف",
     "phoneNumberMustBe11Digits": "رقم الهاتف يجب ان يكون 11 رقم",
-    "forgetPassword": "نسيت كلمة المرور"
+    "forgetPassword": "نسيت كلمة المرور",
+    "requests":"طلب المساعده",
+    "whatHappening":"ماذ يحدث معك الأن"
 }

@@ -1,6 +1,7 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/repair/presentation/pages/repair_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,12 +21,7 @@ class LayoutScreen extends StatelessWidget {
             style: getBoldStyle(color: ColorManager.primaryColor),
           ),
         ),
-        Center(
-          child: Text(
-            'Repair',
-            style: getBoldStyle(color: ColorManager.primaryColor),
-          ),
-        ),
+        const RepairScreen(),
         Center(
           child: Text(
             'My Car ',

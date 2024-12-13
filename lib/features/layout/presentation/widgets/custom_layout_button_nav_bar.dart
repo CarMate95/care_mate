@@ -23,8 +23,9 @@ class CustomLayoutButtonNavBar extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.r),
-            color:
-                context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+            color: context.isDarkMode
+                ? ColorManager.darkGrey
+                : ColorManager.lightGrey,
           ),
           child: GNav(
             gap: 8,
