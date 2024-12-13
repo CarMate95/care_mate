@@ -2,9 +2,10 @@ import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomCircularAvatat extends StatelessWidget {
-  const CustomCircularAvatat({super.key});
-
+class CustomCircularAvatar extends StatelessWidget {
+  const CustomCircularAvatar(
+      {super.key, this.backgroundColor = Colors.redAccent});
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,9 +13,9 @@ class CustomCircularAvatat extends StatelessWidget {
       child: Container(
         width: 44,
         height: 44,
-        decoration: const BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.all(Radius.circular(100))),
+        decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: const BorderRadius.all(Radius.circular(100))),
         child: SvgPicture.asset(
           AssetsManager.personIcon,
           fit: BoxFit.contain,

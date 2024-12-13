@@ -24,7 +24,7 @@ class CustomPost extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomCircularAvatat(),
+                  const CustomCircularAvatar(),
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

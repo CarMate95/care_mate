@@ -19,39 +19,35 @@ class RepairBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: const CustomFloatingActionButton(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              CustomAppBar(
-                title: TextManager.requests,
-                suffex: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SvgPicture.asset(
-                    AssetsManager.settingsIcon,
-                    color: context.isDarkMode
-                        ? ColorManager.lightGrey
-                        : Colors.black,
-                  ),
-                ),
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        ListView(
+          children: [
+            CustomAppBar(
+              enbleBackIcon: false,
+              title: TextManager.requests,
+              suffex: SvgPicture.asset(
+                AssetsManager.settingsIcon,
+                color:
+                    context.isDarkMode ? ColorManager.lightGrey : Colors.black,
               ),
-              verticalSpace(10),
-              const CustomCreatePostWidget(),
-              verticalSpace(5),
-              Expanded(
-                  child: ListView.builder(
+            ),
+            verticalSpace(10),
+            const CustomCreatePostWidget(),
+            verticalSpace(5),
+            Expanded(
+              child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) => const CustomPost(),
                 itemCount: 20,
-              )),
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
-      ),
+        const CustomFloatingActionButton(),
+      ],
     );
   }
 }

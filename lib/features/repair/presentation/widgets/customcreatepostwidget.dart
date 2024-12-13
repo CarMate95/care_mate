@@ -34,7 +34,7 @@ class CustomCreatePostWidget extends StatelessWidget {
             color: context.isDarkMode ? ColorManager.lightGrey : Colors.black,
           ),
           contentPadding: const EdgeInsets.all(15),
-          prefixIcon: const CustomCircularAvatat(),
+          prefixIcon: const CustomCircularAvatar(),
         ),
       ),
     );
