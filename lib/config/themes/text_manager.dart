@@ -69,4 +69,7 @@ abstract class TextManager {
   //Repair Feature
   static const String requests = "requests";
   static const String whatHappening = "whatHappening";
+  static const String sendCode = "sendCode";
+  static const String resetPassword = "resetPassword";
+  static const String resetPasswordSubtitle = "resetPasswordSubtitle";
 }

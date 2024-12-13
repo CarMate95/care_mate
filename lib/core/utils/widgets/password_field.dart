@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import '../../../config/themes/assets_manager.dart';
 import 'custom_svg_icon.dart';
 
-class PasswordFeild extends StatefulWidget {
-  const PasswordFeild({
+class PasswordField extends StatefulWidget {
+  const PasswordField({
     super.key,
     this.hintText,
     this.labelText,
@@ -20,10 +20,10 @@ class PasswordFeild extends StatefulWidget {
   final TextEditingController? controller;
 
   @override
-  State<PasswordFeild> createState() => _PasswordFeildState();
+  State<PasswordField> createState() => _PasswordFieldState();
 }
 
-class _PasswordFeildState extends State<PasswordFeild> {
+class _PasswordFieldState extends State<PasswordField> {
   bool _isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {

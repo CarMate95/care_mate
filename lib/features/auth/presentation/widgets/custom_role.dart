@@ -3,7 +3,6 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../config/themes/color_manager.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/enums/user_type.dart';
 import '../../../../core/utils/functions/spacing.dart';
@@ -29,12 +28,8 @@ class _CustomRoleState extends State<CustomRole> {
       children: [
         ExpansionTile(
           controller: controller,
-          backgroundColor: context.isDarkMode
-              ? ColorManager.darkGrey
-              : ColorManager.lightGrey,
-          collapsedBackgroundColor: context.isDarkMode
-              ? ColorManager.darkGrey
-              : ColorManager.lightGrey,
+          backgroundColor: context.tertiaryColor,
+          collapsedBackgroundColor: context.tertiaryColor,
           collapsedShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.r),
           ),
@@ -50,10 +45,10 @@ class _CustomRoleState extends State<CustomRole> {
                     : TextManager.vehicleWorker,
             style: getBoldStyle(
               fontSize: 16,
-              color:
-                  context.isDarkMode ? ColorManager.white : ColorManager.black,
+              color: context.secondaryColor,
             ),
           ),
+          iconColor: context.onPrimayColor,
           children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -69,15 +64,10 @@ class _CustomRoleState extends State<CustomRole> {
                         setState(() {});
                       },
                       text: TextManager.personalDriver,
-                      backgroundColor: context.isDarkMode
-                          ? ColorManager.darkGrey
-                          : ColorManager.lightGrey,
-                      // textColor: ColorManager.white,
+                      backgroundColor: context.tertiaryColor,
                       style: getSemiBoldStyle(
                         fontSize: 16,
-                        color: context.isDarkMode
-                            ? ColorManager.white
-                            : ColorManager.black,
+                        color: context.secondaryColor,
                       ),
                     ),
                   ),
@@ -91,15 +81,10 @@ class _CustomRoleState extends State<CustomRole> {
                         setState(() {});
                       },
                       text: TextManager.vehicleWorker,
-                      backgroundColor: context.isDarkMode
-                          ? ColorManager.darkGrey
-                          : ColorManager.lightGrey,
-                      // textColor: ColorManager.white,
+                      backgroundColor: context.tertiaryColor,
                       style: getSemiBoldStyle(
                         fontSize: 16,
-                        color: context.isDarkMode
-                            ? ColorManager.white
-                            : ColorManager.black,
+                        color: context.secondaryColor,
                       ),
                     ),
                   ),

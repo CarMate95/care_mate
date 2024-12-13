@@ -1,10 +1,10 @@
-import 'package:car_mate/config/themes/color_manager.dart';
-import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/features/repair/presentation/pages/repair_screen.dart';
+import 'package:car_mate/features/chat/presentation/pages/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../core/utils/widgets/custom_scaffold.dart';
+import '../../../home/presentation/pages/home_screen.dart';
+import '../../../my_car/presentation/pages/my_car_screen.dart';
 import '../cubit/layout_cubit.dart';
 import '../widgets/custom_layout_button_nav_bar.dart';
 
@@ -15,36 +15,22 @@ class LayoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LayoutCubit(screens: [
-        Center(
-          child: Text(
-            'Home',
-            style: getBoldStyle(color: ColorManager.primaryColor),
-          ),
-        ),
-        const RepairScreen(),
-        Center(
-          child: Text(
-            'My Car ',
-            style: getBoldStyle(color: ColorManager.primaryColor),
-          ),
-        ),
-        Center(
-          child: Text(
-            'Ai Chat',
-            style: getBoldStyle(color: ColorManager.primaryColor),
-          ),
-        ),
+        const HomeScreen(), // Home Screen
+        const RepairScreen(), // Repair Screen
+        const MyCarScreen(), // My Car Screen
+        const ChatScreen(), // Chat with AI Screen
       ]),
-      child: BlocBuilder<LayoutCubit, LayoutState>(
-        builder: (context, state) {
-          var layoutCubit = LayoutCubit.get(context);
-          return Scaffold(
-            backgroundColor: context.scaffoldBackgroundColor,
-            body: layoutCubit.screens[layoutCubit.currentIndex],
-            bottomNavigationBar: const CustomLayoutButtonNavBar(),
-          );
-        },
-      ),
+      child: Builder(builder: (context) {
+        return BlocBuilder<LayoutCubit, LayoutState>(
+          builder: (context, state) {
+            var layoutCubit = LayoutCubit.get(context);
+            return CustomScaffold(
+              body: layoutCubit.screens[layoutCubit.currentIndex],
+              bottomNavigationBar: const CustomLayoutButtonNavBar(),
+            );
+          },
+        );
+      }),
     );
   }
 }
