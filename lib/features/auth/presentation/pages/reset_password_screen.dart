@@ -8,6 +8,7 @@ import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/email_field.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../config/routes/page_name.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -70,7 +71,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   setState(() {
                     startValidation = true;
                   });
-                  if (!fromKey.currentState!.validate()) return;
+                  // if (!fromKey.currentState!.validate()) return;
+                  Navigator.pushNamed(context, PageName.verifyEmailScreen);
                 },
                 text: TextManager.sendCode,
               ),

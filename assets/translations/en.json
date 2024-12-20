@@ -32,5 +32,12 @@
     "forgetPassword": "Forget Password",
     "resetPassword": "Reset Password",
     "resetPasswordSubtitle": "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
-    "sendCode": "Send Code"
+    "sendCode": "Send Code",
+    "verifyYourEmailAddress": "Verify Your Email Address",
+    "verifyWithTheCode":"Verify with the code we sent you now.",
+    "resendAfter": "Resend after",
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "resend": "Resend?",
+    "verify": "Verify"
 }

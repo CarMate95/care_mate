@@ -69,4 +69,12 @@ abstract class TextManager {
   static const String sendCode = "sendCode";
   static const String resetPassword = "resetPassword";
   static const String resetPasswordSubtitle = "resetPasswordSubtitle";
+  //otp
+  static const String verifyYourEmailAddress = "verifyYourEmailAddress";
+  static const String verifyWithTheCode = "VerifyWithTheCode";
+  static const String resendAfter = "resendAfter";
+  static const String minutes = "minutes";
+  static const String seconds = "seconds";
+  static const String resend = "resend";
+  static const String verify = "verify";
 }
