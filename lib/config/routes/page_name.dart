@@ -6,4 +6,5 @@ class PageName {
   static const String resetPasswordScreen='/resetPasswordScreen';
   static const String notificationScreen = "/notificationScreen";
   static const String alertsScreen = "/alertsScreen";
+  static const String verifyEmailScreen='/verifyEmailScreen';
 }

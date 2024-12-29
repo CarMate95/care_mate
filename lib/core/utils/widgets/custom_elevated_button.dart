@@ -18,7 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
   final double width;
   final double height;
   final bool shadow;
-  final bool isDisabled;
+  final bool enabled;
   final bool isLoading;
   final AlignmentGeometry buttonAlignment;
 
@@ -36,7 +36,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.textColor = ColorManager.whiteBackground,
     this.backgroundColor = ColorManager.primaryColor,
     this.size = 16,
-    this.isDisabled = false,
+    this.enabled = true,
     this.isLoading = false,
   });
 
@@ -56,7 +56,7 @@ class CustomElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
-        onPressed: isDisabled ? null : onPressed,
+        onPressed: enabled ? onPressed : null,
         child: CustomText(
           text: text,
           style: style ??

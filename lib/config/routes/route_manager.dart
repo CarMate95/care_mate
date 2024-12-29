@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
+import '../../features/auth/presentation/pages/verify_email_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
 import 'page_name.dart';
 
@@ -54,6 +55,12 @@ class RouteManager {
       case PageName.alertsScreen:
         return _getPageTransition(
           const AlertsScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.verifyEmailScreen:
+        return _getPageTransition(
+          const VerifyEmailScreen(),
           settings: routeSettings,
         );
 
