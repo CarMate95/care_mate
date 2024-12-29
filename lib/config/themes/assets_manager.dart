@@ -1,6 +1,7 @@
 class AssetsManager {
   // static const _imagesPath = 'assets/images/';
   static const _svgPath = 'assets/svg/';
+  static const _pngPath = 'assets/png/';
   // static const _iconsPath = 'assets/icons/';
   // static const String _fontsPath = "assets/fonts/";
   // static const String _animationPath = "assets/animations/";
@@ -19,6 +20,15 @@ class AssetsManager {
   static const String emailImage = '${_svgPath}email_image.svg';
   static const String locatinIcon = '${_svgPath}location_icon.svg';
   static const String callIcon = '${_svgPath}call_icon.svg';
+  static const String settingIcon = '${_svgPath}setting_icon.svg';
+  static const String warningIcon = '${_svgPath}warningIcon.svg';
+  static const String alertIcon = '${_svgPath}alert.svg';
+  static const String alertIconBottom = '${_svgPath}alert_icon.svg';
+
+
+  static const String engineCheckImage = '${_pngPath}check_engine.png';
+  static const String brakeWarningImage = '${_pngPath}brake_warning.png';
+  static const String tierChangeAlertIcon = '${_pngPath}tier_change_alert.png';
 
   /// Icons
 

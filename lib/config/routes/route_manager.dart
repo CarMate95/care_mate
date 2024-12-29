@@ -1,3 +1,5 @@
+import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -40,6 +42,18 @@ class RouteManager {
       case PageName.resetPasswordScreen:
         return _getPageTransition(
           const ResetPasswordScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.notificationScreen:
+        return _getPageTransition(
+          const NotificationScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.alertsScreen:
+        return _getPageTransition(
+          const AlertsScreen(),
           settings: routeSettings,
         );
 
