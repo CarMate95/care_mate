@@ -119,7 +119,7 @@ class RequestDetailsBody extends StatelessWidget {
             ),
             CustomOfferHelp(
               onTap: () {
-                showAlertDialogToMechanic(context);
+                showAlertDialogToUser(context);
               },
             ),
           ],

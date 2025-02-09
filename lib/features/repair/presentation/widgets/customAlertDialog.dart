@@ -85,13 +85,8 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                           Positioned(
                             top: -13,
                             left: 20,
-                            child: Text(
-                              TextManager.cash.tr(),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            child: Text(TextManager.cash.tr(),
+                                style: getMediumStyle()),
                           ),
                         ],
                       ),
@@ -102,13 +97,7 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
               Positioned(
                 top: -13,
                 left: 20,
-                child: Text(
-                  TextManager.note.tr(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                child: Text(TextManager.note.tr(), style: getMediumStyle()),
               ),
             ],
           ),
