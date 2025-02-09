@@ -72,4 +72,13 @@ abstract class TextManager {
   static const String sendCode = "sendCode";
   static const String resetPassword = "resetPassword";
   static const String resetPasswordSubtitle = "resetPasswordSubtitle";
+  static const String post = "post";
+  static const String offerhelp = "offerhelp";
+  static const String cash = "cash";
+  static const String note = "note";
+  static const String by = "by";
+  static const String too = "too";
+  static const String workerDetails = "workerDetails";
+  static const String sent = "sent";
+  static const String requestData = "requestData";
 }

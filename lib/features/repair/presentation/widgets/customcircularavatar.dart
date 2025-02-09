@@ -8,18 +8,16 @@ class CustomCircularAvatar extends StatelessWidget {
   final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: const BorderRadius.all(Radius.circular(100))),
-        child: SvgPicture.asset(
-          AssetsManager.personIcon,
-          fit: BoxFit.contain,
-        ),
+    return Container(
+      width: 44,
+      height: 44,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: SvgPicture.asset(
+        AssetsManager.personIcon,
+        fit: BoxFit.cover,
       ),
     );
   }

@@ -34,5 +34,13 @@
     "whatHappening":"What's Happening ?",
     "resetPassword": "Reset Password",
     "resetPasswordSubtitle": "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
-    "sendCode": "Send Code"
+    "sendCode": "Send Code",
+    "post": "Post",
+    "offerhelp": "Offer Help",
+    "by": "By",
+    "too": "To",
+    "workerDetails": "Worker Details",
+    "cash": "Cash",
+    "note": "Note",
+    "sent": "Send"
 }

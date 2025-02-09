@@ -1,3 +1,5 @@
+import 'package:car_mate/features/repair/presentation/pages/create_post_screen.dart';
+import 'package:car_mate/features/repair/presentation/pages/request_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -42,7 +44,16 @@ class RouteManager {
           const ResetPasswordScreen(),
           settings: routeSettings,
         );
-
+      case PageName.requestDetails:
+        return _getPageTransition(
+          const RequestDetailsScreen(),
+          settings: routeSettings,
+        );
+      case PageName.createPostScreen:
+        return _getPageTransition(
+          const CreatePostScreen(),
+          settings: routeSettings,
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(

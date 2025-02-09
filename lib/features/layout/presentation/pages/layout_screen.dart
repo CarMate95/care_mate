@@ -1,4 +1,4 @@
-import 'package:car_mate/features/repair/presentation/pages/repair_screen.dart';
+import 'package:car_mate/features/repair/presentation/pages/requests_screen.dart';
 import 'package:car_mate/features/chat/presentation/pages/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +16,7 @@ class LayoutScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => LayoutCubit(screens: [
         const HomeScreen(), // Home Screen
-        const RepairScreen(), // Repair Screen
+        const RequestsScreen(), // Repair Screen
         const MyCarScreen(), // My Car Screen
         const ChatScreen(), // Chat with AI Screen
       ]),
