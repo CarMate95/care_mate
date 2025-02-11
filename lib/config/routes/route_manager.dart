@@ -5,6 +5,10 @@ import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
 import 'package:car_mate/features/my_car/pages/notes_list_screen.dart';
 import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
 import 'package:car_mate/features/my_car/widgets/note_item.dart';
+import 'package:car_mate/features/profile/screens/account_details_screen.dart';
+import 'package:car_mate/features/profile/screens/settings_screen.dart';
+import 'package:car_mate/features/repair/presentation/pages/create_post_screen.dart';
+import 'package:car_mate/features/repair/presentation/pages/request_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -51,6 +55,16 @@ class RouteManager {
           const ResetPasswordScreen(),
           settings: routeSettings,
         );
+      case PageName.requestDetails:
+        return _getPageTransition(
+          const RequestDetailsScreen(),
+          settings: routeSettings,
+        );
+      case PageName.createPostScreen:
+        return _getPageTransition(
+          const CreatePostScreen(),
+          settings: routeSettings,
+        );
 
       case PageName.verifyEmailScreen:
         return _getPageTransition(
@@ -91,6 +105,16 @@ class RouteManager {
         case PageName.uploadlicencescreen:
         return _getPageTransition(
            UploadLicenceScreen(),
+          settings: routeSettings,
+        );
+        case PageName.settingsScreen:
+        return _getPageTransition(
+           SettingsScreen(),
+          settings: routeSettings,
+        );
+        case PageName.accountdetailsScreen:
+        return _getPageTransition(
+           AccountDetailsScreen(),
           settings: routeSettings,
         );
 

@@ -22,7 +22,8 @@ void showCustomAlertDialog({
         title: Center(
           child: CustomText(
             text: title,
-            style: getBoldStyle(fontSize: 20),
+            style: getBoldStyle(
+                fontSize: 20, decoration: TextDecoration.underline),
           ),
         ),
         content: SingleChildScrollView(child: content),

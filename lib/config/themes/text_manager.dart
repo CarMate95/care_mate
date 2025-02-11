@@ -66,9 +66,21 @@ abstract class TextManager {
   static const String enterYourLocation = "enterYourLocation";
   static const String phoneNumber = "phoneNumber";
   static const String phoneNumberMustBe11Digits = "phoneNumberMustBe11Digits";
+  //Repair Feature
+  static const String requests = "requests";
+  static const String whatHappening = "whatHappening";
   static const String sendCode = "sendCode";
   static const String resetPassword = "resetPassword";
   static const String resetPasswordSubtitle = "resetPasswordSubtitle";
+  static const String post = "post";
+  static const String offerhelp = "offerhelp";
+  static const String cash = "cash";
+  static const String note = "note";
+  static const String by = "by";
+  static const String too = "too";
+  static const String workerDetails = "workerDetails";
+  static const String sent = "sent";
+  static const String requestData = "requestData";
   //otp
   static const String verifyYourEmailAddress = "verifyYourEmailAddress";
   static const String verifyWithTheCode = "VerifyWithTheCode";
@@ -84,8 +96,6 @@ abstract class TextManager {
   static const String title = "title";
   static const String startDate = "startDate";
   static const String endDate = "endDate";
-  static const String cash = "cash";
-  static const String note = "note";
   static const String save = "save";
   static const String searchForYourReminders = "searchForYourReminders";
   static const String camera= "camera";
@@ -99,9 +109,25 @@ abstract class TextManager {
   static const String deleteWarningNote= "deleteWarningNote";
   static const String deleteNote= "deleteNote";
   static const String cancel= "cancel";
-  static const String delete= "delete";
-  
-  
-  
+  static const String phone = "phone";
+   static const String settings = "settings";
+    static const String accountDetails = "accountDetails";
+     static const String shareApp = "shareApp";
+      static const String notification = "notification";
+       static const String appearance = "appearance";
+        static const String language = "language";
+    static const String deleteWarning = "deleteWarning";
+   static const String deleteAccount= "deleteAccount";
+   static const String logout= "logout";
+   static const String areYouSure= "areYouSure";
+   static const String delete= "delete";
+   static const String logoutWarning= "logoutWarning";
+   static const String Mohamed = "Mohamed";
+   static const String Manoooo = "Manoooo";
+   static const String MohamedEzzat = "MohamedEzzat";
+
+
+
+          
 
 }

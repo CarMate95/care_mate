@@ -11,4 +11,8 @@ class PageName {
   static const String notedetailsscreen='/notedetailsscreen';
   static const String noteslistscreen='/noteslistscren';
   static const String uploadlicencescreen='/uploadlicencescreen';
+  static const String settingsScreen='/settingsScreen';
+  static const String accountdetailsScreen='/accountdetailsScreen';
+  static const String requestDetails = '/requestDetails';
+  static const String createPostScreen = '/createPostScreen';
 }
