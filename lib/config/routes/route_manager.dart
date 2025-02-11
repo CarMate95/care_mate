@@ -1,14 +1,15 @@
-import 'package:car_mate/features/my_car/models/note_model.dart';
+
 import 'package:car_mate/features/my_car/pages/NoteDetailsScreen.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
 import 'package:car_mate/features/my_car/pages/notes_list_screen.dart';
 import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
-import 'package:car_mate/features/my_car/widgets/note_item.dart';
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/request_details_screen.dart';
+import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
@@ -63,6 +64,18 @@ class RouteManager {
       case PageName.createPostScreen:
         return _getPageTransition(
           const CreatePostScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.notificationScreen:
+        return _getPageTransition(
+          const NotificationScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.alertsScreen:
+        return _getPageTransition(
+          const AlertsScreen(),
           settings: routeSettings,
         );
 
