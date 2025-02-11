@@ -13,11 +13,13 @@ class PasswordField extends StatefulWidget {
     this.hintText,
     this.labelText,
     this.controller,
+    this.onchangeFun,
   });
 
   final String? hintText;
   final String? labelText;
   final TextEditingController? controller;
+  final void Function(String?)? onchangeFun;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -32,6 +34,7 @@ class _PasswordFieldState extends State<PasswordField> {
       hintText: widget.hintText,
       labelText: widget.labelText,
       obscureText: !_isPasswordVisible,
+      onchangeFun: widget.onchangeFun,
       suffixWidget: IconButton(
         icon: Icon(
           _isPasswordVisible ? Icons.visibility : Icons.visibility_off,

@@ -6,4 +6,6 @@ class PageName {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String requestDetails = '/requestDetails';
   static const String createPostScreen = '/createPostScreen';
+  static const String verifyEmailScreen = '/verifyEmailScreen';
+  static const String newPasswordScreen = '/newPasswordScreen';
 }

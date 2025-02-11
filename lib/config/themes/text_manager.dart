@@ -81,4 +81,12 @@ abstract class TextManager {
   static const String workerDetails = "workerDetails";
   static const String sent = "sent";
   static const String requestData = "requestData";
+  //otp
+  static const String verifyYourEmailAddress = "verifyYourEmailAddress";
+  static const String verifyWithTheCode = "VerifyWithTheCode";
+  static const String resendAfter = "resendAfter";
+  static const String minutes = "minutes";
+  static const String seconds = "seconds";
+  static const String resend = "resend";
+  static const String verify = "verify";
 }

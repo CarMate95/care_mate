@@ -42,6 +42,12 @@
     "workerDetails": "تفاصيل العامل",
     "cash": "المبلغ",
     "note": "ملحوظة",
-    "sent": "ارسال"
-
+    "sent": "ارسال",
+    "verifyYourEmailAddress": "تحقق من عنوان بريدك الإلكتروني",
+    "verifyWithTheCode": "تحقق باستخدام الرمز الذي أرسلناه الآن",
+    "resendAfter": "اعادة الارسال بعد",
+    "minutes": "دقائق",
+    "seconds": "ثواني",
+    "resend": "اعادة الارسال؟",
+    "verify": "تحقق"
 }

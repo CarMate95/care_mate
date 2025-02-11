@@ -17,8 +17,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(370, 700),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) => BlocProvider(
-        create: (context) => ThemeCubit(),
+      builder: (_, child) => MultiBlocProvider(
+        providers: [
+          BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
+          // BlocProvider<VerifyOtpCubit>(create: (context) => VerifyOtpCubit()),
+        ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, state) {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppTheme.dark,
                 themeMode: ThemeCubit.themeMode,
                 navigatorKey: RouteManager.navigatorKey,
-                initialRoute: PageName.layoutScreen,
+                initialRoute: PageName.newPasswordScreen,
                 onGenerateRoute: RouteManager.onGenerateRoute,
               );
             },

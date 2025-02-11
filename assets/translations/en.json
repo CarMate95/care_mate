@@ -42,5 +42,12 @@
     "workerDetails": "Worker Details",
     "cash": "Cash",
     "note": "Note",
-    "sent": "Send"
+    "sent": "Send",
+    "verifyYourEmailAddress": "Verify Your Email Address",
+    "verifyWithTheCode":"Verify with the code we sent you now.",
+    "resendAfter": "Resend after",
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "resend": "Resend?",
+    "verify": "Verify"
 }
