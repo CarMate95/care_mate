@@ -1,3 +1,5 @@
+import 'package:car_mate/features/profile/screens/account_details_screen.dart';
+import 'package:car_mate/features/profile/screens/settings_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/request_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +68,16 @@ class RouteManager {
       case PageName.newPasswordScreen:
         return _getPageTransition(
           const NewPasswordScreen(),
+          settings: routeSettings,
+        );
+        case PageName.settingsScreen:
+        return _getPageTransition(
+           SettingsScreen(),
+          settings: routeSettings,
+        );
+        case PageName.accountdetailsScreen:
+        return _getPageTransition(
+           AccountDetailsScreen(),
           settings: routeSettings,
         );
 
