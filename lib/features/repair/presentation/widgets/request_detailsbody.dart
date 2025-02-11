@@ -34,9 +34,7 @@ class RequestDetailsBody extends StatelessWidget {
                   onTap: () {},
                   child: SvgPicture.asset(
                     AssetsManager.settingsIcon,
-                    color: context.isDarkMode
-                        ? ColorManager.lightGrey
-                        : Colors.black,
+                    color: context.secondaryColor,
                   ),
                 ),
               ),
