@@ -89,6 +89,26 @@ abstract class TextManager {
   static const String seconds = "seconds";
   static const String resend = "resend";
   static const String verify = "verify";
+  //mycar
+  static const String uploadYourCarLicence = "uploadYourCarLicence";
+  static const String setYourReminders = "setYourReminders";
+  static const String fillYourReminderData = "fillYourReminderData";
+  static const String title = "title";
+  static const String startDate = "startDate";
+  static const String endDate = "endDate";
+  static const String save = "save";
+  static const String searchForYourReminders = "searchForYourReminders";
+  static const String camera= "camera";
+  static const String gallery= "gallery";
+  static const String done= "done";
+  static const String noteDetails= "noteDetails";
+  static const String start= "start";
+  static const String end= "end";
+  static const String noNotesFound= "noNotesFound";
+  static const String noRemindersFound= "noRemindersFound";
+  static const String deleteWarningNote= "deleteWarningNote";
+  static const String deleteNote= "deleteNote";
+  static const String cancel= "cancel";
   static const String phone = "phone";
    static const String settings = "settings";
     static const String accountDetails = "accountDetails";
@@ -96,15 +116,15 @@ abstract class TextManager {
       static const String notification = "notification";
        static const String appearance = "appearance";
         static const String language = "language";
-         static const String deleteWarning = "deleteWarning";
-          static const String deleteAccount= "deleteAccount";
-          static const String logout= "logout";
-          static const String areYouSure= "areYouSure";
-          static const String delete= "delete";
-          static const String logoutWarning= "logoutWarning";
-          static const String Mohamed = "Mohamed";
-          static const String Manoooo = "Manoooo";
-          static const String MohamedEzzat = "MohamedEzzat";
+    static const String deleteWarning = "deleteWarning";
+   static const String deleteAccount= "deleteAccount";
+   static const String logout= "logout";
+   static const String areYouSure= "areYouSure";
+   static const String delete= "delete";
+   static const String logoutWarning= "logoutWarning";
+   static const String Mohamed = "Mohamed";
+   static const String Manoooo = "Manoooo";
+   static const String MohamedEzzat = "MohamedEzzat";
 
 
 
