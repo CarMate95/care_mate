@@ -8,12 +8,13 @@ class CustomOfferHelp extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
     return Center(
       child: InkWell(
         onTap: onTap,
         child: Container(
           width: double.infinity,
-          height: 70,
+          height: mediaQuery.height * 0.075,
           decoration: BoxDecoration(
             color: ColorManager.transparent,
             borderRadius: BorderRadius.circular(20),
@@ -24,7 +25,7 @@ class CustomOfferHelp extends StatelessWidget {
           child: ShaderMask(
             shaderCallback: (Rect bounds) {
               return const LinearGradient(
-                colors: [Colors.green, Colors.white],
+                colors: [Colors.green, Colors.green],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ).createShader(bounds);
@@ -33,15 +34,13 @@ class CustomOfferHelp extends StatelessWidget {
               decoration: BoxDecoration(
                 color: ColorManager.transparent,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  width: 5,
-                  color: Colors.white,
-                ),
+                border: Border.all(width: 5, color: ColorManager.white),
               ),
               child: Center(
                 child: Text(
                   TextManager.offerhelp.tr(),
-                  style: const TextStyle(color: Colors.white, fontSize: 20),
+                  style:
+                      const TextStyle(color: ColorManager.white, fontSize: 20),
                 ),
               ),
             ),
