@@ -1,18 +1,19 @@
 
+import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
 import 'package:car_mate/features/my_car/pages/NoteDetailsScreen.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
 import 'package:car_mate/features/my_car/pages/notes_list_screen.dart';
 import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
+import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/pages/request_details_screen.dart';
-import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
-import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+
 import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
@@ -92,12 +93,12 @@ class RouteManager {
         );
         case PageName.addnotepage:
         return _getPageTransition(
-           AddNotePage(),
+           const AddNotePage(),
           settings: routeSettings,
         );
         case PageName.licencedetailsscreen:
         return _getPageTransition(
-           LicenceDetailsScreen(
+           const LicenceDetailsScreen(
               licenceImagePath: '',
               
            ),
@@ -105,19 +106,19 @@ class RouteManager {
         );
         case PageName.notedetailsscreen:
         return _getPageTransition(
-           NoteDetailsScreen(
+           const NoteDetailsScreen(
              note: {},
            ),
           settings: routeSettings,
         );
         case PageName.noteslistscreen:
         return _getPageTransition(
-           NotesListScreen(),
+           const NotesListScreen(),
           settings: routeSettings,
         );
         case PageName.uploadlicencescreen:
         return _getPageTransition(
-           UploadLicenceScreen(),
+           const UploadLicenceScreen(),
           settings: routeSettings,
         );
         case PageName.settingsScreen:
