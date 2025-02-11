@@ -19,6 +19,9 @@ class AssetsManager {
   static const String emailImage = '${_svgPath}email_image.svg';
   static const String locatinIcon = '${_svgPath}location_icon.svg';
   static const String callIcon = '${_svgPath}call_icon.svg';
+  static const String settingsIcon = '${_svgPath}settings.svg';
+  static const String picturePostIcon = '${_svgPath}picturepost.svg';
+  static const String personIcon = '${_svgPath}personIcon.svg';
 
   /// Icons
 

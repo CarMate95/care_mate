@@ -66,9 +66,21 @@ abstract class TextManager {
   static const String enterYourLocation = "enterYourLocation";
   static const String phoneNumber = "phoneNumber";
   static const String phoneNumberMustBe11Digits = "phoneNumberMustBe11Digits";
+  //Repair Feature
+  static const String requests = "requests";
+  static const String whatHappening = "whatHappening";
   static const String sendCode = "sendCode";
   static const String resetPassword = "resetPassword";
   static const String resetPasswordSubtitle = "resetPasswordSubtitle";
+  static const String post = "post";
+  static const String offerhelp = "offerhelp";
+  static const String cash = "cash";
+  static const String note = "note";
+  static const String by = "by";
+  static const String too = "too";
+  static const String workerDetails = "workerDetails";
+  static const String sent = "sent";
+  static const String requestData = "requestData";
   //otp
   static const String verifyYourEmailAddress = "verifyYourEmailAddress";
   static const String verifyWithTheCode = "VerifyWithTheCode";
