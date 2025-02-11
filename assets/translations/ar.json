@@ -39,5 +39,33 @@
     "minutes": "دقائق",
     "seconds": "ثواني",
     "resend": "اعادة الارسال؟",
-    "verify": "تحقق"
+    "verify": "تحقق",
+    "uploadYourCarLicence": "تحميل رخصة سيارتك",
+    "setYourReminders": " اضبط تذكيرك الاول ",
+    "fillYourReminderData": "املأ بيانات التذكير الخاصة بك ",
+    "title": "عنوان الحدث",
+    "startDate": "تاريخ البداية ",
+    "endDate": "تاريخ النهاية",
+    "cash": "المبلغ",
+    "note": "ذكرني",
+    "save": "حفظ",
+    "searchForYourReminders": "ابحث عن التذكيرات الخاصة بك",
+    "camera": "الكاميرا",
+    "gallery": "المعرض",
+    "done": "تم",
+    "noteDetails": "تفاصيل الملاحظة",
+    "start": "بداية",
+    "end": "نهاية",
+    "noNotesFound": "لا توجد ملاحظات",
+    "deleteWarningNote":"هل انت متاكد من حذف الملاحظة؟",
+    "deleteNote": "حذف الملاحظة",
+    "cancel": "الغاء",
+    "delete": "حذف"
+    
+
+
+
+
+
+
 }

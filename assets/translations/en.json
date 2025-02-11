@@ -39,5 +39,29 @@
     "minutes": "minutes",
     "seconds": "seconds",
     "resend": "Resend?",
-    "verify": "Verify"
+    "verify": "Verify",
+    "uploadYourCarLicence":"UploadYourCarLicence",
+    "setYourReminders": "SetYourReminders",
+    "fillYourReminderData": "FillYourReminderData",
+    "title": "Title",
+    "startDate": "StartDate",
+    "endDate":"EndDate",
+    "cash": "Cash",
+    "note":"Note",
+    "save": "Save",
+    "searchForYourReminders": "SearchForYourReminders",
+    "camera": "Camera",
+    "gallery": "Gallery",
+    "done": "Done",
+    "noteDetails": "Note Details",
+    "start": "Start",
+    "end": "End",
+    "noNotesFound": "NoNotesFound",
+    "deleteWarningNote":"Are you sure you want to delete this note?",
+    "deleteNote": "Delete Note",
+    "cancel": "Cancel",
+    "delete": "Delete"
+
+
+
 }

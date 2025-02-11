@@ -77,4 +77,31 @@ abstract class TextManager {
   static const String seconds = "seconds";
   static const String resend = "resend";
   static const String verify = "verify";
+  //mycar
+  static const String uploadYourCarLicence = "uploadYourCarLicence";
+  static const String setYourReminders = "setYourReminders";
+  static const String fillYourReminderData = "fillYourReminderData";
+  static const String title = "title";
+  static const String startDate = "startDate";
+  static const String endDate = "endDate";
+  static const String cash = "cash";
+  static const String note = "note";
+  static const String save = "save";
+  static const String searchForYourReminders = "searchForYourReminders";
+  static const String camera= "camera";
+  static const String gallery= "gallery";
+  static const String done= "done";
+  static const String noteDetails= "noteDetails";
+  static const String start= "start";
+  static const String end= "end";
+  static const String noNotesFound= "noNotesFound";
+  static const String noRemindersFound= "noRemindersFound";
+  static const String deleteWarningNote= "deleteWarningNote";
+  static const String deleteNote= "deleteNote";
+  static const String cancel= "cancel";
+  static const String delete= "delete";
+  
+  
+  
+
 }
