@@ -14,7 +14,7 @@ class CustomfractionallySizedbox extends StatelessWidget {
       alignment: align ?? Alignment.center,
       child: CustomDivider(
         thickness: 0.5,
-        color: color,
+        color: color??Colors.grey,
       ),
     );
   }

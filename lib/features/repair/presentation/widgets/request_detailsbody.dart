@@ -9,7 +9,6 @@ import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customAlertDialog.dart';
-import 'package:car_mate/features/repair/presentation/widgets/custom_alert_dialog_to_mechanic.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_offer_help.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +86,7 @@ class RequestDetailsBody extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(5),
-                const FractionallySizedBox(
+                 FractionallySizedBox(
                   widthFactor: 0.3,
                   child: CustomDivider(
                     // color: Color(0xff0E0E0E),

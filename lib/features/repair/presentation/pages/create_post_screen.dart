@@ -117,7 +117,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
               ],
             ),
-            const CustomDivider(),
+            CustomDivider(),
             TextField(
               controller: problemController,
               maxLines: null,
