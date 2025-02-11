@@ -78,10 +78,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   children: [
                     CustomText(
                       text: 'عبد الرحمن فوزي',
-                      style: getMediumStyle(
-                              color: context.isDarkMode
-                                  ? ColorManager.white
-                                  : ColorManager.black)
+                      style: getMediumStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w400),
                     ),
                     CustomText(

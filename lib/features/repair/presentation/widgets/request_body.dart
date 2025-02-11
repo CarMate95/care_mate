@@ -30,12 +30,8 @@ class RequestsBody extends StatelessWidget {
                   onTap: () {},
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: SvgPicture.asset(
-                      AssetsManager.settingsIcon,
-                      color: context.isDarkMode
-                          ? ColorManager.lightGrey
-                          : Colors.black,
-                    ),
+                    child: SvgPicture.asset(AssetsManager.settingsIcon,
+                        color: context.secondaryColor),
                   ),
                 ),
               ),

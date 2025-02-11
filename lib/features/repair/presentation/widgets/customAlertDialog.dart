@@ -1,6 +1,7 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_alert_dialog.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
@@ -8,6 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 void showAlertDialogToUser(BuildContext context) {
+  var mediaQuery = MediaQuery.of(context).size;
   showCustomAlertDialog(
     context: context,
     title: TextManager.offerhelp,
@@ -27,7 +29,7 @@ void showAlertDialogToUser(BuildContext context) {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         width: 2,
-                        color: ColorManager.grey,
+                        color: context.tertiaryColor,
                       ),
                     ),
                     child: Text(
@@ -43,16 +45,20 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                       GestureDetector(
                         onTap: () {},
                         child: Container(
-                          width: 150,
-                          height: 62,
+                          width: mediaQuery.width * 0.43,
+                          height: mediaQuery.height * 0.07,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: ColorManager.primaryColor),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              CustomText(text: TextManager.workerDetails),
-                              Icon(Icons.person)
+                              CustomText(
+                                text: TextManager.workerDetails,
+                                style: getMediumStyle(
+                                    color: context.secondaryColor),
+                              ),
+                              const Icon(Icons.person)
                             ],
                           ),
                         ),
@@ -61,20 +67,23 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                         clipBehavior: Clip.none,
                         children: [
                           Container(
-                            width: 150,
-                            height: 62,
+                            width: mediaQuery.width * 0.43,
+                            height: mediaQuery.height * 0.07,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 border:
-                                    Border.all(color: ColorManager.lightGrey),
+                                    Border.all(color: context.tertiaryColor),
                                 color: ColorManager.transparent),
                             child: Center(
                               child: RichText(
                                 text: TextSpan(
                                   style: getLightStyle(fontSize: 16),
-                                  children: const [
-                                    TextSpan(text: "500-900"),
+                                  children: [
                                     TextSpan(
+                                        text: "500-900",
+                                        style: getMediumStyle(
+                                            color: context.secondaryColor)),
+                                    const TextSpan(
                                         text: " \$",
                                         style: TextStyle(color: Colors.green)),
                                   ],
@@ -86,7 +95,8 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                             top: -13,
                             left: 20,
                             child: Text(TextManager.cash.tr(),
-                                style: getMediumStyle()),
+                                style: getMediumStyle(
+                                    color: context.secondaryColor)),
                           ),
                         ],
                       ),
