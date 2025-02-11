@@ -3,6 +3,7 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/email_field.dart';
 import 'package:car_mate/core/utils/widgets/password_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/enums/user_type.dart';
@@ -95,7 +96,7 @@ class _SignUpBodyState extends State<SignUpBody> {
           CustomText(
             text: TextManager.letsGetYouStarted,
             style: getSemiBoldStyle(
-              fontSize: 16,
+              fontSize: 16.sp,
               color: context.secondaryColor.withOpacity(0.8),
             ),
           ),
