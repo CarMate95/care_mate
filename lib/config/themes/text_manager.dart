@@ -77,4 +77,25 @@ abstract class TextManager {
   static const String seconds = "seconds";
   static const String resend = "resend";
   static const String verify = "verify";
+  static const String phone = "phone";
+   static const String settings = "settings";
+    static const String accountDetails = "accountDetails";
+     static const String shareApp = "shareApp";
+      static const String notification = "notification";
+       static const String appearance = "appearance";
+        static const String language = "language";
+         static const String deleteWarning = "deleteWarning";
+          static const String deleteAccount= "deleteAccount";
+          static const String logout= "logout";
+          static const String areYouSure= "areYouSure";
+          static const String delete= "delete";
+          static const String logoutWarning= "logoutWarning";
+          static const String Mohamed = "Mohamed";
+          static const String Manoooo = "Manoooo";
+          static const String MohamedEzzat = "MohamedEzzat";
+
+
+
+          
+
 }

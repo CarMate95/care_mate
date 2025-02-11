@@ -39,5 +39,22 @@
     "minutes": "minutes",
     "seconds": "seconds",
     "resend": "Resend?",
-    "verify": "Verify"
+    "verify": "Verify",
+    "settings": "Settings",
+    "accountDetails": "Account Details",
+    "notification": "Notification",
+    "shareApp": "Share App",
+    "appearance": "Appearance",
+    "language": "Language",
+    "deleteWarning": "If you'd like to delete your account, please proceed carefully.",
+    "deleteAccount": "Delete Account",
+    "logout": "Log Out",
+    "areYouSure": "Are You Sure?",
+    "delete": "If you delete your account, you won't be able to log in with it anymore. Are you sure you want to continue?",
+    "phone": "Phone",
+    "logoutWarning": "Do you really want to log out?",
+    "Mohamed": "Mohamed",
+    "Manoooo":"Manoooo",
+    "MohamedEzzat":"MohamedEzzat"
+
 }
