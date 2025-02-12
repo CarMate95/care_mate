@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/widgets/custom_scaffold.dart';
 import '../../../home/presentation/pages/home_screen.dart';
-import '../../../my_car/presentation/pages/my_car_screen.dart';
 import '../cubit/layout_cubit.dart';
 import '../widgets/custom_layout_button_nav_bar.dart';
 
