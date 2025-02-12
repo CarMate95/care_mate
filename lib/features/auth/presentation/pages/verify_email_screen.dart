@@ -49,6 +49,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 text: TextManager.verifyWithTheCode,
                 style: getRegularStyle(
                   fontSize: 16,
+                  // ignore: deprecated_member_use
                   color: context.secondaryColor.withOpacity(0.8),
                 ),
                 textAlign: TextAlign.center,

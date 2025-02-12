@@ -7,9 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-
 class UploadLicenceScreen extends StatefulWidget {
-  const UploadLicenceScreen({Key? key}) : super(key: key);
+  const UploadLicenceScreen({super.key});
 
   @override
   State<UploadLicenceScreen> createState() => _UploadLicenceScreenState();
@@ -35,16 +34,16 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
         return Wrap(
           children: [
             ListTile(
-              leading:  Icon(Icons.camera_alt),
-              title:  Text(TextManager.camera.tr()),
+              leading: const Icon(Icons.camera_alt),
+              title: Text(TextManager.camera.tr()),
               onTap: () {
                 Navigator.pop(ctx);
                 _pickImage(ImageSource.camera);
               },
             ),
             ListTile(
-              leading:  Icon(Icons.photo),
-              title:  Text(TextManager.gallery.tr()),
+              leading: const Icon(Icons.photo),
+              title: Text(TextManager.gallery.tr()),
               onTap: () {
                 Navigator.pop(ctx);
                 _pickImage(ImageSource.gallery);
@@ -61,7 +60,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(TextManager.myCar.tr()),
+        title: Text(TextManager.myCar.tr()),
       ),
       body: Column(
         children: [
@@ -81,17 +80,16 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                     height: 220,
                     margin: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: _imagePath == null
-                        ?  Column(
+                        ? Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                             const  Icon (Icons.add, size: 40),
-                              
-                              Text( TextManager.uploadYourCarLicence.tr(),
-                               textAlign: TextAlign.center,
+                              const Icon(Icons.add, size: 40),
+                              Text(
+                                TextManager.uploadYourCarLicence.tr(),
+                                textAlign: TextAlign.center,
                               ),
                             ],
                           )
-                          
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.file(
@@ -101,7 +99,6 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                           ),
                   ),
                 ),
-                
               ),
             ),
           ),
@@ -120,7 +117,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                 );
               },
               icon: const Icon(Icons.check),
-              label:  Text(TextManager.done.tr()),
+              label: Text(TextManager.done.tr()),
             ),
           ],
           const SizedBox(height: 20),

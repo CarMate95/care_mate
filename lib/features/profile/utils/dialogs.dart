@@ -15,11 +15,12 @@ void showConfirmationDialog({
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: onConfirm,
-          style: ElevatedButton.styleFrom(backgroundColor:  Color(0xff650000)),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xff650000)),
           child: Text(actionText),
         ),
       ],

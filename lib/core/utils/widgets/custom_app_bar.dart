@@ -4,8 +4,6 @@ import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../config/themes/color_manager.dart';
-
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
@@ -34,9 +32,7 @@ class CustomAppBar extends StatelessWidget {
             IconButton(
               icon: Icon(
                 closeIcon ? Icons.close : Icons.arrow_back_ios,
-                color: context.isDarkMode
-                    ? ColorManager.white
-                    : ColorManager.black,
+                color: context.secondaryColor,
                 size: 24.sp,
               ),
               onPressed: onBack ??
@@ -51,9 +47,7 @@ class CustomAppBar extends StatelessWidget {
               text: title!,
               style: getBoldStyle(
                 fontSize: 20.sp,
-                color: context.isDarkMode
-                    ? ColorManager.white
-                    : ColorManager.black,
+                color: context.secondaryColor,
               ),
             ),
           },

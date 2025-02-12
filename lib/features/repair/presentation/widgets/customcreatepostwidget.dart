@@ -27,17 +27,13 @@ class CustomCreatePostWidget extends StatelessWidget {
               Text(
                 TextManager.whatHappening.tr(),
                 style: getLightStyle(
-                  color: context.isDarkMode
-                      ? ColorManager.lightGrey
-                      : Colors.black,
+                  color: context.secondaryColor,
                 ),
               ),
               const Spacer(),
               Icon(
                 Icons.photo_library,
-                color: context.isDarkMode
-                    ? ColorManager.lightGrey
-                    : ColorManager.black,
+                color: context.secondaryColor,
               ),
             ],
           ),

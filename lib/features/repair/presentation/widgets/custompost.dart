@@ -75,7 +75,7 @@ class CustomPost extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(5),
-                FractionallySizedBox(
+                const FractionallySizedBox(
                   widthFactor: 0.3,
                   child: CustomDivider(
                     color: ColorManager.black,

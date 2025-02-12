@@ -1,5 +1,4 @@
 import 'package:car_mate/config/themes/assets_manager.dart';
-import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
@@ -9,7 +8,8 @@ import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customAlertDialog.dart';
-import 'package:car_mate/features/repair/presentation/widgets/custom_offer_help.dart';
+import 'package:car_mate/features/repair/presentation/widgets/custom_alert_dialog_to_mechanic.dart';
+import 'package:car_mate/features/repair/presentation/widgets/custom_button_offer_help.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,6 +33,7 @@ class RequestDetailsBody extends StatelessWidget {
                   onTap: () {},
                   child: SvgPicture.asset(
                     AssetsManager.settingsIcon,
+                    // ignore: deprecated_member_use
                     color: context.secondaryColor,
                   ),
                 ),
@@ -54,9 +55,7 @@ class RequestDetailsBody extends StatelessWidget {
                             CustomText(
                               text: 'مارك ويلسون',
                               style: getMediumStyle(
-                                color: context.isDarkMode
-                                    ? Colors.white
-                                    : Colors.black,
+                                color: context.secondaryColor,
                               ),
                             ),
                             horizontalSpace(5),
@@ -72,10 +71,9 @@ class RequestDetailsBody extends StatelessWidget {
                             horizontalSpace(5),
                             CustomText(
                               text: 'منذ 6 ساعات',
-                              style: getLightStyle(
-                                  color: context.isDarkMode
-                                      ? Colors.white
-                                      : Colors.black),
+                              style:
+                                  getLightStyle(color: context.secondaryColor)
+                                      .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
@@ -86,7 +84,7 @@ class RequestDetailsBody extends StatelessWidget {
                   ],
                 ),
                 verticalSpace(5),
-                 FractionallySizedBox(
+                const FractionallySizedBox(
                   widthFactor: 0.3,
                   child: CustomDivider(
                     // color: Color(0xff0E0E0E),

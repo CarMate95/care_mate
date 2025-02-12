@@ -1,3 +1,5 @@
+// ignore: file_names
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -12,7 +14,7 @@ void showAlertDialogToUser(BuildContext context) {
   var mediaQuery = MediaQuery.of(context).size;
   showCustomAlertDialog(
     context: context,
-    title: TextManager.offerhelp,
+    title: TextManager.requests,
     content: Column(
       children: [
         Text('${TextManager.by.tr()} : Karem mohamed', style: getLightStyle()),
@@ -43,7 +45,10 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, PageName.workerDetailsScreen);
+                        },
                         child: Container(
                           width: mediaQuery.width * 0.43,
                           height: mediaQuery.height * 0.07,
@@ -56,9 +61,10 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                               CustomText(
                                 text: TextManager.workerDetails,
                                 style: getMediumStyle(
-                                    color: context.secondaryColor),
+                                    color: ColorManager.whiteBackground),
                               ),
-                              const Icon(Icons.person)
+                              const Icon(Icons.person,
+                                  color: ColorManager.whiteBackground)
                             ],
                           ),
                         ),

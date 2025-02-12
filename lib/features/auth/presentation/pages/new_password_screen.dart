@@ -66,6 +66,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         "Please Enter a New Password. Ensure that Your New Password is different from the previous one for better security.",
                     style: getMediumStyle(
                       fontSize: 16,
+                      // ignore: deprecated_member_use
                       color: context.secondaryColor.withOpacity(0.8),
                     ),
                   ),

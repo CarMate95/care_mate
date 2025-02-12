@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class NoteItem extends StatelessWidget {
   final Note note;
 
-  const NoteItem({Key? key, required this.note}) : super(key: key);
+  const NoteItem({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {

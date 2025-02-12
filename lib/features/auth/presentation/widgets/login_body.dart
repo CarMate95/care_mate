@@ -59,6 +59,7 @@ class _LoginBodyState extends State<LoginBody> {
             text: TextManager.logInntoYourAccount,
             style: getSemiBoldStyle(
               fontSize: 16,
+              // ignore: deprecated_member_use
               color: context.secondaryColor.withOpacity(0.8),
             ),
           ),

@@ -12,7 +12,7 @@ void showAlertDialogToMechanic(BuildContext context) {
   var mediaQuery = MediaQuery.of(context).size;
   showCustomAlertDialog(
     context: context,
-    title: TextManager.offerhelp,
+    title: TextManager.requests,
     content: Column(
       children: [
         Text('${TextManager.too.tr()} : Mohamed Sayed',
@@ -45,7 +45,7 @@ If you’d like, bring it by my shop for a full diagnostic, and I’ll walk you 
                     children: [
                       Container(
                         width: double.infinity,
-                        height: mediaQuery.height * 0.07,
+                        height: mediaQuery.height * 0.075,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             border: Border.all(color: context.tertiaryColor),

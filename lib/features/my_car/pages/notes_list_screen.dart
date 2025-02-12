@@ -10,9 +10,9 @@ class NotesListScreen extends StatefulWidget {
   final Map<String, String>? reminderData;
 
   const NotesListScreen({
-    Key? key,
+    super.key,
     this.reminderData,
-  }) : super(key: key);
+  });
 
   @override
   State<NotesListScreen> createState() => _NotesListScreenState();
@@ -20,7 +20,7 @@ class NotesListScreen extends StatefulWidget {
 
 class _NotesListScreenState extends State<NotesListScreen> {
   // القائمة الكاملة للملاحظات
-  List<Map<String, String>> _notes = [];
+  final List<Map<String, String>> _notes = [];
 
   // القائمة المفلترة حسب البحث
   List<Map<String, String>> _filteredNotes = [];
@@ -70,14 +70,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final carName = "Seat Leon";
-    final licenseNumber = "1234567";
-    final expiryDate = "12/2025";
+    const carName = "Seat Leon";
+    const licenseNumber = "1234567";
+    const expiryDate = "12/2025";
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(TextManager.myCar.tr(),),
+        title: Text(
+          TextManager.myCar.tr(),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -101,10 +103,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       carName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -121,17 +123,19 @@ class _NotesListScreenState extends State<NotesListScreen> {
             Row(
               children: [
                 Expanded(
-                  child: TextField( 
-                   
+                  child: TextField(
                     controller: _searchController,
-                    decoration:  InputDecoration(
+                    decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: context.tertiaryColor),
                       ),
-                     focusedBorder: OutlineInputBorder(
+                      focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: context.secondaryColor),
                       ),
-                      prefixIcon: Icon(Icons.search,color: context.tertiaryColor,),
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: context.tertiaryColor,
+                      ),
                       labelText: TextManager.searchForYourReminders.tr(),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: context.tertiaryColor),
@@ -146,11 +150,14 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     _showAddNotePopup();
                   },
                   style: ElevatedButton.styleFrom(
-                    
                     shape: const CircleBorder(),
                     padding: const EdgeInsets.all(16),
-                    backgroundColor:context.tertiaryColor,),
-                  child:  Icon(Icons.add, color: context.secondaryColor,),
+                    backgroundColor: context.tertiaryColor,
+                  ),
+                  child: Icon(
+                    Icons.add,
+                    color: context.secondaryColor,
+                  ),
                 ),
               ],
             ),
@@ -158,8 +165,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
             // عرض الملاحظات المفلترة
             Expanded(
               child: _filteredNotes.isEmpty
-                  ?  Center(
-                      child: Text(TextManager.noNotesFound.tr(),),
+                  ? Center(
+                      child: Text(
+                        TextManager.noNotesFound.tr(),
+                      ),
                     )
                   : ListView.builder(
                       itemCount: _filteredNotes.length,
@@ -211,9 +220,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   // تأكيد حذف الملاحظة
   Future<void> _confirmDeleteNote(int index) async {
-   
-    
-
     final result = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -223,18 +229,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
         ),
         title: Text(
           TextManager.deleteNote.tr(),
-          
         ),
         content: Text(
           TextManager.deleteWarningNote.tr(),
-         
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
             child: Text(
               TextManager.cancel.tr(),
-              style:  TextStyle(
+              style: TextStyle(
                 color: context.secondaryColor,
               ),
             ),
@@ -243,8 +247,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(
               TextManager.delete.tr(),
-              style:  TextStyle(
-                color:context.secondaryColor,
+              style: TextStyle(
+                color: context.secondaryColor,
               ),
             ),
           ),
@@ -262,7 +266,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
 }
 
 class _AddNotePopup extends StatefulWidget {
-  const _AddNotePopup({Key? key}) : super(key: key);
+  const _AddNotePopup({super.key});
 
   @override
   State<_AddNotePopup> createState() => _AddNotePopupState();
@@ -300,9 +304,8 @@ class _AddNotePopupState extends State<_AddNotePopup> {
     );
   }
 
-  Widget _buildPopupContent(
-      BuildContext context, String fillText, String saveText, bool isLightMode) {
- 
+  Widget _buildPopupContent(BuildContext context, String fillText,
+      String saveText, bool isLightMode) {
     return Card(
       color: context.scaffoldBackgroundColor,
       elevation: 4,
@@ -314,17 +317,16 @@ class _AddNotePopupState extends State<_AddNotePopup> {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min, 
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
                 fillText,
                 textAlign: TextAlign.center,
-                style:  TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: context.secondaryColor,
-                  
                 ),
               ),
               const SizedBox(height: 20),
@@ -367,13 +369,14 @@ class _AddNotePopupState extends State<_AddNotePopup> {
                 ],
               ),
               const SizedBox(height: 16),
-              _buildTextField(_noteController, 'Note', isLightMode, maxLines: 3),
+              _buildTextField(_noteController, 'Note', isLightMode,
+                  maxLines: 3),
               const SizedBox(height: 16),
               SizedBox(
                 height: 48,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:ColorManager.primaryColor,
+                    backgroundColor: ColorManager.primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -401,8 +404,6 @@ class _AddNotePopupState extends State<_AddNotePopup> {
     int maxLines = 1,
     TextInputType keyboardType = TextInputType.text,
   }) {
-    
-
     return TextField(
       controller: controller,
       readOnly: readOnly,
@@ -413,6 +414,7 @@ class _AddNotePopupState extends State<_AddNotePopup> {
       decoration: InputDecoration(
         labelText: label,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        // ignore: deprecated_member_use
         labelStyle: TextStyle(color: context.secondaryColor.withOpacity(0.7)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
