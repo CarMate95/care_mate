@@ -2,6 +2,7 @@ import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                       onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AlertsScreen()),
+                        builder: (context) => const AddNotePage()),
                   ),
                 ),
               ],
