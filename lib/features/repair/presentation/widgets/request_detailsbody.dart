@@ -1,3 +1,4 @@
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -8,7 +9,6 @@ import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customAlertDialog.dart';
-import 'package:car_mate/features/repair/presentation/widgets/custom_alert_dialog_to_mechanic.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_button_offer_help.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,9 @@ class RequestDetailsBody extends StatelessWidget {
               suffex: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, PageName.settingsScreen);
+                  },
                   child: SvgPicture.asset(
                     AssetsManager.settingsIcon,
                     // ignore: deprecated_member_use
