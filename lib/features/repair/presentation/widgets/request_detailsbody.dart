@@ -26,7 +26,7 @@ class RequestDetailsBody extends StatelessWidget {
           children: [
             CustomAppBar(
               enbleBackIcon: true,
-              title: TextManager.requests,
+              title: const Text(TextManager.requests),
               suffex: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: InkWell(
