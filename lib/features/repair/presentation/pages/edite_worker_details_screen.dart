@@ -22,7 +22,7 @@ class EditeWorkerDetailsScreen extends StatelessWidget {
           children: [
             Column(
               children: [
-                const CustomAppBar(title: TextManager.accountDetails),
+                const CustomAppBar(title: Text(TextManager.accountDetails)),
                 verticalSpace(30),
                 const CustomImageProfile(
                     imageIcon: 'assets/svg/Edit.svg',

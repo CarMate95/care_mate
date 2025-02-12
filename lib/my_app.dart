@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppTheme.dark,
                 themeMode: ThemeCubit.themeMode,
                 navigatorKey: RouteManager.navigatorKey,
-                initialRoute: PageName.loginScreen,
+                initialRoute: PageName.winchAndWorkerScreen,
                 onGenerateRoute: RouteManager.onGenerateRoute,
               );
             },

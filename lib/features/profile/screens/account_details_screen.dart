@@ -21,7 +21,7 @@ class AccountDetailsScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomAppBar(
-                title: TextManager.accountDetails.tr(),
+                title: Text(TextManager.accountDetails.tr()),
               ),
               verticalSpace(20),
               const CustomImageProfile(
@@ -31,7 +31,8 @@ class AccountDetailsScreen extends StatelessWidget {
               verticalSpace(20),
               Text(
                 TextManager.mohamed.tr(),
-                style: getBoldStyle(fontSize: 22, color: context.secondaryColor),
+                style:
+                    getBoldStyle(fontSize: 22, color: context.secondaryColor),
               ),
               Text(
                 TextManager.manooo.tr(),
@@ -52,12 +53,13 @@ class AccountDetailsScreen extends StatelessWidget {
                           fillColor: context.scaffoldBackgroundColor,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: context.tertiaryColor),
+                            borderSide:
+                                BorderSide(color: context.tertiaryColor),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(color: context.tertiaryColor, width: 2),
+                            borderSide: BorderSide(
+                                color: context.tertiaryColor, width: 2),
                           ),
                         ),
                         style: TextStyle(
@@ -78,12 +80,13 @@ class AccountDetailsScreen extends StatelessWidget {
                           fillColor: context.scaffoldBackgroundColor,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(color: context.tertiaryColor),
+                            borderSide:
+                                BorderSide(color: context.tertiaryColor),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(color: context.tertiaryColor, width: 2),
+                            borderSide: BorderSide(
+                                color: context.tertiaryColor, width: 2),
                           ),
                         ),
                         style: TextStyle(
