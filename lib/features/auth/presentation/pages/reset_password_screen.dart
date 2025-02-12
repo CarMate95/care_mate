@@ -56,6 +56,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 text: TextManager.resetPasswordSubtitle,
                 style: getMediumStyle(
                   fontSize: 16,
+                  // ignore: deprecated_member_use
                   color: context.secondaryColor.withOpacity(0.8),
                 ),
               ),

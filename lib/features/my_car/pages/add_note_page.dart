@@ -1,4 +1,4 @@
-import 'dart:ui'; 
+import 'dart:ui';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
@@ -6,11 +6,9 @@ import 'package:car_mate/features/my_car/pages/notes_list_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-
-
 class AddNotePage extends StatefulWidget {
-  const AddNotePage({Key? key}) : super(key: key);
- 
+  const AddNotePage({super.key});
+
   @override
   State<AddNotePage> createState() => _AddNotePageState();
 }
@@ -18,8 +16,9 @@ class AddNotePage extends StatefulWidget {
 class SettingsOption extends StatelessWidget {
   final IconData icon;
   final Widget trailing;
-  const SettingsOption({Key? key, required this.icon, required this.trailing}) : super(key: key);
-  
+  const SettingsOption(
+      {super.key, required this.icon, required this.trailing, required title});
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -36,7 +35,7 @@ class _AddNotePageState extends State<AddNotePage> {
   final _cashController = TextEditingController();
   final _noteController = TextEditingController();
 
-  bool _notifyMe = false; // حالة "Notify Me"
+  final bool _notifyMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +43,16 @@ class _AddNotePageState extends State<AddNotePage> {
     var fillText = TextManager.fillYourReminderData.tr();
 
     return Dialog(
-      backgroundColor: context.tertiaryColor, // خلفية الـDialog شفافة
+      backgroundColor: context.tertiaryColor,
       insetPadding: const EdgeInsets.all(16.0),
       child: Stack(
         children: [
-          // خلفية ضبابية
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(color: context.tertiaryColor),
             ),
           ),
-          // محتوى النافذة في المنتصف
           Center(
             child: _buildPopupContent(context, fillText, saveText),
           ),
@@ -77,10 +74,9 @@ class _AddNotePageState extends State<AddNotePage> {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.min, 
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // العنوان الرئيسي
               Text(
                 fillText,
                 textAlign: TextAlign.center,
@@ -90,15 +86,11 @@ class _AddNotePageState extends State<AddNotePage> {
                 ),
               ),
               const SizedBox(height: 20),
-
-              // حقل العنوان
               _buildTextField(
                 controller: _titleController,
                 label: TextManager.title.tr(),
               ),
               const SizedBox(height: 16),
-
-              // حقلا تاريخ البداية والنهاية
               Row(
                 children: [
                   Expanded(
@@ -121,24 +113,18 @@ class _AddNotePageState extends State<AddNotePage> {
                 ],
               ),
               const SizedBox(height: 16),
-
-              // حقل المبلغ
               _buildTextField(
                 controller: _cashController,
                 label: TextManager.cash.tr(),
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(height: 16),
-
-              // حقل الملاحظة
               _buildTextField(
                 controller: _noteController,
                 label: TextManager.title.tr(),
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
-
-              // زر الحفظ
               SizedBox(
                 height: 48,
                 child: ElevatedButton(
@@ -155,7 +141,6 @@ class _AddNotePageState extends State<AddNotePage> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
@@ -178,9 +163,10 @@ class _AddNotePageState extends State<AddNotePage> {
       maxLines: maxLines,
       style: TextStyle(color: context.secondaryColor),
       keyboardType: keyboardType,
-     decoration: InputDecoration(
+      decoration: InputDecoration(
         labelText: label,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        // ignore: deprecated_member_use
         labelStyle: TextStyle(color: context.secondaryColor.withOpacity(0.7)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -194,7 +180,6 @@ class _AddNotePageState extends State<AddNotePage> {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      
     );
   }
 
@@ -240,9 +225,8 @@ class _AddNotePageState extends State<AddNotePage> {
       "notifyMe": _notifyMe.toString(),
     };
 
-    Navigator.pop(context); // إغلاق الديالوج
+    Navigator.pop(context);
 
-    // الانتقال لشاشة عرض الملاحظات دون تمرير معلومات عن الثيم أو اللغة
     Navigator.push(
       context,
       MaterialPageRoute(

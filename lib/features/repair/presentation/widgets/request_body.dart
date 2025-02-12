@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -27,11 +28,17 @@ class RequestsBody extends StatelessWidget {
                 enbleBackIcon: false,
                 title: TextManager.requests,
                 suffex: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, PageName.settingsScreen);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: SvgPicture.asset(AssetsManager.settingsIcon,
-                        color: context.secondaryColor),
+                    child: SvgPicture.asset(
+                      AssetsManager.settingsIcon,
+                      color: context.isDarkMode
+                          ? ColorManager.lightGrey
+                          : Colors.black,
+                    ),
                   ),
                 ),
               ),

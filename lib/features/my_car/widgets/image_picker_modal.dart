@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 class ImagePickerModal extends StatelessWidget {
   final Function(String) onImagePicked;
 
-  const ImagePickerModal({Key? key, required this.onImagePicked}) : super(key: key);
+  const ImagePickerModal({super.key, required this.onImagePicked});
 
   void _pickImage(ImageSource source, BuildContext context) async {
     final picker = ImagePicker();

@@ -4,20 +4,25 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class ProfileHeader extends StatelessWidget {
+  const ProfileHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 40,
           backgroundImage: AssetImage('assets/svg/gmail_icon_svg.jpg'),
         ),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(TextManager.MohamedEzzat.tr(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            Text('Manoooo@Gmail.com', style: TextStyle(color: context.secondaryColor)),
+            Text(TextManager.mohamedEzzat.tr(),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text('Manoooo@Gmail.com',
+                style: TextStyle(color: context.secondaryColor)),
           ],
         ),
       ],

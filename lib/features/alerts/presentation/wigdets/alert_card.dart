@@ -38,7 +38,7 @@ class AlertCard extends StatelessWidget {
             ],
           ),
           verticalSpace(2.sp),
-          Container(height: 70, width: 70, child: SvgPicture.asset(image)),
+          SizedBox(height: 70, width: 70, child: SvgPicture.asset(image)),
           verticalSpace(10.sp),
           Text(
             title,

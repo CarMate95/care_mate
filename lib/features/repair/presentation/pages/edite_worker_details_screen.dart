@@ -5,38 +5,42 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
+import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-class AccountDetailsScreen extends StatelessWidget {
-  const AccountDetailsScreen({super.key});
+class EditeWorkerDetailsScreen extends StatelessWidget {
+  const EditeWorkerDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
           children: [
-            CustomAppBar(
-              title: TextManager.accountDetails.tr(),
+            Column(
+              children: [
+                const CustomAppBar(title: TextManager.accountDetails),
+                verticalSpace(30),
+                const CustomImageProfile(
+                    imageIcon: 'assets/svg/Edit.svg',
+                    alignment: Alignment.bottomRight),
+                verticalSpace(20),
+                CustomText(
+                  text: 'Mohamed Ezzat',
+                  style: getMediumStyle(
+                      color: context.secondaryColor, fontSize: 24),
+                ),
+                CustomText(
+                  text: '@11Elmasryyyy',
+                  style: getMediumStyle(
+                      color: context.secondaryColor, fontSize: 12),
+                ),
+              ],
             ),
-            verticalSpace(20),
-            const CustomImageProfile(
-              imageIcon: 'assets/svg/Edit.svg',
-              alignment: Alignment.bottomRight,
-            ),
-            verticalSpace(20),
-            Text(
-              TextManager.mohamed.tr(),
-              style: getBoldStyle(fontSize: 22, color: context.secondaryColor),
-            ),
-            Text(
-              TextManager.manooo.tr(),
-              style: TextStyle(fontSize: 16, color: context.secondaryColor),
-            ),
-            verticalSpace(30),
+            verticalSpace(50),
             Row(
               children: [
                 Expanded(
@@ -65,6 +69,7 @@ class AccountDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                horizontalSpace(10),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
@@ -93,7 +98,7 @@ class AccountDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            verticalSpace(16),
+            verticalSpace(30),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
@@ -120,6 +125,7 @@ class AccountDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
+            verticalSpace(30),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 8.0),

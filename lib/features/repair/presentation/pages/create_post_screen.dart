@@ -40,12 +40,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 90,
+        toolbarHeight: mediaQuery.height * 0.1,
         backgroundColor: ColorManager.darkGrey,
         title: Text(
-          TextManager.requests.tr(),
+          TextManager.requests,
           style: getBoldStyle(color: ColorManager.lightGrey),
         ),
         centerTitle: true,
@@ -83,10 +84,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     ),
                     CustomText(
                       text: '@FawWwWwzy',
-                      style: getLightStyle(
-                              color: context.isDarkMode
-                                  ? ColorManager.lightGrey
-                                  : ColorManager.black)
+                      style: getLightStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
                   ],
@@ -117,16 +115,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
               ],
             ),
-            CustomDivider(),
+            const CustomDivider(),
             TextField(
               controller: problemController,
               maxLines: null,
               cursorColor:
                   context.isDarkMode ? ColorManager.grey : ColorManager.black,
-              style: getLightStyle(
-                  color: context.isDarkMode
-                      ? ColorManager.white
-                      : ColorManager.black),
+              style: getLightStyle(color: context.secondaryColor),
               decoration: InputDecoration(
                 labelStyle: getMediumStyle(),
                 hintText: TextManager.whatHappening.tr(),

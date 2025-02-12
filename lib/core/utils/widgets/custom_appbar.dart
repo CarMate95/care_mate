@@ -1,12 +1,14 @@
-
+import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-AppBar CustomAppBar(
-    {Widget? actions,
-    Widget? title,
-    Widget? leading,
-    Color color = Colors.black}) {
+// ignore: non_constant_identifier_names
+AppBar CustomAppBar({
+  Widget? actions,
+  Widget? title,
+  Widget? leading,
+  Color? color = ColorManager.transparent,
+}) {
   return AppBar(
     backgroundColor: color,
     actions: [
@@ -16,7 +18,7 @@ AppBar CustomAppBar(
       )
     ],
     title: Center(
-      child:  title ?? Text(""),
+      child: title ?? const Text(""),
     ),
     leading: Padding(
       padding: EdgeInsets.all(15.0.sp),
