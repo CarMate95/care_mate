@@ -27,11 +27,10 @@ class AssetsManager {
   static const String warningIcon = '${_svgPath}warningIcon.svg';
   static const String alertIcon = '${_svgPath}alert.svg';
   static const String alertIconBottom = '${_svgPath}alert_icon.svg';
-
-
   static const String engineCheckImage = '${_pngPath}check_engine.png';
   static const String brakeWarningImage = '${_pngPath}brake_warning.png';
   static const String tierChangeAlertIcon = '${_pngPath}tier_change_alert.png';
+  static const String worker = '${_svgPath}worker.svg';
 
   /// Icons
 

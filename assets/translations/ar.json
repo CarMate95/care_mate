@@ -87,5 +87,9 @@
   "logoutWarning": "هل تريد فعلاً تسجيل الخروج؟",
   "Mohamed":"محمد",
   "Manoooo": "مانوووو",
-  "MohamedEzzat":"محمد عزت"
+  "MohamedEzzat":"محمد عزت",
+  "worker":"عامل",
+  "winch":"ونش",
+  "accountDeleted":"تم حذف الحساب",
+  "accountLogedOut":"تم تسجيل خروج الحساب"
 }

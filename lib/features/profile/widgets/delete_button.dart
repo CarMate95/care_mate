@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -97,10 +98,24 @@ class DeleteButton extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                print('Account Deleted');
+            child:  ElevatedButton(
+          onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+             content:  Text(TextManager.accountDeleted.tr(),
+             style: getBoldStyle(
+              color: ColorManager.white,
+             ),
+             ),
+                 duration:  Duration(seconds: 3), 
+                 backgroundColor: ColorManager.primaryColor,
+              ),
+            );
+               Future.delayed( Duration(seconds: 0), () {
+              Navigator.pop(context);
+               Navigator.pushNamedAndRemoveUntil(context, PageName.loginScreen,(route) => false,
+                 );
+               });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.primaryColor,

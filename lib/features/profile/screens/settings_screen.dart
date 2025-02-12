@@ -1,6 +1,8 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_header.dart';
@@ -59,6 +61,11 @@ class SettingsScreen extends StatelessWidget {
                   title: TextManager.notification.tr(),
                   trailing: Icon(Icons.arrow_forward_ios,
                       color: context.secondaryColor),
+                      onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationScreen()),
+                  ),
                 ),
                 const Divider(color: Colors.grey),
                 SettingsOption(
@@ -66,6 +73,11 @@ class SettingsScreen extends StatelessWidget {
                   title: TextManager.shareApp.tr(),
                   trailing: Icon(Icons.arrow_forward_ios,
                       color: context.secondaryColor),
+                      onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AlertsScreen()),
+                  ),
                 ),
               ],
             ),

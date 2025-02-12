@@ -17,85 +17,85 @@ class AccountDetailsScreen extends StatelessWidget {
     return CustomScaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            CustomAppBar(
-              title: TextManager.accountDetails.tr(),
-            ),
-            verticalSpace(20),
-            const CustomImageProfile(
-              imageIcon: 'assets/svg/Edit.svg',
-              alignment: Alignment.bottomRight,
-            ),
-            verticalSpace(20),
-            Text(
-              TextManager.mohamed.tr(),
-              style: getBoldStyle(fontSize: 22, color: context.secondaryColor),
-            ),
-            Text(
-              TextManager.manooo.tr(),
-              style: TextStyle(fontSize: 16, color: context.secondaryColor),
-            ),
-            verticalSpace(30),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: TextManager.firstName.tr(),
-                        labelStyle: const TextStyle(color: ColorManager.grey),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        filled: true,
-                        fillColor: context.scaffoldBackgroundColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: context.tertiaryColor),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAppBar(
+                title: TextManager.accountDetails.tr(),
+              ),
+              verticalSpace(20),
+              const CustomImageProfile(
+                imageIcon: 'assets/svg/Edit.svg',
+                alignment: Alignment.bottomRight,
+              ),
+              verticalSpace(20),
+              Text(
+                TextManager.mohamed.tr(),
+                style: getBoldStyle(fontSize: 22, color: context.secondaryColor),
+              ),
+              Text(
+                TextManager.manooo.tr(),
+                style: TextStyle(fontSize: 16, color: context.secondaryColor),
+              ),
+              verticalSpace(30),
+              Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: TextManager.firstName.tr(),
+                          labelStyle: const TextStyle(color: ColorManager.grey),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          filled: true,
+                          fillColor: context.scaffoldBackgroundColor,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: context.tertiaryColor),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide:
+                                BorderSide(color: context.tertiaryColor, width: 2),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
-                              color: context.tertiaryColor, width: 2),
+                        style: TextStyle(
+                          color: context.secondaryColor,
                         ),
-                      ),
-                      style: TextStyle(
-                        color: context.secondaryColor,
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: TextManager.lastName.tr(),
-                        labelStyle: const TextStyle(color: ColorManager.grey),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        filled: true,
-                        fillColor: context.scaffoldBackgroundColor,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(color: context.tertiaryColor),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: TextManager.lastName.tr(),
+                          labelStyle: const TextStyle(color: ColorManager.grey),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          filled: true,
+                          fillColor: context.scaffoldBackgroundColor,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(color: context.tertiaryColor),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide:
+                                BorderSide(color: context.tertiaryColor, width: 2),
+                          ),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: BorderSide(
-                              color: context.tertiaryColor, width: 2),
+                        style: TextStyle(
+                          color: context.secondaryColor,
                         ),
-                      ),
-                      style: TextStyle(
-                        color: context.secondaryColor,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            verticalSpace(16),
-            Expanded(
-              child: Padding(
+                ],
+              ),
+              verticalSpace(16),
+              Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: TextField(
                   decoration: InputDecoration(
@@ -119,9 +119,7 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: TextField(
                   decoration: InputDecoration(
@@ -145,8 +143,8 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
