@@ -50,7 +50,9 @@ class RequestsBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomFloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, PageName.createPostScreen);
+              },
               icon: Icons.person,
               backgroundColor: ColorManager.primaryColor,
             ),

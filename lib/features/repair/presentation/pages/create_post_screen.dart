@@ -46,7 +46,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         toolbarHeight: mediaQuery.height * 0.1,
         backgroundColor: ColorManager.darkGrey,
         title: Text(
-          TextManager.requests,
+          TextManager.requests.tr(),
           style: getBoldStyle(color: ColorManager.lightGrey),
         ),
         centerTitle: true,
