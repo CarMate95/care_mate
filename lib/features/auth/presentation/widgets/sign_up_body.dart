@@ -182,6 +182,7 @@ class _SignUpBodyState extends State<SignUpBody> {
               Navigator.pop(context);
             },
           ),
+          verticalSpace(24),
         ],
       ),
     );

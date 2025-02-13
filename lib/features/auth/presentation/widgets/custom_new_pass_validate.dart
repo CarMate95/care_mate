@@ -26,9 +26,11 @@ class CustomNewPassValidate extends StatelessWidget {
             color: isValidate ? Colors.green : Colors.red,
           ),
           horizontalSpace(6),
-          CustomText(
-            text: title,
-            style: getMediumStyle(fontSize: 12),
+          Flexible(
+            child: CustomText(
+              text: title,
+              style: getMediumStyle(fontSize: 12),
+            ),
           ),
         ],
       ),
