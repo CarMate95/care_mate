@@ -3,6 +3,7 @@ import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/routes/page_name.dart';
 import '../cubit/verify_otp/verify_otp_cubit.dart';
 
 class VerifyOtpButton extends StatelessWidget {
@@ -51,6 +52,7 @@ class VerifyOtpButton extends StatelessWidget {
           text: TextManager.verify,
           onPressed: () {
             cubit.verifyOtp(isRegisterFlow);
+            Navigator.pushNamed(context, PageName.newPasswordScreen);
           },
         );
       },
