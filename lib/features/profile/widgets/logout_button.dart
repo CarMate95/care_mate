@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -7,6 +8,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class LogoutButton extends StatelessWidget {
+  const LogoutButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,8 +27,12 @@ class LogoutButton extends StatelessWidget {
         );
       },
       child: ListTile(
-        leading: Icon(Icons.logout, color:ColorManager.primaryColor,),
-        title: Text(TextManager.logout.tr(),
+        leading: const Icon(
+          Icons.logout,
+          color: ColorManager.primaryColor,
+        ),
+        title: Text(
+          TextManager.logout.tr(),
           style: getBoldStyle(
             color: ColorManager.primaryColor,
             fontSize: 16,
@@ -37,10 +44,10 @@ class LogoutButton extends StatelessWidget {
 
   Widget _buildLogoutConfirmationDialog(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       decoration: BoxDecoration(
-        color:context.scaffoldBackgroundColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        color: context.scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -53,20 +60,20 @@ class LogoutButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: context.secondaryColor, width: 3),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.logout,
               color: ColorManager.primaryColor,
               size: 50,
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Text(
             TextManager.areYouSure.tr(),
             style: getBoldStyle(
@@ -74,8 +81,9 @@ class LogoutButton extends StatelessWidget {
               color: context.secondaryColor,
             ),
           ),
-          SizedBox(height: 8),
-          Text(TextManager.logoutWarning.tr(),
+          const SizedBox(height: 8),
+          Text(
+            TextManager.logoutWarning.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
@@ -83,14 +91,27 @@ class LogoutButton extends StatelessWidget {
               color: context.secondaryColor,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                // Navigator.pushReplacementNamed(context, '/loginScreen');
-                print('Logged Out');
+           child:  ElevatedButton(
+          onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+             content:  Text(TextManager.accountLogedOut.tr(),
+             style: getBoldStyle(
+              color: ColorManager.white,
+             ),
+             ),
+                 duration:  Duration(seconds: 3), 
+                 backgroundColor: ColorManager.primaryColor,
+              ),
+            );
+               Future.delayed( Duration(seconds: 0), () {
+              Navigator.pop(context);
+                 Navigator.pushNamedAndRemoveUntil(context, PageName.loginScreen,(route) => false,
+                 );
+               });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.primaryColor,
@@ -98,7 +119,8 @@ class LogoutButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text(TextManager.logout.tr(),
+              child: Text(
+                TextManager.logout.tr(),
                 style: getBoldStyle(
                   color: ColorManager.white,
                 ),

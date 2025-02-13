@@ -5,14 +5,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-
 class LicenceDetailsScreen extends StatefulWidget {
   final String licenceImagePath;
 
   const LicenceDetailsScreen({
-    Key? key,
+    super.key,
     required this.licenceImagePath,
-  }) : super(key: key);
+  });
 
   @override
   State<LicenceDetailsScreen> createState() => _LicenceDetailsScreenState();
@@ -21,9 +20,9 @@ class LicenceDetailsScreen extends StatefulWidget {
 class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final carName = "Seat Leon";
-    final licenseNumber = "1234567";
-    final expiryDate = "12/2025";
+    const carName = "Seat Leon";
+    const licenseNumber = "1234567";
+    const expiryDate = "12/2025";
 
     final screenWidth = MediaQuery.of(context).size.width;
     final containerSize = screenWidth * 0.5;
@@ -31,7 +30,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(TextManager.myCar.tr()),  
+        title: Text(TextManager.myCar.tr()),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -39,7 +38,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
           children: [
             // كارد عرض بيانات السيارة
             Card(
-                color: context.tertiaryColor,
+              color: context.tertiaryColor,
               elevation: 4,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -55,10 +54,10 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
                       fit: BoxFit.contain,
                     ),
                   ),
-                  ListTile(
+                  const ListTile(
                     title: Text(
                       carName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -73,12 +72,13 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
             const SizedBox(height: 15),
 
             // نص التذكيرات
-             Divider(
+            Divider(
               indent: 90,
               endIndent: 90,
               height: 55,
               color: context.secondaryColor,
-              thickness: 1,),
+              thickness: 1,
+            ),
 
             // مربع منقط لفتح نافذة AddNotePage
             InkWell(

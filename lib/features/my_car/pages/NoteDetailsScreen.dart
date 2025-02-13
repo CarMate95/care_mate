@@ -6,9 +6,9 @@ class NoteDetailsScreen extends StatelessWidget {
   final Map<String, String> note;
 
   const NoteDetailsScreen({
-    Key? key,
+    super.key,
     required this.note,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class NoteDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(TextManager.noteDetails.tr()),
+        title: Text(TextManager.noteDetails.tr()),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,34 +29,34 @@ class NoteDetailsScreen extends StatelessWidget {
           // يمكن استخدام ListView إذا كانت التفاصيل كثيرة
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Text(
+            Text(
               TextManager.title.tr(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text(title),
             const SizedBox(height: 16),
-             Text(
+            Text(
               TextManager.start.tr(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text('$startDate  '),
             const SizedBox(height: 16),
             const SizedBox(height: 16),
-             Text(
+            Text(
               TextManager.end.tr(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text('  $endDate'),
             const SizedBox(height: 16),
-             Text(
-             TextManager.cash.tr(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            Text(
+              TextManager.cash.tr(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text(cash),
             const SizedBox(height: 16),
-             Text(
-             TextManager.note.tr(),
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            Text(
+              TextManager.note.tr(),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             Text(noteBody),
             const SizedBox(height: 16),

@@ -2,75 +2,44 @@ import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/functions/spacing.dart';
+import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
+import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
+import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AccountDetailsScreen extends StatelessWidget {
+  const AccountDetailsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: context.scaffoldBackgroundColor,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: context.secondaryColor,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(TextManager.accountDetails.tr()),
-        centerTitle: true,
-      ),
+    return CustomScaffold(
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage:
-                          AssetImage('assets/svg/gmail_icon_svg.jpg'),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: context.tertiaryColor,
-                      ),
-                      child: Icon(Icons.edit,
-                          color: context.secondaryColor, size: 20),
-                    ),
-                  ),
-                ],
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomAppBar(
+                title: Text(TextManager.accountDetails.tr()),
               ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              TextManager.Mohamed.tr(),
-              style: getBoldStyle(fontSize: 22, color: context.secondaryColor),
-            ),
-            Text(
-              TextManager.Manoooo.tr(),
-              style: TextStyle(fontSize: 16, color: context.secondaryColor),
-            ),
-            SizedBox(height: 16),
-            Expanded(
-              flex: 2,
-              child: Row(
+              verticalSpace(20),
+              const CustomImageProfile(
+                imageIcon: 'assets/svg/Edit.svg',
+                alignment: Alignment.bottomRight,
+              ),
+              verticalSpace(20),
+              Text(
+                TextManager.mohamed.tr(),
+                style:
+                    getBoldStyle(fontSize: 22, color: context.secondaryColor),
+              ),
+              Text(
+                TextManager.manooo.tr(),
+                style: TextStyle(fontSize: 16, color: context.secondaryColor),
+              ),
+              verticalSpace(30),
+              Row(
                 children: [
                   Expanded(
                     child: Padding(
@@ -78,7 +47,7 @@ class AccountDetailsScreen extends StatelessWidget {
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: TextManager.firstName.tr(),
-                          labelStyle: TextStyle(color: ColorManager.grey),
+                          labelStyle: const TextStyle(color: ColorManager.grey),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           filled: true,
                           fillColor: context.scaffoldBackgroundColor,
@@ -105,7 +74,7 @@ class AccountDetailsScreen extends StatelessWidget {
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: TextManager.lastName.tr(),
-                          labelStyle: TextStyle(color: ColorManager.grey),
+                          labelStyle: const TextStyle(color: ColorManager.grey),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           filled: true,
                           fillColor: context.scaffoldBackgroundColor,
@@ -128,15 +97,13 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 16),
-            Expanded(
-              child: Padding(
+              verticalSpace(16),
+              Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: TextManager.email.tr(),
-                    labelStyle: TextStyle(color: ColorManager.grey),
+                    labelStyle: const TextStyle(color: ColorManager.grey),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     filled: true,
                     fillColor: context.scaffoldBackgroundColor,
@@ -155,14 +122,12 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Padding(
+              Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: TextManager.phone.tr(),
-                    labelStyle: TextStyle(color: ColorManager.grey),
+                    labelStyle: const TextStyle(color: ColorManager.grey),
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     filled: true,
                     fillColor: context.scaffoldBackgroundColor,
@@ -181,8 +146,8 @@ class AccountDetailsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

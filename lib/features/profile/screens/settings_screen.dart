@@ -1,6 +1,8 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/my_car/pages/add_note_page.dart';
+import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../widgets/profile_header.dart';
@@ -9,6 +11,8 @@ import 'account_details_screen.dart';
 import '../widgets/delete_button.dart';
 
 class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,24 +24,24 @@ class SettingsScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
           Container(
             decoration: BoxDecoration(
               color: context.tertiaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(16),
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: ProfileHeader(),
+            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: const ProfileHeader(),
           ),
           Container(
             decoration: BoxDecoration(
               color: context.tertiaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(8),
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Column(
               children: [
                 SettingsOption(
@@ -48,22 +52,32 @@ class SettingsScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => AccountDetailsScreen()),
+                        builder: (context) => const AccountDetailsScreen()),
                   ),
                 ),
-                Divider(color: Colors.grey),
+                const Divider(color: Colors.grey),
                 SettingsOption(
                   icon: Icons.notifications,
                   title: TextManager.notification.tr(),
                   trailing: Icon(Icons.arrow_forward_ios,
                       color: context.secondaryColor),
+                      onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationScreen()),
+                  ),
                 ),
-                Divider(color: Colors.grey),
+                const Divider(color: Colors.grey),
                 SettingsOption(
                   icon: Icons.share,
                   title: TextManager.shareApp.tr(),
                   trailing: Icon(Icons.arrow_forward_ios,
                       color: context.secondaryColor),
+                      onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddNotePage()),
+                  ),
                 ),
               ],
             ),
@@ -73,8 +87,8 @@ class SettingsScreen extends StatelessWidget {
               color: context.tertiaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(8),
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Column(
               children: [
                 SettingsOption(
@@ -88,7 +102,7 @@ class SettingsScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                Divider(color: Colors.grey),
+                const Divider(color: Colors.grey),
                 SettingsOption(
                   icon: Icons.language,
                   title: TextManager.language.tr(),
@@ -108,9 +122,9 @@ class SettingsScreen extends StatelessWidget {
               color: context.tertiaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            padding: EdgeInsets.all(8),
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: LogoutButton(),
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: const LogoutButton(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
@@ -123,7 +137,7 @@ class SettingsScreen extends StatelessWidget {
                   style:
                       getBoldStyle(fontSize: 16, color: context.secondaryColor),
                 ),
-                DeleteButton(),
+                const DeleteButton(),
               ],
             ),
           ),
@@ -140,6 +154,7 @@ class SettingsOption extends StatelessWidget {
   final VoidCallback? onTap;
 
   const SettingsOption({
+    super.key,
     required this.icon,
     required this.title,
     required this.trailing,

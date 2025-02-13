@@ -97,6 +97,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             text: TextManager.letsGetYouStarted,
             style: getSemiBoldStyle(
               fontSize: 16.sp,
+              // ignore: deprecated_member_use
               color: context.secondaryColor.withOpacity(0.8),
             ),
           ),

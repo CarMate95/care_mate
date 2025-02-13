@@ -39,6 +39,10 @@
     "offerhelp": "عرض المساعده",
     "by": "من",
     "too": "الي",
+    "bad":"سئ",
+    "excellent":"ممتاز",
+    "ratingmessage":"كيف تقيم الخدمه",
+    "Workers Service?":"العمال لدينا؟",
     "workerDetails": "تفاصيل العامل",
     "sent": "ارسال",
     "verifyYourEmailAddress": "تحقق من عنوان بريدك الإلكتروني",
@@ -55,7 +59,7 @@
     "startDate": "تاريخ البداية ",
     "endDate": "تاريخ النهاية",
     "cash": "المبلغ",
-    "note": "ذكرني",
+    "note": "ملحوظه",
     "save": "حفظ",
     "searchForYourReminders": "ابحث عن التذكيرات الخاصة بك",
     "camera": "الكاميرا",
@@ -83,5 +87,9 @@
   "logoutWarning": "هل تريد فعلاً تسجيل الخروج؟",
   "Mohamed":"محمد",
   "Manoooo": "مانوووو",
-  "MohamedEzzat":"محمد عزت"
+  "MohamedEzzat":"محمد عزت",
+  "worker":"عامل",
+  "winch":"ونش",
+  "accountDeleted":"تم حذف الحساب",
+  "accountLogedOut":"تم تسجيل خروج الحساب"
 }

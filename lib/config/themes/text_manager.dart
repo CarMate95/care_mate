@@ -81,6 +81,12 @@ abstract class TextManager {
   static const String workerDetails = "workerDetails";
   static const String sent = "sent";
   static const String requestData = "requestData";
+  static const String ratingmessage = 'ratingmessage';
+  static const String ratingMessage2 = 'Workers Service?';
+  static const String bad = 'bad';
+  static const String excellent = 'excellent';
+   static const String worker = "worker";
+    static const String winch = "winch";
   //otp
   static const String verifyYourEmailAddress = "verifyYourEmailAddress";
   static const String verifyWithTheCode = "VerifyWithTheCode";
@@ -122,8 +128,11 @@ abstract class TextManager {
   static const String areYouSure = "areYouSure";
   static const String delete = "delete";
   static const String logoutWarning = "logoutWarning";
-  static const String Mosatafa = "Sasa💀";
-  static const String Mohamed = "Mohamed";
-  static const String Manoooo = "Manoooo";
-  static const String MohamedEzzat = "MohamedEzzat";
+  static const String mostafa = "Sasa💀";
+  static const String mohamed = "Mohamed";
+  static const String manooo = "Manoooo";
+  static const String mohamedEzzat = "MohamedEzzat";
+   static const String accountDeleted = "accountDeleted";
+    static const String accountLogedOut = "accountLogedOut";
+
 }

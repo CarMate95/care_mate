@@ -39,6 +39,10 @@
     "offerhelp": "Offer Help",
     "by": "By",
     "too": "To",
+    "bad":"Bad",
+    "excellent":"Excellent",
+    "ratingmessage":"How Do You Rate Our",
+    "Workers Service?":"Workers Service?",
     "workerDetails": "Worker Details",
     "cash": "Cash",
     "note": "Note",
@@ -83,6 +87,13 @@
     "logoutWarning": "Do you really want to log out?",
     "Mohamed": "Mohamed",
     "Manoooo":"Manoooo",
-    "MohamedEzzat":"MohamedEzzat"
+    "MohamedEzzat":"MohamedEzzat",
+    "worker": "worker",
+    "winch": "winch",
+    "accountDeleted":"The Account Has Been Deleted",
+    "accountLogedOut":"The Account Has Been Logged Out"
+
+
+    
 
 }

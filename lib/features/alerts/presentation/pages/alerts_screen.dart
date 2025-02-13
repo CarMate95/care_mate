@@ -20,11 +20,9 @@ class AlertsScreen extends StatelessWidget {
   ClipRRect title() {
     return ClipRRect(
         borderRadius: BorderRadius.circular(10.sp),
-        child: Container(
-          child: Text(
-            "Alert",
-            style: getBoldStyle(),
-          ),
+        child: Text(
+          "Alert",
+          style: getBoldStyle(),
         ));
   }
 }

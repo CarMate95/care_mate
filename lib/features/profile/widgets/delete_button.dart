@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -7,6 +8,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DeleteButton extends StatelessWidget {
+  const DeleteButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,10 +17,10 @@ class DeleteButton extends StatelessWidget {
         showModalBottomSheet(
           context: context,
           isScrollControlled: true,
-          backgroundColor:context.scaffoldBackgroundColor,
+          backgroundColor: context.scaffoldBackgroundColor,
           builder: (BuildContext context) {
             return BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0), 
+              filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
               child: _buildDeleteConfirmationDialog(context),
             );
           },
@@ -26,17 +29,18 @@ class DeleteButton extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(TextManager.deleteAccount.tr(),
+          Text(
+            TextManager.deleteAccount.tr(),
             style: getBoldStyle(
-             color: ColorManager.primaryColor,
+              color: ColorManager.primaryColor,
               fontSize: 16,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Container(
             width: 120,
             height: 2,
-           color: ColorManager.primaryColor,
+            color: ColorManager.primaryColor,
           ),
         ],
       ),
@@ -45,73 +49,84 @@ class DeleteButton extends StatelessWidget {
 
   Widget _buildDeleteConfirmationDialog(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       decoration: BoxDecoration(
-        color:context.scaffoldBackgroundColor,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        color: context.scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-         
           Container(
             width: 40,
             height: 5,
             decoration: BoxDecoration(
-              color:context.secondaryColor,
+              color: context.secondaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          SizedBox(height: 20),
-          
+          const SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-             border: Border.all(color:context.secondaryColor, width: 3),
+              border: Border.all(color: context.secondaryColor, width: 3),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.warning_amber_rounded,
               color: ColorManager.primaryColor,
               size: 50,
             ),
           ),
-          SizedBox(height: 16),
-         
-          Text(TextManager.areYouSure.tr(),
+          const SizedBox(height: 16),
+          Text(
+            TextManager.areYouSure.tr(),
             style: getBoldStyle(
               fontSize: 20,
-             color: context.secondaryColor,
+              color: context.secondaryColor,
             ),
           ),
-          SizedBox(height: 8),
-          
-          Text(TextManager.delete.tr(),
+          const SizedBox(height: 8),
+          Text(
+            TextManager.delete.tr(),
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 14,
-             color: context.secondaryColor,
+              color: context.secondaryColor,
             ),
           ),
-          SizedBox(height: 20),
-          
+          const SizedBox(height: 20),
           SizedBox(
             width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                print('Account Deleted');
+            child:  ElevatedButton(
+          onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+             content:  Text(TextManager.accountDeleted.tr(),
+             style: getBoldStyle(
+              color: ColorManager.white,
+             ),
+             ),
+                 duration:  Duration(seconds: 3), 
+                 backgroundColor: ColorManager.primaryColor,
+              ),
+            );
+               Future.delayed( Duration(seconds: 0), () {
+              Navigator.pop(context);
+               Navigator.pushNamedAndRemoveUntil(context, PageName.loginScreen,(route) => false,
+                 );
+               });
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor:  ColorManager.primaryColor,
+                backgroundColor: ColorManager.primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Text(TextManager.deleteAccount.tr(),
+              child: Text(
+                TextManager.deleteAccount.tr(),
                 style: getBoldStyle(
-                 color: ColorManager.white,
-                  
+                  color: ColorManager.white,
                 ),
               ),
             ),

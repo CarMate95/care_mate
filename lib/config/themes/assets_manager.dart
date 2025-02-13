@@ -34,6 +34,7 @@ class AssetsManager {
   static const String alertIcon = '${_svgPath}alert.svg';
   static const String alertIconBottom = '${_svgPath}alert_icon.svg';
   static const String carOB = '${_svgPath}carOB.svg';
+  static const String worker = '${_svgPath}worker.svg';
 
   /// Icons
 
