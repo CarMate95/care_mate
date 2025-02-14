@@ -32,10 +32,34 @@ class AssetsManager {
   static const String picturePostIcon = '${_svgPath}picturepost.svg';
   static const String personIcon = '${_svgPath}personIcon.svg';
   static const String settingIcon = '${_svgPath}setting_icon.svg';
-  static const String warningIcon = '${_svgPath}warningIcon.svg';
+  static const String warningIcon = '${_svgPath}warning_icon.svg';
   static const String alertIcon = '${_svgPath}alert.svg';
   static const String alertIconBottom = '${_svgPath}alert_icon.svg';
+  static const String homeAvatar = '${_pngPath}Frame 2306.png';
   static const String worker = '${_svgPath}worker.svg';
+  static const String notificationIcon = '${_svgPath}Notification_Icon.svg';
+  static const String settingHomeIcon = '${_svgPath}setting_home.svg';
+  static const String settingPicturePng =
+      '${_pngPath}setting-4_svgrepo.com.png';
+  static const String galleryIcon = '${_svgPath}Upload_Photo.svg';
+  static const String editPen = '${_svgPath}Edit_Pen.svg';
+  static const String editPenPng = '${_pngPath}edit_pen_png.png';
+  static const String warningPng = '${_pngPath}warning_2.png';
+
+  static const String statusImage = '${_pngPath}status_image.png';
+  static const String temperatureImage = '${_pngPath}temperature_image.png';
+  static const String useAI = '${_pngPath}use_ai.png';
+  static const String worker1 = '${_pngPath}worker_1.png';
+  static const String worker2 = '${_pngPath}worker_2.png';
+  static const String worker3 = '${_pngPath}worker_3.png';
+  static const String worker4 = '${_pngPath}worker_4.png';
+  static const String rightArrow = '${_pngPath}right_arrow.png';
+  static const String leftArrow = '${_pngPath}left_arrow.png';
+  static const String backArabicIcon = '${_pngPath}back_arabic_icon.png';
+  static const String tirePressure = '${_pngPath}tire_pressure.png';
+  static const String abs = '${_pngPath}abs.png';
+  static const String battery = '${_pngPath}battery.png';
+  static const String brakeWarning = '${_pngPath}brake_warning2.png';
 
   /// Icons
 

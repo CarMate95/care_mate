@@ -142,7 +142,51 @@ abstract class TextManager {
   static const String getStarted = "getStarted";
   static const String createNewPassword = "createNewPassword";
   static const String createNewPasswordText = "createNewPasswordText";
-   static const String validationPass1 = "validationPass1";
-   static const String validationPass2 = "validationPass2";
-    static const String validationPass3 = "validationPass3";
+  static const String validationPass1 = "validationPass1";
+  static const String validationPass2 = "validationPass2";
+  static const String validationPass3 = "validationPass3";
+
+  //Alerts screen
+  static const String checkEngine = "checkEngine";
+  static const String brakeWarning = "brakeWarning";
+  static const String tirePressure = "tirePressure";
+  static const String temperatureWarning = "temperatureWarning";
+  static const String batteryWarning = "batteryWarning";
+  static const String absWarning = "absWarning";
+  static const String engineWarningLight = "engineWarningLight";
+  static const String brakeWarningLight = "brakeWarningLight";
+  static const String tirePressureWarningLight = "tirePressureWarningLight";
+  static const String temperatureWarningLight = "temperatureWarningLight";
+  static const String batteryWarningLight = "batteryWarningLight";
+  static const String absWarningLight = "absWarningLight";
+  static const String checkEngineAlertMessage = "checkEngineAlertMessage";
+  static const String brakeWarningAlertMessage = "brakeWarningAlertMessage";
+  static const String tirePressureAlertMessage = "tirePressureAlertMessage";
+  static const String temperatureWarningAlertMessage =
+      "temperatureWarningAlertMessage";
+  static const String batteryWarningAlertMessage = "batteryWarningAlertMessage";
+  static const String absWarningAlertMessage = "absWarningAlertMessage";
+  static const String alerts = "alerts";
+  static const String signs = "signs";
+
+  //Notifications screen
+
+  static const String appUpdateAlert = "appUpdateAlert";
+  static const String hAgo = "hAgo";
+  static const String newFeatures = "newFeatures";
+  static const String today = "today";
+  static const String yesterday = "yesterday";
+  static const String lastDays = "lastDays";
+
+  //Home screen
+  static const String rawanAyman = "rawanAyman";
+  static const String setReminder = "setReminder";
+  static const String viewWorkers = "viewWorkers";
+  static const String signAndAlerts = "signAndAlerts";
+  static const String mechanicCanHelp = "mechanicCanHelp";
+  static const String shareYourCarProblem = "shareYourCarProblem";
+  static const String donForgetTo = "donForgetTo";
+  static const String changeFuel = "changeFuel";
+  static const String startTime = "startTime";
+  static const String endTime = "endTime";
 }

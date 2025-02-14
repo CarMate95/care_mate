@@ -66,10 +66,7 @@ class NoteDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-     bottomNavigationBar: BlocProvider.value(
-  value: LayoutCubit.get(context),
-  child: const CustomLayoutButtonNavBar(),
-),
+     
     );
   }
 }

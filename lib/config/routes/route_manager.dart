@@ -1,4 +1,6 @@
+import 'package:car_mate/core/utils/widgets/custom_bottom_navigation.dart';
 import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/home/presentation/pages/home_screen.dart';
 import 'package:car_mate/features/my_car/pages/NoteDetailsScreen.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
@@ -147,6 +149,16 @@ class RouteManager {
       case PageName.workerDetailsScreen:
         return _getPageTransition(
           const WorkerDetailsScreen(),
+          settings: routeSettings,
+        );
+      case PageName.homeScreen:
+        return _getPageTransition(
+          const HomeScreen(),
+          settings: routeSettings,
+        );
+      case PageName.customBottomNavigation:
+        return _getPageTransition(
+          const CustomBottomNavigation(),
           settings: routeSettings,
         );
 
