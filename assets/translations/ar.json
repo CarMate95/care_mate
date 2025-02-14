@@ -91,5 +91,7 @@
   "worker":"عامل",
   "winch":"ونش",
   "accountDeleted":"تم حذف الحساب",
-  "accountLogedOut":"تم تسجيل خروج الحساب"
+  "accountLogedOut":"تم تسجيل خروج الحساب",
+  "ok":"حسنا"
+
 }

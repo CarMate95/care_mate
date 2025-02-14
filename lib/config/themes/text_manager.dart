@@ -132,7 +132,7 @@ abstract class TextManager {
   static const String mohamed = "Mohamed";
   static const String manooo = "Manoooo";
   static const String mohamedEzzat = "MohamedEzzat";
-   static const String accountDeleted = "accountDeleted";
-    static const String accountLogedOut = "accountLogedOut";
-
+  static const String accountDeleted = "accountDeleted";
+  static const String accountLogedOut = "accountLogedOut";
+  static const String ok = "ok";
 }

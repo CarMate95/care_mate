@@ -91,7 +91,9 @@
     "worker": "worker",
     "winch": "winch",
     "accountDeleted":"The Account Has Been Deleted",
-    "accountLogedOut":"The Account Has Been Logged Out"
+    "accountLogedOut":"The Account Has Been Logged Out",
+    "ok":"Ok"
+    
 
 
     
