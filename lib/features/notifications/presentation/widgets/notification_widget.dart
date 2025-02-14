@@ -1,6 +1,9 @@
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +18,9 @@ class NotificationWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.r),
         child: Container(
           height: 50.h,
-          color: ColorManager.darkGrey,
+          color: context.isDarkMode
+              ? ColorManager.darkGrey
+              : ColorManager.lightGrey,
           child: Padding(
             padding: EdgeInsets.all(6.0.sp),
             child: Row(
@@ -23,7 +28,7 @@ class NotificationWidget extends StatelessWidget {
                 CircleAvatar(
                   radius: 20.r,
                   backgroundColor: Colors.white,
-                  child:const Icon(Icons.notifications,
+                  child: const Icon(Icons.notifications,
                       color: ColorManager.primaryColor),
                 ),
                 horizontalSpace(10.sp),
@@ -32,7 +37,7 @@ class NotificationWidget extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text("App update Alert",
+                        Text(TextManager.appUpdateAlert.tr(),
                             style: getBoldStyle(fontSize: 12.sp)),
                         horizontalSpace(7.sp),
                         Container(
@@ -43,16 +48,23 @@ class NotificationWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20.r)),
                         ),
                         horizontalSpace(7.sp),
-                        Text("6h ago",
+                        Text(TextManager.hAgo.tr(),
                             style: getMediumStyle(
-                                fontSize: 12.sp,
-                                color: ColorManager.lightGrey)),
+                              fontSize: 12.sp,
+                              color: context.isDarkMode
+                                  ? ColorManager.lightGrey
+                                  : ColorManager.darkGrey,
+                            )),
                       ],
                     ),
                     Text(
-                      "New features are there! Upadte car mate for..",
+                      TextManager.newFeatures.tr(),
                       style: getRegularStyle(
-                          fontSize: 12.sp, color: ColorManager.lightGrey),
+                        fontSize: 12.sp,
+                        color: context.isDarkMode
+                            ? ColorManager.lightGrey
+                            : ColorManager.darkGrey,
+                      ),
                     )
                   ],
                 )

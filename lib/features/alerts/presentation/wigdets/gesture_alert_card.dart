@@ -4,10 +4,16 @@ import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GestureAlertCard extends StatelessWidget {
-  const GestureAlertCard({super.key, required this.title, required this.image});
+  const GestureAlertCard(
+      {super.key,
+      required this.title,
+      required this.image,
+      required this.alertTitle,
+      required this.alertMessage});
   final String title;
-  final String image;
-
+  final Image image;
+  final String alertTitle;
+  final String alertMessage;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +25,7 @@ class GestureAlertCard extends StatelessWidget {
             barrierColor: Colors.transparent,
             barrierDismissible: true,
             builder: (BuildContext context) {
-              return const AlertMessage();
+              return AlertMessage(alertText: alertMessage, title: alertTitle);
             },
           );
         },
