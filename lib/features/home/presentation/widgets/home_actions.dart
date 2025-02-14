@@ -1,0 +1,37 @@
+import 'package:car_mate/config/themes/assets_manager.dart';
+import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/functions/spacing.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
+class HomeActions extends StatelessWidget {
+  const HomeActions({super.key, required this.text, required this.isIcon});
+  final String text;
+  final bool isIcon;
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadiusDirectional.only(
+          bottomEnd: Radius.circular(16.r), bottomStart: Radius.circular(16.r)),
+      child: Container(
+        height: 73.h,
+        width: 175.9.w,
+        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+        child: Row(
+          children: [
+            horizontalSpace(15.sp),
+            if (isIcon == true) Image.asset(AssetsManager.editPenPng),
+            horizontalSpace(20.sp),
+            Text(
+              text,
+              style: getLightStyle(fontSize: 16.sp),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
