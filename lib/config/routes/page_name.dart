@@ -20,4 +20,6 @@ class PageName {
   static const String workerDetailsScreen = '/workerDetailsScreen';
   static const String winchAndWorkerScreen = '/winchAndWorkerScreen';
   static const String editeWorkerDetailsScreen = '/editeWorkerDetailsScreen';
+  static const String homeScreen = '/homeScreen';
+  static const String customBottomNavigation = '/customBottomNavigation';
 }

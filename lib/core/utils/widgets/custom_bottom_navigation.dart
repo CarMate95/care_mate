@@ -1,30 +1,31 @@
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
-import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/home/presentation/pages/home_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_svg/svg.dart';
 
-class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+class CustomBottomNavigation extends StatefulWidget {
+  const CustomBottomNavigation({super.key});
 
   @override
-  State<BottomNavigation> createState() => _BottomNavigationState();
+  State<CustomBottomNavigation> createState() => _CustomBottomNavigationState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
   int currentIndex = 0;
 
   List<Widget> screens = [
+    const HomeScreen(),
     Container(),
     Container(),
     Container(),
-    Container(),
-    const AlertsScreen(),
   ];
 
   @override
@@ -35,8 +36,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          context.isDarkMode ? ColorManager.darkGrey : ColorManager.white,
+      backgroundColor: Colors.transparent,
       //FirebaseAuth.instance.currentUser!.emailVerified?screens[currentIndex]:Container(
       //         width: double.infinity,
       //         child: Padding(
@@ -57,8 +57,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
       body: screens[currentIndex],
 
       bottomNavigationBar: Container(
-        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.white,
-        margin: EdgeInsets.symmetric(horizontal: 6.sp, vertical: 35.sp),
+        color: Colors.transparent,
+        margin: EdgeInsets.symmetric(horizontal: 6.sp, vertical: 4.sp),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.sp),
           child: BottomNavigationBar(
@@ -80,7 +80,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     label: '',
                     activeIcon: activeIcon(
                       context,
-                      "Home",
+                      TextManager.home.tr(),
                       SvgPicture.asset(
                         AssetsManager.homeIcon,
                         color: context.isDarkMode
@@ -98,7 +98,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     label: '',
                     activeIcon: activeIcon(
                       context,
-                      "Repair",
+                      TextManager.repair.tr(),
                       SvgPicture.asset(
                         AssetsManager.repairIcon,
                         color: context.isDarkMode
@@ -116,7 +116,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     label: '',
                     activeIcon: activeIcon(
                       context,
-                      "Car",
+                      TextManager.myCar.tr(),
                       SvgPicture.asset(
                         AssetsManager.carIcon,
                         color: context.isDarkMode
@@ -134,27 +134,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                     label: '',
                     activeIcon: activeIcon(
                       context,
-                      "robot",
+                      TextManager.aiChat.tr(),
                       SvgPicture.asset(
                         AssetsManager.robotIcon,
-                        color: context.isDarkMode
-                            ? ColorManager.white
-                            : ColorManager.black,
-                      ),
-                    )),
-                BottomNavigationBarItem(
-                    icon: SvgPicture.asset(
-                      AssetsManager.alertIconBottom,
-                      color: context.isDarkMode
-                          ? ColorManager.white
-                          : ColorManager.black,
-                    ),
-                    label: '',
-                    activeIcon: activeIcon(
-                      context,
-                      "Alerts",
-                      SvgPicture.asset(
-                        AssetsManager.alertIconBottom,
                         color: context.isDarkMode
                             ? ColorManager.white
                             : ColorManager.black,
@@ -168,22 +150,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   Padding activeIcon(BuildContext context, String title, Widget icon) {
     return Padding(
-      padding: EdgeInsets.all(2.sp),
+      padding: EdgeInsets.only(left: 5.sp, right: 3.sp),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15.sp),
         child: Container(
           padding: EdgeInsets.all(2.sp),
-          height: 30.h,
-          color: ColorManager.black,
+          height: 40.h,
+          color: context.isDarkMode ? ColorManager.black : ColorManager.white,
           child: Row(children: [
             icon,
-            horizontalSpace(1.sp),
+            horizontalSpace(2.sp),
             Text(title,
                 style: getBoldStyle(
                     color: context.isDarkMode
                         ? ColorManager.white
                         : ColorManager.black,
-                    fontSize: 9.sp))
+                    fontSize: context.locale.languageCode == 'en_US'
+                        ? 12.sp
+                        : 11.sp)),
           ]),
         ),
       ),

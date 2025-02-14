@@ -8,8 +8,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/themes/color_manager.dart';
 
 class AlertMessage extends StatelessWidget {
-  const AlertMessage({super.key});
-
+  const AlertMessage({super.key, required this.title, required this.alertText});
+  final String title;
+  final String alertText;
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
@@ -18,17 +19,17 @@ class AlertMessage extends StatelessWidget {
         title: Column(
           children: [
             Text(
-              'Engine Light Alert',
+              title,
               style: getMediumStyle(fontSize: 20.sp),
             ),
-            CustomDivider(
+            const CustomDivider(
               color: ColorManager.primaryColor,
               thickness: 3,
             ),
           ],
         ),
         content: Text(
-          'Check your car engine immediately to prevent further damage.',
+          alertText,
           style: getBoldStyle(fontSize: 16.sp),
         ),
       ),
