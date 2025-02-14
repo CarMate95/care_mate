@@ -54,7 +54,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   const CustomAppBar(),
                   verticalSpace(16),
                   CustomText(
-                    text: 'Create New Password',
+                    text: TextManager.createNewPassword,
                     style: getMediumStyle(
                       fontSize: 22,
                       color: context.secondaryColor,
@@ -62,8 +62,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   verticalSpace(16),
                   CustomText(
-                    text:
-                        "Please Enter a New Password. Ensure that Your New Password is different from the previous one for better security.",
+                    text: TextManager.createNewPasswordText,
                     style: getMediumStyle(
                       fontSize: 16,
                       // ignore: deprecated_member_use

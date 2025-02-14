@@ -85,8 +85,8 @@ abstract class TextManager {
   static const String ratingMessage2 = 'Workers Service?';
   static const String bad = 'bad';
   static const String excellent = 'excellent';
-   static const String worker = "worker";
-    static const String winch = "winch";
+  static const String worker = "worker";
+  static const String winch = "winch";
   //otp
   static const String verifyYourEmailAddress = "verifyYourEmailAddress";
   static const String verifyWithTheCode = "VerifyWithTheCode";
@@ -135,4 +135,14 @@ abstract class TextManager {
   static const String accountDeleted = "accountDeleted";
   static const String accountLogedOut = "accountLogedOut";
   static const String ok = "ok";
+  static const String welcomeTo = "welcomeTo";
+  static const String use = "use";
+  static const String ai = "ai";
+  static const String toDiagnose = "toDiagnose";
+  static const String getStarted = "getStarted";
+  static const String createNewPassword = "createNewPassword";
+  static const String createNewPasswordText = "createNewPasswordText";
+   static const String validationPass1 = "validationPass1";
+   static const String validationPass2 = "validationPass2";
+    static const String validationPass3 = "validationPass3";
 }

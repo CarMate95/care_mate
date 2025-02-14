@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/themes/text_manager.dart';
 import '../cubit/password_validation/password_validation_cubit.dart';
 import 'custom_new_pass_validate.dart';
 
@@ -17,15 +18,15 @@ class ValidationForm extends StatelessWidget {
           children: [
             CustomNewPassValidate(
               isValidate: cubit.hasMinLength,
-              title: 'At least 8 characters',
+              title: TextManager.validationPass1,
             ),
             CustomNewPassValidate(
               isValidate: cubit.hasSpecialChar,
-              title: r'Include at least one special character (e.g., @, #, $).',
+              title: TextManager.validationPass2,
             ),
             CustomNewPassValidate(
               isValidate: cubit.hasUppercase,
-              title: 'Include at least one uppercase letter (A-Z).',
+              title: TextManager.validationPass3,
             ),
           ],
         );

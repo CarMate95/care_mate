@@ -22,6 +22,7 @@ import '../../features/auth/presentation/pages/reset_password_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/auth/presentation/pages/verify_email_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
+import '../../features/splash/presentation/pages/on_boarding_screen.dart';
 import 'page_name.dart';
 
 class RouteManager {
@@ -146,6 +147,12 @@ class RouteManager {
       case PageName.workerDetailsScreen:
         return _getPageTransition(
           const WorkerDetailsScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.onBoardingScreen:
+        return _getPageTransition(
+          const OnBoardingScreen(),
           settings: routeSettings,
         );
 
