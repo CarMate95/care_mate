@@ -21,117 +21,136 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.zero, 
       children: [
-        verticalSpace(30.sp),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.sp),
+          padding: EdgeInsets.symmetric(horizontal: 12.sp),
           child: const ProblemWidget(),
         ),
-        verticalSpace(2.h),
-        Row(children: [
-          horizontalSpace(6.w),
-          HomeActions(
-            isIcon: true,
-            text: TextManager.setReminder.tr(),
-          ),
-          horizontalSpace(3.w),
-          HomeActions(
-            isIcon: false,
-            text: TextManager.viewWorkers.tr(),
-          ),
-          horizontalSpace(4.w),
-        ]),
-        verticalSpace(10.sp),
+        verticalSpace(12.sp),
         Padding(
-          padding: EdgeInsets.all(20.sp),
-          child: Container(
-            child: Row(
-              children: [
-                Text(
-                  TextManager.signAndAlerts.tr(),
-                  style: getBoldStyle(fontSize: 16.sp),
-                ),
-                context.deviceLocale.languageCode == 'en_US'
-                    ? horizontalSpace(180.w)
-                    : horizontalSpace(140.w),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, PageName.alertsScreen);
-                    },
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: context.isDarkMode
-                          ? ColorManager.white
-                          : ColorManager.black,
-                    )),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          color: Colors.transparent,
-          height: 50.h,
-          width: double.infinity,
-          child: ListView(scrollDirection: Axis.horizontal, children: [
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.brakeWarning),
-              title: TextManager.brakeWarning.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.engineCheckImage),
-              title: TextManager.checkEngine.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.temperatureImage),
-              title: TextManager.temperatureWarning.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.tirePressure),
-              title: TextManager.tirePressure.tr(),
-            ),
-          ]),
-        ),
-        verticalSpace(20.sp),
-        Row(children: [
-          horizontalSpace(10.sp),
-          const UseAIWidget(),
-          horizontalSpace(10.sp),
-          const ReminderWidget(),
-        ]),
-        verticalSpace(10.sp),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.symmetric(horizontal: 12.sp),
           child: Row(
+            children: [
+              Expanded(
+                child: HomeActions(
+                  isIcon: true,
+                  text: TextManager.setReminder.tr(),
+                ),
+              ),
+              horizontalSpace(8.sp),
+              Expanded(
+                child: HomeActions(
+                  isIcon: false,
+                  text: TextManager.viewWorkers.tr(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        verticalSpace(12.sp),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.sp),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                TextManager.signAndAlerts.tr(),
+                style: getBoldStyle(fontSize: 16.sp),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, PageName.alertsScreen);
+                },
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16.sp,
+                  color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+        verticalSpace(8.sp),
+        SizedBox(
+          height: 85.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
+            children: [
+              AlertHomeWidget(
+                imageWidget: Image.asset(AssetsManager.brakeWarning, width: 38.w),
+                title: TextManager.brakeWarning.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                imageWidget: Image.asset(AssetsManager.engineCheckImage, width: 38.w),
+                title: TextManager.checkEngine.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                imageWidget: Image.asset(AssetsManager.temperatureImage, width: 38.w),
+                title: TextManager.temperatureWarning.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                imageWidget: Image.asset(AssetsManager.tirePressure, width: 38.w),
+                title: TextManager.tirePressure.tr(),
+              ),
+            ],
+          ),
+        ),
+        verticalSpace(12.sp),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.sp),
+          child: Row(
+            children: [
+              Expanded(child: const UseAIWidget()),
+              horizontalSpace(8.sp),
+              Expanded(child: const ReminderWidget()),
+            ],
+          ),
+        ),
+        verticalSpace(12.sp),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.sp),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 TextManager.mechanicCanHelp.tr(),
                 style: getBoldStyle(fontSize: 16.sp),
               ),
-              context.deviceLocale.languageCode == 'en_US'
-                  ? horizontalSpace(150.w)
-                  : horizontalSpace(80.w),
-              Icon(
-                Icons.arrow_forward_ios,
-                color: context.isDarkMode
-                    ? ColorManager.white
-                    : ColorManager.black,
-              )
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
+                },
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16.sp,
+                  color: context.isDarkMode ? ColorManager.white : ColorManager.black,
+                ),
+              ),
             ],
           ),
         ),
-        Container(
-            height: 50.h,
-            width: double.infinity,
-            child: ListView(scrollDirection: Axis.horizontal, children: [
+        verticalSpace(8.sp),
+        SizedBox(
+          height: 90.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
+            children: [
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker1)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker2)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker3)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker4)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker1)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker2)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker3)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker4))
-            ]))
+            ],
+          ),
+        ),
       ],
     );
   }

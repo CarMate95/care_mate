@@ -15,7 +15,11 @@ class UseAIWidget extends StatelessWidget {
         height: 184.h,
         width: 168.w,
         color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
-        child: Image.asset(AssetsManager.useAI, fit: BoxFit.fitWidth),
+        child: Image.asset(
+          AssetsManager.useAI,
+          fit: BoxFit.cover, 
+          alignment: Alignment.center, 
+        ),
       ),
     );
   }

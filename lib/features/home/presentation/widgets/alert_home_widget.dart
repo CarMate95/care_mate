@@ -6,36 +6,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AlertHomeWidget extends StatelessWidget {
-  const AlertHomeWidget(
-      {super.key, required this.imageWidget, required this.title});
+  const AlertHomeWidget({
+    super.key,
+    required this.imageWidget,
+    required this.title,
+  });
+
   final Widget imageWidget;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 4, right: 4),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
+        borderRadius: BorderRadius.circular(10.r),
         child: Container(
           width: 150.w,
-          color: context.isDarkMode
-              ? ColorManager.darkGrey
-              : ColorManager.lightGrey,
+          color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: context.locale.languageCode == 'en_US'
-                    ? const EdgeInsets.only(
-                        left: 15, top: 15, bottom: 15, right: 3)
-                    : const EdgeInsets.only(
-                        left: 4, top: 15, bottom: 15, right: 10),
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 15.h),
                 child: imageWidget,
               ),
-              Text(
-                title,
-                style: getBoldStyle(fontSize: 12.sp),
-              )
+              Expanded(
+                child: Text(
+                  title,
+                  style: getBoldStyle(fontSize: 12.sp),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
         ),
