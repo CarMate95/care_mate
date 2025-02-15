@@ -13,6 +13,7 @@ class AlertCardsList extends StatelessWidget {
     return GridView(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        childAspectRatio: 1,
       ),
       children: [
         GestureAlertCard(

@@ -17,13 +17,13 @@ class NotificationWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.r),
         child: Container(
-          height: 50.h,
           color: context.isDarkMode
               ? ColorManager.darkGrey
               : ColorManager.lightGrey,
           child: Padding(
             padding: EdgeInsets.all(6.0.sp),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
                 CircleAvatar(
                   radius: 20.r,
@@ -32,41 +32,54 @@ class NotificationWidget extends StatelessWidget {
                       color: ColorManager.primaryColor),
                 ),
                 horizontalSpace(10.sp),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(TextManager.appUpdateAlert.tr(),
-                            style: getBoldStyle(fontSize: 12.sp)),
-                        horizontalSpace(7.sp),
-                        Container(
-                          height: 5.h,
-                          width: 5.w,
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(20.r)),
-                        ),
-                        horizontalSpace(7.sp),
-                        Text(TextManager.hAgo.tr(),
-                            style: getMediumStyle(
-                              fontSize: 12.sp,
-                              color: context.isDarkMode
-                                  ? ColorManager.lightGrey
-                                  : ColorManager.darkGrey,
-                            )),
-                      ],
-                    ),
-                    Text(
-                      TextManager.newFeatures.tr(),
-                      style: getRegularStyle(
-                        fontSize: 12.sp,
-                        color: context.isDarkMode
-                            ? ColorManager.lightGrey
-                            : ColorManager.darkGrey,
+                Expanded( 
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min, 
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              TextManager.appUpdateAlert.tr(),
+                              style: getBoldStyle(fontSize: 12.sp),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          horizontalSpace(7.sp),
+                          Container(
+                            height: 5.h,
+                            width: 5.w,
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(20.r)),
+                          ),
+                          horizontalSpace(7.sp),
+                          Text(TextManager.hAgo.tr(),
+                              style: getMediumStyle(
+                                fontSize: 12.sp,
+                                color: context.isDarkMode
+                                    ? ColorManager.lightGrey
+                                    : ColorManager.darkGrey,
+                              )),
+                        ],
                       ),
-                    )
-                  ],
+                      SizedBox(height: 2.sp), 
+                      Flexible( 
+                        child: Text(
+                          TextManager.newFeatures.tr(),
+                          style: getRegularStyle(
+                            fontSize: 12.sp,
+                            color: context.isDarkMode
+                                ? ColorManager.lightGrey
+                                : ColorManager.darkGrey,
+                          ),
+                          overflow: TextOverflow.ellipsis, 
+                          maxLines: 2, 
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

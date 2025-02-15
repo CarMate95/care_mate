@@ -33,16 +33,26 @@ class HomeBody extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: HomeActions(
-                  isIcon: true,
-                  text: TextManager.setReminder.tr(),
+                child: GestureDetector(
+                  onTap: () {
+                  Navigator.pushNamed(context, PageName.addnotepage);
+                },
+                  child: HomeActions(
+                    isIcon: true,
+                    text: TextManager.setReminder.tr(),
+                  ),
                 ),
               ),
               horizontalSpace(8.sp),
               Expanded(
-                child: HomeActions(
-                  isIcon: false,
-                  text: TextManager.viewWorkers.tr(),
+                child: GestureDetector(
+                  onTap: () {
+                  Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
+                },
+                  child: HomeActions(
+                    isIcon: false,
+                    text: TextManager.viewWorkers.tr(),
+                  ),
                 ),
               ),
             ],
