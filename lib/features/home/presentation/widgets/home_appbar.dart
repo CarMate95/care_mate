@@ -15,12 +15,15 @@ AppBar homeAppbar(BuildContext context) {
     elevation: 0,
     title: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          TextManager.rawanAyman.tr(),
-          style: getBoldStyle(fontSize: 16.sp),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+      children:  [
+        GestureDetector(
+        onTap: () => Navigator.pushNamed(context, PageName.accountdetailsScreen),
+          child: Text(
+            TextManager.rawanAyman.tr(),
+            style: getBoldStyle(fontSize: 16.sp),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         verticalSpace(2.sp),
         Text(

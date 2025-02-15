@@ -5,7 +5,7 @@ import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
 
 class AlertCard extends StatelessWidget {
   const AlertCard({super.key, required this.title, required this.image});
@@ -15,49 +15,55 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 200,
+      height: 200.h, 
+      width: 200.w,
+      padding: EdgeInsets.all(10.sp),  
       decoration: BoxDecoration(
-          color: context.isDarkMode
-              ? ColorManager.darkGrey
-              : ColorManager.lightGrey,
-          borderRadius: BorderRadius.circular(20.r)),
+        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+        borderRadius: BorderRadius.circular(20.r),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          verticalSpace(10.sp),
           Row(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              horizontalSpace(120.sp),
               Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: context.isDarkMode
-                            ? ColorManager.black
-                            : Colors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(50.r)),
-                  height: 22.sp,
-                  width: 22.sp,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 3),
-                    child: Text(
-                      "i",
-                      style: getSemiBoldStyle(fontSize: 20),
-                    ),
-                  )),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: context.isDarkMode ? ColorManager.black : Colors.white,
+                  ),
+                  borderRadius: BorderRadius.circular(50.r),
+                ),
+                height: 22.sp,
+                width: 22.sp,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 3),
+                  child: Text(
+                    "i",
+                    style: getSemiBoldStyle(fontSize: 20),
+                  ),
+                ),
+              ),
             ],
           ),
-          verticalSpace(2.sp),
-          SizedBox(height: 70, width: 70, child: image),
-          verticalSpace(10.sp),
-          Text(
-            title,
-            style:context.locale.languageCode == 'en_US' ? getSemiBoldStyle(fontSize: 20.sp) : getBoldStyle(fontSize: 20.sp),
+          verticalSpace(5.sp),
+          SizedBox(height: 70.h, width: 70.w, child: image),
+           SizedBox(height: 1.sp),
+          Expanded(
+            child: Text(
+              title,
+              textAlign: TextAlign.center,  
+              style: context.locale.languageCode == 'en_US' 
+                  ? getSemiBoldStyle(fontSize: 18.sp) 
+                  : getBoldStyle(fontSize: 18.sp),
+              maxLines: 2,  
+              overflow: TextOverflow.ellipsis,  
+              softWrap: true,
+            ),
           ),
-          verticalSpace(10.sp)
         ],
       ),
     );

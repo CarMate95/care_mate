@@ -1,3 +1,4 @@
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -16,58 +17,63 @@ class ReminderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
-      child: Container(
-        height: 184.h,
-        width: 168.w,
-        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
-        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        TextManager.donForgetTo.tr(),
-                        style: getBoldStyle(fontSize: 14.sp),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        TextManager.changeFuel.tr(),
-                        style: getBoldStyle(fontSize: 14.sp),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
+      child:GestureDetector(
+        onTap: () {
+                  Navigator.pushNamed(context, PageName.notedetailsscreen);
+                },
+        child: Container(
+          height: 184.h,
+          width: 168.w,
+          color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          TextManager.donForgetTo.tr(),
+                          style: getBoldStyle(fontSize: 14.sp),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        Text(
+                          TextManager.changeFuel.tr(),
+                          style: getBoldStyle(fontSize: 14.sp),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20.r),
-                  child: Container(
-                    height: 35.h,
-                    width: 35.w,
-                    color: ColorManager.black,
-                    child: Padding(
-                      padding: EdgeInsets.all(6.sp),
-                      child: SvgPicture.asset(
-                        AssetsManager.notificationIcon,
-                        color: Colors.white,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.r),
+                    child: Container(
+                      height: 35.h,
+                      width: 35.w,
+                      color: ColorManager.black,
+                      child: Padding(
+                        padding: EdgeInsets.all(6.sp),
+                        child: SvgPicture.asset(
+                          AssetsManager.notificationIcon,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            verticalSpace(15.h),
-            _buildReminderRow(TextManager.start.tr(), Colors.blue, TextManager.startTime.tr()),
-            verticalSpace(5.h),
-            _buildReminderRow(TextManager.end.tr(), Colors.red, TextManager.endTime.tr()),
-          ],
+                ],
+              ),
+              verticalSpace(15.h),
+              _buildReminderRow(TextManager.start.tr(), Colors.blue, TextManager.startTime.tr()),
+              verticalSpace(5.h),
+              _buildReminderRow(TextManager.end.tr(), Colors.red, TextManager.endTime.tr()),
+            ],
+          ),
         ),
       ),
     );
