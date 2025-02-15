@@ -135,6 +135,16 @@ abstract class TextManager {
   static const String accountDeleted = "accountDeleted";
   static const String accountLogedOut = "accountLogedOut";
   static const String ok = "ok";
+  static const String welcomeTo = "welcomeTo";
+  static const String use = "use";
+  static const String ai = "ai";
+  static const String toDiagnose = "toDiagnose";
+  static const String getStarted = "getStarted";
+  static const String createNewPassword = "createNewPassword";
+  static const String createNewPasswordText = "createNewPasswordText";
+  static const String validationPass1 = "validationPass1";
+  static const String validationPass2 = "validationPass2";
+  static const String validationPass3 = "validationPass3";
 
   //Alerts screen
   static const String checkEngine = "checkEngine";
@@ -174,10 +184,9 @@ abstract class TextManager {
   static const String viewWorkers = "viewWorkers";
   static const String signAndAlerts = "signAndAlerts";
   static const String mechanicCanHelp = "mechanicCanHelp";
-  static const String shareYourCarProblem =  "shareYourCarProblem";
-  static const String donForgetTo =  "donForgetTo";
+  static const String shareYourCarProblem = "shareYourCarProblem";
+  static const String donForgetTo = "donForgetTo";
   static const String changeFuel = "changeFuel";
   static const String startTime = "startTime";
-static const String endTime = "endTime";
-
+  static const String endTime = "endTime";
 }
