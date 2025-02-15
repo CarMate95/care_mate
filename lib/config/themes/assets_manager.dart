@@ -13,6 +13,8 @@ class AssetsManager {
   static const String tierChangeAlertIcon = '${_pngPath}tier_change_alert.png';
   static const String logoLight = '${_pngPath}logo_light.png';
   static const String logoDark = '${_pngPath}logo_dark.png';
+  static const String carOB = '${_pngPath}carOB.png';
+
 
   /// SVG
   static const String backIcon = '${_svgPath}back_icon.svg';
@@ -33,7 +35,6 @@ class AssetsManager {
   static const String warningIcon = '${_svgPath}warning_icon.svg';
   static const String alertIcon = '${_svgPath}alert.svg';
   static const String alertIconBottom = '${_svgPath}alert_icon.svg';
-  static const String carOB = '${_svgPath}carOB.svg';
   static const String homeAvatar = '${_pngPath}Frame 2306.png';
   static const String worker = '${_svgPath}worker.svg';
   static const String notificationIcon = '${_svgPath}Notification_Icon.svg';
