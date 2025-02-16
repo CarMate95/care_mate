@@ -17,14 +17,16 @@ class ReminderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
-      child:GestureDetector(
+      child: GestureDetector(
         onTap: () {
-                  Navigator.pushNamed(context, PageName.notedetailsscreen);
-                },
+          Navigator.pushNamed(context, PageName.notedetailsscreen);
+        },
         child: Container(
-          height: 184.h,
-          width: 168.w,
-          color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+          height: 170.h,
+          width: 155.w,
+          color: context.isDarkMode
+              ? ColorManager.darkGrey
+              : ColorManager.lightGrey,
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,9 +71,11 @@ class ReminderWidget extends StatelessWidget {
                 ],
               ),
               verticalSpace(15.h),
-              _buildReminderRow(TextManager.start.tr(), Colors.blue, TextManager.startTime.tr()),
+              _buildReminderRow(TextManager.start.tr(), Colors.blue,
+                  TextManager.startTime.tr()),
               verticalSpace(5.h),
-              _buildReminderRow(TextManager.end.tr(), Colors.red, TextManager.endTime.tr()),
+              _buildReminderRow(
+                  TextManager.end.tr(), Colors.red, TextManager.endTime.tr()),
             ],
           ),
         ),
@@ -80,30 +84,31 @@ class ReminderWidget extends StatelessWidget {
   }
 
   Widget _buildReminderRow(String label, Color dotColor, String time) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Expanded( 
-        child: Text(label, 
-          style: getBoldStyle(fontSize: 14.sp),
-          overflow: TextOverflow.ellipsis, 
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Text(
+            label,
+            style: getBoldStyle(fontSize: 14.sp),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5.w),
-        child: Text(
-          "...",
-          style: getBoldStyle(fontSize: 25.sp).copyWith(color: dotColor),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
+          child: Text(
+            "...",
+            style: getBoldStyle(fontSize: 25.sp).copyWith(color: dotColor),
+          ),
         ),
-      ),
-      Expanded(
-        child: Text(time,
-          style: getBoldStyle(fontSize: 12.sp),
-          overflow: TextOverflow.ellipsis, 
+        Expanded(
+          child: Text(
+            time,
+            style: getBoldStyle(fontSize: 12.sp),
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
-      ),
-    ],
-  );
-}
-
+      ],
+    );
+  }
 }

@@ -7,40 +7,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class AlertHomeWidget extends StatelessWidget {
   const AlertHomeWidget({
     super.key,
-    required this.imageWidget,
+    required this.image,
     required this.title,
   });
 
-  final Widget imageWidget;
+  final String image;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4.w),
-      child: ClipRRect(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        child: Container(
-          width: 150.w,
-          color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 15.h),
-                child: imageWidget,
-              ),
-              Expanded(
-                child: Text(
-                  title,
-                  style: getBoldStyle(fontSize: 12.sp),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
+        color:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 38.w,
+            child: Image.asset(image),
           ),
-        ),
+          SizedBox(width: 10.w),
+          Text(
+            title,
+            style: getBoldStyle(fontSize: 12.sp),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

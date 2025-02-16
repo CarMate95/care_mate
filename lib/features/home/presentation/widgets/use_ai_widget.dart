@@ -12,8 +12,8 @@ class UseAIWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(16.r),
       child: Container(
-        height: 184.h,
-        width: 168.w,
+        height: 170.h,
+        width: 155.w,
         color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
         child: Image.asset(
           AssetsManager.useAI,
