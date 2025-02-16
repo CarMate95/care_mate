@@ -1,6 +1,5 @@
 
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
-import 'package:car_mate/features/home/presentation/widgets/home_appbar.dart';
 import 'package:car_mate/features/home/presentation/widgets/home_body.dart';
 import 'package:flutter/material.dart';
 
@@ -9,9 +8,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      appBar: homeAppbar(context),
-      body: const HomeBody(),
+    return const SafeArea(
+      child: CustomScaffold(
+        // appBar: homeAppbar(context),
+        body: HomeBody(),
+      ),
     );
   }
 }

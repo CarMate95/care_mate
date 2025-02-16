@@ -14,6 +14,7 @@ import 'package:car_mate/features/home/presentation/widgets/worker_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -21,135 +22,185 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.zero, 
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.sp),
-          child: const ProblemWidget(),
+        SizedBox(height: 16.h),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () =>
+                  Navigator.pushNamed(context, PageName.accountdetailsScreen),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.r),
+                child: SizedBox(
+                  height: 50.h,
+                  width: 50.w,
+                  child: Image.asset(
+                    "assets/images/profile_image.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 10.w),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => Navigator.pushNamed(
+                      context, PageName.accountdetailsScreen),
+                  child: Text(
+                    TextManager.rawanAyman.tr(),
+                    style: getBoldStyle(fontSize: 16.sp),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                verticalSpace(2.sp),
+                Text(
+                  TextManager.welcomeBack.tr(),
+                  style: getBoldStyle(fontSize: 12.sp),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                _iconButton(
+                  context,
+                  icon: SvgPicture.asset(AssetsManager.notificationIcon),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    PageName.notificationScreen,
+                  ),
+                ),
+                horizontalSpace(8.sp),
+                _iconButton(
+                  context,
+                  icon: Image.asset(AssetsManager.settingPicturePng),
+                  onTap: () =>
+                      Navigator.pushNamed(context, PageName.settingsScreen),
+                ),
+              ],
+            ),
+          ],
         ),
-        verticalSpace(12.sp),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.sp),
-          child: Row(
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
+        SizedBox(height: 16.h),
+        const ProblemWidget(),
+        verticalSpace(3.h),
+        Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
                   Navigator.pushNamed(context, PageName.addnotepage);
                 },
-                  child: HomeActions(
-                    isIcon: true,
-                    text: TextManager.setReminder.tr(),
-                  ),
+                child: HomeActions(
+                  isIcon: true,
+                  text: TextManager.setReminder.tr(),
                 ),
               ),
-              horizontalSpace(8.sp),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
+            ),
+            horizontalSpace(3.w),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
                   Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
                 },
-                  child: HomeActions(
-                    isIcon: false,
-                    text: TextManager.viewWorkers.tr(),
-                  ),
+                child: HomeActions(
+                  isIcon: false,
+                  text: TextManager.viewWorkers.tr(),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         verticalSpace(12.sp),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.sp),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                TextManager.signAndAlerts.tr(),
-                style: getBoldStyle(fontSize: 16.sp),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              TextManager.signAndAlerts.tr(),
+              style: getBoldStyle(fontSize: 16.sp),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.alertsScreen);
+              },
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 20.sp,
+                color: context.isDarkMode
+                    ? ColorManager.white
+                    : ColorManager.black,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, PageName.alertsScreen);
-                },
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16.sp,
-                  color: context.isDarkMode ? ColorManager.white : ColorManager.black,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         verticalSpace(8.sp),
         SizedBox(
-          height: 85.h,
+          height: 50.h,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 12.sp),
             children: [
               AlertHomeWidget(
-                imageWidget: Image.asset(AssetsManager.brakeWarning, width: 38.w),
+                image: AssetsManager.brakeWarning,
                 title: TextManager.brakeWarning.tr(),
               ),
               horizontalSpace(6.sp),
               AlertHomeWidget(
-                imageWidget: Image.asset(AssetsManager.engineCheckImage, width: 38.w),
+                image: AssetsManager.engineCheckImage,
                 title: TextManager.checkEngine.tr(),
               ),
               horizontalSpace(6.sp),
               AlertHomeWidget(
-                imageWidget: Image.asset(AssetsManager.temperatureImage, width: 38.w),
+                image: AssetsManager.temperatureImage,
                 title: TextManager.temperatureWarning.tr(),
               ),
               horizontalSpace(6.sp),
               AlertHomeWidget(
-                imageWidget: Image.asset(AssetsManager.tirePressure, width: 38.w),
+                image: AssetsManager.tirePressure,
                 title: TextManager.tirePressure.tr(),
               ),
             ],
           ),
         ),
         verticalSpace(12.sp),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.sp),
-          child: Row(
-            children: [
-              Expanded(child: const UseAIWidget()),
-              horizontalSpace(8.sp),
-              Expanded(child: const ReminderWidget()),
-            ],
-          ),
+        Row(
+          children: [
+            const Expanded(child: UseAIWidget()),
+            horizontalSpace(8.sp),
+            const Expanded(child: ReminderWidget()),
+          ],
         ),
         verticalSpace(12.sp),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.sp),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                TextManager.mechanicCanHelp.tr(),
-                style: getBoldStyle(fontSize: 16.sp),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              TextManager.mechanicCanHelp.tr(),
+              style: getBoldStyle(fontSize: 16.sp),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
+              },
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 20.sp,
+                color: context.isDarkMode
+                    ? ColorManager.white
+                    : ColorManager.black,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
-                },
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16.sp,
-                  color: context.isDarkMode ? ColorManager.white : ColorManager.black,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         verticalSpace(8.sp),
         SizedBox(
-          height: 90.h,
+          height: 80.h,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.symmetric(horizontal: 12.sp),
             children: [
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker1)),
               horizontalSpace(6.sp),
@@ -164,4 +215,20 @@ class HomeBody extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget _iconButton(BuildContext context,
+    {required Widget icon, required VoidCallback onTap}) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(8.r),
+    child: Container(
+      height: 40.h,
+      width: 40.w,
+      color: ColorManager.lightGrey,
+      child: GestureDetector(
+        onTap: onTap,
+        child: icon,
+      ),
+    ),
+  );
 }
