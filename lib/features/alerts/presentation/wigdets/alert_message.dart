@@ -21,7 +21,7 @@ class AlertMessage extends StatelessWidget {
               'Engine Light Alert',
               style: getMediumStyle(fontSize: 20.sp),
             ),
-            CustomDivider(
+            const CustomDivider(
               color: ColorManager.primaryColor,
               thickness: 3,
             ),

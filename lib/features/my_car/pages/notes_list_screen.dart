@@ -278,7 +278,6 @@ class _AddNotePopupState extends State<_AddNotePopup> {
   final _endDateController = TextEditingController();
   final _cashController = TextEditingController();
   final _noteController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final isLightMode = Theme.of(context).brightness == Brightness.light;

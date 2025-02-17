@@ -12,6 +12,7 @@ class ImagePickerModal extends StatelessWidget {
     if (pickedFile != null) {
       onImagePicked(pickedFile.path);
     }
+    // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
 
