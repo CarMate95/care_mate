@@ -18,8 +18,10 @@ class LayoutScreen extends StatelessWidget {
       create: (context) => LayoutCubit(screens: [
         const HomeScreen(), // Home Screen
         const RequestsScreen(), // Repair Screen
-        const UploadLicenceScreen(),// My Car Screen
-        const ChatScreen(), // Chat with AI Screen
+        const UploadLicenceScreen(), // My Car Screen
+        const ChatScreen(),
+
+        // Chat with AI Screen
       ]),
       child: Builder(builder: (context) {
         return BlocBuilder<LayoutCubit, LayoutState>(

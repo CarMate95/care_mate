@@ -1,6 +1,5 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 

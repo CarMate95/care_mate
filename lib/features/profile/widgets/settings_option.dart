@@ -6,12 +6,16 @@ class SettingsOption extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;
 
-  const SettingsOption({required this.icon, required this.title, this.onTap});
+  const SettingsOption(
+      {super.key, required this.icon, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(icon, color: context.secondaryColor,),
+      leading: Icon(
+        icon,
+        color: context.secondaryColor,
+      ),
       title: Text(title),
       onTap: onTap,
     );

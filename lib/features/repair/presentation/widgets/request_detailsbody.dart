@@ -8,9 +8,10 @@ import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/presentation/widgets/customAlertDialog.dart';
+import 'package:car_mate/features/repair/presentation/widgets/custom_alert_dialog_to_mechanic.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_button_offer_help.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,7 +27,7 @@ class RequestDetailsBody extends StatelessWidget {
           children: [
             CustomAppBar(
               enbleBackIcon: true,
-              title: const Text(TextManager.requests),
+              title: CustomText(text: TextManager.requests.tr()),
               suffex: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: InkWell(
@@ -116,7 +117,7 @@ class RequestDetailsBody extends StatelessWidget {
             ),
             CustomOfferHelp(
               onTap: () {
-                showAlertDialogToUser(context);
+                showAlertDialogToMechanic(context);
               },
             ),
           ],
