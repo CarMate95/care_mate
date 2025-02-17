@@ -1,5 +1,6 @@
-import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+
+import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
+import 'package:car_mate/features/home/presentation/widgets/home_body.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,10 +8,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Home',
-        style: getSemiBoldStyle(color: context.onPrimayColor),
+    return const SafeArea(
+      child: CustomScaffold(
+        // appBar: homeAppbar(context),
+        body: HomeBody(),
       ),
     );
   }

@@ -26,51 +26,52 @@ class VerifyEmailScreen extends StatelessWidget {
         var cubit = VerifyOtpCubit.of(context);
 
         return CustomScaffold(
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const CustomAppBar(),
-              verticalSpace(40),
-              const CustomSvgIcon(
-                iconPath: AssetsManager.emailImage,
-                size: 170,
-              ),
-              verticalSpace(24),
-              CustomText(
-                text: TextManager.verifyYourEmailAddress,
-                style: getBoldStyle(
-                  fontSize: 22,
-                  color: context.secondaryColor,
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CustomAppBar(),
+                verticalSpace(40),
+                const CustomSvgIcon(
+                  iconPath: AssetsManager.emailImage,
+                  size: 170,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              verticalSpace(8),
-              CustomText(
-                text: TextManager.verifyWithTheCode,
-                style: getRegularStyle(
-                  fontSize: 16,
-                  // ignore: deprecated_member_use
-                  color: context.secondaryColor.withOpacity(0.8),
+                verticalSpace(24),
+                CustomText(
+                  text: TextManager.verifyYourEmailAddress,
+                  style: getBoldStyle(
+                    fontSize: 22,
+                    color: context.secondaryColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              verticalSpace(24), // OTP Input
-              OtpInputField(
-                otpController: cubit.otpController,
-                onChanged: (_) {
-                  cubit.emitOtpChanged();
-                },
-              ),
-
-              verticalSpace(16),
-
-              // Resend Component
-              const ResendComponent(),
-              verticalSpace(33),
-
-              // Verify OTP Button
-              const VerifyOtpButton(isRegisterFlow: true),
-            ],
+                verticalSpace(8),
+                CustomText(
+                  text: TextManager.verifyWithTheCode,
+                  style: getRegularStyle(
+                    fontSize: 16,
+                    color: context.secondaryColor.withOpacity(0.8),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(24), // OTP Input
+                OtpInputField(
+                  otpController: cubit.otpController,
+                  onChanged: (_) {
+                    cubit.emitOtpChanged();
+                  },
+                ),
+            
+                verticalSpace(16),
+            
+                // Resend Component
+                const ResendComponent(),
+                verticalSpace(33),
+            
+                // Verify OTP Button
+                const VerifyOtpButton(isRegisterFlow: true),
+              ],
+            ),
           ),
         );
       }),

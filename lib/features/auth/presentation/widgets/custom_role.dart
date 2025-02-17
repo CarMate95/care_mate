@@ -36,7 +36,7 @@ class _CustomRoleState extends State<CustomRole> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.r),
           ),
-          tilePadding: EdgeInsets.all(10.r),
+          // tilePadding: EdgeInsets.all(10.r),
           title: CustomText(
             text: userType == null
                 ? TextManager.chooseYourRole

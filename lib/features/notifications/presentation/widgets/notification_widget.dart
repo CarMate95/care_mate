@@ -1,6 +1,9 @@
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,47 +17,69 @@ class NotificationWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.r),
         child: Container(
-          height: 50.h,
-          color: ColorManager.darkGrey,
+          color: context.isDarkMode
+              ? ColorManager.darkGrey
+              : ColorManager.lightGrey,
           child: Padding(
             padding: EdgeInsets.all(6.0.sp),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
                 CircleAvatar(
                   radius: 20.r,
                   backgroundColor: Colors.white,
-                  child:const Icon(Icons.notifications,
+                  child: const Icon(Icons.notifications,
                       color: ColorManager.primaryColor),
                 ),
                 horizontalSpace(10.sp),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text("App update Alert",
-                            style: getBoldStyle(fontSize: 12.sp)),
-                        horizontalSpace(7.sp),
-                        Container(
-                          height: 5.h,
-                          width: 5.w,
-                          decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(20.r)),
-                        ),
-                        horizontalSpace(7.sp),
-                        Text("6h ago",
-                            style: getMediumStyle(
+                Expanded( 
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min, 
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              TextManager.appUpdateAlert.tr(),
+                              style: getBoldStyle(fontSize: 12.sp),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          horizontalSpace(7.sp),
+                          Container(
+                            height: 5.h,
+                            width: 5.w,
+                            decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(20.r)),
+                          ),
+                          horizontalSpace(7.sp),
+                          Text(TextManager.hAgo.tr(),
+                              style: getMediumStyle(
                                 fontSize: 12.sp,
-                                color: ColorManager.lightGrey)),
-                      ],
-                    ),
-                    Text(
-                      "New features are there! Upadte car mate for..",
-                      style: getRegularStyle(
-                          fontSize: 12.sp, color: ColorManager.lightGrey),
-                    )
-                  ],
+                                color: context.isDarkMode
+                                    ? ColorManager.lightGrey
+                                    : ColorManager.darkGrey,
+                              )),
+                        ],
+                      ),
+                      SizedBox(height: 2.sp), 
+                      Flexible( 
+                        child: Text(
+                          TextManager.newFeatures.tr(),
+                          style: getRegularStyle(
+                            fontSize: 12.sp,
+                            color: context.isDarkMode
+                                ? ColorManager.lightGrey
+                                : ColorManager.darkGrey,
+                          ),
+                          overflow: TextOverflow.ellipsis, 
+                          maxLines: 2, 
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
