@@ -33,8 +33,8 @@ class DioErrorHandlerFactory implements ErrorHandlerFactory {
         return ConnectionTimeOutErrorHandler();
       case DioExceptionType.unknown:
         return UnknownErrorHandler();
-      default:
-        return UnknownErrorHandler();
+      // default:
+      //   return UnknownErrorHandler();
     }
   }
 }

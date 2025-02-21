@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/page_name.dart';
+import '../../../../core/utils/constants_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
+      if (ConstantsManager.token != null &&
+          ConstantsManager.rememberMe == true) {
+        Navigator.pushReplacementNamed(context, PageName.layoutScreen);
+      } else {
+        Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
+      }
+
+      // Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
     });
   }
 
