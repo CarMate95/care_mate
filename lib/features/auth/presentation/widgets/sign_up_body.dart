@@ -1,7 +1,10 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/functions/kprint.dart';
 import 'package:car_mate/core/utils/widgets/email_field.dart';
 import 'package:car_mate/core/utils/widgets/password_field.dart';
+import 'package:car_mate/features/auth/domain/entities/user_entity.dart';
+import 'package:car_mate/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -9,13 +12,14 @@ import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/enums/user_type.dart';
 import '../../../../core/utils/functions/spacing.dart';
 import '../../../../core/utils/widgets/custom_app_bar.dart';
-import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
 import '../../../../core/utils/widgets/location_field.dart';
 import '../../../../core/utils/widgets/phone_field.dart';
 import 'custom_account_hint_row.dart';
 import 'custom_role.dart';
+import 'custom_specialization.dart';
 import 'first_name_and_last_name.dart';
+import 'sign_up_button.dart';
 
 class SignUpBody extends StatefulWidget {
   const SignUpBody({super.key});
@@ -25,7 +29,7 @@ class SignUpBody extends StatefulWidget {
 }
 
 class _SignUpBodyState extends State<SignUpBody> {
-  UserType? userTypeValidate;
+  UserRole? userRoleValue;
   final formKey = GlobalKey<FormState>();
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -37,6 +41,7 @@ class _SignUpBodyState extends State<SignUpBody> {
   final TextEditingController phoneController = TextEditingController();
 
   bool startValidation = false;
+  String? specializationValue;
 
   @override
   void dispose() {
@@ -127,14 +132,14 @@ class _SignUpBodyState extends State<SignUpBody> {
           verticalSpace(24),
 
           CustomRole(
-            onSelectedType: (userType) {
+            onSelectedType: (userRole) {
               setState(() {
-                userTypeValidate = userType;
+                userRoleValue = userRole;
               });
             },
           ),
           // if user type is not selected
-          if (userTypeValidate == null && startValidation) ...{
+          if (userRoleValue == null && startValidation) ...{
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: CustomText(
@@ -147,15 +152,25 @@ class _SignUpBodyState extends State<SignUpBody> {
               ),
             )
           },
-          verticalSpace(24),
+          verticalSpace(12),
 
           // if user type is mechanic
-          if (userTypeValidate == UserType.vehicleWorker) ...{
+          if (userRoleValue == UserRole.worker) ...{
+            // specialization
+            CustomSpecialization(
+              onChanged: (value) {
+                setState(() {
+                  specializationValue = value;
+                });
+                kprint('specialization value: $specializationValue');
+              },
+            ),
+            verticalSpace(12),
             // location feild
             LocationField(
               controller: locationController,
             ),
-            verticalSpace(24),
+            verticalSpace(12),
             // phone number
             PhoneField(
               controller: phoneController,
@@ -164,15 +179,28 @@ class _SignUpBodyState extends State<SignUpBody> {
           },
 
           // sign up button
-          CustomElevatedButton(
-            onPressed: () {
+          SignUpButton(
+            onPressed: () async {
               setState(() {
                 startValidation = true;
               });
               if (!formKey.currentState!.validate()) return;
+              await AuthCubit.get(context).signup(
+                user: UserEntity(
+                  firstName: firstNameController.text,
+                  lastName: lastNameController.text,
+                  email: emailController.text,
+                  password: passwordController.text,
+                  role: userRoleValue!,
+                  specialization: specializationValue,
+                  location: locationController.text.isEmpty? null: locationController.text,
+                  phoneNumber: phoneController.text.isEmpty? null: phoneController.text,
+                  // specialization:
+                ),
+              );
             },
-            text: TextManager.signUp,
           ),
+
           verticalSpace(8),
           // already have an account? login
           CustomAccountHintRow(

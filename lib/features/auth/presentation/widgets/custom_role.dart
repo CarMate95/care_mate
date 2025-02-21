@@ -11,14 +11,14 @@ import '../../../../core/utils/widgets/custom_text.dart';
 
 class CustomRole extends StatefulWidget {
   const CustomRole({super.key, this.onSelectedType});
-  final Function(UserType? userType)? onSelectedType;
+  final Function(UserRole? userRole)? onSelectedType;
 
   @override
   State<CustomRole> createState() => _CustomRoleState();
 }
 
 class _CustomRoleState extends State<CustomRole> {
-  UserType? userType;
+  UserRole? userRole;
   final ExpansionTileController controller = ExpansionTileController();
   // bool enableValidation = true;
   @override
@@ -38,9 +38,9 @@ class _CustomRoleState extends State<CustomRole> {
           ),
           // tilePadding: EdgeInsets.all(10.r),
           title: CustomText(
-            text: userType == null
+            text: userRole == null
                 ? TextManager.chooseYourRole
-                : userType == UserType.personalDriver
+                : userRole == UserRole.customer
                     ? TextManager.personalDriver
                     : TextManager.vehicleWorker,
             style: getBoldStyle(
@@ -58,9 +58,9 @@ class _CustomRoleState extends State<CustomRole> {
                   Expanded(
                     child: CustomElevatedButton(
                       onPressed: () {
-                        userType = UserType.personalDriver;
+                        userRole = UserRole.customer;
                         controller.collapse();
-                        widget.onSelectedType!(UserType.personalDriver);
+                        widget.onSelectedType!(UserRole.customer);
                         setState(() {});
                       },
                       text: TextManager.personalDriver,
@@ -75,9 +75,9 @@ class _CustomRoleState extends State<CustomRole> {
                   Expanded(
                     child: CustomElevatedButton(
                       onPressed: () {
-                        userType = UserType.vehicleWorker;
+                        userRole = UserRole.worker;
                         controller.collapse();
-                        widget.onSelectedType!(UserType.vehicleWorker);
+                        widget.onSelectedType!(UserRole.worker);
                         setState(() {});
                       },
                       text: TextManager.vehicleWorker,

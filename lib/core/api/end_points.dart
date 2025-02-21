@@ -1,5 +1,7 @@
 abstract class EndPoints {
-  static const String baseUrl = "https://url";
+  static const String baseUrl = "https://fb-m90x.onrender.com";
 
-  static const String login = "/login";
+  static const String signup = "/auth/signup";
+  static const String login = "/auth/login";
+
 }

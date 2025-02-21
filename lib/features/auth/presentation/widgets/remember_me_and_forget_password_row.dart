@@ -1,4 +1,6 @@
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/helpers/cache_helper.dart';
+import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +26,11 @@ class _RememberMeAndForgetPasswordRowState
       children: [
         // remember me checkbox
         IconButton(
-          onPressed: () {
+          onPressed: () async{
             setState(() {
               _isRememberMe = !_isRememberMe;
             });
+            ConstantsManager.rememberMe = await CacheHelper.set(key: 'rememberMe', value: _isRememberMe);
           },
           icon: Icon(
             _isRememberMe ? Icons.check_circle_outline : Icons.circle_outlined,
