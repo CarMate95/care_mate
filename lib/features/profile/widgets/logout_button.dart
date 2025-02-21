@@ -94,24 +94,30 @@ class LogoutButton extends StatelessWidget {
           const SizedBox(height: 20),
           SizedBox(
             width: double.infinity,
-           child:  ElevatedButton(
-          onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-             content:  Text(TextManager.accountLogedOut.tr(),
-             style: getBoldStyle(
-              color: ColorManager.white,
-             ),
-             ),
-                 duration:  Duration(seconds: 3), 
-                 backgroundColor: ColorManager.primaryColor,
-              ),
-            );
-               Future.delayed( Duration(seconds: 0), () {
-              Navigator.pop(context);
-                 Navigator.pushNamedAndRemoveUntil(context, PageName.loginScreen,(route) => false,
-                 );
-               });
+            child: ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      TextManager.accountLogedOut.tr(),
+                      style: getBoldStyle(
+                        color: ColorManager.white,
+                      ),
+                    ),
+                    duration: const Duration(seconds: 3),
+                    backgroundColor: ColorManager.primaryColor,
+                  ),
+                );
+                Future.delayed(const Duration(seconds: 0), () {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(
+                    // ignore: use_build_context_synchronously
+                    context,
+                    PageName.loginScreen,
+                    (route) => false,
+                  );
+                });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.primaryColor,

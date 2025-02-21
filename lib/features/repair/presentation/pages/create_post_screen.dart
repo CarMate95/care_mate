@@ -45,10 +45,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       appBar: AppBar(
         toolbarHeight: mediaQuery.height * 0.1,
         backgroundColor: ColorManager.darkGrey,
-        title: Text(
-          TextManager.requests.tr(),
-          style: getBoldStyle(color: ColorManager.lightGrey),
-        ),
+        title: CustomText(
+            text: TextManager.requests.tr(),
+            style: getBoldStyle(color: ColorManager.lightGrey)),
         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
@@ -62,10 +61,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-        onPressed: () {},
-        icon: Icons.photo_library_rounded,
-        backgroundColor: ColorManager.darkGrey,
-      ),
+          onPressed: () {},
+          icon: Icons.photo_library_rounded,
+          backgroundColor: ColorManager.darkGrey),
       body: Padding(
         padding: EdgeInsets.all(8.0.h),
         child: ListView(
