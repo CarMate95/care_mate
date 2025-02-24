@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
+
 import 'package:car_mate/core/api/api_consumer.dart';
 import 'package:car_mate/core/api/end_points.dart';
 import 'package:car_mate/core/errors/api/api_response_codes.dart';
-import 'package:car_mate/core/helpers/cache_helper.dart';
 import 'package:car_mate/core/utils/functions/kprint.dart';
+import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// This class is responsible for handling api calls using Dio package
@@ -50,13 +50,15 @@ class DioConsumer implements ApiConsumer {
 
         InterceptorsWrapper(
           onRequest: (options, handler) async {
-            // For token handling
-            final token = CacheHelper.getStringData('token');
 
-            if (token != null) {
-              // Set the Authorization header with the cached access token
-              options.headers['Authorization'] = 'Bearer $token';
-            }
+            // TODO: wait backed to be ready
+            // // For token handling
+            // final token = CacheHelper.getStringData('token');
+
+            // if (token != null) {
+            //   // Set the Authorization header with the cached access token
+            //   options.headers['Authorization'] = 'Bearer $token';
+            // }
 
             return handler.next(options);
           },
@@ -132,8 +134,13 @@ class DioConsumer implements ApiConsumer {
     required String path,
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
-  }) {
-    throw UnimplementedError();
+  }) async{
+    final response = await dio.put(
+      path,
+      data: body,
+    );
+
+    return response.data;
   }
 
   @override

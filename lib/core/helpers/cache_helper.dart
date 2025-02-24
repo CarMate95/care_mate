@@ -1,4 +1,4 @@
-import 'package:car_mate/core/utils/di.dart';
+import 'package:car_mate/core/utils/di/di.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // CacheHelper That's Connect and Talk to local database.

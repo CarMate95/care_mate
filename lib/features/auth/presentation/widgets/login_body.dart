@@ -1,11 +1,12 @@
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:car_mate/features/auth/presentation/widgets/login_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/page_name.dart';
 import '../../../../config/themes/text_manager.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/functions/spacing.dart';
-import '../../../../core/utils/widgets/custom_elevated_button.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
 import '../../../../core/utils/widgets/email_field.dart';
 import '../../../../core/utils/widgets/password_field.dart';
@@ -79,22 +80,19 @@ class _LoginBodyState extends State<LoginBody> {
           const RememberMeAndForgetPasswordRow(),
           verticalSpace(24),
           // login button
-          CustomElevatedButton(
-            onPressed: () {
+          LoginButton(
+            onPressed: () async{
               setState(() {
                 startValidation = true;
               });
-
               // validate the form
               if (!formKey.currentState!.validate()) return;
-
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                PageName.layoutScreen,
-                (route) => false,
+              
+             await AuthCubit.get(context).login(
+                email: emailController.text,
+                password: passwordController.text,
               );
             },
-            text: TextManager.login,
           ),
           verticalSpace(8),
           // need an account? sign up

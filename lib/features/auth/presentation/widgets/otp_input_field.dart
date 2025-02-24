@@ -15,7 +15,7 @@ class OtpInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Pinput(
-      length: 4,
+      length: 6,
       cursor: Text(
         '|',
         style: getRegularStyle(

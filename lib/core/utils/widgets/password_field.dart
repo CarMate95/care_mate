@@ -54,7 +54,7 @@ class _PasswordFieldState extends State<PasswordField> {
       validator: (value) {
         if (value!.isEmpty) {
           return TextManager.feildRequired.tr();
-        } else if (value.length < 8) {
+        } else if (value.length < 6) {
           return TextManager.passwordValidation.tr();
         }
         return null;

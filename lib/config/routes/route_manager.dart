@@ -25,7 +25,7 @@ import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
-import '../../features/auth/presentation/pages/verify_email_screen.dart';
+import '../../features/auth/presentation/pages/verify_otp_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/splash/presentation/pages/on_boarding_screen.dart';
 import 'page_name.dart';
@@ -88,9 +88,9 @@ class RouteManager {
           settings: routeSettings,
         );
 
-      case PageName.verifyEmailScreen:
+      case PageName.verifyOtpScreen:
         return _getPageTransition(
-          const VerifyEmailScreen(),
+          const VerifyOtpScreen(),
           settings: routeSettings,
         );
 

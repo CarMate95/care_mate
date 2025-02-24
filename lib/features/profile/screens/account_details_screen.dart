@@ -1,4 +1,3 @@
-import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';

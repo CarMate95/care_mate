@@ -7,6 +7,8 @@ import 'package:car_mate/core/api/api_consumer.dart';
 import 'package:car_mate/core/api/dio_consumer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'auth_register.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initDependencies() async {
@@ -17,7 +19,17 @@ Future<void> initDependencies() async {
     ),
   );
 
+  // dio consumer instance
+  sl.registerLazySingleton<DioConsumer>(
+    () => DioConsumer(
+      dio: Dio(),
+    ),
+  );
+
   // Shared preferences instance
   final sharedPref = await SharedPreferences.getInstance();
   sl.registerLazySingleton<SharedPreferences>(() => sharedPref);
+
+  // auth register
+  authRegister();
 }

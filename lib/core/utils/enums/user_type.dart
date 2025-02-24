@@ -1,4 +1,5 @@
-enum UserType {
-  personalDriver,
-  vehicleWorker,
+// user role
+enum UserRole {
+  customer,
+  worker,
 }

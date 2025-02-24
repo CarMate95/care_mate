@@ -7,10 +7,15 @@ class CustomImageProfile extends StatelessWidget {
     super.key,
     this.alignment = Alignment.topRight,
     required this.imageIcon,
+    this.imageUrl, // 👈 جعله اختيارياً لتجنب الأخطاء
   });
 
   final AlignmentGeometry alignment;
   final String imageIcon;
+<<<<<<< HEAD
+=======
+  final String? imageUrl; // 👈 جعله `nullable`
+>>>>>>> 5d90c0e64ed8d284e7b5e6a7017d33424ab1e090
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +54,7 @@ class CustomImageProfile extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: ColorManager.primaryColor, width: 2),
                 shape: BoxShape.circle,
+<<<<<<< HEAD
                 image: isSvg
                     ? null // SVG images can't be used directly in DecorationImage
                     : DecorationImage(
@@ -68,6 +74,18 @@ class CustomImageProfile extends StatelessWidget {
                       ),
                     )
                   : null,
+=======
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: imageUrl != null && imageUrl!.isNotEmpty
+                      ? NetworkImage(imageUrl!) 
+                      : const AssetImage('assets/images/default_profile.png')
+                          as ImageProvider, 
+                  onError: (error, stackTrace) => const AssetImage(
+                      'assets/images/default_profile.png'), 
+                ),
+              ),
+>>>>>>> 5d90c0e64ed8d284e7b5e6a7017d33424ab1e090
             ),
           ],
         ),

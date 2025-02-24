@@ -1,5 +1,6 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../error_handler_service.dart';
 import '../failures.dart';
@@ -10,13 +11,13 @@ class BadResponseErrorHandler implements ErrorHandlerService {
   Failure handle(Exception exception) {
     final response = (exception as DioException).response?.data;
     final int? statusCode = response["code"];
-    final String statusMessage = response["message"] ?? TextManager.unknown;
+    final String statusMessage = response["message"] ?? TextManager.unknown.tr();
     // final Map<String, dynamic>? data = response["data"];
 
     // if there is no response
     if (statusCode == null) {
-      return const ServerFailure(
-        message: TextManager.unknown,
+      return  ServerFailure(
+        message: response["message"] ?? TextManager.unknown.tr(),
         statusCode: APIResponseCodes.unknown,
       );
     }

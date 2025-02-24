@@ -1,7 +1,8 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/functions/kprint.dart';
+import 'package:car_mate/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:car_mate/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,13 +37,7 @@ class _ResendComponentState extends State<ResendComponent> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
-      listenWhen: (previous, current) => current is ResendOtpErrorState,
-      listener: (context, state) {
-        if (state is ResendOtpErrorState) {
-          // showSnakeBar(msg: state.message, snakeBarType: SnakeBarType.error);
-          kprint('ResendOtpErrorState');
-        }
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         var cubit = VerifyOtpCubit.of(context);
 
@@ -84,7 +79,12 @@ class _ResendComponentState extends State<ResendComponent> {
             if (cubit.counter == 0) ...[
               InkWell(
                 onTap: () {
-                  cubit.resendOtp();
+                  cubit.startTimer();
+                  // resend otp
+                  showScaffoldMessage(context, message: "Resend OTP");
+                  AuthCubit.get(context).forgetPassword(
+                    email: AuthCubit.get(context).emailOtp,
+                  );
                 },
                 child: CustomText(
                   text: TextManager.resend,
@@ -96,9 +96,6 @@ class _ResendComponentState extends State<ResendComponent> {
                 ),
               ),
             ],
-            if (state is ResendOtpLoadingState) ...[
-              const CircularProgressIndicator(),
-            ]
           ],
         );
       },
