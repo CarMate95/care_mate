@@ -139,5 +139,8 @@
     "donForgetTo": "Don't forget to",
     "changeFuel": "Change Fuel",
     "startTime": "18/5/2024",
-    "endTime": "12/6/2024"
+    "endTime": "12/6/2024",
+    "update": "Your profile has been updated successfully",
+    "noupdate": "Your profile failed to update successfully",
+    "updatedata": "update data"
 }

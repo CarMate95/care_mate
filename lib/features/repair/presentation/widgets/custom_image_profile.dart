@@ -7,9 +7,13 @@ class CustomImageProfile extends StatelessWidget {
     super.key,
     this.alignment = Alignment.topRight,
     required this.imageIcon,
+    this.imageUrl, // 👈 جعله اختيارياً لتجنب الأخطاء
   });
+
   final AlignmentGeometry alignment;
   final String imageIcon;
+  final String? imageUrl; // 👈 جعله `nullable`
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -41,12 +45,18 @@ class CustomImageProfile extends StatelessWidget {
               width: mediaQuery.width * 0.3,
               height: mediaQuery.height * 0.14,
               decoration: BoxDecoration(
-                  border:
-                      Border.all(color: ColorManager.primaryColor, width: 2),
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/svg/gmail_icon_svg.jpg'))),
+                border: Border.all(color: ColorManager.primaryColor, width: 2),
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: imageUrl != null && imageUrl!.isNotEmpty
+                      ? NetworkImage(imageUrl!) 
+                      : const AssetImage('assets/images/default_profile.png')
+                          as ImageProvider, 
+                  onError: (error, stackTrace) => const AssetImage(
+                      'assets/images/default_profile.png'), 
+                ),
+              ),
             ),
             SvgPicture.asset(imageIcon),
           ],

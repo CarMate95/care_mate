@@ -26,7 +26,7 @@ class EditeWorkerDetailsScreen extends StatelessWidget {
                 verticalSpace(30),
                 const CustomImageProfile(
                     imageIcon: 'assets/svg/Edit.svg',
-                    alignment: Alignment.bottomRight),
+                    alignment: Alignment.bottomRight, imageUrl: null,),
                 verticalSpace(20),
                 CustomText(
                   text: 'Mohamed Ezzat',
