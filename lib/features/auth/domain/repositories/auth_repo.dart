@@ -12,4 +12,19 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+
+  // forget password
+  Future<Either<Failure, void>> forgetPassword({required String email});
+
+  // verify otp
+  Future<Either<Failure, void>> verifyOtp({
+    required String email,
+    required String otp,
+  });
+
+  // change password
+  Future<Either<Failure, void>> changePassword({
+    required String email,
+    required String newPassword,
+  });
 }

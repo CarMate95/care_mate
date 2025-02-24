@@ -26,3 +26,35 @@ final class AuthErrorLogin extends AuthState {
   AuthErrorLogin({required this.message});
 }
 
+// forget password
+final class AuthLoadingForgetPassword extends AuthState {}
+
+final class AuthSuccessForgetPassword extends AuthState {}
+
+final class AuthErrorForgetPassword extends AuthState {
+  final String message;
+
+  AuthErrorForgetPassword({required this.message});
+}
+
+// verify otp
+final class AuthLoadingOTP extends AuthState {}
+
+final class AuthSuccessOTP extends AuthState {}
+
+final class AuthErrorOTP extends AuthState {
+  final String message;
+
+  AuthErrorOTP({required this.message});
+}
+
+// change password
+final class AuthLoadingChangePassword extends AuthState {}
+
+final class AuthSuccessChangePassword extends AuthState {}
+
+final class AuthErrorChangePassword extends AuthState {
+  final String message;
+
+  AuthErrorChangePassword({required this.message});
+}

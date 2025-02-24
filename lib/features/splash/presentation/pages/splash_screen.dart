@@ -18,14 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      if (ConstantsManager.token != null &&
-          ConstantsManager.rememberMe == true) {
-        Navigator.pushReplacementNamed(context, PageName.layoutScreen);
-      } else {
-        Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
-      }
+      // if (ConstantsManager.token != null &&
+      //     ConstantsManager.rememberMe == true) {
+      //   Navigator.pushReplacementNamed(context, PageName.layoutScreen);
+      // } else {
+      //   Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
+      // }
 
-      // Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
+      Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
     });
   }
 
