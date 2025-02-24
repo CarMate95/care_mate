@@ -193,4 +193,7 @@ abstract class TextManager {
   static const String changeFuel = "changeFuel";
   static const String startTime = "startTime";
   static const String endTime = "endTime";
+  static const String loginSuccessfully = "loginSuccessfully";
+  static const String signUpSuccessfully = "signUpSuccessfully";
+  static const String checkYourEmail = "checkYourEmail";
 }

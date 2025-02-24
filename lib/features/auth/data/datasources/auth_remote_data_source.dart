@@ -30,12 +30,43 @@ class AuthRemoteDataSource {
     );
 
     return response['data']['token'];
-    // return await _dioConsumer.post(
-    //   path: EndPoints.login,
-    //   body: {
-    //     'email': email,
-    //     'password': password,
-    //   },
-    // );
+  }
+
+  // forget password
+  Future<void> forgetPassword({required String email}) async {
+    await _dioConsumer.post(
+      path: EndPoints.forgetPassword,
+      body: {
+        'email': email,
+      },
+    );
+  }
+
+  // verify otp
+  Future<void> verifyOtp({
+    required String email,
+    required String otp,
+  }) async {
+    await _dioConsumer.post(
+      path: EndPoints.verifyOtp,
+      body: {
+        'email': email,
+        'otp': otp,
+      },
+    );
+  }
+
+  // change password
+  Future<void> changePassword({
+    required String email,
+    required String newPassword,
+  }) async {
+    await _dioConsumer.put(
+      path: EndPoints.changePassword,
+      body: {
+        'email': email,
+        'newPassword': newPassword,
+      },
+    );
   }
 }

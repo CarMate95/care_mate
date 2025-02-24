@@ -10,21 +10,30 @@ import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/utils/di/di.dart';
+import '../cubit/auth_cubit.dart';
 import '../cubit/verify_otp/verify_otp_cubit.dart';
 import '../widgets/otp_input_field.dart';
 import '../widgets/resend_component.dart';
 import '../widgets/verify_otp_button.dart';
 
-class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+class VerifyOtpScreen extends StatelessWidget {
+  const VerifyOtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => VerifyOtpCubit(),
-      child: Builder(builder: (context) {
-        var cubit = VerifyOtpCubit.of(context);
+    var authCubit = AuthCubit.get(context);
 
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<VerifyOtpCubit>(
+          create: (context) => VerifyOtpCubit.of(context),
+        ),
+        BlocProvider.value(
+          value: sl.get<AuthCubit>(),
+        ),
+      ],
+      child: Builder(builder: (context) {
         return CustomScaffold(
           body: SingleChildScrollView(
             child: Column(
@@ -56,18 +65,16 @@ class VerifyEmailScreen extends StatelessWidget {
                 ),
                 verticalSpace(24), // OTP Input
                 OtpInputField(
-                  otpController: cubit.otpController,
-                  onChanged: (_) {
-                    cubit.emitOtpChanged();
-                  },
+                  otpController: authCubit.otpController,
+                  onChanged: AuthCubit.get(context).onChangeOtp(),
                 ),
-            
+
                 verticalSpace(16),
-            
+
                 // Resend Component
                 const ResendComponent(),
                 verticalSpace(33),
-            
+
                 // Verify OTP Button
                 const VerifyOtpButton(isRegisterFlow: true),
               ],

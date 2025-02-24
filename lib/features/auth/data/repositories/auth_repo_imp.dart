@@ -31,4 +31,36 @@ class AuthRepoImp extends AuthRepo {
       return Left(ErrorHandlerService().handle(e));
     }
   }
+  
+  @override
+  Future<Either<Failure, void>> forgetPassword({required String email}) async{
+    try {
+      await _authRemoteDataSource.forgetPassword(email: email);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ErrorHandlerService().handle(e));
+    }
+  }
+  
+  // verify otp
+  @override
+  Future<Either<Failure, void>> verifyOtp({required String email, required String otp})async {
+    try {
+      await _authRemoteDataSource.verifyOtp(email: email, otp: otp);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ErrorHandlerService().handle(e));
+    }
+    
+  }
+  
+  @override
+  Future<Either<Failure, void>> changePassword({required String email, required String newPassword}) async{
+    try {
+      await _authRemoteDataSource.changePassword(email: email, newPassword: newPassword);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ErrorHandlerService().handle(e));
+    }
+  }
 }
