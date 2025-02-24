@@ -9,12 +9,15 @@ import 'package:car_mate/core/utils/widgets/custom_rating.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
+import 'package:car_mate/features/repair/data/models/worker_model.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_row_account_details.dart';
 import 'package:flutter/material.dart';
 
 class WorkerDetailsScreen extends StatelessWidget {
-  const WorkerDetailsScreen({super.key});
+  final WorkerModel worker;
+
+  const WorkerDetailsScreen({super.key, required this.worker});
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +27,12 @@ class WorkerDetailsScreen extends StatelessWidget {
           children: [
             CustomAppBar(
               leading: InkWell(
-                  onTap: () => Navigator.pop(context),
-                  child: CustomSvgIcon(
-                    iconPath: AssetsManager.backIcon,
-                    color: context.secondaryColor,
-                  )),
+                onTap: () => Navigator.pop(context),
+                child: CustomSvgIcon(
+                  iconPath: AssetsManager.backIcon,
+                  color: context.secondaryColor,
+                ),
+              ),
               title: CustomText(
                 text: TextManager.accountDetails,
                 style:
@@ -36,16 +40,19 @@ class WorkerDetailsScreen extends StatelessWidget {
               ),
             ),
             verticalSpace(30),
-            const CustomImageProfile(
-                imageIcon: 'assets/svg/settengsIconsvg.svg'),
+            CustomImageProfile(
+              imageIcon: worker.user.profilePhoto.isNotEmpty
+                  ? worker.user.profilePhoto.first
+                  : 'assets/svg/default_image.jpg',
+            ),
             verticalSpace(10),
             CustomText(
-              text: 'Mohamed Ezzat',
+              text: '${worker.user.firstName} ${worker.user.lastName}',
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 24),
             ),
             CustomText(
-              text: '@11Elmasryyyy',
+              text: worker.user.email,
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 12),
             ),
@@ -62,37 +69,34 @@ class WorkerDetailsScreen extends StatelessWidget {
                       horizontal: 8.0, vertical: 30.0),
                   child: Column(
                     children: [
-                      const CustomRowAccountDetails(
-                          icon: Icons.person,
-                          iconColor: Colors.red,
-                          text: 'Omar Elmasry Elatar'),
+                      CustomRowAccountDetails(
+                        icon: Icons.person,
+                        iconColor: Colors.red,
+                        text:
+                            '${worker.user.firstName} ${worker.user.lastName}',
+                      ),
                       verticalSpace(5),
                       Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomDivider(color: context.secondaryColor)),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomDivider(color: context.secondaryColor),
+                      ),
                       verticalSpace(10),
-                      const CustomRowAccountDetails(
-                          icon: Icons.call,
-                          iconColor: Colors.green,
-                          text: '01120890668'),
+                      CustomRowAccountDetails(
+                        icon: Icons.call,
+                        iconColor: Colors.green,
+                        text: worker.user.phone,
+                      ),
                       verticalSpace(5),
                       Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomDivider(color: context.secondaryColor)),
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: CustomDivider(color: context.secondaryColor),
+                      ),
                       verticalSpace(10),
-                      const CustomRowAccountDetails(
-                          icon: Icons.g_mobiledata,
-                          iconColor: Colors.amber,
-                          text: '11Elmasryyyy@outlook.com'),
-                      verticalSpace(5),
-                      Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: CustomDivider(color: context.secondaryColor)),
-                      verticalSpace(10),
-                      const CustomRowAccountDetails(
-                          icon: Icons.location_on_sharp,
-                          iconColor: Colors.blue,
-                          text: 'Cairo - NasrCity - Street 21'),
+                      CustomRowAccountDetails(
+                        icon: Icons.location_on_sharp,
+                        iconColor: Colors.blue,
+                        text: worker.location,
+                      ),
                     ],
                   ),
                 ),
@@ -111,11 +115,13 @@ class WorkerDetailsScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const CustomText(
-                          text: TextManager.ratingmessage,
-                          textAlign: TextAlign.center),
+                        text: TextManager.ratingmessage,
+                        textAlign: TextAlign.center,
+                      ),
                       const CustomText(
-                          text: TextManager.ratingMessage2,
-                          textAlign: TextAlign.center),
+                        text: TextManager.ratingMessage2,
+                        textAlign: TextAlign.center,
+                      ),
                       verticalSpace(5),
                       const CustomRating(),
                       Row(

@@ -9,6 +9,7 @@ import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
+import 'package:car_mate/features/repair/data/models/worker_model.dart';
 import 'package:car_mate/features/repair/presentation/views/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/edite_worker_details_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
@@ -146,8 +147,9 @@ class RouteManager {
           settings: routeSettings,
         );
       case PageName.workerDetailsScreen:
+        final worker = routeSettings.arguments as WorkerModel;
         return _getPageTransition(
-          const WorkerDetailsScreen(),
+          WorkerDetailsScreen(worker: worker),
           settings: routeSettings,
         );
       case PageName.homeScreen:

@@ -1,6 +1,6 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomImageProfile extends StatelessWidget {
   const CustomImageProfile({
@@ -8,11 +8,17 @@ class CustomImageProfile extends StatelessWidget {
     this.alignment = Alignment.topRight,
     required this.imageIcon,
   });
+
   final AlignmentGeometry alignment;
   final String imageIcon;
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
+
+    bool isNetworkImage = imageIcon.startsWith('http');
+    bool isSvg = imageIcon.endsWith('.svg');
+
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -41,14 +47,28 @@ class CustomImageProfile extends StatelessWidget {
               width: mediaQuery.width * 0.3,
               height: mediaQuery.height * 0.14,
               decoration: BoxDecoration(
-                  border:
-                      Border.all(color: ColorManager.primaryColor, width: 2),
-                  shape: BoxShape.circle,
-                  image: const DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/svg/gmail_icon_svg.jpg'))),
+                border: Border.all(color: ColorManager.primaryColor, width: 2),
+                shape: BoxShape.circle,
+                image: isSvg
+                    ? null // SVG images can't be used directly in DecorationImage
+                    : DecorationImage(
+                        fit: BoxFit.cover,
+                        image: isNetworkImage
+                            ? NetworkImage(imageIcon)
+                            : AssetImage(imageIcon) as ImageProvider,
+                      ),
+              ),
+              child: isSvg
+                  ? ClipOval(
+                      child: SvgPicture.asset(
+                        imageIcon,
+                        fit: BoxFit.cover,
+                        width: mediaQuery.width * 0.3,
+                        height: mediaQuery.height * 0.14,
+                      ),
+                    )
+                  : null,
             ),
-            SvgPicture.asset(imageIcon),
           ],
         ),
       ],
