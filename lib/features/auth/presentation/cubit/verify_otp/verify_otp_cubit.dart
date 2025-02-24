@@ -10,18 +10,9 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
   VerifyOtpCubit() : super(VerifyOtpInitialState());
 
   static VerifyOtpCubit of(context) => BlocProvider.of<VerifyOtpCubit>(context);
-  // final TextEditingController otpController = TextEditingController();
 
   int counter = 0;
   Timer? _timer;
-
-  // Future<void> emitOtpChanged(BuildContext context) async{
-  //   if (otpController.text.length == 6) {
-  //     kprint("OTP: ${otpController.text}");
-  //     await AuthCubit.get(context).verifyOtp(otp: otpController.text);
-  //   }
-  //   // emit(OtpChangedState());
-  // }
 
   void startTimer() {
     stopTimer();
@@ -50,7 +41,4 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
     }
   }
 
-  // Future<void> resendOtp() async {
-  //   startTimer();
-  // }
 }

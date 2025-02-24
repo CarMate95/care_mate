@@ -22,12 +22,12 @@ class VerifyOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var authCubit =AuthCubit.get(context);
+    var authCubit = AuthCubit.get(context);
 
     return MultiBlocProvider(
       providers: [
         BlocProvider<VerifyOtpCubit>(
-          create: (context) => VerifyOtpCubit(),
+          create: (context) => VerifyOtpCubit.of(context),
         ),
         BlocProvider.value(
           value: sl.get<AuthCubit>(),

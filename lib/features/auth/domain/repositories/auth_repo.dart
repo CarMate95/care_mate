@@ -21,4 +21,10 @@ abstract class AuthRepo {
     required String email,
     required String otp,
   });
+
+  // change password
+  Future<Either<Failure, void>> changePassword({
+    required String email,
+    required String newPassword,
+  });
 }

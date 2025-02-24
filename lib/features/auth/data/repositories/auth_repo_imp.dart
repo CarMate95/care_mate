@@ -53,4 +53,14 @@ class AuthRepoImp extends AuthRepo {
     }
     
   }
+  
+  @override
+  Future<Either<Failure, void>> changePassword({required String email, required String newPassword}) async{
+    try {
+      await _authRemoteDataSource.changePassword(email: email, newPassword: newPassword);
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ErrorHandlerService().handle(e));
+    }
+  }
 }

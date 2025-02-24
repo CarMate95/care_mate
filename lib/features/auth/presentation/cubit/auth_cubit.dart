@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/di/di.dart';
 import '../../domain/entities/user_entity.dart';
+import '../../domain/usecases/change_password_use_case.dart';
 import '../../domain/usecases/verify_otp_use_case.dart';
 
 part 'auth_state.dart';
@@ -21,12 +22,14 @@ class AuthCubit extends Cubit<AuthState> {
     this._loginUseCase,
     this._forgetPasswordUseCase,
     this._verifyOtpUseCase,
+    this._changePasswordUseCase,
   ) : super(AuthInitial());
   static AuthCubit get(context) => sl.get<AuthCubit>();
   final SignupUseCase _signupUseCase;
   final LoginUseCase _loginUseCase;
   final ForgetPasswordUseCase _forgetPasswordUseCase;
   final VerifyOtpUseCase _verifyOtpUseCase;
+  final ChangePasswordUseCase _changePasswordUseCase;
 
   String emailOtp = '';
   TextEditingController otpController = TextEditingController();
@@ -63,7 +66,7 @@ class AuthCubit extends Cubit<AuthState> {
       (result) => emit(AuthSuccessForgetPassword()),
     );
   }
-  
+
   // onChangeOtp
   void Function(String)? onChangeOtp() {
     return (value) {
@@ -80,6 +83,16 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(AuthErrorOTP(message: failure.message)),
       (result) => emit(AuthSuccessOTP()),
+    );
+  }
+
+  // changePassword
+  Future<void> changePassword({ required String newPassword}) async {
+    emit(AuthLoadingChangePassword());
+    final result = await _changePasswordUseCase(email: emailOtp, newPassword: newPassword);
+    result.fold(
+      (failure) => emit(AuthErrorChangePassword(message: failure.message)),
+      (result) => emit(AuthSuccessChangePassword()),
     );
   }
 }

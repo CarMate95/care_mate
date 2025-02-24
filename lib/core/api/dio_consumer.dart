@@ -134,8 +134,13 @@ class DioConsumer implements ApiConsumer {
     required String path,
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
-  }) {
-    throw UnimplementedError();
+  }) async{
+    final response = await dio.put(
+      path,
+      data: body,
+    );
+
+    return response.data;
   }
 
   @override
