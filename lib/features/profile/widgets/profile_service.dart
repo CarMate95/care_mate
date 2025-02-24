@@ -43,7 +43,7 @@ static Future<Map<String, dynamic>?>updateProfile({
   String? email,
   String? phone,
   File? profilePhoto,
-  required Map<String, dynamic> currentData, // البيانات الحالية قبل التحديث
+  required Map<String, dynamic> currentData, 
 }) async {
   try {
     String? token = ConstantsManager.token?.trim();
@@ -63,8 +63,6 @@ static Future<Map<String, dynamic>?>updateProfile({
     });
 
     Map<String, String> updatedFields = {};
-
-    // التحقق من القيم التي تغيرت فقط
     if (firstName != null && firstName != currentData['firstName']) {
       updatedFields['firstName'] = firstName;
     }
@@ -77,8 +75,6 @@ static Future<Map<String, dynamic>?>updateProfile({
     if (phone != null && phone != currentData['phone']) {
       updatedFields['phone'] = phone;
     }
-
-    // التأكد من أن هناك بيانات مُحدثة قبل الإرسال
     if (updatedFields.isEmpty && profilePhoto == null) {
       print('⚠️ لا توجد تغييرات لإرسالها.');
       return null;
