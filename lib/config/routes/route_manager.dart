@@ -156,7 +156,7 @@ class RouteManager {
       case PageName.workerDetailsScreen:
         final worker = routeSettings.arguments as WorkerModel;
         return _getPageTransition(
-          WorkerDetailsScreen(worker: worker),
+          const WorkerDetailsScreen(),
           settings: routeSettings,
         );
       case PageName.homeScreen:

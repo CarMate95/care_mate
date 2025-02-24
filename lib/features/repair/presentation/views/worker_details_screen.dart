@@ -9,15 +9,12 @@ import 'package:car_mate/core/utils/widgets/custom_rating.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/data/models/worker_model.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_row_account_details.dart';
 import 'package:flutter/material.dart';
 
 class WorkerDetailsScreen extends StatelessWidget {
-  final WorkerModel worker;
-
-  const WorkerDetailsScreen({super.key, required this.worker});
+  const WorkerDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +37,15 @@ class WorkerDetailsScreen extends StatelessWidget {
               ),
             ),
             verticalSpace(30),
-            CustomImageProfile(
-              imageIcon: worker.user.profilePhoto.isNotEmpty
-                  ? worker.user.profilePhoto.first
-                  : 'assets/svg/default_image.jpg',
-            ),
+            const CustomImageProfile(imageIcon: 'assets/svg/default_image.jpg'),
             verticalSpace(10),
             CustomText(
-              text: '${worker.user.firstName} ${worker.user.lastName}',
+              text: 'Mohamed Ezzat',
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 24),
             ),
             CustomText(
-              text: worker.user.email,
+              text: 'mohamd@gmail.com',
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 12),
             ),
@@ -69,11 +62,10 @@ class WorkerDetailsScreen extends StatelessWidget {
                       horizontal: 8.0, vertical: 30.0),
                   child: Column(
                     children: [
-                      CustomRowAccountDetails(
+                      const CustomRowAccountDetails(
                         icon: Icons.person,
                         iconColor: Colors.red,
-                        text:
-                            '${worker.user.firstName} ${worker.user.lastName}',
+                        text: 'Mohamed Ezzat',
                       ),
                       verticalSpace(5),
                       Padding(
@@ -81,10 +73,10 @@ class WorkerDetailsScreen extends StatelessWidget {
                         child: CustomDivider(color: context.secondaryColor),
                       ),
                       verticalSpace(10),
-                      CustomRowAccountDetails(
+                      const CustomRowAccountDetails(
                         icon: Icons.call,
                         iconColor: Colors.green,
-                        text: worker.user.phone,
+                        text: '01148132889',
                       ),
                       verticalSpace(5),
                       Padding(
@@ -92,10 +84,10 @@ class WorkerDetailsScreen extends StatelessWidget {
                         child: CustomDivider(color: context.secondaryColor),
                       ),
                       verticalSpace(10),
-                      CustomRowAccountDetails(
+                      const CustomRowAccountDetails(
                         icon: Icons.location_on_sharp,
                         iconColor: Colors.blue,
-                        text: worker.location,
+                        text: 'Cairo',
                       ),
                     ],
                   ),
