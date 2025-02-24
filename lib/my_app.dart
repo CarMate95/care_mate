@@ -1,4 +1,6 @@
 import 'package:car_mate/config/theme_cubit/theme_cubit_cubit.dart';
+import 'package:car_mate/features/repair/data/repo/get_worker_and_winch_repo_implementation.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +22,10 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MultiBlocProvider(
         providers: [
           BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-          // BlocProvider<VerifyOtpCubit>(create: (context) => VerifyOtpCubit()),
+          BlocProvider(
+            create: (context) =>
+                GetWinchAndWorkerCubit(GetWorkerAndWinchRepoImplementation()),
+          )
         ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(
@@ -34,7 +39,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppTheme.dark,
                 themeMode: ThemeCubit.themeMode,
                 navigatorKey: RouteManager.navigatorKey,
-                initialRoute: PageName.layoutScreen,
+                initialRoute: PageName.splashScreen,
                 onGenerateRoute: RouteManager.onGenerateRoute,
               );
             },

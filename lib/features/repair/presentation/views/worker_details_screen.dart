@@ -19,40 +19,45 @@ class WorkerDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-        body: SingleChildScrollView(
-            child: Column(children: [
-      CustomAppBar(
-        leading: InkWell(
-            onTap: () => Navigator.pop(context),
-            child: CustomSvgIcon(
-              iconPath: AssetsManager.backIcon,
-              color: context.secondaryColor,
-            )),
-        title: CustomText(
-          text: TextManager.accountDetails,
-          style: getMediumStyle(color: context.secondaryColor, fontSize: 24),
-        ),
-      ),
-      verticalSpace(30),
-      const CustomImageProfile(imageIcon: 'assets/svg/settengsIconsvg.svg'),
-      verticalSpace(10),
-      CustomText(
-        text: 'Mohamed Ezzat',
-        style: getMediumStyle(color: context.secondaryColor, fontSize: 24),
-      ),
-      CustomText(
-        text: '@11Elmasryyyy',
-        style: getMediumStyle(color: context.secondaryColor, fontSize: 12),
-      ),
-      verticalSpace(10),
-      Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-              decoration: BoxDecoration(
-                color: context.tertiaryColor,
-                borderRadius: BorderRadius.circular(16),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomAppBar(
+              leading: InkWell(
+                  onTap: () => Navigator.pop(context),
+                  child: CustomSvgIcon(
+                    iconPath: AssetsManager.backIcon,
+                    color: context.secondaryColor,
+                  )),
+              title: CustomText(
+                text: TextManager.accountDetails,
+                style:
+                    getMediumStyle(color: context.secondaryColor, fontSize: 24),
               ),
-              child: Padding(
+            ),
+            verticalSpace(30),
+            const CustomImageProfile(
+                imageIcon: 'assets/svg/settengsIconsvg.svg'),
+            verticalSpace(10),
+            CustomText(
+              text: 'Mohamed Ezzat',
+              style:
+                  getMediumStyle(color: context.secondaryColor, fontSize: 24),
+            ),
+            CustomText(
+              text: '@11Elmasryyyy',
+              style:
+                  getMediumStyle(color: context.secondaryColor, fontSize: 12),
+            ),
+            verticalSpace(10),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: context.tertiaryColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8.0, vertical: 30.0),
                   child: Column(
@@ -89,27 +94,31 @@ class WorkerDetailsScreen extends StatelessWidget {
                           iconColor: Colors.blue,
                           text: 'Cairo - NasrCity - Street 21'),
                     ],
-                  )))),
-      Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: context.tertiaryColor,
-                borderRadius: BorderRadius.circular(16),
+                  ),
+                ),
               ),
-              child: Padding(
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: context.tertiaryColor,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(children: [
-                    const CustomText(
-                        text: TextManager.ratingmessage,
-                        textAlign: TextAlign.center),
-                    const CustomText(
-                        text: TextManager.ratingMessage2,
-                        textAlign: TextAlign.center),
-                    verticalSpace(5),
-                    const CustomRating(),
-                    Row(
+                  child: Column(
+                    children: [
+                      const CustomText(
+                          text: TextManager.ratingmessage,
+                          textAlign: TextAlign.center),
+                      const CustomText(
+                          text: TextManager.ratingMessage2,
+                          textAlign: TextAlign.center),
+                      verticalSpace(5),
+                      const CustomRating(),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
@@ -122,8 +131,16 @@ class WorkerDetailsScreen extends StatelessWidget {
                             style: getMediumStyle(
                                 fontSize: 12, color: context.secondaryColor),
                           ),
-                        ])
-                  ]))))
-    ])));
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
