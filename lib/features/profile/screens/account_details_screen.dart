@@ -1,3 +1,4 @@
+
 import 'dart:io';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -26,6 +27,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   File? _image;
+  Map<String, dynamic>? currentUser;
 
   @override
   void initState() {
@@ -43,21 +45,31 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
   }
 
   void updateProfile() async {
+    if (currentUser == null) return;
+
+    Map<String, dynamic> currentData = {
+      "firstName": currentUser!['firstName'],
+      "lastName": currentUser!['lastName'],
+      "email": currentUser!['email'],
+      "phone": currentUser!['phone'],
+    };
+
     final response = await ProfileService.updateProfile(
       firstName: firstNameController.text,
       lastName: lastNameController.text,
       email: emailController.text,
       phone: phoneController.text,
       profilePhoto: _image,
+      currentData: currentData, 
     );
-    
+
     if (response != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(TextManager.update.tr())),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text(TextManager.noupdate.tr())),
+        SnackBar(content: Text(TextManager.noupdate.tr())),
       );
     }
   }
@@ -77,11 +89,11 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                 return const Center(child: Text('فشل تحميل البيانات'));
               }
 
-              var data = snapshot.data!;
-              firstNameController.text = data['firstName'];
-              lastNameController.text = data['lastName'];
-              emailController.text = data['email'];
-              phoneController.text = data['phone'];
+              currentUser = snapshot.data!;
+              firstNameController.text = currentUser!['firstName'];
+              lastNameController.text = currentUser!['lastName'];
+              emailController.text = currentUser!['email'];
+              phoneController.text = currentUser!['phone'];
 
               return Column(
                 children: [
@@ -94,7 +106,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                     child: CustomImageProfile(
                       imageIcon: 'assets/svg/Edit.svg',
                       alignment: Alignment.bottomRight,
-                      imageUrl: _image != null ? _image!.path : data['profilePhoto'][0],
+                      imageUrl: _image != null ? _image!.path : currentUser!['profilePhoto'][0],
                     ),
                   ),
                   verticalSpace(20),
@@ -119,18 +131,17 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                   ),
                   verticalSpace(30),
                   ElevatedButton(
-  onPressed: updateProfile,
-  style: ElevatedButton.styleFrom(
-    backgroundColor: ColorManager.primaryColor, 
-  ),
-  child: Text(
-    TextManager.updatedata.tr(),
-    style: getBoldStyle(
-      color: ColorManager.white,
-    ),
-  ),
-)
-
+                    onPressed: updateProfile,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorManager.primaryColor,
+                    ),
+                    child: Text(
+                      TextManager.updatedata.tr(),
+                      style: getBoldStyle(
+                        color: ColorManager.white,
+                      ),
+                    ),
+                  ),
                 ],
               );
             },
