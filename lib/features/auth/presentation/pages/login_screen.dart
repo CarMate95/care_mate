@@ -1,4 +1,3 @@
-import 'package:car_mate/core/utils/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl.get<AuthCubit>(),
+      create: (context) => AuthCubit.get(context),
       child: const CustomScaffold(
         body: SingleChildScrollView(
           // login body

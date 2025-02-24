@@ -1,5 +1,6 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,13 +17,16 @@ class LoginButton extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccessLogin) {
-          showScaffoldMessage(context, message: "Login successfully");
+          showScaffoldMessage(
+            context,
+            message: TextManager.loginSuccessfully.tr(),
+          );
           Navigator.pushNamedAndRemoveUntil(
             context,
             PageName.layoutScreen,
             (route) => false,
           );
-        }else if (state is AuthErrorLogin) {
+        } else if (state is AuthErrorLogin) {
           showScaffoldMessage(context, message: state.message);
         }
       },

@@ -4,6 +4,16 @@ abstract class AuthState {}
 
 final class AuthInitial extends AuthState {}
 
+// final class AuthLoading extends AuthState {}
+
+// final class AuthSuccess extends AuthState {}
+
+// final class AuthError extends AuthState {
+//   final String message;
+
+//   AuthError({required this.message});
+// }
+
 // signup states
 final class AuthLoadingSignUp extends AuthState {}
 
@@ -26,3 +36,24 @@ final class AuthErrorLogin extends AuthState {
   AuthErrorLogin({required this.message});
 }
 
+// forget password
+final class AuthLoadingForgetPassword extends AuthState {}
+
+final class AuthSuccessForgetPassword extends AuthState {}
+
+final class AuthErrorForgetPassword extends AuthState {
+  final String message;
+
+  AuthErrorForgetPassword({required this.message});
+}
+
+// verify otp
+final class AuthLoadingOTP extends AuthState {}
+
+final class AuthSuccessOTP extends AuthState {}
+
+final class AuthErrorOTP extends AuthState {
+  final String message;
+
+  AuthErrorOTP({required this.message});
+}
