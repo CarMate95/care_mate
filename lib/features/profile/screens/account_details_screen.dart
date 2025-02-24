@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -5,12 +6,61 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
+import 'package:car_mate/features/profile/widgets/profile_service.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class AccountDetailsScreen extends StatelessWidget {
+class AccountDetailsScreen extends StatefulWidget {
   const AccountDetailsScreen({super.key});
+
+  @override
+  _AccountDetailsScreenState createState() => _AccountDetailsScreenState();
+}
+
+class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
+  late Future<Map<String, dynamic>?> userProfile;
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  File? _image;
+
+  @override
+  void initState() {
+    super.initState();
+    userProfile = ProfileService.getProfile();
+  }
+
+  Future<void> pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  void updateProfile() async {
+    final response = await ProfileService.updateProfile(
+      firstName: firstNameController.text,
+      lastName: lastNameController.text,
+      email: emailController.text,
+      phone: phoneController.text,
+      profilePhoto: _image,
+    );
+    
+    if (response != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(TextManager.update.tr())),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(content: Text(TextManager.noupdate.tr())),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,137 +68,83 @@ class AccountDetailsScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomAppBar(
-                title: Text(TextManager.accountDetails.tr()),
-              ),
-              verticalSpace(20),
-              const CustomImageProfile(
-                imageIcon: 'assets/svg/Edit.svg',
-                alignment: Alignment.bottomRight,
-              ),
-              verticalSpace(20),
-              Text(
-                TextManager.mohamed.tr(),
-                style:
-                    getBoldStyle(fontSize: 22, color: context.secondaryColor),
-              ),
-              Text(
-                TextManager.manooo.tr(),
-                style: TextStyle(fontSize: 16, color: context.secondaryColor),
-              ),
-              verticalSpace(30),
-              Row(
+          child: FutureBuilder<Map<String, dynamic>?>(
+            future: userProfile,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError || snapshot.data == null) {
+                return const Center(child: Text('فشل تحميل البيانات'));
+              }
+
+              var data = snapshot.data!;
+              firstNameController.text = data['firstName'];
+              lastNameController.text = data['lastName'];
+              emailController.text = data['email'];
+              phoneController.text = data['phone'];
+
+              return Column(
                 children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          labelText: TextManager.firstName.tr(),
-                          labelStyle: const TextStyle(color: ColorManager.grey),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          filled: true,
-                          fillColor: context.scaffoldBackgroundColor,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(color: context.tertiaryColor),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: context.tertiaryColor, width: 2),
-                          ),
-                        ),
-                        style: TextStyle(
-                          color: context.secondaryColor,
-                        ),
-                      ),
+                  CustomAppBar(
+                    title: Text(TextManager.accountDetails.tr()),
+                  ),
+                  verticalSpace(20),
+                  GestureDetector(
+                    onTap: pickImage,
+                    child: CustomImageProfile(
+                      imageIcon: 'assets/svg/Edit.svg',
+                      alignment: Alignment.bottomRight,
+                      imageUrl: _image != null ? _image!.path : data['profilePhoto'][0],
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          labelText: TextManager.lastName.tr(),
-                          labelStyle: const TextStyle(color: ColorManager.grey),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          filled: true,
-                          fillColor: context.scaffoldBackgroundColor,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide:
-                                BorderSide(color: context.tertiaryColor),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: BorderSide(
-                                color: context.tertiaryColor, width: 2),
-                          ),
-                        ),
-                        style: TextStyle(
-                          color: context.secondaryColor,
-                        ),
-                      ),
-                    ),
+                  verticalSpace(20),
+                  TextField(
+                    controller: firstNameController,
+                    decoration: inputDecoration(TextManager.firstName.tr()),
                   ),
+                  verticalSpace(16),
+                  TextField(
+                    controller: lastNameController,
+                    decoration: inputDecoration(TextManager.lastName.tr()),
+                  ),
+                  verticalSpace(16),
+                  TextField(
+                    controller: emailController,
+                    decoration: inputDecoration(TextManager.email.tr()),
+                  ),
+                  verticalSpace(16),
+                  TextField(
+                    controller: phoneController,
+                    decoration: inputDecoration(TextManager.phone.tr()),
+                  ),
+                  verticalSpace(30),
+                  ElevatedButton(
+  onPressed: updateProfile,
+  style: ElevatedButton.styleFrom(
+    backgroundColor: ColorManager.primaryColor, 
+  ),
+  child: Text(
+    TextManager.updatedata.tr(),
+    style: getBoldStyle(
+      color: ColorManager.white,
+    ),
+  ),
+)
+
                 ],
-              ),
-              verticalSpace(16),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: TextManager.email.tr(),
-                    labelStyle: const TextStyle(color: ColorManager.grey),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    filled: true,
-                    fillColor: context.scaffoldBackgroundColor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: context.tertiaryColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                          BorderSide(color: context.tertiaryColor, width: 2),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: context.secondaryColor,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: TextManager.phone.tr(),
-                    labelStyle: const TextStyle(color: ColorManager.grey),
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    filled: true,
-                    fillColor: context.scaffoldBackgroundColor,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(color: context.tertiaryColor),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                          BorderSide(color: context.tertiaryColor, width: 2),
-                    ),
-                  ),
-                  style: TextStyle(
-                    color: context.secondaryColor,
-                  ),
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
+      ),
+    );
+  }
+
+  InputDecoration inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
       ),
     );
   }
