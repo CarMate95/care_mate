@@ -22,10 +22,6 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MultiBlocProvider(
         providers: [
           BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-          BlocProvider(
-            create: (context) =>
-                GetWinchAndWorkerCubit(GetWorkerAndWinchRepoImplementation()),
-          )
         ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(
@@ -39,7 +35,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppTheme.dark,
                 themeMode: ThemeCubit.themeMode,
                 navigatorKey: RouteManager.navigatorKey,
-                initialRoute: PageName.splashScreen,
+                initialRoute: PageName.layoutScreen,
                 onGenerateRoute: RouteManager.onGenerateRoute,
               );
             },
