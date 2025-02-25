@@ -3,13 +3,10 @@ import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
-import 'package:car_mate/features/layout/presentation/cubit/layout_cubit.dart';
-import 'package:car_mate/features/layout/presentation/widgets/custom_layout_button_nav_bar.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LicenceDetailsScreen extends StatefulWidget {
   final String licenceImagePath;
@@ -32,27 +29,23 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
 
     final screenWidth = MediaQuery.of(context).size.width;
     final containerSize = screenWidth * 0.5;
-final bool isDark = Theme.of(context).brightness == Brightness.dark;
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-     appBar: AppBar(
-        centerTitle: true,
-        title: Text(TextManager.myCar.tr()),
-        actions:
-             [
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, PageName.settingsScreen);
-                },
-                child: CustomSvgIcon(
-                  iconPath: AssetsManager.settingsIcon,
-                  size: 24,
-                  color: context.secondaryColor,
-                ),
+      appBar: AppBar(
+          centerTitle: true,
+          title: Text(TextManager.myCar.tr()),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.settingsScreen);
+              },
+              child: CustomSvgIcon(
+                iconPath: AssetsManager.settingsIcon,
+                size: 24,
+                color: context.secondaryColor,
               ),
-
-              ]
-            
-      ),
+            ),
+          ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -127,7 +120,6 @@ final bool isDark = Theme.of(context).brightness == Brightness.dark;
           ],
         ),
       ),
-       
     );
   }
 }
