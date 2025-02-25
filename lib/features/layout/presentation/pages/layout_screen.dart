@@ -1,6 +1,6 @@
 import 'package:car_mate/features/chat/presentation/pages/chat_screen.dart';
 import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
-import 'package:car_mate/features/repair/presentation/pages/requests_screen.dart';
+import 'package:car_mate/features/repair/presentation/views/requests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

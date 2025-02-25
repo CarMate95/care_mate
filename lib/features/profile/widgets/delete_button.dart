@@ -4,6 +4,7 @@ import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/profile/widgets/profile_service.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -99,29 +100,40 @@ class DeleteButton extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      TextManager.accountDeleted.tr(),
-                      style: getBoldStyle(
-                        color: ColorManager.white,
+              onPressed: () async {
+                bool isDeleted = await ProfileService.deleteProfile();
+
+                if (isDeleted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        TextManager.accountDeleted.tr(),
+                        style: getBoldStyle(color: ColorManager.white),
                       ),
+                      duration: const Duration(seconds: 3),
+                      backgroundColor: ColorManager.primaryColor,
                     ),
-                    duration: const Duration(seconds: 3),
-                    backgroundColor: ColorManager.primaryColor,
-                  ),
-                );
-                Future.delayed(const Duration(seconds: 0), () {
-                  // ignore: use_build_context_synchronously
-                  Navigator.pop(context);
-                  Navigator.pushNamedAndRemoveUntil(
-                    // ignore: use_build_context_synchronously
-                    context,
-                    PageName.loginScreen,
-                    (route) => false,
                   );
-                });
+
+                  Future.delayed(const Duration(seconds: 1), () {
+                    Navigator.pop(context);
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      PageName.loginScreen,
+                      (route) => false,
+                    );
+                  });
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "❌ فشل حذف الحساب، يرجى المحاولة لاحقًا",
+                        style: getBoldStyle(color: ColorManager.white),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorManager.primaryColor,

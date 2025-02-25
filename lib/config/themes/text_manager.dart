@@ -17,6 +17,10 @@ abstract class TextManager {
   static const String cashError = "cashError";
   static const String noInternetConnection = "noInternetConnection";
   static const String unknown = "unknown";
+   static const String update = "update";
+   static const String noupdate = "noupdate";
+   static const String updatedata = "updatedata";
+   
 
   /// Language
   // (these values do not need to be translated)

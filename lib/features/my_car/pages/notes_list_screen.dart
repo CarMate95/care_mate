@@ -79,24 +79,20 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(TextManager.myCar.tr()),
-        actions:
-             [
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, PageName.settingsScreen);
-                },
-                child: CustomSvgIcon(
-                  iconPath: AssetsManager.settingsIcon,
-                  size: 24,
-                  color: context.secondaryColor,
-                ),
+          centerTitle: true,
+          title: Text(TextManager.myCar.tr()),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.settingsScreen);
+              },
+              child: CustomSvgIcon(
+                iconPath: AssetsManager.settingsIcon,
+                size: 24,
+                color: context.secondaryColor,
               ),
-
-              ]
-            
-      ),
+            ),
+          ]),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -253,18 +249,18 @@ class _NotesListScreenState extends State<NotesListScreen> {
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
             child: Text(
-               TextManager.cancel.tr(),
+              TextManager.cancel.tr(),
               style: TextStyle(
-               color:context.secondaryColor,
+                color: context.secondaryColor,
               ),
             ),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(
-               TextManager.ok.tr(),
+              TextManager.ok.tr(),
               style: TextStyle(
-                color:context.secondaryColor,
+                color: context.secondaryColor,
               ),
             ),
           ),

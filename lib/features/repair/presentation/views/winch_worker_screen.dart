@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -5,10 +7,10 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
-import 'package:car_mate/features/repair/presentation/pages/winch_view.dart';
-import 'package:car_mate/features/repair/presentation/pages/worker_view.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
+import 'package:car_mate/features/repair/presentation/views/winch_view.dart';
+import 'package:car_mate/features/repair/presentation/views/worker_view.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
 class WorkerAndWinchScreen extends StatefulWidget {
   const WorkerAndWinchScreen({super.key});
@@ -20,9 +22,12 @@ class WorkerAndWinchScreen extends StatefulWidget {
 class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
   bool isClicked = true;
   bool isWinchSelected = true;
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
+    var cubit = context.read<GetWinchAndWorkerCubit>();
+
     return CustomScaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -49,6 +54,7 @@ class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
                               isClicked = true;
                               isWinchSelected = true;
                             });
+                            cubit.fetchWinch();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: isClicked
@@ -82,6 +88,7 @@ class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
                               isClicked = false;
                               isWinchSelected = false;
                             });
+                            cubit.fetchWorker();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: isClicked

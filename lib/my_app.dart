@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MultiBlocProvider(
         providers: [
           BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-          // BlocProvider<VerifyOtpCubit>(create: (context) => VerifyOtpCubit()),
         ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(
