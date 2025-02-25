@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/routes/page_name.dart';
-import '../../../../core/utils/constants_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

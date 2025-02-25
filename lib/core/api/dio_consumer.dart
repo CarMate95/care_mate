@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:car_mate/core/api/api_consumer.dart';
 import 'package:car_mate/core/api/end_points.dart';
-import 'package:car_mate/core/errors/api/api_response_codes.dart';
-import 'package:car_mate/core/utils/functions/kprint.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -65,24 +63,24 @@ class DioConsumer implements ApiConsumer {
           // onResponse: (response, handler) {
           //   return handler.next(response);
           // },
-          onError: (error, handler) {
-            kprint("Error from DioConsumer: ${error.toString()}");
+          // onError: (error, handler) {
+          //   kprint("Error from DioConsumer: ${error.toString()}");
 
-            if (error.response?.statusCode == APIResponseCodes.unauthorized ||
-                error.response?.statusCode == APIResponseCodes.forbidden) {
-              // User is unauthorized or forbidden
+          //   if (error.response?.statusCode == APIResponseCodes.unauthorized ||
+          //       error.response?.statusCode == APIResponseCodes.forbidden) {
+          //     // User is unauthorized or forbidden
 
-              // Clear cashed data
+          //     // Clear cashed data
 
-              // Navigate to login page
-              // RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-              //   PageName.login,
-              //   (route) => false,
-              // );
-            } else {
-              return handler.next(error);
-            }
-          },
+          //     // Navigate to login page
+          //     // RouteManager.navigatorKey.currentState!.pushNamedAndRemoveUntil(
+          //     //   PageName.login,
+          //     //   (route) => false,
+          //     // );
+          //   } else {
+          //     return handler.next(error);
+          //   }
+          // },
         ),
       ],
     );
