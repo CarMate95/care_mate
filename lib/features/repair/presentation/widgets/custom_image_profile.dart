@@ -7,12 +7,12 @@ class CustomImageProfile extends StatelessWidget {
     super.key,
     this.alignment = Alignment.topRight,
     required this.imageIcon,
-    this.imageUrl, // 👈 جعله اختيارياً لتجنب الأخطاء
+    this.imageUrl, 
   });
 
   final AlignmentGeometry alignment;
   final String imageIcon;
-  final String? imageUrl; // 👈 جعله `nullable`
+  final String? imageUrl; 
 
   @override
   Widget build(BuildContext context) {
