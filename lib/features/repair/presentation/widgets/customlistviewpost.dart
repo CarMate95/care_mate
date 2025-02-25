@@ -8,7 +8,6 @@ class CustomListViewPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) => const CustomPost(),
         itemCount: 20,

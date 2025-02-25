@@ -18,11 +18,20 @@ class UserEntity {
     this.phoneNumber,
     this.location,
     required this.role,
-     this.specialization,
+    this.specialization,
   });
 
   // toJson
   Map<String, dynamic> toJson() {
+    if (location == null && phoneNumber == null && specialization == null) {
+      return {
+        'firstName': firstName,
+        'lastName': lastName,
+        'email': email,
+        'password': password,
+        'role': role.name,
+      };
+    }
     return {
       'firstName': firstName,
       'lastName': lastName,
@@ -34,5 +43,4 @@ class UserEntity {
       'specialization': specialization,
     };
   }
-
 }
