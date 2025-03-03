@@ -9,7 +9,6 @@ import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
-import 'package:car_mate/features/repair/data/models/worker_model.dart';
 import 'package:car_mate/features/repair/data/repo/get_worker_and_winch_repo_implementation.dart';
 import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
 import 'package:car_mate/features/repair/presentation/views/create_post_screen.dart';
@@ -21,11 +20,13 @@ import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
+
 import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/auth/presentation/pages/verify_otp_screen.dart';
+import '../../features/chat/presentation/pages/chat_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/splash/presentation/pages/on_boarding_screen.dart';
 import 'page_name.dart';
@@ -154,7 +155,7 @@ class RouteManager {
           settings: routeSettings,
         );
       case PageName.workerDetailsScreen:
-        final worker = routeSettings.arguments as WorkerModel;
+        // final worker = routeSettings.arguments as WorkerModel;
         return _getPageTransition(
           const WorkerDetailsScreen(),
           settings: routeSettings,
@@ -173,6 +174,12 @@ class RouteManager {
       case PageName.onBoardingScreen:
         return _getPageTransition(
           const OnBoardingScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.chatScreen:
+        return _getPageTransition(
+          const ChatScreen(),
           settings: routeSettings,
         );
 
