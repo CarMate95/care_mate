@@ -6,7 +6,7 @@ class PageName {
   static const String resetPasswordScreen = '/resetPasswordScreen';
   static const String notificationScreen = "/notificationScreen";
   static const String alertsScreen = "/alertsScreen";
-  static const String verifyEmailScreen = '/verifyEmailScreen';
+  static const String verifyOtpScreen = '/verifyEmailScreen';
   static const String newPasswordScreen = '/newPasswordScreen';
   static const String addnotepage = '/addnotepage';
   static const String licencedetailsscreen = '/licencedetailsscreen';
@@ -20,6 +20,7 @@ class PageName {
   static const String workerDetailsScreen = '/workerDetailsScreen';
   static const String winchAndWorkerScreen = '/winchAndWorkerScreen';
   static const String editeWorkerDetailsScreen = '/editeWorkerDetailsScreen';
+  static const String onBoardingScreen = '/onBoardingScreen';
   static const String homeScreen = '/homeScreen';
   static const String customBottomNavigation = '/customBottomNavigation';
 }

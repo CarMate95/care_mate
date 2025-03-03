@@ -1,8 +1,9 @@
-import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/config/routes/page_name.dart';
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -13,13 +14,15 @@ class CustomAppBar extends StatelessWidget {
     this.enbleBackIcon = true,
     this.color,
     this.closeIcon = false,
+    this.isSettingsIcon = false,
   });
   final void Function()? onBack;
-  final String? title;
+  final Widget? title;
   final Widget? suffex;
   final bool enbleBackIcon;
   final Color? color;
   final bool closeIcon;
+  final bool isSettingsIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -29,28 +32,25 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         children: [
           if (enbleBackIcon) ...{
-            IconButton(
-              icon: Icon(
-                closeIcon ? Icons.close : Icons.arrow_back_ios,
-                color: context.secondaryColor,
-                size: 24.sp,
-              ),
-              onPressed: onBack ??
-                  () {
-                    Navigator.pop(context);
-                  },
-            ),
+            isSettingsIcon
+                ? InkWell(
+                    onTap: () =>
+                        Navigator.pushNamed(context, PageName.settingsScreen),
+                    child: SvgPicture.asset(AssetsManager.settingIcon,
+                        color: context.secondaryColor))
+                : IconButton(
+                    icon: Icon(
+                      closeIcon ? Icons.close : Icons.arrow_back_ios,
+                      color: context.secondaryColor,
+                      size: 24.sp,
+                    ),
+                    onPressed: onBack ??
+                        () {
+                          Navigator.pop(context);
+                        },
+                  ),
           },
-          if (title != null) ...{
-            const Spacer(),
-            CustomText(
-              text: title!,
-              style: getBoldStyle(
-                fontSize: 20.sp,
-                color: context.secondaryColor,
-              ),
-            ),
-          },
+          if (title != null) ...{const Spacer(), title!},
           const Spacer(),
           if (suffex != null) suffex!,
         ],

@@ -43,8 +43,6 @@ class CustomCreatePostWidget extends StatelessWidget {
   }
 }
 
-
-
 //  TextField(
 //         // onTap: () {
 //         //   Navigator.pushNamed(context, PageName.createPostScreen);

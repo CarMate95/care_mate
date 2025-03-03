@@ -1,5 +1,8 @@
+import 'package:car_mate/config/routes/page_name.dart';
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +29,23 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
 
     final screenWidth = MediaQuery.of(context).size.width;
     final containerSize = screenWidth * 0.5;
-
+    final bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(TextManager.myCar.tr()),
-      ),
+          centerTitle: true,
+          title: Text(TextManager.myCar.tr()),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.settingsScreen);
+              },
+              child: CustomSvgIcon(
+                iconPath: AssetsManager.settingsIcon,
+                size: 24,
+                color: context.secondaryColor,
+              ),
+            ),
+          ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(

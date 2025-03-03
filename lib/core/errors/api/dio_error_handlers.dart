@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import '../../../config/themes/text_manager.dart';
 import '../error_handler_service.dart';
 import '../failures.dart';
@@ -6,9 +8,9 @@ import 'api_response_codes.dart';
 class ConnectionTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.connectTimeout,
-      message: TextManager.connectTimeout,
+      message: TextManager.connectTimeout.tr(),
     );
   }
 }
@@ -16,9 +18,9 @@ class ConnectionTimeOutErrorHandler implements ErrorHandlerService {
 class SendTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return  ServerFailure(
       statusCode: APIResponseCodes.sendTimeout,
-      message: TextManager.sendTimeout,
+      message: TextManager.sendTimeout.tr(),
     );
   }
 }
@@ -26,9 +28,9 @@ class SendTimeOutErrorHandler implements ErrorHandlerService {
 class ReceiveTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return  ServerFailure(
       statusCode: APIResponseCodes.receiveTimeout,
-      message: TextManager.receiveTimeout,
+      message: TextManager.receiveTimeout.tr(),
     );
   }
 }
@@ -36,9 +38,9 @@ class ReceiveTimeOutErrorHandler implements ErrorHandlerService {
 class CancelErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return  ServerFailure(
       statusCode: APIResponseCodes.cancel,
-      message: TextManager.cancelMessage,
+      message: TextManager.cancelMessage..tr(),
     );
   }
 }
@@ -46,9 +48,9 @@ class CancelErrorHandler implements ErrorHandlerService {
 class BadCertificateErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return  ServerFailure(
       statusCode: APIResponseCodes.badRequest,
-      message: TextManager.badRequest,
+      message: TextManager.badRequest.tr(),
     );
   }
 }
@@ -56,9 +58,9 @@ class BadCertificateErrorHandler implements ErrorHandlerService {
 class UnknownErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return const ServerFailure(
+    return  ServerFailure(
       statusCode: APIResponseCodes.unknown,
-      message: TextManager.unknown,
+      message: TextManager.unknown.tr(),
     );
   }
 }

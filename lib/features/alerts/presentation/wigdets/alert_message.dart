@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:flutter/Material.dart';
@@ -21,6 +20,7 @@ class AlertMessage extends StatelessWidget {
             Text(
               title,
               style: getMediumStyle(fontSize: 20.sp),
+              overflow: TextOverflow.visible,
             ),
             const CustomDivider(
               color: ColorManager.primaryColor,

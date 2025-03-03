@@ -22,12 +22,12 @@ class OtpChangedState extends VerifyOtpState {}
 
 class TimerState extends VerifyOtpState {}
 
-class ResendOtpLoadingState extends VerifyOtpState {}
+// class ResendOtpLoadingState extends VerifyOtpState {}
 
-class ResendOtpSuccessState extends VerifyOtpState {}
+// class ResendOtpSuccessState extends VerifyOtpState {}
 
-class ResendOtpErrorState extends VerifyOtpState {
-  final String message;
+// class ResendOtpErrorState extends VerifyOtpState {
+//   final String message;
 
-  ResendOtpErrorState(this.message);
-}
+//   ResendOtpErrorState(this.message);
+// }

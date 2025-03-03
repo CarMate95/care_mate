@@ -1,11 +1,11 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/functions/kprint.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
-import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
+import 'package:car_mate/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:car_mate/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:car_mate/features/auth/presentation/widgets/validation_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
 import '../../../../core/utils/widgets/password_field.dart';
 import '../cubit/password_validation/password_validation_cubit.dart';
+import '../widgets/change_password_button.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({super.key});
@@ -38,8 +39,15 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PasswordValidationCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<PasswordValidationCubit>(
+          create: (context) => PasswordValidationCubit(),
+        ),
+        BlocProvider.value(
+          value: AuthCubit.get(context),
+        ),
+      ],
       child: Builder(builder: (context) {
         return CustomScaffold(
           body: SingleChildScrollView(
@@ -54,7 +62,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   const CustomAppBar(),
                   verticalSpace(16),
                   CustomText(
-                    text: 'Create New Password',
+                    text: TextManager.createNewPassword,
                     style: getMediumStyle(
                       fontSize: 22,
                       color: context.secondaryColor,
@@ -62,8 +70,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   ),
                   verticalSpace(16),
                   CustomText(
-                    text:
-                        "Please Enter a New Password. Ensure that Your New Password is different from the previous one for better security.",
+                    text: TextManager.createNewPasswordText,
                     style: getMediumStyle(
                       fontSize: 16,
                       // ignore: deprecated_member_use
@@ -91,8 +98,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   const ValidationForm(),
                   verticalSpace(24),
                   // reset password button
-                  CustomElevatedButton(
-                    onPressed: () {
+                  ChangePasswordButton(
+                    onPressed: () async {
                       setState(() {
                         startValidation = true;
                       });
@@ -100,12 +107,15 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                       if (passwordController.text ==
                               confirmPasswordController.text &&
                           PasswordValidationCubit.get(context).isValidate) {
-                        kprint('password matched');
+                        await AuthCubit.get(context).changePassword(
+                            newPassword: passwordController.text);
                       } else {
-                        kprint('password not matched');
+                        showScaffoldMessage(
+                          context,
+                          message: "Password not matched",
+                        );
                       }
                     },
-                    text: TextManager.resetPassword,
                   ),
                 ],
               ),

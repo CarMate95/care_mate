@@ -1,44 +1,43 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AlertHomeWidget extends StatelessWidget {
-  const AlertHomeWidget(
-      {super.key, required this.imageWidget, required this.title});
-  final Widget imageWidget;
+  const AlertHomeWidget({
+    super.key,
+    required this.image,
+    required this.title,
+  });
+
+  final String image;
   final String title;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 4, right: 4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(10.r)),
-        child: Container(
-          width: 150.w,
-          color: context.isDarkMode
-              ? ColorManager.darkGrey
-              : ColorManager.lightGrey,
-          child: Row(
-            children: [
-              Padding(
-                padding: context.locale.languageCode == 'en_US'
-                    ? const EdgeInsets.only(
-                        left: 15, top: 15, bottom: 15, right: 3)
-                    : const EdgeInsets.only(
-                        left: 4, top: 15, bottom: 15, right: 10),
-                child: imageWidget,
-              ),
-              Text(
-                title,
-                style: getBoldStyle(fontSize: 12.sp),
-              )
-            ],
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
+        color:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 38.w,
+            child: Image.asset(image),
           ),
-        ),
+          SizedBox(width: 10.w),
+          Text(
+            title,
+            style: getBoldStyle(fontSize: 12.sp),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }

@@ -1,8 +1,12 @@
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
+import 'package:car_mate/core/utils/widgets/custom_scaffold_message.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/routes/page_name.dart';
+import '../cubit/auth_cubit.dart';
 import '../cubit/verify_otp/verify_otp_cubit.dart';
 
 class VerifyOtpButton extends StatelessWidget {
@@ -11,46 +15,25 @@ class VerifyOtpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit = VerifyOtpCubit.of(context);
-    return BlocConsumer<VerifyOtpCubit, VerifyOtpState>(
+    var authCubit = AuthCubit.get(context);
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
-        // if (state is VerifyOtpSuccessState) {
-        //   if (isRegisterFlow) {
-        //     showDialog(
-        //         context: context,
-        //         builder: (context) => CustomSuccessAlertDialoge(
-        //               context: context,
-        //               onTapButton1: () {
-        //                 Navigator.pushReplacementNamed(
-        //                   context,
-        //                   PageName.loginView,
-        //                 );
-        //               },
-        //               onTapButton2: () {
-        //                 Navigator.pushReplacementNamed(
-        //                   context,
-        //                   PageName.continueSignUp,
-        //                 );
-        //               },
-        //               title: TextManager.accountCreatedSuccessfully,
-        //               subTitle: TextManager.accountCreatedSuccessfullyText,
-        //               textOfButton1: TextManager.login,
-        //               textOfButton2: TextManager.continueSignUp,
-        //             ));
-        //   } else {
-        //     Navigator.pushNamed(context, PageName.resetPassword);
-        //   }
-        // } else if (state is VerifyOtpFailureState) {
-        //   showSnakeBar(msg: state.message, snakeBarType: SnakeBarType.error);
-        // }
+        if (state is AuthErrorOTP) {
+          showScaffoldMessage(context, message: state.message);
+        } else if (state is AuthSuccessOTP) {
+          showScaffoldMessage(context, message: TextManager.success.tr());
+          VerifyOtpCubit.of(context).stopTimer();
+          Navigator.pushNamed(context, PageName.newPasswordScreen);
+        }
       },
       builder: (context, state) {
         return CustomElevatedButton(
-          isLoading: state is VerifyOtpLoadingState,
-          enabled: cubit.otpController.text.length > 3,
+          isLoading: state is AuthLoadingOTP,
+          enabled: authCubit.otpController.text.length == 6,
           text: TextManager.verify,
           onPressed: () {
-            cubit.verifyOtp(isRegisterFlow);
+            // cubit.verifyOtp(isRegisterFlow);
+            // Navigator.pushNamed(context, PageName.newPasswordScreen);
           },
         );
       },

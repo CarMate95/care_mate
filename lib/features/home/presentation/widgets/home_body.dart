@@ -14,6 +14,7 @@ import 'package:car_mate/features/home/presentation/widgets/worker_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -22,117 +23,212 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        verticalSpace(30.sp),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.sp),
-          child: const ProblemWidget(),
-        ),
-        verticalSpace(2.h),
-        Row(children: [
-          horizontalSpace(6.w),
-          HomeActions(
-            isIcon: true,
-            text: TextManager.setReminder.tr(),
-          ),
-          horizontalSpace(3.w),
-          HomeActions(
-            isIcon: false,
-            text: TextManager.viewWorkers.tr(),
-          ),
-          horizontalSpace(4.w),
-        ]),
-        verticalSpace(10.sp),
-        Padding(
-          padding: EdgeInsets.all(20.sp),
-          child: Container(
-            child: Row(
-              children: [
-                Text(
-                  TextManager.signAndAlerts.tr(),
-                  style: getBoldStyle(fontSize: 16.sp),
+        SizedBox(height: 16.h),
+        Row(
+          children: [
+            GestureDetector(
+              onTap: () =>
+                  Navigator.pushNamed(context, PageName.accountdetailsScreen),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.r),
+                child: SizedBox(
+                  height: 50.h,
+                  width: 50.w,
+                  child: Image.asset(
+                    "assets/images/profile_image.jpg",
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                context.deviceLocale.languageCode == 'en_US'
-                    ? horizontalSpace(180.w)
-                    : horizontalSpace(140.w),
+              ),
+            ),
+            SizedBox(width: 10.w),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, PageName.alertsScreen);
-                    },
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: context.isDarkMode
-                          ? ColorManager.white
-                          : ColorManager.black,
-                    )),
+                  onTap: () => Navigator.pushNamed(
+                      context, PageName.accountdetailsScreen),
+                  child: Text(
+                    TextManager.rawanAyman.tr(),
+                    style: getBoldStyle(fontSize: 16.sp),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                verticalSpace(2.sp),
+                Text(
+                  TextManager.welcomeBack.tr(),
+                  style: getBoldStyle(fontSize: 12.sp),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ],
             ),
-          ),
+            const Spacer(),
+            Row(
+              children: [
+                _iconButton(
+                  context,
+                  icon: SvgPicture.asset(AssetsManager.notificationIcon),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    PageName.notificationScreen,
+                  ),
+                ),
+                horizontalSpace(8.sp),
+                _iconButton(
+                  context,
+                  icon: Image.asset(AssetsManager.settingPicturePng),
+                  onTap: () =>
+                      Navigator.pushNamed(context, PageName.settingsScreen),
+                ),
+              ],
+            ),
+          ],
         ),
-        Container(
-          color: Colors.transparent,
-          height: 50.h,
-          width: double.infinity,
-          child: ListView(scrollDirection: Axis.horizontal, children: [
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.brakeWarning),
-              title: TextManager.brakeWarning.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.engineCheckImage),
-              title: TextManager.checkEngine.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.temperatureImage),
-              title: TextManager.temperatureWarning.tr(),
-            ),
-            AlertHomeWidget(
-              imageWidget: Image.asset(AssetsManager.tirePressure),
-              title: TextManager.tirePressure.tr(),
-            ),
-          ]),
-        ),
-        verticalSpace(20.sp),
-        Row(children: [
-          horizontalSpace(10.sp),
-          const UseAIWidget(),
-          horizontalSpace(10.sp),
-          const ReminderWidget(),
-        ]),
-        verticalSpace(10.sp),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            children: [
-              Text(
-                TextManager.mechanicCanHelp.tr(),
-                style: getBoldStyle(fontSize: 16.sp),
+        SizedBox(height: 16.h),
+        const ProblemWidget(),
+        verticalSpace(3.h),
+        Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, PageName.addnotepage);
+                },
+                child: HomeActions(
+                  isIcon: true,
+                  text: TextManager.setReminder.tr(),
+                ),
               ),
-              context.deviceLocale.languageCode == 'en_US'
-                  ? horizontalSpace(150.w)
-                  : horizontalSpace(80.w),
-              Icon(
+            ),
+            horizontalSpace(3.w),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
+                },
+                child: HomeActions(
+                  isIcon: false,
+                  text: TextManager.viewWorkers.tr(),
+                ),
+              ),
+            ),
+          ],
+        ),
+        verticalSpace(12.sp),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              TextManager.signAndAlerts.tr(),
+              style: getBoldStyle(fontSize: 16.sp),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.alertsScreen);
+              },
+              child: Icon(
                 Icons.arrow_forward_ios,
+                size: 20.sp,
                 color: context.isDarkMode
                     ? ColorManager.white
                     : ColorManager.black,
-              )
+              ),
+            ),
+          ],
+        ),
+        verticalSpace(8.sp),
+        SizedBox(
+          height: 50.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              AlertHomeWidget(
+                image: AssetsManager.brakeWarning,
+                title: TextManager.brakeWarning.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                image: AssetsManager.engineCheckImage,
+                title: TextManager.checkEngine.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                image: AssetsManager.temperatureImage,
+                title: TextManager.temperatureWarning.tr(),
+              ),
+              horizontalSpace(6.sp),
+              AlertHomeWidget(
+                image: AssetsManager.tirePressure,
+                title: TextManager.tirePressure.tr(),
+              ),
             ],
           ),
         ),
-        Container(
-            height: 50.h,
-            width: double.infinity,
-            child: ListView(scrollDirection: Axis.horizontal, children: [
+        verticalSpace(12.sp),
+        Row(
+          children: [
+            const Expanded(child: UseAIWidget()),
+            horizontalSpace(8.sp),
+            const Expanded(child: ReminderWidget()),
+          ],
+        ),
+        verticalSpace(12.sp),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              TextManager.mechanicCanHelp.tr(),
+              style: getBoldStyle(fontSize: 16.sp),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.winchAndWorkerScreen);
+              },
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 20.sp,
+                color: context.isDarkMode
+                    ? ColorManager.white
+                    : ColorManager.black,
+              ),
+            ),
+          ],
+        ),
+        verticalSpace(8.sp),
+        SizedBox(
+          height: 80.h,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker1)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker2)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker3)),
+              horizontalSpace(6.sp),
               WorkerWidget(workerImage: Image.asset(AssetsManager.worker4)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker1)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker2)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker3)),
-              WorkerWidget(workerImage: Image.asset(AssetsManager.worker4))
-            ]))
+            ],
+          ),
+        ),
       ],
     );
   }
+}
+
+Widget _iconButton(BuildContext context,
+    {required Widget icon, required VoidCallback onTap}) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(8.r),
+    child: Container(
+      height: 40.h,
+      width: 40.w,
+      color: ColorManager.lightGrey,
+      child: GestureDetector(
+        onTap: onTap,
+        child: icon,
+      ),
+    ),
+  );
 }

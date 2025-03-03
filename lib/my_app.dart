@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
       builder: (_, child) => MultiBlocProvider(
         providers: [
           BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
-          // BlocProvider<VerifyOtpCubit>(create: (context) => VerifyOtpCubit()),
         ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
                 darkTheme: AppTheme.dark,
                 themeMode: ThemeCubit.themeMode,
                 navigatorKey: RouteManager.navigatorKey,
-                initialRoute: PageName.customBottomNavigation,
+                initialRoute: PageName.splashScreen,
                 onGenerateRoute: RouteManager.onGenerateRoute,
               );
             },

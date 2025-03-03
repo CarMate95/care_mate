@@ -1,0 +1,2 @@
+D:/Flutter/care_mate/android/app/.cxx/Debug/3i4j1w3z/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Flutter/care_mate/android/app/.cxx/Debug/3i4j1w3z/armeabi-v7a/CMakeFiles/rebuild_cache.dir
