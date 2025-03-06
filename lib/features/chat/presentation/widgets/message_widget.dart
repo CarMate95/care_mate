@@ -1,6 +1,7 @@
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,10 +26,10 @@ class MessageWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment:
           isFromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (!isFromUser) ...{
-           CircleAvatar(
+          CircleAvatar(
             radius: 24.r,
             backgroundColor: ColorManager.primaryColor,
             child: const CustomSvgIcon(
@@ -45,7 +46,11 @@ class MessageWidget extends StatelessWidget {
               maxWidth: isFromUser ? size.width * 0.8 : size.width * 0.7,
             ),
             decoration: BoxDecoration(
-              color: isFromUser ? ColorManager.grey : ColorManager.darkGrey,
+              color: isFromUser
+                  ? ColorManager.grey
+                  : context.isDarkMode
+                      ? ColorManager.darkGrey
+                      : ColorManager.secondaryColor2,
               borderRadius: BorderRadius.circular(18),
             ),
             padding: const EdgeInsets.symmetric(
@@ -61,14 +66,14 @@ class MessageWidget extends StatelessWidget {
                       ? SelectableText(
                           text,
                           style: getMediumStyle(
-                            color: Colors.black,
+                            color: context.secondaryColor,
                           ),
                         )
                       : AnimatedSelectableText(
                           fullText: text,
-                          textStyle: getMediumStyle(
-                            color: Colors.white,
-                          ),
+                          // textStyle: getMediumStyle(
+                          //   color: Colors.red,
+                          // ),
                           // animationDuration: const Duration(milliseconds: 50),
                         ),
                 },

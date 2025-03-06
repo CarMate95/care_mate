@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../config/themes/text_manager.dart';
 import '../cubit/chat_cubit.dart';
 import 'ai_text_field.dart';
 import 'main_app_bar.dart';
@@ -53,8 +55,8 @@ class _ChatBodyState extends State<ChatBody> {
                 itemCount: chatCubit.generatedContent.length,
               )),
               if (state is ChatLoading) ...{
-                const MessageWidget(
-                  text: 'Ai Typing...',
+                MessageWidget(
+                  text: TextManager.aiTyping.tr(),
                   image: null,
                   isFromUser: false,
                 ),

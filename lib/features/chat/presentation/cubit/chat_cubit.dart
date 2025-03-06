@@ -100,8 +100,11 @@ class ChatCubit extends Cubit<ChatState> {
     }
   }
 
-  Future<void> pickImage(BuildContext context) async {
-    final XFile? pickedFile = await ImagePickerService.pickFromCamera();
+  Future<void> pickImage(BuildContext context,
+      {ImageSource source = ImageSource.gallery}) async {
+    final XFile? pickedFile = source == ImageSource.camera
+        ? await ImagePickerService.pickFromCamera()
+        : await ImagePickerService.pickFromGallery();
     if (pickedFile == null) return;
 
     imageBytes = await pickedFile.readAsBytes();

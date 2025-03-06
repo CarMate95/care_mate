@@ -1,9 +1,13 @@
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/widgets/custom_alert_dialog.dart';
 import 'package:car_mate/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/utils/widgets/custom_text_form_field.dart';
 
@@ -47,8 +51,33 @@ class AiTextField extends StatelessWidget {
                     radius: 24.r,
                     child: IconButton(
                       onPressed: () {
-                        // showScaffoldMessage(context, message: 'Coming soon');
-                        chatCubit.pickImage(context);
+                        // choos image from gallery of camera
+                        showCustomAlertDialog(
+                          context: context,
+                          title: TextManager.pickAnImage.tr(),
+                          content: Column(children: [
+                            ListTile(
+                              leading: const Icon(Icons.camera_alt),
+                              title: Text(TextManager.camera.tr()),
+                              onTap: () async {
+                                await chatCubit.pickImage(
+                                  context,
+                                  source: ImageSource.camera,
+                                );
+                                Navigator.pop(context);
+                              },
+                            ),
+                            ListTile(
+                              leading: const Icon(Icons.photo),
+                              title: Text(TextManager.gallery.tr()),
+                              onTap: () async {
+                                await chatCubit.pickImage(context);
+                                Navigator.pop(context);
+                              },
+                            ),
+                          ]),
+                        );
+                        // chatCubit.pickImage(context);
                       },
                       icon: Icon(
                         Icons.image,
@@ -60,9 +89,10 @@ class AiTextField extends StatelessWidget {
                   const SizedBox.square(dimension: 8),
                   Expanded(
                     child: Stack(
+                      alignment: AlignmentDirectional.centerEnd,
                       children: [
                         CustomTextFormField(
-                          hintText: 'Type a message...',
+                          hintText: TextManager.askAI.tr(),
                           verticalPadding: 7.h,
                           borderRadius: 44,
                           borderColor: ColorManager.grey,
@@ -76,26 +106,21 @@ class AiTextField extends StatelessWidget {
                             chatCubit.sendGeneralMessage(context);
                           },
                         ),
-                        Positioned(
-                          top: 0,
-                          right: 0,
-                          bottom: 0,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: context.secondaryColor,
-                                  width: 1,
-                                )),
-                            child: IconButton(
-                              onPressed: () async {
-                                chatCubit.sendGeneralMessage(context);
-                              },
-                              icon: Icon(
-                                Icons.send,
-                                size: 24.r,
-                                color: ColorManager.primaryColor,
-                              ),
+                        Container(
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: context.secondaryColor,
+                                width: 1,
+                              )),
+                          child: IconButton(
+                            onPressed: () async {
+                              chatCubit.sendGeneralMessage(context);
+                            },
+                            icon: Icon(
+                              Icons.send,
+                              size: 24.r,
+                              color: ColorManager.primaryColor,
                             ),
                           ),
                         ),

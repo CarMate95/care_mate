@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //   Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
       // }
 
-      Navigator.pushReplacementNamed(context, PageName.chatScreen);
+      Navigator.pushReplacementNamed(context, PageName.onBoardingScreen);
     });
   }
 
