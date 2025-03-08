@@ -9,5 +9,9 @@ abstract class EndPoints {
   static const String forgetPassword = "/auth/forget-password";
   static const String verifyOtp = "/auth/verify";
   static const String changePassword = "/auth/change-password";
+  static const String createNote = "/user/addreminder";
+  static const String updateNote = "/user/updatereminder/1";
+  static const String getNote = "/user/getreminder";
+  static const String deleteNote = "/user/deletereminder/2";
 
 }

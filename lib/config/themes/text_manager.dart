@@ -149,6 +149,8 @@ abstract class TextManager {
   static const String validationPass1 = "validationPass1";
   static const String validationPass2 = "validationPass2";
   static const String validationPass3 = "validationPass3";
+   static const String addNote = "addNote";
+   static const String edit = "edit";
 
   //Alerts screen
   static const String checkEngine = "checkEngine";

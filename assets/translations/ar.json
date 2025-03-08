@@ -160,5 +160,8 @@
     "cacheError": "خطأ في التخزين المؤقت",
     "noInternetConnection": "لا يوجد اتصال بالإنترنت",
     "unknown": "خطأ غير معروف",
-    "checkYourEmail": "تحقق من بريدك الإلكتروني"
+    "checkYourEmail": "تحقق من بريدك الإلكتروني",
+    "addNote": "اضافة ملاحظة",
+    "edit": "تعديل"
+    
 }
