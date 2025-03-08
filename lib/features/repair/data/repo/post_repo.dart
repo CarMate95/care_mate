@@ -10,7 +10,7 @@ class PostRepository {
 
   Future<List<PostModel>> getAllPosts() async {
     final response =
-        await http.get(Uri.parse('$baseUrl/post/getAllPosts'), headers: {
+        await http.get(Uri.parse('$baseUrl/post/getAllPosts?size=1000000'), headers: {
       'Content-Type': 'application/json',
       'token': '${ConstantsManager.token}',
     });
