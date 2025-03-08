@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -61,41 +62,38 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   Future<void> _submitPost() async {
-    print('Post button pressed'); // Log button press
+  if (isTextEntered && currentUser != null) {
+    final newPost = AddPostModel(
+      postContent: contentController.text,
+      images: selectedImages,
+      userId: currentUser!.id,
+      createdAt: DateTime.now().toIso8601String(),
+      updatedAt: DateTime.now().toIso8601String(),
+      userData: UserDataModel(
+        firstName: currentUser!.firstName,
+        lastName: currentUser!.lastName,
+        profilePhoto: [currentUser!.profilePhoto!.first ],
+      ),
+    );
 
-    if (isTextEntered && currentUser != null) {
-      print('Submitting post...'); // Log submission
-
-      final newPost = AddPostModel(
-        id: 0,
-        postContent: contentController.text,
-        images: selectedImages.isNotEmpty ? selectedImages : [],
-        userId: currentUser!.id,
-        createdAt: DateTime.now().toIso8601String(),
-        updatedAt: DateTime.now().toIso8601String(),
-        userData: UserDataModel(
-            firstName: currentUser!.firstName,
-            lastName: currentUser!.lastName,
-            profilePhoto: [currentUser!.profilePhoto!.first]??[]),
+    try {
+      await addPostRepository.createPost(
+        newPost,
+        selectedImages.map((path) => File(path)).toList(),
       );
-
-      try {
-        final response = await addPostRepository.createPost(newPost);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Post created: ${response['post']['content']}')),
-        );
-        contentController.clear();
-        setState(() {
-          selectedImages.clear();
-        });
-      } catch (e) {
-        print('Post creation failed: $e'); // Log error
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to create post: $e')),
-        );
-      }
+      ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Post Created Successfully')),
+      );
+      contentController.clear();
+      setState(() => selectedImages.clear());
+      Navigator.of(context).pop();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to create post: $e')),
+      );
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {

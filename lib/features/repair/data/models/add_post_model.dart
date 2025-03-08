@@ -1,6 +1,6 @@
 class AddPostModel {
-  final int id;
-  final String postContent; // Revert to postContent
+  final int? id;
+  final String postContent;
   final List<String>? images;
   final int userId;
   final String updatedAt;
@@ -8,8 +8,8 @@ class AddPostModel {
   final UserDataModel userData;
 
   AddPostModel({
-    required this.id,
-    required this.postContent, // Back to postContent
+    this.id,
+    required this.postContent,
     this.images,
     required this.userId,
     required this.updatedAt,
@@ -17,29 +17,14 @@ class AddPostModel {
     required this.userData,
   });
 
-  factory AddPostModel.fromJson(Map<String, dynamic> json) {
-    return AddPostModel(
-      id: json['id'],
-      postContent: json['postContent'],
-      images:
-          (json['images'] as List?)?.map((item) => item.toString()).toList() ??
-              [],
-      userId: json['userId'],
-      updatedAt: json['updatedAt'],
-      createdAt: json['createdAt'],
-      userData: UserDataModel.fromJson(json['userData']),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
+  Map<String, String> toFormData() {
     return {
-      'id': id,
       'postContent': postContent,
-      'images': images??[], // Ensure it's always a list
-      'userId': userId,
+      'userId': userId.toString(),
       'updatedAt': updatedAt,
       'createdAt': createdAt,
-      'userData': userData.toJson(),
+      'firstName': userData.firstName,
+      'lastName': userData.lastName,
     };
   }
 }
@@ -54,22 +39,4 @@ class UserDataModel {
     required this.lastName,
     required this.profilePhoto,
   });
-
-  factory UserDataModel.fromJson(Map<String, dynamic> json) {
-    return UserDataModel(
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      profilePhoto: json['profilePhoto'] != null
-          ? List<String>.from(json['profilePhoto'])
-          : [],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'firstName': firstName,
-      'lastName': lastName,
-      'profilePhoto': profilePhoto??[],
-    };
-  }
 }
