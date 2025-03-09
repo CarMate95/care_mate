@@ -31,7 +31,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: 'https://fb-m90x.onrender.com', // عدّل لو لديك رابط مختلف
+      baseUrl: 'https://fb-m90x.onrender.com', // عدّل الرابط لو لديك رابط مختلف
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
     ),
@@ -44,7 +44,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
   void initState() {
     super.initState();
 
-    // إضافة LogInterceptor لعرض الطلبات والاستجابات
+    // إضافة LogInterceptor لعرض الطلبات والاستجابات في الـ Console
     _dio.interceptors.add(
       LogInterceptor(
         requestBody: true,
@@ -54,15 +54,19 @@ class _NotesListScreenState extends State<NotesListScreen> {
       ),
     );
 
-    // إذا أتت ملاحظة من شاشة الإضافة
+    // إذا أتت ملاحظة من شاشة الإضافة (AddNotePopup)
     if (widget.reminderData != null) {
       _notes.add(widget.reminderData!);
       print('DEBUG: أُضيفت ملاحظة من شاشة أخرى: ${widget.reminderData}');
     }
 
+    // جلب الملاحظات من السيرفر
     _fetchNotesFromServer();
+
+    // تهيئة القائمة المفلترة
     _filteredNotes = List.from(_notes);
 
+    // ربط دالة التصفية بحقل البحث
     _searchController.addListener(_filterNotes);
   }
 
@@ -81,7 +85,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
     });
     try {
       developer.log('DEBUG (fetch): بدأنا جلب الملاحظات');
-      
+
+      // طباعة التوكن للتأكد من أنه هو المستخدم في Postman
+      developer.log('DEBUG (fetch): current token = ${ConstantsManager.token}');
 
       String? token = ConstantsManager.token?.trim();
       if (token == null || token.isEmpty) {
@@ -94,7 +100,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
       }
 
       final response = await _dio.get(
-        '/user/getreminder', // عدّل لو السيرفر يختلف
+        '/user/getreminder',
         options: Options(
           headers: {
             'token': token,
@@ -104,25 +110,40 @@ class _NotesListScreenState extends State<NotesListScreen> {
       );
 
       developer.log('DEBUG (fetch): statusCode = ${response.statusCode}');
+      developer.log('DEBUG (fetch): response.data = ${response.data}');
+
       if (response.statusCode == 200) {
         final data = response.data;
-        if (data is List) {
-          _notes.clear();
-          for (var item in data) {
-            if (item is Map<String, dynamic>) {
-              // إذا السيرفر يعيد المعرف باسم "reminderId" بدّل هنا:
-              _notes.add({
-                'id': item['id']?.toString() ?? '',
-                'title': item['title']?.toString() ?? '',
-                'startDate': item['startDate']?.toString() ?? '',
-                'endDate': item['endDate']?.toString() ?? '',
-                'cash': item['cash']?.toString() ?? '',
-                'note': item['note']?.toString() ?? '',
-              });
+        // نتوقع هيكل مثل:
+        // {
+        //   "success": true,
+        //   "message": "reminder retrieved successfully",
+        //   "data": [ {...}, {...} ]
+        // }
+        if (data is Map<String, dynamic>) {
+          final innerList = data['data'];
+          if (innerList is List) {
+            _notes.clear();
+            for (var item in innerList) {
+              if (item is Map<String, dynamic>) {
+                _notes.add({
+                  'id': item['id']?.toString() ?? '',
+                  // تنسيق التواريخ
+                  'startDate': _formatIsoDate(item['startDate']?.toString() ?? ''),
+                  'endDate': _formatIsoDate(item['endDate']?.toString() ?? ''),
+                  'title': item['title']?.toString() ?? '',
+                  'cash': item['cash']?.toString() ?? '',
+                  'note': item['note']?.toString() ?? '',
+                });
+              }
             }
+            developer.log('DEBUG (fetch): _notes = $_notes');
+            _filterNotes();
+          } else {
+            developer.log('DEBUG (fetch): data["data"] ليس مصفوفة!');
           }
-          developer.log('DEBUG (fetch): _notes = $_notes');
-          _filterNotes();
+        } else {
+          developer.log('DEBUG (fetch): response.data ليس كائن Map!');
         }
       } else {
         _isError = true;
@@ -134,6 +155,19 @@ class _NotesListScreenState extends State<NotesListScreen> {
       setState(() {
         _isLoading = false;
       });
+    }
+  }
+
+  /// دالة لتنسيق التاريخ ISO 8601 (مثل 2025-03-26T00:00:00.000Z) إلى شكل أبسط
+  String _formatIsoDate(String isoString) {
+    if (isoString.isEmpty) return '';
+    try {
+      final dateTime = DateTime.parse(isoString);
+      // اختر الصيغة التي تريدها
+      return '${dateTime.year}/${dateTime.month}/${dateTime.day}';
+    } catch (e) {
+      // لو صار خطأ في التحويل، ارجع نفس النص
+      return isoString;
     }
   }
 
@@ -234,7 +268,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
             onPressed: () => Navigator.pop(ctx, true),
             child: Text(
               TextManager.ok.tr(),
-              style:  TextStyle(
+              style: TextStyle(
                 color: context.secondaryColor,
               ),
             ),
@@ -254,7 +288,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
         final noteId = note['id'] ?? '';
         developer.log('DEBUG (delete): noteId = $noteId');
         final response = await _dio.delete(
-          '/user/deletereminder/$noteId', // عدّل لو السيرفر يحتاج شيئًا آخر
+          '/user/deletereminder/$noteId', 
           options: Options(
             headers: {
               'token': token,
@@ -438,7 +472,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                             InkWell(
                                               onTap: () {
                                                 developer.log(
-                                                    'DEBUG: onTap Edit للملاحظة: $note');
+                                                  'DEBUG: onTap Edit للملاحظة: $note',
+                                                );
                                                 _showEditNotePopup(note);
                                               },
                                               child: Container(
@@ -454,7 +489,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                                         horizontal: 12,
                                                         vertical: 6),
                                                 child: Text(
-                                                 (TextManager.edit.tr()),
+                                                  TextManager.edit.tr(),
                                                   style: TextStyle(
                                                     color: context.secondaryColor,
                                                   ),
@@ -465,12 +500,13 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                             InkWell(
                                               onTap: () {
                                                 developer.log(
-                                                    'DEBUG: onTap Delete للملاحظة: $note');
+                                                  'DEBUG: onTap Delete للملاحظة: $note',
+                                                );
                                                 _confirmDeleteNote(note);
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                 color: ColorManager.primaryColor,
+                                                  color: ColorManager.primaryColor,
                                                   borderRadius:
                                                       BorderRadius.circular(8),
                                                 ),
@@ -478,9 +514,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                                     const EdgeInsets.symmetric(
                                                         horizontal: 12,
                                                         vertical: 6),
-                                                 child: Text(
-                                                 (TextManager.deleteNote.tr()),
-                                                  style: TextStyle(
+                                                child: Text(
+                                                  TextManager.deleteNote.tr(),
+                                                  style: const TextStyle(
                                                     color: Colors.white,
                                                   ),
                                                 ),
