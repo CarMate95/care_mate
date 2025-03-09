@@ -43,6 +43,8 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
   final String? suffixText;
   final int? minLines;
   final int? maxLength;
+  final bool autofocus;
+  final FocusNode? focusNode;
 
   const CustomTextFormField({
     super.key,
@@ -78,10 +80,14 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
     this.enabletopLable = false,
     this.minLines = 1,
     this.maxLength,
+    this.autofocus = false,
+    this.focusNode,
   });
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: autofocus,
+      focusNode: focusNode,
       readOnly: readOnly,
       autofillHints: autofillHints,
       maxLength: maxLength,

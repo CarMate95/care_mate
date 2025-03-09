@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -6,6 +7,10 @@ import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
+import 'package:car_mate/features/auth/data/models/user_model.dart';
+import 'package:car_mate/features/auth/data/repositories/user_repo.dart';
+import 'package:car_mate/features/repair/data/models/add_post_model.dart';
+import 'package:car_mate/features/repair/data/repo/add_post_repo.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,24 +24,76 @@ class CreatePostScreen extends StatefulWidget {
 }
 
 class _CreatePostScreenState extends State<CreatePostScreen> {
-  final TextEditingController problemController = TextEditingController();
+  final TextEditingController contentController = TextEditingController();
+  final AddPostRepository addPostRepository = AddPostRepository();
+  final UserRepository userRepository = UserRepository();
   bool isTextEntered = false;
+  List<String> selectedImages = [];
+  UserModel? currentUser;
 
   @override
   void initState() {
     super.initState();
-    problemController.addListener(() {
+    contentController.addListener(() {
       setState(() {
-        isTextEntered = problemController.text.isNotEmpty;
+        isTextEntered = contentController.text.isNotEmpty;
       });
     });
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      final user = await userRepository.getUserById();
+      setState(() {
+        currentUser = user;
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to load user data: $e')),
+      );
+    }
   }
 
   @override
   void dispose() {
-    problemController.dispose();
+    contentController.dispose();
     super.dispose();
   }
+
+  Future<void> _submitPost() async {
+  if (isTextEntered && currentUser != null) {
+    final newPost = AddPostModel(
+      postContent: contentController.text,
+      images: selectedImages,
+      userId: currentUser!.id,
+      createdAt: DateTime.now().toIso8601String(),
+      updatedAt: DateTime.now().toIso8601String(),
+      userData: UserDataModel(
+        firstName: currentUser!.firstName,
+        lastName: currentUser!.lastName,
+        profilePhoto: [currentUser!.profilePhoto!.first ],
+      ),
+    );
+
+    try {
+      await addPostRepository.createPost(
+        newPost,
+        selectedImages.map((path) => File(path)).toList(),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Post Created Successfully')),
+      );
+      contentController.clear();
+      setState(() => selectedImages.clear());
+      Navigator.of(context).pop();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to create post: $e')),
+      );
+    }
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +118,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            // Implement image picker functionality here
+          },
           icon: Icons.photo_library_rounded,
           backgroundColor: ColorManager.darkGrey),
       body: Padding(
@@ -76,12 +135,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: 'عبد الرحمن فوزي',
+                      text: currentUser != null
+                          ? '${currentUser!.firstName} ${currentUser!.lastName}'
+                          : 'Loading...',
                       style: getMediumStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w400),
                     ),
                     CustomText(
-                      text: '@FawWwWwzy',
+                      text: '@${currentUser?.firstName ?? 'Loading...'}',
                       style: getLightStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
@@ -89,7 +150,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    _submitPost();
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       color: isTextEntered
@@ -115,7 +178,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             ),
             const CustomDivider(),
             TextField(
-              controller: problemController,
+              controller: contentController,
               maxLines: null,
               cursorColor:
                   context.isDarkMode ? ColorManager.grey : ColorManager.black,
@@ -127,6 +190,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 border: InputBorder.none,
               ),
             ),
+            if (selectedImages.isNotEmpty)
+              Wrap(
+                spacing: 8.0,
+                children: selectedImages.map((image) => Image.network(image, width: 100, height: 100)).toList(),
+              ),
           ],
         ),
       ),

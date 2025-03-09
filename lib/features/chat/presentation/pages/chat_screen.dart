@@ -1,16 +1,25 @@
-import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChatScreen extends StatelessWidget {
+import '../cubit/chat_cubit.dart';
+import '../widgets/chat_body.dart';
+
+class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
   @override
+  State<ChatScreen> createState() => _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Ai Chat',
-        style: getSemiBoldStyle(color: context.onPrimayColor),
+    return BlocProvider(
+      create: (context) => ChatCubit(),
+      child: const SafeArea(
+        child: Scaffold(
+          body: ChatBody(),
+        ),
       ),
     );
   }
