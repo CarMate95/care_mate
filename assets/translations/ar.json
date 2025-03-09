@@ -161,11 +161,8 @@
     "noInternetConnection": "لا يوجد اتصال بالإنترنت",
     "unknown": "خطأ غير معروف",
     "checkYourEmail": "تحقق من بريدك الإلكتروني",
-<<<<<<< HEAD
     "addNote": "اضافة ملاحظة",
-    "edit": "تعديل"
-    
-=======
+    "edit": "تعديل",
     "hello": "مرحبا",
     "howCanIAssistYouRightNow": "كيف يمكنني مساعدتك الآن؟",
     "useAIToAnalyzeComplexCarProblems": "استخدم الذكاء الاصطناعي لتحليل مشاكل السيارة المعقدة",
@@ -178,5 +175,4 @@
     "aiTyping": "الذكاء الاصطناعي يكتب...",
     "pickAnImage": "اختر صورة",
     "askAI": "اسأل الذكاء الاصطناعي.."
->>>>>>> 6fe35ab110be2853eedca29c199d37e4f47726f6
 }
