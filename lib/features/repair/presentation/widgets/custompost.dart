@@ -1,6 +1,5 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/helpers/time_formate.dart';
 import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
