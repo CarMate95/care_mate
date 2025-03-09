@@ -1,18 +1,23 @@
-import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/core/helpers/time_formate.dart';
+import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
+import 'package:car_mate/features/repair/data/models/post_model.dart';
+import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomPost extends StatelessWidget {
-  const CustomPost({super.key});
+  final PostModel post;
+
+  const CustomPost({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
+    final String? currentUserProfilePhotoUrl = post.author.profilePhoto.first;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -23,14 +28,21 @@ class CustomPost extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, PageName.requestDetails);
+            Navigator.push(context, MaterialPageRoute(builder: (_) =>  RequestDetailsScreen(postId: post.id,)));
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    const CustomCircularAvatar(),
+                    CircleAvatar(
+                      backgroundImage: currentUserProfilePhotoUrl != null
+                          ? NetworkImage(currentUserProfilePhotoUrl)
+                          : null,
+                      child: currentUserProfilePhotoUrl == null
+                          ? Icon(Icons.person)
+                          : null,
+                    ),
                     horizontalSpace(5),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +50,8 @@ class CustomPost extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: 'مارك ويلسون',
+                              text:
+                                  '${post.author.firstName} ${post.author.lastName}',
                               style: getMediumStyle(
                                 color: context.isDarkMode
                                     ? Colors.white
@@ -57,7 +70,7 @@ class CustomPost extends StatelessWidget {
                             ),
                             horizontalSpace(5),
                             CustomText(
-                              text: 'منذ 6 ساعات',
+                              text: TimeFormate.timeAgo(post.createdAt),
                               style: getLightStyle(
                                 color: context.isDarkMode
                                     ? Colors.white
@@ -67,7 +80,8 @@ class CustomPost extends StatelessWidget {
                           ],
                         ),
                         CustomText(
-                          text: '@markkkkk222',
+                          text:
+                              '@${post.author.firstName}${post.author.lastName}',
                           style: getLightStyle(),
                         ),
                       ],
@@ -80,12 +94,37 @@ class CustomPost extends StatelessWidget {
                   child: CustomDivider(color: ColorManager.black, thickness: 2),
                 ),
                 CustomText(
-                    lines: 5,
-                    style: getLightStyle(
-                      color: context.isDarkMode ? Colors.white : Colors.black,
+                  lines: 5,
+                  style: getLightStyle(
+                    color: context.isDarkMode ? Colors.white : Colors.black,
+                  ),
+                  text: post.postContent,
+                ),
+                if (post.images != null && post.images!.isNotEmpty)
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
                     ),
-                    text:
-                        ' قاسي قادم من منطقة المح قاسي قادم من منطقة المحيا الجميع! أحتاج إلى بعض المساعدة في سيارتي. لقد كان الأمر يمنحني مشكلة ، ولست متأكدًا من الخطأ ، خاصة عندما أبدأ أو يقود بسرعة أقل.إليك ما يحدث: الضوضاء هناك صوت غريب قاسي قادم من منطقة المحركإليك ما يحدث: الضوضاء هناك صوت غريب قاسي قادم من منطقة المحرك'),
+                    itemCount: post.images!.length,
+                    itemBuilder: (context, index) {
+                      return Image.network(
+                        post.images![index],
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.broken_image),
+                      );
+                    },
+                  )
+                else
+                  CustomText(
+                    text: '',
+                    style: getLightStyle().copyWith(color: Colors.grey),
+                  ),
               ],
             ),
           ),

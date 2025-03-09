@@ -1,4 +1,5 @@
 import 'package:car_mate/core/api/dio_consumer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/api/end_points.dart';
 import '../../domain/entities/user_entity.dart';
@@ -28,9 +29,14 @@ class AuthRemoteDataSource {
         'password': password,
       },
     );
-
     return response['data']['token'];
   }
+
+
+Future<String?> getAuthToken() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString('auth_token');
+}
 
   // forget password
   Future<void> forgetPassword({required String email}) async {

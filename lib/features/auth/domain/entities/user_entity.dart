@@ -1,4 +1,5 @@
 import 'package:car_mate/core/utils/enums/user_type.dart';
+import 'package:flutter/foundation.dart';
 
 class UserEntity {
   final String firstName;

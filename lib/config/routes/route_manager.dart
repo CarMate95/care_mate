@@ -66,11 +66,6 @@ class RouteManager {
           const ResetPasswordScreen(),
           settings: routeSettings,
         );
-      case PageName.requestDetails:
-        return _getPageTransition(
-          const RequestDetailsScreen(),
-          settings: routeSettings,
-        );
       case PageName.createPostScreen:
         return _getPageTransition(
           const CreatePostScreen(),
