@@ -35,5 +35,7 @@
     "resetPassword": "Reset Password",
     "resetPasswordSubtitle": "Enter the email associated with your account and we'll send an email with instructions to reset your password.",
     "sendCode": "Send Code",
-    "Post":"Post"
+    "Post":"Post",
+    "addNote":"Add Note",
+    "edit":"Edit"
 }

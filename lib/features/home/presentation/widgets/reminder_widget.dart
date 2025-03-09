@@ -19,7 +19,7 @@ class ReminderWidget extends StatelessWidget {
       borderRadius: BorderRadius.circular(16.r),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, PageName.notedetailsscreen);
+          Navigator.pushNamed(context, PageName.noteslistscreen);
         },
         child: Container(
           height: 170.h,

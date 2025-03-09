@@ -149,6 +149,8 @@ abstract class TextManager {
   static const String validationPass1 = "validationPass1";
   static const String validationPass2 = "validationPass2";
   static const String validationPass3 = "validationPass3";
+   static const String addNote = "addNote";
+   static const String edit = "edit";
 
   //Alerts screen
   static const String checkEngine = "checkEngine";
@@ -196,4 +198,18 @@ abstract class TextManager {
   static const String loginSuccessfully = "loginSuccessfully";
   static const String signUpSuccessfully = "signUpSuccessfully";
   static const String checkYourEmail = "checkYourEmail";
+  static const String hello = "hello";
+  static const String howCanIAssistYouRightNow = "howCanIAssistYouRightNow";
+  static const String useAIToAnalyzeComplexCarProblems =
+      "useAIToAnalyzeComplexCarProblems";
+  static const String estimateYourCarsValue = "estimateYourCarsValue";
+  static const String aIDrivenCarHealthCheck = "aIDrivenCarHealthCheck";
+  static const String noteAIin = "noteAIin";
+  static const String beta = "beta";
+  static const String answersMayNotBeFully = "answersMayNotBeFully";
+  static const String accurate = "accurate";
+  static const String aiTyping = "aiTyping";
+  //Pick an image
+  static const String pickAnImage = "pickAnImage";
+  static const String askAI = "askAI";
 }

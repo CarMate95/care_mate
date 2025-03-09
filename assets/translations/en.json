@@ -160,5 +160,17 @@
     "cacheError": "Cache Error",
     "noInternetConnection": "No Internet Connection",
     "unknown": "Unknown",
-    "checkYourEmail": "Check Your Email"
+    "checkYourEmail": "Check Your Email",
+    "hello": "Hello",
+    "howCanIAssistYouRightNow": "How can I assist you right now?",
+    "useAIToAnalyzeComplexCarProblems": "Use AI to analyze complex car problems",
+    "estimateYourCarsValue": "Estimate your car's value",
+    "aIDrivenCarHealthCheck": "AI-driven car health check",
+    "noteAIin" : "Note : AI In ",
+    "beta": "Beta ",
+    "answersMayNotBeFully": "Answers may not be fully ",
+    "accurate": "accurate",
+    "aiTyping": "AI is typing...",
+    "pickAnImage": "Pick an image",
+    "askAI": "Ask AI.."
 }
