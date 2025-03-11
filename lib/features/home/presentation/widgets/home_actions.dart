@@ -2,7 +2,6 @@ import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +25,8 @@ class HomeActions extends StatelessWidget {
       child: Container(
         height: 73.h,
         width: 175.w,
-        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+        color:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Row(

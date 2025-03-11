@@ -24,4 +24,5 @@ class PageName {
   static const String homeScreen = '/homeScreen';
   static const String customBottomNavigation = '/customBottomNavigation';
   static const String chatScreen = '/chatScreen';
+  static const String sessionScreen = '/sessionScreen';
 }

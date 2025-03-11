@@ -14,6 +14,7 @@ import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_an
 import 'package:car_mate/features/repair/presentation/views/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/edite_worker_details_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
+import 'package:car_mate/features/repair/presentation/views/session_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/winch_worker_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/worker_details_screen.dart';
 import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
@@ -175,6 +176,12 @@ class RouteManager {
       case PageName.chatScreen:
         return _getPageTransition(
           const ChatScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.sessionScreen:
+        return _getPageTransition(
+          const SessionScreen(),
           settings: routeSettings,
         );
 

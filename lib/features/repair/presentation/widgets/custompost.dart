@@ -1,6 +1,5 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/helpers/time_formate.dart';
 import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
@@ -17,7 +16,7 @@ class CustomPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? currentUserProfilePhotoUrl = post.author.profilePhoto.first;
+    final String currentUserProfilePhotoUrl = post.author.profilePhoto.first;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -28,7 +27,12 @@ class CustomPost extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: GestureDetector(
             onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) =>  RequestDetailsScreen(postId: post.id,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => RequestDetailsScreen(
+                            postId: post.id,
+                          )));
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +44,7 @@ class CustomPost extends StatelessWidget {
                           ? NetworkImage(currentUserProfilePhotoUrl)
                           : null,
                       child: currentUserProfilePhotoUrl == null
-                          ? Icon(Icons.person)
+                          ? const Icon(Icons.person)
                           : null,
                     ),
                     horizontalSpace(5),

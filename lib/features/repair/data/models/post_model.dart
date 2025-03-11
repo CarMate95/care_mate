@@ -1,5 +1,3 @@
-
-
 class PostModel {
   final int id;
   final String postContent;
@@ -20,17 +18,14 @@ class PostModel {
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
-    if (json == null) {
-    throw Exception('Invalid post data');
-  }
     return PostModel(
-      id: json['id']??0,
-      postContent: json['postContent']??"",
+      id: json['id'] ?? 0,
+      postContent: json['postContent'] ?? "",
       images: List<String>.from(json['images']),
-      userId: json['userId']??0,
+      userId: json['userId'] ?? 0,
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
-      author: AuthorModel.fromJson(json['author']?? {}),
+      author: AuthorModel.fromJson(json['author'] ?? {}),
     );
   }
 }

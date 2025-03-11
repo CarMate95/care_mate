@@ -46,7 +46,7 @@ class WinchView extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: state.winchsList[index].profilePhoto.isNotEmpty
                             ? NetworkImage(state.winchsList[index].profilePhoto)
-                            : const AssetImage('assets/svg/default_image.jpg')
+                            : const AssetImage('assets/svg/gmail_icon_svg.jpg')
                                 as ImageProvider,
                       ),
                       borderRadius: BorderRadius.circular(16),

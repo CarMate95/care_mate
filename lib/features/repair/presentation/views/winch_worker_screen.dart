@@ -39,8 +39,8 @@ class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
                 enbleBackIcon: true,
                 isSettingsIcon: true,
                 title: Container(
-                  width: mediaQuery.width * 0.6,
-                  height: mediaQuery.height * 0.04,
+                  width: mediaQuery.width * 0.7,
+                  height: mediaQuery.height * 0.05,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10000),
                     color: context.tertiaryColor,

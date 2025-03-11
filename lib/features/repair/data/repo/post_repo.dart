@@ -9,8 +9,8 @@ class PostRepository {
   final String baseUrl = 'https://fb-m90x.onrender.com';
 
   Future<List<PostModel>> getAllPosts() async {
-    final response =
-        await http.get(Uri.parse('$baseUrl/post/getAllPosts?size=1000000'), headers: {
+    final response = await http
+        .get(Uri.parse('$baseUrl/post/getAllPosts?size=1000000'), headers: {
       'Content-Type': 'application/json',
       'token': '${ConstantsManager.token}',
     });
@@ -22,7 +22,6 @@ class PostRepository {
       throw Exception('Failed to fetch posts');
     }
   }
-
 
   Future<List<PostModel>> getOwnPosts(int userId) async {
     final response = await http

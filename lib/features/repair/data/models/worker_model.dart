@@ -51,14 +51,27 @@ class User {
     required this.profilePhoto,
   });
 
+  // factory User.fromJson(Map<String, dynamic> json) {
+  //   return User(
+  //     id: json['id'],
+  //     firstName: json['firstName'],
+  //     lastName: json['lastName'],
+  //     email: json['email'],
+  //     phone: json['phone'],
+  //     profilePhoto: List<String>.from(json['profilePhoto']),
+  //   );
+  // }
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      phone: json['phone'],
-      profilePhoto: List<String>.from(json['profilePhoto']),
+      firstName: json['firstName'] ?? '',
+      lastName: json['lastName'] ?? '',
+      email: json['email'] ?? '',
+      phone: json['phone'] ?? '',
+      profilePhoto: json['profilePhoto'] != null
+          ? List<String>.from(json['profilePhoto'])
+          : [],
     );
   }
 
