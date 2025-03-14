@@ -1,5 +1,4 @@
 import 'package:car_mate/core/utils/enums/user_type.dart';
-import 'package:flutter/foundation.dart';
 
 class UserEntity {
   final String firstName;
@@ -8,8 +7,9 @@ class UserEntity {
   final String password;
   final String? phoneNumber;
   final String? location;
-  final UserRole role;
+  final UserRole? role;
   final String? specialization;
+  final String? profileImage;
 
   UserEntity({
     required this.firstName,
@@ -18,8 +18,9 @@ class UserEntity {
     required this.password,
     this.phoneNumber,
     this.location,
-    required this.role,
+    this.role,
     this.specialization,
+    this.profileImage,
   });
 
   // toJson
@@ -30,7 +31,7 @@ class UserEntity {
         'lastName': lastName,
         'email': email,
         'password': password,
-        'role': role.name,
+        'role': role!.name,
       };
     }
     return {
@@ -40,8 +41,22 @@ class UserEntity {
       'password': password,
       'phone': phoneNumber,
       'location': location,
-      'role': role.name,
+      'role': role!.name,
       'specialization': specialization,
     };
+  }
+
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      email: json['email'],
+      password: json['password'] ?? '',
+      phoneNumber: json['phone'],
+      location: json['location'],
+      profileImage: json['profilePhoto'][0],
+      //   role: json['role'],
+      //   specialization: json['specialization'],
+    );
   }
 }

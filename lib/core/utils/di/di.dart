@@ -8,6 +8,7 @@ import 'package:car_mate/core/api/dio_consumer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth_register.dart';
+import 'register_profile_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -32,4 +33,7 @@ Future<void> initDependencies() async {
 
   // auth register
   authRegister();
+
+  // profile cubit
+  registerProfileCubit();
 }

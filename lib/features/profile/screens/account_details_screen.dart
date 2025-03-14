@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -10,6 +11,7 @@ import 'package:car_mate/features/repair/presentation/widgets/custom_image_profi
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class AccountDetailsScreen extends StatefulWidget {
   const AccountDetailsScreen({super.key});
@@ -82,68 +84,72 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
           child: FutureBuilder<Map<String, dynamic>?>(
             future: userProfile,
             builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError || snapshot.data == null) {
-                return const Center(child: Text('فشل تحميل البيانات'));
+              // if (snapshot.connectionState == ConnectionState.waiting) {
+              //   return const Center(child: CircularProgressIndicator());
+              // } else if (snapshot.hasError || snapshot.data == null) {
+              //   return const Center(child: Text('فشل تحميل البيانات'));
+              // }
+              if (snapshot.hasData) {
+                currentUser = snapshot.data!;
+                firstNameController.text = currentUser!['firstName'];
+                lastNameController.text = currentUser!['lastName'];
+                emailController.text = currentUser!['email'];
+                phoneController.text = currentUser?['phone'] ?? '';
               }
 
-              currentUser = snapshot.data!;
-              firstNameController.text = currentUser!['firstName'];
-              lastNameController.text = currentUser!['lastName'];
-              emailController.text = currentUser!['email'];
-              phoneController.text = currentUser!['phone'];
-
-              return Column(
-                children: [
-                  CustomAppBar(
-                    title: Text(TextManager.accountDetails.tr()),
-                  ),
-                  verticalSpace(20),
-                  GestureDetector(
-                    onTap: pickImage,
-                    child: CustomImageProfile(
-                      imageIcon: 'assets/svg/Edit.svg',
-                      alignment: Alignment.bottomRight,
-                      imageUrl: _image != null
-                          ? _image!.path
-                          : currentUser!['profilePhoto'][0],
+              return Skeletonizer(
+                enabled: snapshot.connectionState == ConnectionState.waiting,
+                child: Column(
+                  children: [
+                    CustomAppBar(
+                      title: Text(TextManager.accountDetails.tr()),
                     ),
-                  ),
-                  verticalSpace(20),
-                  TextField(
-                    controller: firstNameController,
-                    decoration: inputDecoration(TextManager.firstName.tr()),
-                  ),
-                  verticalSpace(16),
-                  TextField(
-                    controller: lastNameController,
-                    decoration: inputDecoration(TextManager.lastName.tr()),
-                  ),
-                  verticalSpace(16),
-                  TextField(
-                    controller: emailController,
-                    decoration: inputDecoration(TextManager.email.tr()),
-                  ),
-                  verticalSpace(16),
-                  TextField(
-                    controller: phoneController,
-                    decoration: inputDecoration(TextManager.phone.tr()),
-                  ),
-                  verticalSpace(30),
-                  ElevatedButton(
-                    onPressed: updateProfile,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorManager.primaryColor,
-                    ),
-                    child: Text(
-                      TextManager.updatedata.tr(),
-                      style: getBoldStyle(
-                        color: ColorManager.white,
+                    verticalSpace(20),
+                    GestureDetector(
+                      onTap: pickImage,
+                      child: CustomImageProfile(
+                        imageIcon: 'assets/svg/Edit.svg',
+                        alignment: Alignment.bottomRight,
+                        imageUrl: _image != null
+                            ? _image!.path
+                            : currentUser?['profilePhoto'][0],
                       ),
                     ),
-                  ),
-                ],
+                    verticalSpace(20),
+                    TextField(
+                      controller: firstNameController,
+                      decoration: inputDecoration(TextManager.firstName.tr()),
+                    ),
+                    verticalSpace(16),
+                    TextField(
+                      controller: lastNameController,
+                      decoration: inputDecoration(TextManager.lastName.tr()),
+                    ),
+                    verticalSpace(16),
+                    TextField(
+                      controller: emailController,
+                      decoration: inputDecoration(TextManager.email.tr()),
+                    ),
+                    verticalSpace(16),
+                    TextField(
+                      controller: phoneController,
+                      decoration: inputDecoration(TextManager.phone.tr()),
+                    ),
+                    verticalSpace(30),
+                    ElevatedButton(
+                      onPressed: updateProfile,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: ColorManager.primaryColor,
+                      ),
+                      child: Text(
+                        TextManager.updatedata.tr(),
+                        style: getBoldStyle(
+                          color: ColorManager.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),

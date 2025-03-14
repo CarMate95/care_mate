@@ -1,4 +1,5 @@
 import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
+import 'package:car_mate/features/profile/profile_cubit/profile_cubit.dart';
 import 'package:car_mate/features/repair/presentation/views/requests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,15 +15,22 @@ class LayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LayoutCubit(screens: [
-        const HomeScreen(), // Home Screen
-        const RequestsScreen(), // Repair Screen
-        const UploadLicenceScreen(), // My Car Screen
-        const IntroAiScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ProfileCubit.get(),
+        ),
+        BlocProvider(
+          create: (context) => LayoutCubit(screens: [
+            const HomeScreen(), // Home Screen
+            const RequestsScreen(), // Repair Screen
+            const UploadLicenceScreen(), // My Car Screen
+            const IntroAiScreen(),
 
-        // Chat with AI Screen
-      ]),
+            // Chat with AI Screen
+          ]),
+        ),
+      ],
       child: Builder(builder: (context) {
         return BlocBuilder<LayoutCubit, LayoutState>(
           builder: (context, state) {

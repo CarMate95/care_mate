@@ -35,4 +35,7 @@ extension ConfigExtension on BuildContext {
       setLocale(const Locale('ar'));
     }
   }
+
+  /// is arabic
+  bool get isArabic => locale.languageCode == 'ar';
 }
