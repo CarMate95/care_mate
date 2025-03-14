@@ -1,3 +1,4 @@
+import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
@@ -5,143 +6,150 @@ import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../widgets/profile_header.dart';
-import '../widgets/logout_button.dart';
-import 'account_details_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../profile_cubit/profile_cubit.dart';
 import '../widgets/delete_button.dart';
+import '../widgets/logout_button.dart';
+import '../widgets/profile_header.dart';
+import 'account_details_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.scaffoldBackgroundColor,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
+    return BlocProvider.value(
+      value: ProfileCubit.get(),
+      child: Scaffold(
         backgroundColor: context.scaffoldBackgroundColor,
-        title: Text(TextManager.settings.tr()),
-        centerTitle: true,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
+        appBar: AppBar(
+          scrolledUnderElevation: 0,
+          backgroundColor: context.scaffoldBackgroundColor,
+          title: Text(TextManager.settings.tr()),
+          centerTitle: true,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: const ProfileHeader(),
             ),
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: const ProfileHeader(),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                SettingsOption(
-                  icon: Icons.account_circle,
-                  title: TextManager.accountDetails.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountDetailsScreen()),
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  SettingsOption(
+                    icon: Icons.account_circle,
+                    title: TextManager.accountDetails.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AccountDetailsScreen()),
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.notifications,
-                  title: TextManager.notification.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NotificationScreen()),
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.notifications,
+                    title: TextManager.notification.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NotificationScreen()),
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.share,
-                  title: TextManager.shareApp.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AlertsScreen()),
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.share,
+                    title: TextManager.shareApp.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AlertsScreen()),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                SettingsOption(
-                  icon: Icons.color_lens,
-                  title: TextManager.appearance.tr(),
-                  trailing: Switch(
-                    activeColor: context.tertiaryColor,
-                    value: false,
-                    onChanged: (value) {
-                      context.changeTheme();
-                    },
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  SettingsOption(
+                    icon: Icons.color_lens,
+                    title: TextManager.appearance.tr(),
+                    trailing: Switch(
+                      activeColor: ColorManager.primaryColor,
+                      value: !context.isDarkMode,
+                      onChanged: (value) {
+                        context.changeTheme();
+                      },
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.language,
-                  title: TextManager.language.tr(),
-                  trailing: Switch(
-                    activeColor: context.tertiaryColor,
-                    value: false,
-                    onChanged: (value) {
-                      context.changeLanguage();
-                    },
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.language,
+                    title: TextManager.language.tr(),
+                    trailing: Switch(
+                      activeColor: ColorManager.primaryColor,
+                      value: context.isArabic,
+                      onChanged: (value) {
+                        context.changeLanguage();
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: const LogoutButton(),
             ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: const LogoutButton(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  TextManager.deleteWarning.tr(),
-                  textAlign: TextAlign.center,
-                  style:
-                      getBoldStyle(fontSize: 16, color: context.secondaryColor),
-                ),
-                const DeleteButton(),
-              ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    TextManager.deleteWarning.tr(),
+                    textAlign: TextAlign.center,
+                    style: getBoldStyle(
+                        fontSize: 16, color: context.secondaryColor),
+                  ),
+                  const DeleteButton(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

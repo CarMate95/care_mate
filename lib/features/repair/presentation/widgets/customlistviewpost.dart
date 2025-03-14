@@ -21,7 +21,7 @@ class CustomListViewPosts extends StatelessWidget {
             return const Center(child: Text('No posts found'));
           }
           return ListView.builder(
-            shrinkWrap: true,
+            // shrinkWrap: true,
             itemBuilder: (context, index) => CustomPost(post: snapshot.data![index]),
             itemCount: snapshot.data!.length,
           );

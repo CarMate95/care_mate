@@ -14,7 +14,8 @@ import 'package:car_mate/features/home/presentation/widgets/worker_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
+import 'home_app_bar.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -24,68 +25,8 @@ class HomeBody extends StatelessWidget {
     return ListView(
       children: [
         SizedBox(height: 16.h),
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () =>
-                  Navigator.pushNamed(context, PageName.accountdetailsScreen),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.r),
-                child: SizedBox(
-                  height: 50.h,
-                  width: 50.w,
-                  child: Image.asset(
-                    "assets/images/profile_image.jpg",
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pushNamed(
-                      context, PageName.accountdetailsScreen),
-                  child: Text(
-                    TextManager.rawanAyman.tr(),
-                    style: getBoldStyle(fontSize: 16.sp),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                verticalSpace(2.sp),
-                Text(
-                  TextManager.welcomeBack.tr(),
-                  style: getBoldStyle(fontSize: 12.sp),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-            const Spacer(),
-            Row(
-              children: [
-                _iconButton(
-                  context,
-                  icon: SvgPicture.asset(AssetsManager.notificationIcon),
-                  onTap: () => Navigator.pushNamed(
-                    context,
-                    PageName.notificationScreen,
-                  ),
-                ),
-                horizontalSpace(8.sp),
-                _iconButton(
-                  context,
-                  icon: Image.asset(AssetsManager.settingPicturePng),
-                  onTap: () =>
-                      Navigator.pushNamed(context, PageName.settingsScreen),
-                ),
-              ],
-            ),
-          ],
-        ),
+        // home app bar
+         const HomeAppBar(),
         SizedBox(height: 16.h),
         const ProblemWidget(),
         verticalSpace(3.h),
@@ -215,20 +156,4 @@ class HomeBody extends StatelessWidget {
       ],
     );
   }
-}
-
-Widget _iconButton(BuildContext context,
-    {required Widget icon, required VoidCallback onTap}) {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(8.r),
-    child: Container(
-      height: 40.h,
-      width: 40.w,
-      color: ColorManager.lightGrey,
-      child: GestureDetector(
-        onTap: onTap,
-        child: icon,
-      ),
-    ),
-  );
 }
