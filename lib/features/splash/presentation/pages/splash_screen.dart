@@ -2,6 +2,7 @@ import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../../config/routes/page_name.dart';
 import '../../../../core/utils/constants_manager.dart';
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: SizedBox(
           width: 220.w,
           height: 220.w,
-          child: Image.asset(
+          child: SvgPicture.asset(
             context.isDarkMode
                 ? AssetsManager.logoDark
                 : AssetsManager.logoLight,

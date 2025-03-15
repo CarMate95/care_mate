@@ -68,6 +68,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(TextManager.update.tr())),
       );
+      
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(TextManager.noupdate.tr())),

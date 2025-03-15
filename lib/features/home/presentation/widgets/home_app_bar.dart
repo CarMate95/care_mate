@@ -34,11 +34,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
         UserEntity? userEntity = ProfileCubit.get().userEntity;
-        return Skeletonizer(
-          enabled: state is ProfileLoading,
-          child: Row(
-            children: [
-              GestureDetector(
+        return Row(
+          children: [
+            Skeletonizer(
+              enabled: state is ProfileLoading,
+              child: GestureDetector(
                 onTap: () =>
                     Navigator.pushNamed(context, PageName.accountdetailsScreen),
                 child: ClipRRect(
@@ -55,8 +55,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   ),
                 ),
               ),
-              SizedBox(width: 10.w),
-              Column(
+            ),
+            SizedBox(width: 10.w),
+            Skeletonizer(
+              enabled: state is ProfileLoading,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
@@ -78,28 +81,28 @@ class _HomeAppBarState extends State<HomeAppBar> {
                   ),
                 ],
               ),
-              const Spacer(),
-              Row(
-                children: [
-                  _iconButton(
+            ),
+            const Spacer(),
+            Row(
+              children: [
+                _iconButton(
+                  context,
+                  icon: SvgPicture.asset(AssetsManager.notificationIcon),
+                  onTap: () => Navigator.pushNamed(
                     context,
-                    icon: SvgPicture.asset(AssetsManager.notificationIcon),
-                    onTap: () => Navigator.pushNamed(
-                      context,
-                      PageName.notificationScreen,
-                    ),
+                    PageName.notificationScreen,
                   ),
-                  horizontalSpace(8.sp),
-                  _iconButton(
-                    context,
-                    icon: Image.asset(AssetsManager.settingPicturePng),
-                    onTap: () =>
-                        Navigator.pushNamed(context, PageName.settingsScreen),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                horizontalSpace(8.sp),
+                _iconButton(
+                  context,
+                  icon: Image.asset(AssetsManager.settingPicturePng),
+                  onTap: () =>
+                      Navigator.pushNamed(context, PageName.settingsScreen),
+                ),
+              ],
+            ),
+          ],
         );
       },
     );
