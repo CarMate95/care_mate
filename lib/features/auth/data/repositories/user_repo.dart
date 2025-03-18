@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class UserRepository {
-  Future<UserModel> getUserById() async {
+  Future<UserModel> getUser() async {
     CacheHelper.init();
     final token = ConstantsManager.token;
     final response = await http.get(

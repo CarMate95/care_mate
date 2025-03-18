@@ -27,6 +27,26 @@ class AddPostModel {
       'lastName': userData.lastName,
     };
   }
+
+  AddPostModel copyWith({
+    int? id,
+    String? postContent,
+    List<String>? images,
+    int? userId,
+    String? updatedAt,
+    String? createdAt,
+    UserDataModel? userData,
+  }) {
+    return AddPostModel(
+      id: id ?? this.id,
+      postContent: postContent ?? this.postContent,
+      images: images ?? this.images,
+      userId: userId ?? this.userId,
+      updatedAt: updatedAt ?? this.updatedAt,
+      createdAt: createdAt ?? this.createdAt,
+      userData: userData ?? this.userData,
+    );
+  }
 }
 
 class UserDataModel {
