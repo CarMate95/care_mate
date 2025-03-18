@@ -11,12 +11,13 @@ class AssetsManager {
   static const String engineCheckImage = '${_pngPath}check_engine.png';
   static const String brakeWarningImage = '${_pngPath}brake_warning.png';
   static const String tierChangeAlertIcon = '${_pngPath}tier_change_alert.png';
-  static const String logoLight = '${_pngPath}logo_light.png';
-  static const String logoDark = '${_pngPath}logo_dark.png';
+  // static const String logoLight = '${_pngPath}logo_light.png';
+  // static const String logoDark = '${_pngPath}logo_dark.png';
   static const String carOB = '${_pngPath}carOB.png';
 
-
   /// SVG
+  static const String logoLight = '${_svgPath}logo_light.svg';
+  static const String logoDark = '${_svgPath}logo_dark.svg';
   static const String backIcon = '${_svgPath}back_icon.svg';
   static const String noConnection = '${_svgPath}no_connection.svg';
   static const String robotIcon = '${_svgPath}robot_icon.svg';
