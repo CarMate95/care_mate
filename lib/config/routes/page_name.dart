@@ -25,4 +25,5 @@ class PageName {
   static const String customBottomNavigation = '/customBottomNavigation';
   static const String chatScreen = '/chatScreen';
   static const String sessionScreen = '/sessionScreen';
+  static const String getOffersScreen = '/getOffersScreen';
 }

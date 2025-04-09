@@ -1,4 +1,5 @@
 import 'package:car_mate/config/routes/page_name.dart';
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -22,7 +23,9 @@ class CustomCreatePostWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              const CustomCircularAvatar(),
+              const CircleAvatar(
+                backgroundImage: AssetImage(AssetsManager.worker),
+              ),
               horizontalSpace(5),
               Text(
                 TextManager.whatHappening.tr(),

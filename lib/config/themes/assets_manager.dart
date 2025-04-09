@@ -15,7 +15,6 @@ class AssetsManager {
   static const String logoDark = '${_pngPath}logo_dark.png';
   static const String carOB = '${_pngPath}carOB.png';
 
-
   /// SVG
   static const String backIcon = '${_svgPath}back_icon.svg';
   static const String noConnection = '${_svgPath}no_connection.svg';
@@ -60,6 +59,8 @@ class AssetsManager {
   static const String abs = '${_pngPath}abs.png';
   static const String battery = '${_pngPath}battery.png';
   static const String brakeWarning = '${_pngPath}brake_warning2.png';
+  static const String noOffersBg = '${_svgPath}no_offers_bg.svg';
+  static const String noSessionsBg = 'assets/svg/sessions_no_data_bg.svg';
 
   /// Icons
 

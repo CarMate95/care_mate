@@ -1,11 +1,13 @@
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_states.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:car_mate/config/routes/page_name.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WorkerView extends StatelessWidget {
   const WorkerView({super.key});
@@ -13,11 +15,12 @@ class WorkerView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return BlocBuilder<GetWinchAndWorkerCubit, GetWinchAndWorkerState>(
+    return BlocBuilder<GetOffersCubit, GetOffersStates>(
       builder: (context, state) {
-        if (state is GetWorkerSuccessfullyState) {
-          if (state.workersList.isEmpty) {
+        if (state is GetOffersSuccessState) {
+          if (state.offers.isEmpty) {
             return Center(
+              heightFactor: 17.h,
               child: CustomText(
                 text: "No Worker available",
                 style: getMediumStyle(color: context.secondaryColor),
@@ -32,12 +35,13 @@ class WorkerView extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
-            itemCount: state.workersList.length,
+            itemCount: state.offers.length,
             itemBuilder: (context, index) {
-              final worker = state.workersList[index]; // WorkerModel
-              final profilePhoto = (worker.user.profilePhoto.isNotEmpty)
-                  ? worker.user.profilePhoto.first
-                  : 'assets/svg/default_image.jpg';
+              final worker = state.offers[index];
+              final profilePhoto =
+                  (worker.worker!.user.profilePhoto!.isNotEmpty)
+                      ? worker.worker!.user.profilePhoto?.first
+                      : 'assets/png/worker_1.png';
 
               return GestureDetector(
                 onTap: () {
@@ -58,7 +62,7 @@ class WorkerView extends StatelessWidget {
                             Border.all(width: 2, color: ColorManager.lightGrey),
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: profilePhoto.startsWith('https')
+                          image: profilePhoto!.startsWith('https')
                               ? NetworkImage(profilePhoto)
                               : AssetImage(profilePhoto) as ImageProvider,
                         ),
@@ -71,7 +75,7 @@ class WorkerView extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       child: CustomText(
                         text:
-                            '${worker.user.firstName} ${worker.user.lastName}',
+                            '${worker.worker!.user.firstName} ${worker.worker!.user.lastName}',
                         style:
                             getMediumStyle(fontSize: 14, color: Colors.white),
                         textAlign: TextAlign.center,
@@ -82,7 +86,7 @@ class WorkerView extends StatelessWidget {
               );
             },
           );
-        } else if (state is GetWorkerFailureState) {
+        } else if (state is GetOffersFailerState) {
           return Center(
             child: Text(
               state.errorMessage,
@@ -93,7 +97,8 @@ class WorkerView extends StatelessWidget {
           );
         }
 
-        return const Center(child: CircularProgressIndicator());
+        return Center(
+            heightFactor: 15.h, child: const CircularProgressIndicator());
       },
     );
   }

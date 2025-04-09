@@ -1,20 +1,19 @@
-
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_alert_dialog.dart';
 import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
-import 'package:car_mate/features/repair/data/repo/request_repo.dart';
+import 'package:car_mate/features/repair/data/repo/request_repo_implementation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-void showAlertDialogToMechanic(BuildContext context, int postId, int workerId,String userName) {
-  var mediaQuery = MediaQuery.of(context).size;
+void showAlertDialogToMechanic(
+    BuildContext context, int postId, int workerId, String userName) {
   TextEditingController noteController = TextEditingController();
   TextEditingController cashController = TextEditingController();
-  final OfferRepository offerRepository = OfferRepository();
-
+  OfferRepositoryImplementation offerRepository =
+      OfferRepositoryImplementation();
   showCustomAlertDialog(
     context: context,
     title: TextManager.requests,

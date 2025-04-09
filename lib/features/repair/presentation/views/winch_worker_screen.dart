@@ -1,3 +1,4 @@
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
@@ -7,7 +8,6 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
-import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
 import 'package:car_mate/features/repair/presentation/views/winch_view.dart';
 import 'package:car_mate/features/repair/presentation/views/worker_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -26,7 +26,7 @@ class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    var cubit = context.read<GetWinchAndWorkerCubit>();
+    var cubit = context.read<GetOffersCubit>();
 
     return CustomScaffold(
       body: Padding(
@@ -88,7 +88,7 @@ class _WorkerAndWinchScreenState extends State<WorkerAndWinchScreen> {
                               isClicked = false;
                               isWinchSelected = false;
                             });
-                            cubit.fetchWorker();
+                            cubit.fetchOffers(2);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: isClicked

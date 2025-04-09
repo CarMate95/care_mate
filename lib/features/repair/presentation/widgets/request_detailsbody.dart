@@ -1,3 +1,4 @@
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/helpers/time_formate.dart';
@@ -99,6 +100,19 @@ class RequestDetailsBody extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, PageName.getOffersScreen,
+                                arguments: postId);
+                          },
+                          icon: Icon(
+                            size: 28,
+                            Icons.supervised_user_circle,
+                            color: context.secondaryColor,
+                          ),
+                        )
                       ],
                     ),
                     verticalSpace(5),

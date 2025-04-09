@@ -1,18 +1,21 @@
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomImageProfile extends StatelessWidget {
-  const CustomImageProfile({
-    super.key,
-    this.alignment = Alignment.topRight,
-    required this.imageIcon,
-    this.imageUrl, 
-  });
+  const CustomImageProfile(
+      {super.key,
+      this.alignment = Alignment.topRight,
+      required this.imageIcon,
+      this.imageUrl,
+      this.onTapIcon});
 
   final AlignmentGeometry alignment;
   final String imageIcon;
-  final String? imageUrl; 
+  final String? imageUrl;
+  final void Function()? onTapIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +54,21 @@ class CustomImageProfile extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: imageUrl != null && imageUrl!.isNotEmpty
                       ? NetworkImage(imageUrl!)
-                      : const AssetImage('assets/images/default_profile.png')
+                      : const AssetImage('assets/png/worker_1.png')
                           as ImageProvider,
                   onError: (error, stackTrace) =>
-                      const AssetImage('assets/images/default_profile.png'),
+                      const AssetImage('assets/png/worker_1.png'),
                 ),
               ),
             ),
-            SvgPicture.asset(imageIcon),
+            InkWell(
+              onTap: onTapIcon,
+              child: SvgPicture.asset(
+                imageIcon,
+                width: 30.w,
+                color: context.secondaryColor,
+              ),
+            ),
           ],
         ),
       ],

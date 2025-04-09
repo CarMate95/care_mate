@@ -9,11 +9,13 @@ import 'package:car_mate/features/my_car/pages/upload_licence_screen.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
-import 'package:car_mate/features/repair/data/repo/get_worker_and_winch_repo_implementation.dart';
-import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
+import 'package:car_mate/features/repair/data/models/request_model.dart';
+import 'package:car_mate/features/repair/data/models/session_model.dart';
+import 'package:car_mate/features/repair/data/repo/request_repo_implementation.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
 import 'package:car_mate/features/repair/presentation/views/create_post_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/edite_worker_details_screen.dart';
-import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
+import 'package:car_mate/features/repair/presentation/views/offers_view.dart';
 import 'package:car_mate/features/repair/presentation/views/session_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/winch_worker_screen.dart';
 import 'package:car_mate/features/repair/presentation/views/worker_details_screen.dart';
@@ -21,7 +23,6 @@ import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
@@ -143,19 +144,23 @@ class RouteManager {
 
       case PageName.winchAndWorkerScreen:
         return _getPageTransition(
-          BlocProvider<GetWinchAndWorkerCubit>(
+          BlocProvider<GetOffersCubit>(
             create: (context) =>
-                GetWinchAndWorkerCubit(GetWorkerAndWinchRepoImplementation()),
+                GetOffersCubit(OfferRepositoryImplementation()),
             child: const WorkerAndWinchScreen(),
           ),
           settings: routeSettings,
         );
       case PageName.workerDetailsScreen:
-        // final worker = routeSettings.arguments as WorkerModel;
+        final OfferModel workerModel = routeSettings.arguments as OfferModel;
+
         return _getPageTransition(
-          const WorkerDetailsScreen(),
+          WorkerDetailsScreen(
+            offerModel: workerModel,
+          ),
           settings: routeSettings,
         );
+
       case PageName.homeScreen:
         return _getPageTransition(
           const HomeScreen(),
@@ -179,9 +184,19 @@ class RouteManager {
           settings: routeSettings,
         );
 
+      case PageName.getOffersScreen:
+        return _getPageTransition(
+          const OffersView(),
+          settings: routeSettings,
+        );
+
       case PageName.sessionScreen:
         return _getPageTransition(
-          const SessionScreen(),
+          BlocProvider<GetOffersCubit>(
+            create: (context) => GetOffersCubit(OfferRepositoryImplementation())
+              ..fetchSessions(),
+            child: const SessionScreen(),
+          ),
           settings: routeSettings,
         );
 

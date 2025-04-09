@@ -1,10 +1,13 @@
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
+import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_states.dart';
 import 'package:car_mate/features/repair/presentation/manager/cubit/get_winch_and_worker_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WinchView extends StatelessWidget {
   const WinchView({super.key});
@@ -12,11 +15,12 @@ class WinchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    return BlocBuilder<GetWinchAndWorkerCubit, GetWinchAndWorkerState>(
+    return BlocBuilder<GetOffersCubit, GetOffersStates>(
       builder: (context, state) {
         if (state is GetWinchSuccessfullyState) {
           if (state.winchsList.isEmpty) {
             return Center(
+              heightFactor: 15.h,
               child: CustomText(
                 text: "No winches available",
                 style: getMediumStyle(color: context.secondaryColor),
@@ -76,7 +80,8 @@ class WinchView extends StatelessWidget {
             ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return Center(
+            heightFactor: 15.h, child: const CircularProgressIndicator());
       },
     );
   }

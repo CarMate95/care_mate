@@ -11,7 +11,6 @@ import 'package:car_mate/features/home/presentation/widgets/problem_widget.dart'
 import 'package:car_mate/features/home/presentation/widgets/reminder_widget.dart';
 import 'package:car_mate/features/home/presentation/widgets/use_ai_widget.dart';
 import 'package:car_mate/features/home/presentation/widgets/worker_widget.dart';
-import 'package:car_mate/features/repair/data/repo/request_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -170,12 +169,7 @@ class HomeBody extends StatelessWidget {
         verticalSpace(12.sp),
         Row(
           children: [
-            Expanded(
-                child: InkWell(
-                    onTap: () {
-                      OfferRepository().getOffersForPost(2);
-                    },
-                    child: const UseAIWidget())),
+            const Expanded(child: UseAIWidget()),
             horizontalSpace(8.sp),
             const Expanded(child: ReminderWidget()),
           ],

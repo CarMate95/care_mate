@@ -8,7 +8,6 @@ import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_app_bar.dart';
 import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/presentation/views/session_screen.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcreatepostwidget.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customlistviewpost.dart';
 import 'package:easy_localization/easy_localization.dart';
