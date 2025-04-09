@@ -18,9 +18,6 @@ class GetSpecificPostModel {
   });
 
   factory GetSpecificPostModel.fromJson(Map<String, dynamic> json) {
-    if (json == null) {
-      throw Exception('Invalid post data');
-    }
     return GetSpecificPostModel(
       id: json['id'] ?? 0,
       postContent: json['postContent'] ?? "",

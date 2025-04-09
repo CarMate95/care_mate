@@ -25,7 +25,7 @@ class EditeWorkerDetailsScreen extends StatelessWidget {
                 const CustomAppBar(title: Text(TextManager.accountDetails)),
                 verticalSpace(30),
                 const CustomImageProfile(
-                    imageIcon: 'assets/svg/Edit.svg',
+                    imageIcon: 'assets/svg/Edit Pen.svg',
                     alignment: Alignment.bottomRight),
                 verticalSpace(20),
                 CustomText(

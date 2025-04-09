@@ -25,7 +25,11 @@ class RequestsBody extends StatelessWidget {
           children: [
             CustomAppBar(
               enbleBackIcon: false,
-              title: CustomText(text: TextManager.requests.tr()),
+              title: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, PageName.sessionScreen);
+                  },
+                  child: CustomText(text: TextManager.requests.tr())),
               suffex: InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, PageName.settingsScreen);

@@ -1,23 +1,22 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/helpers/time_formate.dart';
 import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/data/models/post_model.dart';
+import 'package:car_mate/features/repair/data/models/get_all_posts_model.dart';
 import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomPost extends StatelessWidget {
-  final PostModel post;
+  final GetAllPostsModel post;
 
   const CustomPost({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
-    final String? currentUserProfilePhotoUrl = post.author.profilePhoto.first;
+    final String currentUserProfilePhotoUrl = post.author.profilePhoto.first;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -28,7 +27,12 @@ class CustomPost extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: GestureDetector(
             onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) =>  RequestDetailsScreen(postId: post.id,)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => RequestDetailsScreen(
+                            postId: post.id,
+                          )));
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +44,7 @@ class CustomPost extends StatelessWidget {
                           ? NetworkImage(currentUserProfilePhotoUrl)
                           : null,
                       child: currentUserProfilePhotoUrl == null
-                          ? Icon(Icons.person)
+                          ? const Icon(Icons.person)
                           : null,
                     ),
                     horizontalSpace(5),

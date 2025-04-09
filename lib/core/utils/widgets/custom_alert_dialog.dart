@@ -10,6 +10,8 @@ void showCustomAlertDialog({
   double? horizontalPadding,
   double? verticalPadding,
   double? intensHorizontalPadding,
+  bool isdecoration = true,
+  bool isAlignCenter = false,
 }) {
   showDialog(
     builder: (context) {
@@ -21,9 +23,11 @@ void showCustomAlertDialog({
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Center(
           child: CustomText(
+            textAlign: isAlignCenter ? TextAlign.center : null,
             text: title,
             style: getBoldStyle(
-                fontSize: 20, decoration: TextDecoration.underline),
+                fontSize: 20,
+                decoration: isdecoration ? TextDecoration.underline : null),
           ),
         ),
         content: SingleChildScrollView(child: content),

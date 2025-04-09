@@ -61,6 +61,8 @@ class AssetsManager {
   static const String abs = '${_pngPath}abs.png';
   static const String battery = '${_pngPath}battery.png';
   static const String brakeWarning = '${_pngPath}brake_warning2.png';
+  static const String noOffersBg = '${_svgPath}no_offers_bg.svg';
+  static const String noSessionsBg = 'assets/svg/sessions_no_data_bg.svg';
 
   /// Icons
 

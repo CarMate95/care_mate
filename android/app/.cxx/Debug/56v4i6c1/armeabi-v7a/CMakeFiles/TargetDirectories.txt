@@ -1,2 +1,0 @@
-D:/Cars's project/care_mate/android/app/.cxx/Debug/56v4i6c1/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/Cars's project/care_mate/android/app/.cxx/Debug/56v4i6c1/armeabi-v7a/CMakeFiles/rebuild_cache.dir

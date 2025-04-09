@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -44,7 +45,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   Future<void> _loadUserData() async {
     try {
-      final user = await userRepository.getUserById();
+      final user = await userRepository.getUser();
       setState(() {
         currentUser = user;
       });
@@ -62,38 +63,38 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   Future<void> _submitPost() async {
-  if (isTextEntered && currentUser != null) {
-    final newPost = AddPostModel(
-      postContent: contentController.text,
-      images: selectedImages,
-      userId: currentUser!.id,
-      createdAt: DateTime.now().toIso8601String(),
-      updatedAt: DateTime.now().toIso8601String(),
-      userData: UserDataModel(
-        firstName: currentUser!.firstName,
-        lastName: currentUser!.lastName,
-        profilePhoto: [currentUser!.profilePhoto!.first ],
-      ),
-    );
+    if (isTextEntered && currentUser != null) {
+      final newPost = AddPostModel(
+        postContent: contentController.text,
+        images: selectedImages,
+        userId: currentUser!.id,
+        createdAt: DateTime.now().toIso8601String(),
+        updatedAt: DateTime.now().toIso8601String(),
+        userData: UserDataModel(
+          firstName: currentUser!.firstName,
+          lastName: currentUser!.lastName,
+          profilePhoto: [currentUser!.profilePhoto!.first],
+        ),
+      );
 
-    try {
-      await addPostRepository.createPost(
-        newPost,
-        selectedImages.map((path) => File(path)).toList(),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Post Created Successfully')),
-      );
-      contentController.clear();
-      setState(() => selectedImages.clear());
-      Navigator.of(context).pop();
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to create post: $e')),
-      );
+      try {
+        await addPostRepository.createPost(
+          newPost,
+          selectedImages.map((path) => File(path)).toList(),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Post Created Successfully')),
+        );
+        contentController.clear();
+        setState(() => selectedImages.clear());
+        Navigator.of(context).pop();
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to create post: $e')),
+        );
+      }
     }
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +119,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-          onPressed: () {
-            // Implement image picker functionality here
-          },
+          onPressed: () {},
           icon: Icons.photo_library_rounded,
           backgroundColor: ColorManager.darkGrey),
       body: Padding(
@@ -129,7 +128,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           children: [
             Row(
               children: [
-                const CustomCircularAvatar(),
+                const CircleAvatar(
+                  backgroundImage: AssetImage(AssetsManager.worker1),
+                ),
                 horizontalSpace(5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,7 +194,10 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             if (selectedImages.isNotEmpty)
               Wrap(
                 spacing: 8.0,
-                children: selectedImages.map((image) => Image.network(image, width: 100, height: 100)).toList(),
+                children: selectedImages
+                    .map((image) =>
+                        Image.network(image, width: 100, height: 100))
+                    .toList(),
               ),
           ],
         ),

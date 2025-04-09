@@ -1,3 +1,4 @@
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/helpers/time_formate.dart';
@@ -14,12 +15,15 @@ import 'package:flutter/material.dart';
 
 class RequestDetailsBody extends StatelessWidget {
   final int postId;
-  const RequestDetailsBody(
-      {super.key, required this.postId, });
+  const RequestDetailsBody({
+    super.key,
+    required this.postId,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final GetSpecificPostRepository postRepository = GetSpecificPostRepository();
+    final GetSpecificPostRepository postRepository =
+        GetSpecificPostRepository();
 
     return CustomScaffold(
       body: FutureBuilder<GetSpecificPostModel>(
@@ -67,7 +71,7 @@ class RequestDetailsBody extends StatelessWidget {
                               children: [
                                 CustomText(
                                   text:
-                                      author.firstName + ' ' + author.lastName,
+                                      '${author.firstName} ${author.lastName}',
                                   style: getMediumStyle(
                                       color: context.secondaryColor),
                                 ),
@@ -83,7 +87,7 @@ class RequestDetailsBody extends StatelessWidget {
                                 ),
                                 horizontalSpace(5),
                                 CustomText(
-                                  text:timeAgo(post.createdAt),
+                                  text: timeAgo(post.createdAt),
                                   style: getLightStyle(
                                           color: context.secondaryColor)
                                       .copyWith(fontWeight: FontWeight.bold),
@@ -96,6 +100,19 @@ class RequestDetailsBody extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, PageName.getOfferScreen,
+                                arguments: postId);
+                          },
+                          icon: Icon(
+                            size: 28,
+                            Icons.supervised_user_circle,
+                            color: context.secondaryColor,
+                          ),
+                        )
                       ],
                     ),
                     verticalSpace(5),
@@ -110,7 +127,7 @@ class RequestDetailsBody extends StatelessWidget {
                     ),
                     verticalSpace(10),
                     if (post.images != null)
-                      Container(
+                      SizedBox(
                         height: MediaQuery.of(context).size.height * 0.9,
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: GridView.builder(

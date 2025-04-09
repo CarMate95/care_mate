@@ -21,6 +21,7 @@ class CustomElevatedButton extends StatelessWidget {
   final bool enabled;
   final bool isLoading;
   final AlignmentGeometry buttonAlignment;
+  final TextAlign? textAlign;
 
   const CustomElevatedButton({
     super.key,
@@ -31,6 +32,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.shadow = false,
     this.height = 48,
     this.borderRadius = 16,
+    this.textAlign,
     this.borderColor = ColorManager.primaryColor,
     required this.text,
     this.textColor = ColorManager.whiteBackground,
@@ -58,6 +60,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         onPressed: enabled ? onPressed : null,
         child: CustomText(
+          textAlign: textAlign,
           text: text,
           style: style ??
               getBoldStyle(

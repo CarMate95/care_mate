@@ -11,4 +11,5 @@ class ColorManager {
   static const Color darkGrey = Color(0xff232326);
   static const Color lightGrey = Color(0xffD5D5D7);
   static const Color transparent = Colors.transparent;
+  static const Color blue = Colors.blue;
 }
