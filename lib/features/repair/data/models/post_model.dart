@@ -1,11 +1,10 @@
 class PostModel {
   final int id;
   final String postContent;
-  final List<String>? images;
+  final List<String> images;
   final int userId;
   final DateTime createdAt;
   final DateTime updatedAt;
-  final AuthorModel author;
 
   PostModel({
     required this.id,
@@ -14,41 +13,33 @@ class PostModel {
     required this.userId,
     required this.createdAt,
     required this.updatedAt,
-    required this.author,
   });
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
-      id: json['id'] ?? 0,
-      postContent: json['postContent'] ?? "",
+      id: json['id'],
+      postContent: json['postContent'],
       images: List<String>.from(json['images']),
-      userId: json['userId'] ?? 0,
+      userId: json['userId'],
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
-      author: AuthorModel.fromJson(json['author'] ?? {}),
     );
   }
-}
-
-class AuthorModel {
-  final int id;
-  final String firstName;
-  final String lastName;
-  final List<String> profilePhoto;
-
-  AuthorModel({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.profilePhoto,
-  });
-
-  factory AuthorModel.fromJson(Map<String, dynamic> json) {
-    return AuthorModel(
-      id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      profilePhoto: List<String>.from(json['profilePhoto']),
+  PostModel copyWith({
+    int? id,
+    String? postContent,
+    List<String>? images,
+    int? userId,
+    DateTime? updatedAt,
+    DateTime? createdAt,
+  }) {
+    return PostModel(
+      id: id ?? this.id,
+      postContent: postContent ?? this.postContent,
+      images: images ?? this.images,
+      userId: userId ?? this.userId,
+      updatedAt: updatedAt ?? this.updatedAt,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 }

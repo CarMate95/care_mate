@@ -16,7 +16,7 @@ class OfferRepositoryImplementation implements RequestRepo {
   Future<OfferModel> createOffer(
       int workerId, int postId, String cash, String note) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/offer/offer/$postId'),
+      Uri.parse('$baseUrl/offer/offer/2'),
       headers: {
         'Content-Type': 'application/json',
         'token': '${ConstantsManager.token}',

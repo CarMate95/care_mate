@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -10,23 +8,26 @@ import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:car_mate/features/auth/data/repositories/user_repo.dart';
-import 'package:car_mate/features/repair/data/models/add_post_model.dart';
-import 'package:car_mate/features/repair/data/repo/add_post_repo.dart';
+import 'package:car_mate/features/repair/data/models/post_model.dart';
+import 'package:car_mate/features/repair/data/repo/post_repo.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
-class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen({super.key});
+class EditPostScreen extends StatefulWidget {
+  final PostModel post;
+
+  const EditPostScreen({super.key, required this.post});
 
   @override
-  State<CreatePostScreen> createState() => _CreatePostScreenState();
+  State<EditPostScreen> createState() => _EditPostScreenState();
 }
 
-class _CreatePostScreenState extends State<CreatePostScreen> {
-  final TextEditingController contentController = TextEditingController();
-  final AddPostRepository addPostRepository = AddPostRepository();
+class _EditPostScreenState extends State<EditPostScreen> {
+  late TextEditingController contentController;
+  final PostRepository postRepository = PostRepository();
   final UserRepository userRepository = UserRepository();
   bool isTextEntered = false;
   List<String> selectedImages = [];
@@ -35,6 +36,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   @override
   void initState() {
     super.initState();
+    contentController = TextEditingController(text: widget.post.postContent);
+    selectedImages = List.from(widget.post.images);
     contentController.addListener(() {
       setState(() {
         isTextEntered = contentController.text.isNotEmpty;
@@ -56,41 +59,35 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
   }
 
-  @override
-  void dispose() {
-    contentController.dispose();
-    super.dispose();
+  Future<void> _pickImages() async {
+    final ImagePicker picker = ImagePicker();
+    final List<XFile> images = await picker.pickMultiImage();
+    setState(() {
+      selectedImages.addAll(images.map((e) => e.path));
+    });
   }
 
   Future<void> _submitPost() async {
     if (isTextEntered && currentUser != null) {
-      final newPost = AddPostModel(
+      final updatedPost = widget.post.copyWith(
         postContent: contentController.text,
         images: selectedImages,
-        userId: currentUser!.id,
-        createdAt: DateTime.now().toIso8601String(),
-        updatedAt: DateTime.now().toIso8601String(),
-        userData: UserDataModel(
-          firstName: currentUser!.firstName,
-          lastName: currentUser!.lastName,
-          profilePhoto: [currentUser!.profilePhoto!.first],
-        ),
+        updatedAt: DateTime.now(),
       );
 
       try {
-        await addPostRepository.createPost(
-          newPost,
-          selectedImages.map((path) => File(path)).toList(),
+        await postRepository.editPost(
+          widget.post.id,
+          updatedPost.postContent,
+          selectedImages,
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Post Created Successfully')),
+          const SnackBar(content: Text('Post Updated Successfully')),
         );
-        contentController.clear();
-        setState(() => selectedImages.clear());
         Navigator.of(context).pop();
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to create post: $e')),
+          SnackBar(content: Text('Failed to update post: $e')),
         );
       }
     }
@@ -104,7 +101,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         toolbarHeight: mediaQuery.height * 0.1,
         backgroundColor: ColorManager.darkGrey,
         title: CustomText(
-            text: TextManager.requests.tr(),
+            text: TextManager.editPost.tr(),
             style: getBoldStyle(color: ColorManager.lightGrey)),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -119,7 +116,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-          onPressed: () {},
+          onPressed: _pickImages,
           icon: Icons.photo_library_rounded,
           backgroundColor: ColorManager.darkGrey),
       body: Padding(
@@ -128,8 +125,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           children: [
             Row(
               children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage(AssetsManager.worker1),
+                CustomCircularAvatar(
+                  image: widget.post.images.first,
                 ),
                 horizontalSpace(5),
                 Column(
@@ -151,9 +148,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
                 const Spacer(),
                 InkWell(
-                  onTap: () {
-                    _submitPost();
-                  },
+                  onTap: _submitPost,
                   child: Container(
                     decoration: BoxDecoration(
                       color: isTextEntered
@@ -191,13 +186,29 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 border: InputBorder.none,
               ),
             ),
-            if (selectedImages.isNotEmpty)
-              Wrap(
-                spacing: 8.0,
-                children: selectedImages
-                    .map((image) =>
-                        Image.network(image, width: 100, height: 100))
-                    .toList(),
+            if (widget.post.images.isNotEmpty)
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
+                itemCount: widget.post.images.length,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    widget.post.images[index],
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.broken_image),
+                  );
+                },
+              )
+            else
+              CustomText(
+                text: '',
+                style: getLightStyle().copyWith(color: Colors.grey),
               ),
           ],
         ),

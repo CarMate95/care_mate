@@ -184,7 +184,7 @@ class RouteManager {
           settings: routeSettings,
         );
 
-      case PageName.getOffersScreen:
+      case PageName.getOfferScreen:
         return _getPageTransition(
           const OffersView(),
           settings: routeSettings,

@@ -24,6 +24,7 @@ class PageName {
   static const String homeScreen = '/homeScreen';
   static const String customBottomNavigation = '/customBottomNavigation';
   static const String chatScreen = '/chatScreen';
+  static const String editPostScreen = '/editPostScreen';
   static const String sessionScreen = '/sessionScreen';
-  static const String getOffersScreen = '/getOffersScreen';
+  static const String getOfferScreen = '/getOfferScreen';
 }

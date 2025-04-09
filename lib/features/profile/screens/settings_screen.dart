@@ -1,14 +1,20 @@
+import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
 import 'package:car_mate/features/notifications/presentation/pages/notification_screen.dart';
+import 'package:car_mate/features/repair/presentation/views/own_posts_screen.dart';
+import 'package:car_mate/features/repair/presentation/widgets/custom_listview_own_posts.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../widgets/profile_header.dart';
-import '../widgets/logout_button.dart';
-import 'account_details_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../profile_cubit/profile_cubit.dart';
 import '../widgets/delete_button.dart';
+import '../widgets/logout_button.dart';
+import '../widgets/profile_header.dart';
+import 'account_details_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -69,14 +75,14 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const Divider(color: Colors.grey),
                 SettingsOption(
-                  icon: Icons.share,
-                  title: TextManager.shareApp.tr(),
+                  icon: Icons.article,
+                  title: TextManager.myPosts.tr(),
                   trailing: Icon(Icons.arrow_forward_ios,
                       color: context.secondaryColor),
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AlertsScreen()),
+                        builder: (context) => const OwnPostsScreen()),
                   ),
                 ),
               ],

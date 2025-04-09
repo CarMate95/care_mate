@@ -173,6 +173,7 @@
     "aiTyping": "AI is typing...",
     "pickAnImage": "Pick an image",
     "askAI": "Ask AI..",
-    "offers":"Offers"
-
+    "myPosts":"My Posts",
+    "editPost":"Edit Post",
+    "deletePost":"Delete Post"
 }

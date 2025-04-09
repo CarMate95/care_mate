@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:car_mate/core/api/end_points.dart';
 import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:http/http.dart' as http;
@@ -142,7 +143,7 @@ class ProfileService {
           'token': token,
           'Content-Type': 'application/json',
         },
-      ).timeout(const Duration(seconds: 10));
+      ).timeout(const Duration(seconds: 15));
 
       print('📌 Response Status Code: ${response.statusCode}');
       print('📌 Response Body: ${response.body}');

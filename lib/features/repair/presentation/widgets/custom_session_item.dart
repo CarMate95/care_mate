@@ -144,7 +144,7 @@ class CustomSessionItem extends StatelessWidget {
                                               .fetchSessions();
 
                                           Navigator.pushReplacementNamed(
-                                              context, PageName.getOffersScreen,
+                                              context, PageName.getOfferScreen,
                                               arguments: sessionModel.postId);
                                         }
                                       },
@@ -277,7 +277,7 @@ class CustomSessionItem extends StatelessWidget {
                                   log('End Session Successfully');
 
                                   Navigator.pushReplacementNamed(
-                                      context, PageName.getOffersScreen,
+                                      context, PageName.getOfferScreen,
                                       arguments: sessionModel.postId);
                                 },
                               ),

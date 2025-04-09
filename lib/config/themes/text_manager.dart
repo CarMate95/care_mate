@@ -20,6 +20,9 @@ abstract class TextManager {
   static const String update = "update";
   static const String noupdate = "noupdate";
   static const String updatedata = "updatedata";
+  static const String myPosts = "myPosts";
+  static const String editPost = "editPost";
+  static const String deletePost = "deletePost";
 
   /// Language
   // (these values do not need to be translated)

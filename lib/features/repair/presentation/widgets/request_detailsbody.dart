@@ -104,7 +104,7 @@ class RequestDetailsBody extends StatelessWidget {
                         IconButton(
                           onPressed: () {
                             Navigator.pushNamed(
-                                context, PageName.getOffersScreen,
+                                context, PageName.getOfferScreen,
                                 arguments: postId);
                           },
                           icon: Icon(

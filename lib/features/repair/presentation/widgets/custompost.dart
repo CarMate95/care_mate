@@ -5,12 +5,12 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/repair/data/models/post_model.dart';
+import 'package:car_mate/features/repair/data/models/get_all_posts_model.dart';
 import 'package:car_mate/features/repair/presentation/views/request_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomPost extends StatelessWidget {
-  final PostModel post;
+  final GetAllPostsModel post;
 
   const CustomPost({super.key, required this.post});
 
