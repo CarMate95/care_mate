@@ -1,3 +1,4 @@
+import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -9,13 +10,20 @@ import 'package:car_mate/core/utils/widgets/custom_rating.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
+import 'package:car_mate/features/repair/data/models/request_model.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_image_profile.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_row_account_details.dart';
 import 'package:flutter/material.dart';
 
-class WorkerDetailsScreen extends StatelessWidget {
-  const WorkerDetailsScreen({super.key});
+class WorkerDetailsScreen extends StatefulWidget {
+  const WorkerDetailsScreen({super.key, required this.offerModel});
+  final OfferModel offerModel;
 
+  @override
+  State<WorkerDetailsScreen> createState() => _WorkerDetailsScreenState();
+}
+
+class _WorkerDetailsScreenState extends State<WorkerDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -37,15 +45,23 @@ class WorkerDetailsScreen extends StatelessWidget {
               ),
             ),
             verticalSpace(30),
-            const CustomImageProfile(imageIcon: 'assets/svg/default_image.jpg'),
+            CustomImageProfile(
+                alignment: Alignment.bottomRight,
+                onTapIcon: () {
+                  Navigator.pushNamed(
+                      context, PageName.editeWorkerDetailsScreen);
+                },
+                imageUrl: widget.offerModel.worker!.user.profilePhoto!.first,
+                imageIcon: 'assets/svg/Edit Pen.svg'),
             verticalSpace(10),
             CustomText(
-              text: 'Mohamed Ezzat',
+              text:
+                  '${widget.offerModel.worker!.user.firstName} ${widget.offerModel.worker!.user.lastName}',
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 24),
             ),
             CustomText(
-              text: 'mohamd@gmail.com',
+              text: widget.offerModel.worker!.user.email ?? '',
               style:
                   getMediumStyle(color: context.secondaryColor, fontSize: 12),
             ),
@@ -62,10 +78,11 @@ class WorkerDetailsScreen extends StatelessWidget {
                       horizontal: 8.0, vertical: 30.0),
                   child: Column(
                     children: [
-                      const CustomRowAccountDetails(
+                      CustomRowAccountDetails(
                         icon: Icons.person,
                         iconColor: Colors.red,
-                        text: 'Mohamed Ezzat',
+                        text:
+                            '${widget.offerModel.worker!.user.firstName} ${widget.offerModel.worker!.user.lastName}',
                       ),
                       verticalSpace(5),
                       Padding(
@@ -73,10 +90,10 @@ class WorkerDetailsScreen extends StatelessWidget {
                         child: CustomDivider(color: context.secondaryColor),
                       ),
                       verticalSpace(10),
-                      const CustomRowAccountDetails(
+                      CustomRowAccountDetails(
                         icon: Icons.call,
                         iconColor: Colors.green,
-                        text: '01148132889',
+                        text: widget.offerModel.worker!.user.phone.toString(),
                       ),
                       verticalSpace(5),
                       Padding(
@@ -84,10 +101,10 @@ class WorkerDetailsScreen extends StatelessWidget {
                         child: CustomDivider(color: context.secondaryColor),
                       ),
                       verticalSpace(10),
-                      const CustomRowAccountDetails(
+                      CustomRowAccountDetails(
                         icon: Icons.location_on_sharp,
                         iconColor: Colors.blue,
-                        text: 'Cairo',
+                        text: widget.offerModel.worker!.location,
                       ),
                     ],
                   ),
@@ -115,7 +132,14 @@ class WorkerDetailsScreen extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       verticalSpace(5),
-                      const CustomRating(),
+                      CustomRating(
+                        rate: widget.offerModel.worker!.rating,
+                        onRatingChanged: (rate) {
+                          setState(() {
+                            widget.offerModel.worker!.rating = rate;
+                          });
+                        },
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

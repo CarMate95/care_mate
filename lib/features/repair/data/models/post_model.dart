@@ -25,12 +25,12 @@ class PostModel {
       updatedAt: DateTime.parse(json['updatedAt']),
     );
   }
-    PostModel copyWith({
+  PostModel copyWith({
     int? id,
     String? postContent,
     List<String>? images,
     int? userId,
-   DateTime? updatedAt,
+    DateTime? updatedAt,
     DateTime? createdAt,
   }) {
     return PostModel(

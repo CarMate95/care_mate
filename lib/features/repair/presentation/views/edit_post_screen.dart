@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -62,12 +61,10 @@ class _EditPostScreenState extends State<EditPostScreen> {
 
   Future<void> _pickImages() async {
     final ImagePicker picker = ImagePicker();
-    final List<XFile>? images = await picker.pickMultiImage();
-    if (images != null) {
-      setState(() {
-        selectedImages.addAll(images.map((e) => e.path));
-      });
-    }
+    final List<XFile> images = await picker.pickMultiImage();
+    setState(() {
+      selectedImages.addAll(images.map((e) => e.path));
+    });
   }
 
   Future<void> _submitPost() async {
@@ -128,7 +125,9 @@ class _EditPostScreenState extends State<EditPostScreen> {
           children: [
             Row(
               children: [
-                const CustomCircularAvatar(),
+                CustomCircularAvatar(
+                  image: widget.post.images.first,
+                ),
                 horizontalSpace(5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,31 +186,30 @@ class _EditPostScreenState extends State<EditPostScreen> {
                 border: InputBorder.none,
               ),
             ),
-            if (widget.post.images != null && widget.post.images.isNotEmpty)
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount:widget.post.images!.length,
-                  itemBuilder: (context, index) {
-                    return Image.network(
-                    widget.post.images![index],
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          const Icon(Icons.broken_image),
-                    );
-                  },
-                )
-              else
-                CustomText(
-                  text: '',
-                  style: getLightStyle().copyWith(color: Colors.grey),
+            if (widget.post.images.isNotEmpty)
+              GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
                 ),
+                itemCount: widget.post.images.length,
+                itemBuilder: (context, index) {
+                  return Image.network(
+                    widget.post.images[index],
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.broken_image),
+                  );
+                },
+              )
+            else
+              CustomText(
+                text: '',
+                style: getLightStyle().copyWith(color: Colors.grey),
+              ),
           ],
         ),
       ),

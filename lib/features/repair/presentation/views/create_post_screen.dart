@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -118,9 +119,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-          onPressed: () {
-            // Implement image picker functionality here
-          },
+          onPressed: () {},
           icon: Icons.photo_library_rounded,
           backgroundColor: ColorManager.darkGrey),
       body: Padding(
@@ -129,7 +128,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           children: [
             Row(
               children: [
-                const CustomCircularAvatar(),
+                const CircleAvatar(
+                  backgroundImage: AssetImage(AssetsManager.worker1),
+                ),
                 horizontalSpace(5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

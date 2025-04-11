@@ -16,7 +16,7 @@ class CustomPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String? currentUserProfilePhotoUrl = post.author.profilePhoto.first;
+    final String currentUserProfilePhotoUrl = post.author.profilePhoto.first;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -44,7 +44,7 @@ class CustomPost extends StatelessWidget {
                           ? NetworkImage(currentUserProfilePhotoUrl)
                           : null,
                       child: currentUserProfilePhotoUrl == null
-                          ? Icon(Icons.person)
+                          ? const Icon(Icons.person)
                           : null,
                     ),
                     horizontalSpace(5),

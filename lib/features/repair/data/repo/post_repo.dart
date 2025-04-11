@@ -23,7 +23,8 @@ class PostRepository {
     }
   }
 
-  Future<void> editPost(int postId, String newContent, List<String>? imagePaths) async {
+  Future<void> editPost(
+      int postId, String newContent, List<String>? imagePaths) async {
     var request = http.MultipartRequest(
       'PUT',
       Uri.parse('$baseUrl/post/updatePost/$postId'),
@@ -43,7 +44,8 @@ class PostRepository {
           request.fields['existingImages[]'] = imagePath;
         } else {
           // Local image: Upload the file
-          request.files.add(await http.MultipartFile.fromPath('images', imagePath));
+          request.files
+              .add(await http.MultipartFile.fromPath('images', imagePath));
         }
       }
     }

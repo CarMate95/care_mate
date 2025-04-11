@@ -4,7 +4,6 @@ import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +22,8 @@ class ProblemWidget extends StatelessWidget {
       child: Container(
         height: 63.h,
         width: double.infinity,
-        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+        color:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Row(
@@ -31,9 +31,9 @@ class ProblemWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: GestureDetector(
-                   onTap: () {
-                  Navigator.pushNamed(context, PageName.createPostScreen);
-                },
+                  onTap: () {
+                    Navigator.pushNamed(context, PageName.createPostScreen);
+                  },
                   child: Text(
                     TextManager.shareYourCarProblem.tr(),
                     style: getMediumStyle(),

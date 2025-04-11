@@ -17,13 +17,12 @@ abstract class TextManager {
   static const String cashError = "cashError";
   static const String noInternetConnection = "noInternetConnection";
   static const String unknown = "unknown";
-   static const String update = "update";
-   static const String noupdate = "noupdate";
-   static const String updatedata = "updatedata";
-   static const String myPosts = "myPosts";
-   static const String editPost = "editPost";
-   static const String deletePost = "deletePost";
-   
+  static const String update = "update";
+  static const String noupdate = "noupdate";
+  static const String updatedata = "updatedata";
+  static const String myPosts = "myPosts";
+  static const String editPost = "editPost";
+  static const String deletePost = "deletePost";
 
   /// Language
   // (these values do not need to be translated)
@@ -152,8 +151,8 @@ abstract class TextManager {
   static const String validationPass1 = "validationPass1";
   static const String validationPass2 = "validationPass2";
   static const String validationPass3 = "validationPass3";
-   static const String addNote = "addNote";
-   static const String edit = "edit";
+  static const String addNote = "addNote";
+  static const String edit = "edit";
 
   //Alerts screen
   static const String checkEngine = "checkEngine";
@@ -215,4 +214,5 @@ abstract class TextManager {
   //Pick an image
   static const String pickAnImage = "pickAnImage";
   static const String askAI = "askAI";
+  static const String offers = 'offers';
 }
