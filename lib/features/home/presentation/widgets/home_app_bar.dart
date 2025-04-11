@@ -15,25 +15,14 @@ import '../../../../config/themes/text_manager.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/functions/spacing.dart';
 
-class HomeAppBar extends StatefulWidget {
+class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
-
-  @override
-  State<HomeAppBar> createState() => _HomeAppBarState();
-}
-
-class _HomeAppBarState extends State<HomeAppBar> {
-  @override
-  void initState() {
-    super.initState();
-    ProfileCubit.get().getProfile();
-  }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        UserEntity? userEntity = ProfileCubit.get().userEntity;
+        UserEntity? userEntity = ProfileCubit.get(context).userEntity;
         return Row(
           children: [
             Skeletonizer(
