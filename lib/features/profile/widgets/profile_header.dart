@@ -13,7 +13,7 @@ class ProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        UserEntity? userEntity = ProfileCubit.get().userEntity;
+        UserEntity? userEntity = ProfileCubit.get(context).userEntity;
         return Skeletonizer(
           enabled: state is ProfileLoading,
           child: Row(
