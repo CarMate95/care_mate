@@ -10,7 +10,6 @@ import 'package:car_mate/features/notifications/presentation/pages/notification_
 import 'package:car_mate/features/profile/screens/account_details_screen.dart';
 import 'package:car_mate/features/profile/screens/settings_screen.dart';
 import 'package:car_mate/features/repair/data/models/request_model.dart';
-import 'package:car_mate/features/repair/data/models/session_model.dart';
 import 'package:car_mate/features/repair/data/repo/request_repo_implementation.dart';
 import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
 import 'package:car_mate/features/repair/presentation/views/create_post_screen.dart';
@@ -23,6 +22,7 @@ import 'package:car_mate/features/splash/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
+
 import '../../features/auth/presentation/pages/login_screen.dart';
 import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';

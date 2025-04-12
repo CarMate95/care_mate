@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -26,7 +27,7 @@ void showAlertDialogToUser(
   showCustomAlertDialog(
     context: context,
     title: TextManager.requests,
-    content: BlocListener<GetOffersCubit, GetOffersStates>(
+    content: BlocConsumer<GetOffersCubit, GetOffersStates>(
       listener: (context, state) async {
         if (state is StartSessionSuccessState) {
           if (context.mounted) {
@@ -35,15 +36,13 @@ void showAlertDialogToUser(
             log('Started Successfully !!!!!!!!!!!');
           }
         } else if (state is StartSessionFailureState) {
-          if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.errorMessage)),
-            );
-            log(state.errorMessage);
-          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.errorMessage)),
+          );
+          log(state.errorMessage);
         }
       },
-      child: Column(
+      builder: (context, state) => Column(
         children: [
           Text(
             '${TextManager.by.tr()} : ${user?.firstName ?? 'No'} ${user?.lastName ?? 'Name'}',
@@ -178,14 +177,22 @@ void showAlertDialogToUser(
                                   Radius.circular(15),
                                 ),
                               ),
-                              child: Center(
-                                child: CustomText(
-                                  text: 'Start Work Together',
-                                  style: getRegularStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
+                              child: state is StartSessionLoadingState
+                                  ? Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        '${TextManager.loading.tr()}...',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  : Center(
+                                      child: CustomText(
+                                        text: 'Start Work Together',
+                                        style: getRegularStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
                             ),
                           )
                         : CustomText(

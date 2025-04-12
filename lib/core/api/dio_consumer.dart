@@ -6,6 +6,8 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../utils/constants_manager.dart';
+
 /// This class is responsible for handling api calls using Dio package
 class DioConsumer implements ApiConsumer {
   final Dio dio;
@@ -30,6 +32,7 @@ class DioConsumer implements ApiConsumer {
         'Content-Type': 'application/json',
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        'token': '${ConstantsManager.token}',
       },
     );
 
