@@ -17,8 +17,8 @@ class NotificationModel {
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
     return NotificationModel(
-      id: json['id']as int,
-      userId: json['userId']as int,
+      id: json['id'] as int,
+      userId: json['userId'] as int,
       message: json['message'],
       isRead: json['isRead'],
       createdAt: DateTime.parse(json['createdAt']),

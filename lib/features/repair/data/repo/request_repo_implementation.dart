@@ -1,4 +1,6 @@
 import 'dart:convert';
+
+import 'package:car_mate/core/api/dio_consumer.dart';
 import 'package:car_mate/core/errors/failures.dart';
 import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:car_mate/features/repair/data/models/request_model.dart';
@@ -7,32 +9,46 @@ import 'package:car_mate/features/repair/data/models/winch_model.dart';
 import 'package:car_mate/features/repair/data/repo/request_repo.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class OfferRepositoryImplementation implements RequestRepo {
   final String baseUrl = 'https://fb-m90x.onrender.com';
   final Dio dio = Dio();
 
-  Future<OfferModel> createOffer(
-      int workerId, int postId, String cash, String note) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/offer/offer/2'),
-      headers: {
-        'Content-Type': 'application/json',
-        'token': '${ConstantsManager.token}',
-      },
-      body: jsonEncode({
-        'workerId': workerId,
-        'postId': postId,
-        'cash': cash,
-        'note': note,
-      }),
-    );
+  Future<OfferModel?> createOffer(
+    int workerId,
+    int postId,
+    String cash,
+    String note,
+    BuildContext context,
+  ) async {
+    DioConsumer dio = DioConsumer(dio: Dio());
 
-    if (response.statusCode == 201) {
-      return OfferModel.fromJson(jsonDecode(response.body)['data']);
-    } else {
-      throw Exception('Failed to create offer: ${response.body}');
+    try {
+      final response = await dio.post(
+        path: '/offer/offer/$postId',
+        body: {
+          'cash': int.parse(cash),
+          'note': note,
+        },
+      );
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Offer sent successfully!'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      return OfferModel.fromJson(response['data']['offer']);
+    } on Exception catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to send offer: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return null;
     }
   }
 
@@ -84,8 +100,7 @@ class OfferRepositoryImplementation implements RequestRepo {
         '$baseUrl/session/getMyOwnSessions',
         options: Options(
           headers: {
-            'token':
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZG93ODg5NkBnbWFpbC5jb20iLCJpZCI6MzIsInJvbGUiOiJ3b3JrZXIiLCJpYXQiOjE3NDA5NjM4MTAsImV4cCI6MTc0OTYwMzgxMH0.eTD_gBdUnDTvHlGJY7C143RgsU3QeclnwXZwkdb8WUc',
+            'token': '${ConstantsManager.token}',
           },
         ),
       );
@@ -119,8 +134,7 @@ class OfferRepositoryImplementation implements RequestRepo {
         },
         options: Options(
           headers: {
-            "token":
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZG93ODg5NUBnbWFpbC5jb20iLCJpZCI6Mywicm9sZSI6IndvcmtlciIsImlhdCI6MTczODg5MzE2MywiZXhwIjoxNzQ3NTMzMTYzfQ.jmHbrEHS9oUKnG_JruJLvQDT9Cgqw5hdugb9h0G2_5g',
+            "token": "${ConstantsManager.token}",
           },
         ),
       );
@@ -157,8 +171,7 @@ class OfferRepositoryImplementation implements RequestRepo {
         },
         options: Options(
           headers: {
-            "token":
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZG93ODg5NUBnbWFpbC5jb20iLCJpZCI6Mywicm9sZSI6IndvcmtlciIsImlhdCI6MTczODg5MzE2MywiZXhwIjoxNzQ3NTMzMTYzfQ.jmHbrEHS9oUKnG_JruJLvQDT9Cgqw5hdugb9h0G2_5g',
+            "token": "${ConstantsManager.token}",
           },
         ),
       );

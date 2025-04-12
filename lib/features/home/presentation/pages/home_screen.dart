@@ -1,4 +1,3 @@
-
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/features/home/presentation/widgets/home_body.dart';
 import 'package:flutter/material.dart';

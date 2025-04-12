@@ -3,7 +3,9 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/data/models/request_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class CustomOfferWidget extends StatelessWidget {
@@ -64,12 +66,18 @@ class CustomOfferWidget extends StatelessWidget {
                             ),
                           ),
                           horizontalSpace(4),
-                          CustomText(
-                            text: timeAgoText,
-                            style: getMediumStyle(
-                              color: context.isDarkMode
-                                  ? Colors.white
-                                  : Colors.black,
+                          SizedBox(
+                            width: 0.2.sw,
+                            child: FittedBox(
+                              child: Text(
+                                timeAgoText.tr(),
+                                style: getMediumStyle(
+                                  color: context.isDarkMode
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                                // overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           )
                         ],

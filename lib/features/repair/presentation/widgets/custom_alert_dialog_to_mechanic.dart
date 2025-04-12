@@ -4,6 +4,7 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_alert_dialog.dart';
 import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
+import 'package:car_mate/core/utils/widgets/custom_text_form_field.dart';
 import 'package:car_mate/features/repair/data/repo/request_repo_implementation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -19,22 +20,19 @@ void showAlertDialogToMechanic(
     title: TextManager.requests,
     content: Column(
       children: [
-        Text('${TextManager.too.tr()} : userName ',
+        Text('${TextManager.too.tr()} : $userName ',
             style: getLightStyle(color: context.secondaryColor)),
         verticalSpace(10),
-        TextField(
+        CustomTextFormField(
           controller: noteController,
-          decoration: InputDecoration(
-            labelText: TextManager.note.tr(),
-          ),
+          maxLines: 5,
+          labelText: TextManager.note.tr(),
         ),
         verticalSpace(10),
-        TextField(
+        CustomTextFormField(
           controller: cashController,
           keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            labelText: TextManager.cash.tr(),
-          ),
+          labelText: TextManager.cash.tr(),
         ),
         verticalSpace(20),
         CustomElevatedButton(
@@ -43,29 +41,13 @@ void showAlertDialogToMechanic(
             final cash = cashController.text;
 
             if (note.isNotEmpty && cash.isNotEmpty) {
-              try {
-                await offerRepository.createOffer(
-                  workerId,
-                  postId,
-                  cash,
-                  note,
-                );
-
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Offer sent successfully!'),
-                    backgroundColor: Colors.green,
-                  ),
-                );
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Failed to send offer: \$e'),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
+              await offerRepository.createOffer(
+                workerId,
+                postId,
+                cash,
+                note,
+                context,
+              );
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(

@@ -23,5 +23,4 @@ class GetAllPostsRepository {
       throw Exception('Failed to fetch posts');
     }
   }
-
 }

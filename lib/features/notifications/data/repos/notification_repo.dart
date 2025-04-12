@@ -17,7 +17,9 @@ class NotificationRepository {
 
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body)['data']['notifications'];
-      return data.map((notifJson) => NotificationModel.fromJson(notifJson)).toList();
+      return data
+          .map((notifJson) => NotificationModel.fromJson(notifJson))
+          .toList();
     } else {
       throw Exception('Failed to fetch notifications: ${response.body}');
     }

@@ -2,7 +2,7 @@ import 'package:car_mate/core/api/dio_consumer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/api/end_points.dart';
-import '../../domain/entities/user_entity.dart';
+import '../models/user_data.dart';
 
 class AuthRemoteDataSource {
   final DioConsumer _dioConsumer;
@@ -10,7 +10,7 @@ class AuthRemoteDataSource {
   AuthRemoteDataSource(this._dioConsumer);
 
   // signup
-  Future<void> signup({required UserEntity user}) async {
+  Future<void> signup({required UserData user}) async {
     await _dioConsumer.post(
       path: EndPoints.signup,
       body: user.toJson(),
@@ -32,11 +32,10 @@ class AuthRemoteDataSource {
     return response['data']['token'];
   }
 
-
-Future<String?> getAuthToken() async {
-  final prefs = await SharedPreferences.getInstance();
-  return prefs.getString('auth_token');
-}
+  Future<String?> getAuthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
+  }
 
   // forget password
   Future<void> forgetPassword({required String email}) async {

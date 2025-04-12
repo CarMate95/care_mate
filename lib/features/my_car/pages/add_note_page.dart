@@ -218,7 +218,6 @@ class _AddNotePageState extends State<AddNotePage> {
       "endDate": _endDateController.text,
       "cash": _cashController.text,
       "note": _noteController.text,
-      
     };
 
     print('DEBUG: Sending data = $newNote');

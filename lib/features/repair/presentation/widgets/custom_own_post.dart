@@ -1,6 +1,3 @@
-import 'package:car_mate/features/repair/presentation/views/edit_post_screen.dart';
-import 'package:car_mate/features/repair/presentation/widgets/delete_post.dart';
-import 'package:flutter/material.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
@@ -8,18 +5,26 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:car_mate/features/repair/data/models/post_model.dart';
+import 'package:car_mate/features/repair/presentation/views/edit_post_screen.dart';
+import 'package:car_mate/features/repair/presentation/widgets/delete_post.dart';
+import 'package:flutter/material.dart';
+
+import '../../../auth/data/models/user_data.dart';
+import '../../../profile/profile_cubit/profile_cubit.dart';
 
 class CustomOwnPost extends StatelessWidget {
   final PostModel post;
-  final UserModel user;
 
-  const CustomOwnPost({super.key, required this.post, required this.user});
+  const CustomOwnPost({
+    super.key,
+    required this.post,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final String? currentUserProfilePhotoUrl = user.profilePhoto?.first;
+    UserData? userData = ProfileCubit.get(context).userModel?.userData;
+    String? currentUserProfilePhotoUrl = userData?.profileImage;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -49,7 +54,8 @@ class CustomOwnPost extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                              text: '${user.firstName} ${user.lastName}',
+                              text:
+                                  '${userData?.firstName ?? ''} ${userData?.lastName ?? ''}',
                               style: getMediumStyle(
                                 color: context.isDarkMode
                                     ? Colors.white
@@ -79,7 +85,7 @@ class CustomOwnPost extends StatelessWidget {
                           ],
                         ),
                         CustomText(
-                          text: '@${user.firstName}',
+                          text: '@${userData?.firstName}',
                           style: getLightStyle(),
                         ),
                       ],
