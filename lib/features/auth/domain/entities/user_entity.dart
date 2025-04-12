@@ -1,6 +1,7 @@
 import 'package:car_mate/core/utils/enums/user_type.dart';
 
 class UserEntity {
+  final int? id;
   final String firstName;
   final String lastName;
   final String email;
@@ -21,6 +22,7 @@ class UserEntity {
     this.role,
     this.specialization,
     this.profileImage,
+    this.id,
   });
 
   // toJson
@@ -48,6 +50,7 @@ class UserEntity {
 
   factory UserEntity.fromJson(Map<String, dynamic> json) {
     return UserEntity(
+      id: json['id'],
       firstName: json['firstName'],
       lastName: json['lastName'],
       email: json['email'],

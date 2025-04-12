@@ -1,12 +1,12 @@
-import 'package:car_mate/core/helpers/cache_helper.dart';
+import 'dart:convert';
+
 import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class UserRepository {
   Future<UserModel> getUser() async {
-    CacheHelper.init();
+    // CacheHelper.init();
     final token = ConstantsManager.token;
     final response = await http.get(
       Uri.parse('https://fb-m90x.onrender.com/user/myprofile'),

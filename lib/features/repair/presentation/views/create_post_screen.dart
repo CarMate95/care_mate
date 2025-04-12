@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -8,14 +9,15 @@ import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:car_mate/features/auth/data/repositories/user_repo.dart';
 import 'package:car_mate/features/repair/data/models/add_post_model.dart';
 import 'package:car_mate/features/repair/data/repo/add_post_repo.dart';
-import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../auth/domain/entities/user_entity.dart';
+import '../../../profile/profile_cubit/profile_cubit.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({super.key});
@@ -30,7 +32,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final UserRepository userRepository = UserRepository();
   bool isTextEntered = false;
   List<String> selectedImages = [];
-  UserModel? currentUser;
+  // UserModel? currentUser;
 
   @override
   void initState() {
@@ -40,21 +42,21 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         isTextEntered = contentController.text.isNotEmpty;
       });
     });
-    _loadUserData();
+    // _loadUserData();
   }
 
-  Future<void> _loadUserData() async {
-    try {
-      final user = await userRepository.getUser();
-      setState(() {
-        currentUser = user;
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to load user data: $e')),
-      );
-    }
-  }
+  // Future<void> _loadUserData() async {
+  //   try {
+  //     final user = await userRepository.getUser();
+  //     setState(() {
+  //       currentUser = user;
+  //     });
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Failed to load user data: $e')),
+  //     );
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -63,17 +65,18 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   }
 
   Future<void> _submitPost() async {
-    if (isTextEntered && currentUser != null) {
+    UserEntity? userEntity = ProfileCubit.get(context).userEntity;
+    if (isTextEntered && userEntity != null) {
       final newPost = AddPostModel(
         postContent: contentController.text,
         images: selectedImages,
-        userId: currentUser!.id,
+        userId: userEntity.id!,
         createdAt: DateTime.now().toIso8601String(),
         updatedAt: DateTime.now().toIso8601String(),
         userData: UserDataModel(
-          firstName: currentUser!.firstName,
-          lastName: currentUser!.lastName,
-          profilePhoto: [currentUser!.profilePhoto!.first],
+          firstName: userEntity.firstName,
+          lastName: userEntity.lastName,
+          profilePhoto: [userEntity.profileImage!],
         ),
       );
 
@@ -98,6 +101,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    UserEntity? userEntity = ProfileCubit.get(context).userEntity;
     var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -136,14 +140,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(
-                      text: currentUser != null
-                          ? '${currentUser!.firstName} ${currentUser!.lastName}'
+                      text: userEntity != null
+                          ? '${userEntity.firstName} ${userEntity.lastName}'
                           : 'Loading...',
                       style: getMediumStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w400),
                     ),
                     CustomText(
-                      text: '@${currentUser?.firstName ?? 'Loading...'}',
+                      text: '@${userEntity?.firstName ?? 'Loading...'}',
                       style: getLightStyle(color: context.secondaryColor)
                           .copyWith(fontWeight: FontWeight.w700),
                     ),
