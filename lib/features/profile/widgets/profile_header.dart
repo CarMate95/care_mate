@@ -4,6 +4,7 @@ import 'package:car_mate/features/auth/domain/entities/user_entity.dart';
 import 'package:car_mate/features/profile/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -38,7 +39,8 @@ class ProfileHeader extends StatelessWidget {
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold)),
                   Text(userEntity?.email ?? '',
-                      style: TextStyle(color: context.secondaryColor)),
+                      style: TextStyle(
+                          color: context.secondaryColor, fontSize: 12.sp)),
                 ],
               ),
             ],

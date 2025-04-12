@@ -1,5 +1,3 @@
-
-
 import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:car_mate/features/auth/data/repositories/user_repo.dart';
 import 'package:car_mate/features/repair/data/models/post_model.dart';
@@ -21,7 +19,9 @@ class CustomListViewOwnPosts extends StatelessWidget {
           if (userSnapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (userSnapshot.hasError) {
-            return const Center(child: Text('Failed to load user data: \${userSnapshot.error}'));
+            return const Center(
+                child:
+                    Text('Failed to load user data: \${userSnapshot.error}'));
           } else if (!userSnapshot.hasData) {
             return const Center(child: Text('No user data found'));
           }
@@ -31,7 +31,9 @@ class CustomListViewOwnPosts extends StatelessWidget {
               if (postSnapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (postSnapshot.hasError) {
-                return const Center(child: Text('Failed to load posts: \${postSnapshot.error}'));
+                return const Center(
+                    child:
+                        Text('Failed to load posts: \${postSnapshot.error}'));
               } else if (!postSnapshot.hasData || postSnapshot.data!.isEmpty) {
                 return const Center(child: Text('No posts found'));
               }
@@ -50,5 +52,3 @@ class CustomListViewOwnPosts extends StatelessWidget {
     );
   }
 }
-
-

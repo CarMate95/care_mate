@@ -21,133 +21,137 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: context.scaffoldBackgroundColor,
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
+    return BlocProvider.value(
+      value: ProfileCubit.get(),
+      child: Scaffold(
         backgroundColor: context.scaffoldBackgroundColor,
-        title: Text(TextManager.settings.tr()),
-        centerTitle: true,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
+        appBar: AppBar(
+          scrolledUnderElevation: 0,
+          backgroundColor: context.scaffoldBackgroundColor,
+          title: Text(TextManager.settings.tr()),
+          centerTitle: true,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: const ProfileHeader(),
             ),
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: const ProfileHeader(),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                SettingsOption(
-                  icon: Icons.account_circle,
-                  title: TextManager.accountDetails.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AccountDetailsScreen()),
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  SettingsOption(
+                    icon: Icons.account_circle,
+                    title: TextManager.accountDetails.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AccountDetailsScreen()),
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.notifications,
-                  title: TextManager.notification.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NotificationScreen()),
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.notifications,
+                    title: TextManager.notification.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NotificationScreen()),
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.article,
-                  title: TextManager.myPosts.tr(),
-                  trailing: Icon(Icons.arrow_forward_ios,
-                      color: context.secondaryColor),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OwnPostsScreen()),
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.article,
+                    title: TextManager.myPosts.tr(),
+                    trailing: Icon(Icons.arrow_forward_ios,
+                        color: context.secondaryColor),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const OwnPostsScreen()),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              children: [
-                SettingsOption(
-                  icon: Icons.color_lens,
-                  title: TextManager.appearance.tr(),
-                  trailing: Switch(
-                    activeColor: context.tertiaryColor,
-                    value: false,
-                    onChanged: (value) {
-                      context.changeTheme();
-                    },
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                children: [
+                  SettingsOption(
+                    icon: Icons.color_lens,
+                    title: TextManager.appearance.tr(),
+                    trailing: Switch(
+                      activeColor: context.tertiaryColor,
+                      value: false,
+                      onChanged: (value) {
+                        context.changeTheme();
+                      },
+                    ),
                   ),
-                ),
-                const Divider(color: Colors.grey),
-                SettingsOption(
-                  icon: Icons.language,
-                  title: TextManager.language.tr(),
-                  trailing: Switch(
-                    activeColor: context.tertiaryColor,
-                    value: false,
-                    onChanged: (value) {
-                      context.changeLanguage();
-                    },
+                  const Divider(color: Colors.grey),
+                  SettingsOption(
+                    icon: Icons.language,
+                    title: TextManager.language.tr(),
+                    trailing: Switch(
+                      activeColor: context.tertiaryColor,
+                      value: false,
+                      onChanged: (value) {
+                        context.changeLanguage();
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: context.tertiaryColor,
-              borderRadius: BorderRadius.circular(10),
+            Container(
+              decoration: BoxDecoration(
+                color: context.tertiaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: const LogoutButton(),
             ),
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: const LogoutButton(),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  TextManager.deleteWarning.tr(),
-                  textAlign: TextAlign.center,
-                  style:
-                      getBoldStyle(fontSize: 16, color: context.secondaryColor),
-                ),
-                const DeleteButton(),
-              ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    TextManager.deleteWarning.tr(),
+                    textAlign: TextAlign.center,
+                    style: getBoldStyle(
+                        fontSize: 16, color: context.secondaryColor),
+                  ),
+                  const DeleteButton(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

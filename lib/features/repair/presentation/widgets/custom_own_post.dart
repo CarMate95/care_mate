@@ -11,7 +11,6 @@ import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/auth/data/models/user_model.dart';
 import 'package:car_mate/features/repair/data/models/post_model.dart';
 
-
 class CustomOwnPost extends StatelessWidget {
   final PostModel post;
   final UserModel user;
@@ -39,7 +38,7 @@ class CustomOwnPost extends StatelessWidget {
                         ? NetworkImage(currentUserProfilePhotoUrl)
                         : null,
                     child: currentUserProfilePhotoUrl == null
-                        ? Icon(Icons.person)
+                        ? const Icon(Icons.person)
                         : null,
                   ),
                   horizontalSpace(5),
@@ -89,10 +88,20 @@ class CustomOwnPost extends StatelessWidget {
                   PopupMenuButton<String>(
                     onSelected: (value) {
                       if (value == 'edit') {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => EditPostScreen(post: post,)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => EditPostScreen(
+                                      post: post,
+                                    )));
                         // Handle edit action
                       } else if (value == 'delete') {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => DeletePost(postId:post.id,)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => DeletePost(
+                                      postId: post.id,
+                                    )));
                       }
                     },
                     itemBuilder: (context) => [
@@ -121,20 +130,19 @@ class CustomOwnPost extends StatelessWidget {
                 ),
                 text: post.postContent,
               ),
-              if (post.images != null && post.images!.isNotEmpty)
+              if (post.images.isNotEmpty)
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                   ),
-                  itemCount: post.images!.length,
+                  itemCount: post.images.length,
                   itemBuilder: (context, index) {
                     return Image.network(
-                      post.images![index],
+                      post.images[index],
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) =>
                           const Icon(Icons.broken_image),
