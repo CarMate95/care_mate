@@ -4,7 +4,6 @@ import 'package:flutter/Material.dart';
 import '../../../config/themes/text_style.dart';
 import 'custom_text.dart';
 
-
 class CustomTextButton extends StatelessWidget {
   final String title;
   final Color? color;
@@ -34,9 +33,8 @@ class CustomTextButton extends StatelessWidget {
       child: CustomText(
         text: title,
         style: getBoldStyle(
-          color: enabled
-              ? color ?? context.primaryColor
-              : context.secondaryColor,
+          color:
+              enabled ? color ?? context.primaryColor : context.secondaryColor,
           fontSize: fontSize ?? 15,
         ).copyWith(
           decoration: underlineColor != null && enabled

@@ -1,5 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:car_mate/features/auth/domain/entities/user_entity.dart';
+import 'package:car_mate/features/auth/data/models/user_data.dart';
 import 'package:car_mate/features/profile/profile_cubit/profile_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class HomeAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       builder: (context, state) {
-        UserEntity? userEntity = ProfileCubit.get(context).userEntity;
+        UserData? userData = ProfileCubit.get(context).userModel?.userData;
         return Row(
           children: [
             Skeletonizer(
@@ -35,10 +35,10 @@ class HomeAppBar extends StatelessWidget {
                   child: SizedBox(
                     height: 50.h,
                     width: 50.w,
-                    child: userEntity == null
+                    child: userData == null
                         ? Image.asset("assets/images/profile_image.jpg")
                         : CachedNetworkImage(
-                            imageUrl: userEntity.profileImage!,
+                            imageUrl: userData.profileImage!,
                             fit: BoxFit.cover,
                           ),
                   ),
@@ -55,7 +55,7 @@ class HomeAppBar extends StatelessWidget {
                     onTap: () => Navigator.pushNamed(
                         context, PageName.accountdetailsScreen),
                     child: Text(
-                      userEntity?.firstName ?? "Null",
+                      userData?.firstName ?? "Null",
                       style: getBoldStyle(fontSize: 16.sp),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

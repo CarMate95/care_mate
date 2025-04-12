@@ -48,7 +48,6 @@ class DioConsumer implements ApiConsumer {
 
         InterceptorsWrapper(
           onRequest: (options, handler) async {
-
             // TODO: wait backed to be ready
             // // For token handling
             // final token = CacheHelper.getStringData('token');
@@ -132,7 +131,7 @@ class DioConsumer implements ApiConsumer {
     required String path,
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
-  }) async{
+  }) async {
     final response = await dio.put(
       path,
       data: body,

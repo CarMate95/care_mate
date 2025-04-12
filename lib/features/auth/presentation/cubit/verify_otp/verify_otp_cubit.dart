@@ -40,5 +40,4 @@ class VerifyOtpCubit extends Cubit<VerifyOtpState> {
       emit(TimerState());
     }
   }
-
 }

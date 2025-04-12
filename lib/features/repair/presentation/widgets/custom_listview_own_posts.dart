@@ -8,7 +8,6 @@ class CustomListViewOwnPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final PostRepository postRepository = PostRepository();
     // final UserRepository userRepository = UserRepository();
     return Expanded(

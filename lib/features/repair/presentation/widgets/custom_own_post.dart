@@ -10,7 +10,7 @@ import 'package:car_mate/features/repair/presentation/views/edit_post_screen.dar
 import 'package:car_mate/features/repair/presentation/widgets/delete_post.dart';
 import 'package:flutter/material.dart';
 
-import '../../../auth/domain/entities/user_entity.dart';
+import '../../../auth/data/models/user_data.dart';
 import '../../../profile/profile_cubit/profile_cubit.dart';
 
 class CustomOwnPost extends StatelessWidget {
@@ -23,8 +23,8 @@ class CustomOwnPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserEntity? userEntity = ProfileCubit.get(context).userEntity;
-    String? currentUserProfilePhotoUrl = userEntity?.profileImage;
+    UserData? userData = ProfileCubit.get(context).userModel?.userData;
+    String? currentUserProfilePhotoUrl = userData?.profileImage;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2.0),
       child: Container(
@@ -55,7 +55,7 @@ class CustomOwnPost extends StatelessWidget {
                           children: [
                             CustomText(
                               text:
-                                  '${userEntity?.firstName ?? ''} ${userEntity?.lastName ?? ''}',
+                                  '${userData?.firstName ?? ''} ${userData?.lastName ?? ''}',
                               style: getMediumStyle(
                                 color: context.isDarkMode
                                     ? Colors.white
@@ -85,7 +85,7 @@ class CustomOwnPost extends StatelessWidget {
                           ],
                         ),
                         CustomText(
-                          text: '@${userEntity?.firstName}',
+                          text: '@${userData?.firstName}',
                           style: getLightStyle(),
                         ),
                       ],

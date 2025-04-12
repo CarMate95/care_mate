@@ -52,12 +52,12 @@ class CustomCreatePostWidget extends StatelessWidget {
 //         // },
 //         cursorColor: context.isDarkMode ? ColorManager.white : Colors.black,
 //         decoration: InputDecoration(
-          // suffixIcon: Icon(
-          //   Icons.photo_library,
-          //   color = context.isDarkMode
-          //       ? ColorManager.lightGrey
-          //       : ColorManager.black,
-          // ),
+// suffixIcon: Icon(
+//   Icons.photo_library,
+//   color = context.isDarkMode
+//       ? ColorManager.lightGrey
+//       : ColorManager.black,
+// ),
 //           border: InputBorder.none,
 //           hintText: TextManager.whatHappening.tr(),
 //           hintStyle: getLightStyle(

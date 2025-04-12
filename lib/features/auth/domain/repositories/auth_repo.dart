@@ -1,11 +1,11 @@
 import 'package:car_mate/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 
-import '../entities/user_entity.dart';
+import '../../data/models/user_data.dart';
 
 abstract class AuthRepo {
   // signup
-  Future<Either<Failure, void>> signup({required UserEntity user});
+  Future<Either<Failure, void>> signup({required UserData user});
 
   // login
   Future<Either<Failure, String>> login({

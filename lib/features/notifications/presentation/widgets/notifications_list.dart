@@ -13,7 +13,8 @@ class NotificationsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NotificationRepository notificationRepository = NotificationRepository();
+    final NotificationRepository notificationRepository =
+        NotificationRepository();
 
     return FutureBuilder<List<NotificationModel>>(
       future: notificationRepository.getNotifications(),
@@ -21,7 +22,8 @@ class NotificationsList extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Failed to load notifications: ${snapshot.error}'));
+          return Center(
+              child: Text('Failed to load notifications: ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Center(child: Text('No notifications available'));
         }
@@ -41,7 +43,8 @@ class NotificationsList extends StatelessWidget {
                     style: getBoldStyle(fontSize: 16.sp),
                   ),
                 NotificationWidget(notification: notification),
-                if (index < notifications.length - 1 && _isNewDay(notifications, index + 1))
+                if (index < notifications.length - 1 &&
+                    _isNewDay(notifications, index + 1))
                   Divider(
                     color: ColorManager.darkGrey,
                     thickness: 2.sp,
@@ -62,9 +65,13 @@ class NotificationsList extends StatelessWidget {
 
   String _getNotificationDate(DateTime date) {
     final now = DateTime.now();
-    if (date.year == now.year && date.month == now.month && date.day == now.day) {
+    if (date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day) {
       return TextManager.today.tr();
-    } else if (date.year == now.year && date.month == now.month && date.day == now.day - 1) {
+    } else if (date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day - 1) {
       return TextManager.yesterday.tr();
     } else {
       return DateFormat.yMMMd().format(date);
