@@ -75,24 +75,6 @@ class CustomSessionItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30.0),
-                            child: CustomElevatedButton(
-                              textAlign: TextAlign.center,
-                              height: 40.h,
-                              size: 14.sp,
-                              textColor: ColorManager.white,
-                              backgroundColor: ColorManager.blue,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, PageName.workerDetailsScreen,
-                                    arguments: sessionModel.offer.worker.user);
-                              },
-                              text: 'Worker Details',
-                            ),
-                          ),
-                        )
                       ],
                     ),
                     verticalSpace(16),
@@ -211,23 +193,6 @@ class CustomSessionItem extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
-                    child: CustomElevatedButton(
-                      height: 40.h,
-                      width: 118.w,
-                      textAlign: TextAlign.center,
-                      size: 14,
-                      textColor: ColorManager.white,
-                      backgroundColor: ColorManager.blue,
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, PageName.workerDetailsScreen,
-                            arguments: sessionModel);
-                      },
-                      text: 'Worker Details',
                     ),
                   ),
                 ],
