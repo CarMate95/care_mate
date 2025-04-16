@@ -26,11 +26,12 @@ class _RememberMeAndForgetPasswordRowState
       children: [
         // remember me checkbox
         IconButton(
-          onPressed: () async{
+          onPressed: () async {
             setState(() {
               _isRememberMe = !_isRememberMe;
             });
-            ConstantsManager.rememberMe = await CacheHelper.set(key: 'rememberMe', value: _isRememberMe);
+            ConstantsManager.rememberMe =
+                await CacheHelper.set(key: 'rememberMe', value: _isRememberMe);
           },
           icon: Icon(
             _isRememberMe ? Icons.check_circle_outline : Icons.circle_outlined,

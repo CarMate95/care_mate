@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -16,8 +17,8 @@ import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_s
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class CustomSessionItem extends StatelessWidget {
   const CustomSessionItem({super.key, required this.sessionModel});
@@ -75,24 +76,6 @@ class CustomSessionItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 30.0),
-                            child: CustomElevatedButton(
-                              textAlign: TextAlign.center,
-                              height: 40.h,
-                              size: 14.sp,
-                              textColor: ColorManager.white,
-                              backgroundColor: ColorManager.blue,
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, PageName.workerDetailsScreen,
-                                    arguments: sessionModel.offer.worker.user);
-                              },
-                              text: 'Worker Details',
-                            ),
-                          ),
-                        )
                       ],
                     ),
                     verticalSpace(16),
@@ -211,23 +194,6 @@ class CustomSessionItem extends StatelessWidget {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
-                    child: CustomElevatedButton(
-                      height: 40.h,
-                      width: 118.w,
-                      textAlign: TextAlign.center,
-                      size: 14,
-                      textColor: ColorManager.white,
-                      backgroundColor: ColorManager.blue,
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, PageName.workerDetailsScreen,
-                            arguments: sessionModel);
-                      },
-                      text: 'Worker Details',
                     ),
                   ),
                 ],

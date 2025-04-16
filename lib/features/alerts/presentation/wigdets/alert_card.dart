@@ -6,7 +6,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class AlertCard extends StatelessWidget {
   const AlertCard({super.key, required this.title, required this.image});
   final String title;
@@ -15,11 +14,12 @@ class AlertCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200.h, 
+      height: 200.h,
       width: 200.w,
-      padding: EdgeInsets.all(10.sp),  
+      padding: EdgeInsets.all(10.sp),
       decoration: BoxDecoration(
-        color: context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
+        color:
+            context.isDarkMode ? ColorManager.darkGrey : ColorManager.lightGrey,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
@@ -33,7 +33,8 @@ class AlertCard extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: context.isDarkMode ? ColorManager.black : Colors.white,
+                    color:
+                        context.isDarkMode ? ColorManager.black : Colors.white,
                   ),
                   borderRadius: BorderRadius.circular(50.r),
                 ),
@@ -51,16 +52,16 @@ class AlertCard extends StatelessWidget {
           ),
           verticalSpace(5.sp),
           SizedBox(height: 70.h, width: 70.w, child: image),
-           SizedBox(height: 1.sp),
+          SizedBox(height: 1.sp),
           Expanded(
             child: Text(
               title,
-              textAlign: TextAlign.center,  
-              style: context.locale.languageCode == 'en_US' 
-                  ? getSemiBoldStyle(fontSize: 18.sp) 
+              textAlign: TextAlign.center,
+              style: context.locale.languageCode == 'en_US'
+                  ? getSemiBoldStyle(fontSize: 18.sp)
                   : getBoldStyle(fontSize: 18.sp),
-              maxLines: 2,  
-              overflow: TextOverflow.ellipsis,  
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
               softWrap: true,
             ),
           ),

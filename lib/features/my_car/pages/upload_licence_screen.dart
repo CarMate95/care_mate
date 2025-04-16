@@ -66,24 +66,20 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(TextManager.myCar.tr()),
-        actions:
-             [
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, PageName.settingsScreen);
-                },
-                child: CustomSvgIcon(
-                  iconPath: AssetsManager.settingsIcon,
-                  size: 24,
-                  color: context.secondaryColor,
-                ),
+          centerTitle: true,
+          title: Text(TextManager.myCar.tr()),
+          actions: [
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, PageName.settingsScreen);
+              },
+              child: CustomSvgIcon(
+                iconPath: AssetsManager.settingsIcon,
+                size: 24,
+                color: context.secondaryColor,
               ),
-
-              ]
-            
-      ),
+            ),
+          ]),
       body: Column(
         children: [
           // Expanded لملء المساحة المتبقية

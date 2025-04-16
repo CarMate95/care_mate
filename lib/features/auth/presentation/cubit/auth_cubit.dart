@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/di/di.dart';
-import '../../domain/entities/user_entity.dart';
+import '../../data/models/user_data.dart';
 import '../../domain/usecases/change_password_use_case.dart';
 import '../../domain/usecases/verify_otp_use_case.dart';
 
@@ -35,7 +35,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController otpController = TextEditingController();
 
   // signup
-  Future<void> signup({required UserEntity user}) async {
+  Future<void> signup({required UserData user}) async {
     emit(AuthLoadingSignUp());
     final result = await _signupUseCase(user: user);
     result.fold(
@@ -87,9 +87,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // changePassword
-  Future<void> changePassword({ required String newPassword}) async {
+  Future<void> changePassword({required String newPassword}) async {
     emit(AuthLoadingChangePassword());
-    final result = await _changePasswordUseCase(email: emailOtp, newPassword: newPassword);
+    final result =
+        await _changePasswordUseCase(email: emailOtp, newPassword: newPassword);
     result.fold(
       (failure) => emit(AuthErrorChangePassword(message: failure.message)),
       (result) => emit(AuthSuccessChangePassword()),

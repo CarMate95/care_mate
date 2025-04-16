@@ -81,14 +81,14 @@ class _LoginBodyState extends State<LoginBody> {
           verticalSpace(24),
           // login button
           LoginButton(
-            onPressed: () async{
+            onPressed: () async {
               setState(() {
                 startValidation = true;
               });
               // validate the form
               if (!formKey.currentState!.validate()) return;
-              
-             await AuthCubit.get(context).login(
+
+              await AuthCubit.get(context).login(
                 email: emailController.text,
                 password: passwordController.text,
               );

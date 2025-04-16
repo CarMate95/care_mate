@@ -11,12 +11,13 @@ class BadResponseErrorHandler implements ErrorHandlerService {
   Failure handle(Exception exception) {
     final response = (exception as DioException).response?.data;
     final int? statusCode = response["code"];
-    final String statusMessage = response["message"] ?? TextManager.unknown.tr();
+    final String statusMessage =
+        response["message"] ?? TextManager.unknown.tr();
     // final Map<String, dynamic>? data = response["data"];
 
     // if there is no response
     if (statusCode == null) {
-      return  ServerFailure(
+      return ServerFailure(
         message: response["message"] ?? TextManager.unknown.tr(),
         statusCode: APIResponseCodes.unknown,
       );

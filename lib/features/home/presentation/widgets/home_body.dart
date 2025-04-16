@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
       children: [
         SizedBox(height: 16.h),
         // home app bar
-         const HomeAppBar(),
+        const HomeAppBar(),
         SizedBox(height: 16.h),
         const ProblemWidget(),
         verticalSpace(3.h),
