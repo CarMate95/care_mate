@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:car_mate/features/repair/data/models/post_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class PostRepository {
   final String baseUrl = 'https://fb-m90x.onrender.com';
@@ -23,38 +24,46 @@ class PostRepository {
   }
 
   Future<void> editPost(
-      int postId, String newContent, List<String>? imagePaths) async {
-    var request = http.MultipartRequest(
-      'PUT',
-      Uri.parse('$baseUrl/post/updatePost/$postId'),
-    );
+  int postId,
+  String newContent,
+  List<String> allImages,
+  int userId,
+) async {
+  var request = http.MultipartRequest(
+    'PUT',
+    Uri.parse('$baseUrl/post/updatePost/$postId'),
+  );
 
-    request.headers.addAll({
-      'token': '${ConstantsManager.token}',
-      'Content-Type': 'multipart/form-data',
-    });
+  request.headers.addAll({
+    'token': '${ConstantsManager.token}',
+    'Content-Type': 'multipart/form-data',
+  });
 
-    request.fields['postContent'] = newContent;
+  request.fields['postContent'] = newContent;
+  request.fields['userId'] = userId.toString();
 
-    if (imagePaths != null && imagePaths.isNotEmpty) {
-      for (var imagePath in imagePaths) {
-        if (imagePath.startsWith("http")) {
-          // Remote image: Just send the URL in the request body
-          request.fields['existingImages[]'] = imagePath;
-        } else {
-          // Local image: Upload the file
-          request.files
-              .add(await http.MultipartFile.fromPath('images', imagePath));
-        }
-      }
-    }
+  for (var imagePath in allImages) {
+    if (!imagePath.startsWith('http')) {
+      final extension = imagePath.split('.').last.toLowerCase();
+      final mimeType = _getMimeType(extension);
 
-    var response = await request.send();
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to edit post');
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'images',
+          imagePath,
+          contentType: mimeType,
+        ),
+      );
     }
   }
+
+  var response = await request.send();
+
+  if (response.statusCode != 200) {
+    throw Exception('Failed to edit post');
+  }
+}
+
 
   Future<void> deletePost(int postId) async {
     final response = await http.delete(
@@ -66,4 +75,20 @@ class PostRepository {
       throw Exception('Failed to delete post');
     }
   }
+  MediaType _getMimeType(String extension) {
+  switch (extension) {
+    case 'png':
+      return MediaType('image', 'png');
+    case 'jpg':
+    case 'jpeg':
+      return MediaType('image', 'jpeg');
+    case 'webp':
+      return MediaType('image', 'webp');
+    case 'gif':
+      return MediaType('image', 'gif');
+    default:
+      return MediaType('application', 'octet-stream'); // fallback لأي نوع مش معروف
+  }
+}
+
 }
