@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
@@ -14,6 +15,7 @@ import 'package:car_mate/features/repair/data/models/session_model.dart';
 import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_cubit.dart';
 import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_states.dart';
 import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -31,7 +33,7 @@ class CustomSessionItem extends StatelessWidget {
       onTap: () {
         showCustomAlertDialog(
             context: context,
-            title: 'Problem Details',
+            title: TextManager.problemDetails.tr(),
             content: Container(
               width: double.infinity,
               constraints: BoxConstraints(minHeight: 100.h),
@@ -81,7 +83,7 @@ class CustomSessionItem extends StatelessWidget {
                     CustomDivider(color: context.secondaryColor),
                     verticalSpace(9),
                     CustomText(
-                      text: 'Your Problem:',
+                      text: '${TextManager.yourProblem}:',
                       style: getMediumStyle(
                         color: context.secondaryColor,
                       ),
@@ -107,9 +109,10 @@ class CustomSessionItem extends StatelessWidget {
                                         sigmaX: 10.0, sigmaY: 10.0),
                                     child: customBuildConfirmationDialog(
                                       context: context,
-                                      btnText: 'End Session',
-                                      description:
-                                          'Are You Sure that you want to End this Session .',
+                                      btnText: TextManager.endSession.tr(),
+                                      description: TextManager
+                                          .areYouSurethatyouwanttoEndthisSession
+                                          .tr(),
                                       onPressed: () async {
                                         if (context.mounted) {
                                           await BlocProvider.of<GetOffersCubit>(
@@ -136,14 +139,14 @@ class CustomSessionItem extends StatelessWidget {
                               );
                             },
                             text: State is EndSessionLoadingState
-                                ? 'Loading....'
-                                : 'End Session ')
+                                ? TextManager.loadingSession.tr()
+                                : TextManager.endSession.tr())
                         : Center(
                             child: CustomText(
                               style:
                                   getMediumStyle(color: context.secondaryColor),
                               text: sessionModel.endDate == null
-                                  ? 'No End Already Now '
+                                  ? TextManager.noEndAlreadyNow.tr()
                                   : timeago.format(
                                       DateTime.parse(sessionModel.endDate!),
                                       locale: 'ar'),
@@ -201,7 +204,7 @@ class CustomSessionItem extends StatelessWidget {
               CustomDivider(color: context.secondaryColor),
               verticalSpace(9),
               CustomText(
-                text: 'Your Problem:',
+                text: TextManager.yourProblem.tr(),
                 style: getMediumStyle(
                   color: context.secondaryColor,
                 ),
@@ -228,9 +231,10 @@ class CustomSessionItem extends StatelessWidget {
                                   ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
                               child: customBuildConfirmationDialog(
                                 context: context,
-                                btnText: 'End Session',
-                                description:
-                                    'Are You Sure that you want to End this Session .',
+                                btnText: TextManager.endSession.tr(),
+                                description: TextManager
+                                    .areYouSurethatyouwanttoEndthisSession
+                                    .tr(),
                                 onPressed: () async {
                                   await BlocProvider.of<GetOffersCubit>(context)
                                       .endSession(
@@ -250,13 +254,13 @@ class CustomSessionItem extends StatelessWidget {
                           },
                         );
                       },
-                      text: 'End Session ',
+                      text: TextManager.endSession.tr(),
                     )
                   : Center(
                       child: CustomText(
                         style: getMediumStyle(color: context.secondaryColor),
                         text: sessionModel.endDate == null
-                            ? 'No End Already Now '
+                            ? TextManager.noEndAlreadyNow.tr()
                             : timeago.format(
                                 DateTime.parse(sessionModel.endDate!),
                                 locale: 'ar'),
