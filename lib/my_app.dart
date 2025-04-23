@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/routes/page_name.dart';
 import 'config/routes/route_manager.dart';
 import 'config/themes/themes.dart';
+import 'features/profile/profile_cubit/profile_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,10 +22,17 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) => MultiBlocProvider(
         providers: [
-          BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
+          BlocProvider<ThemeCubit>(
+            create: (context) => ThemeCubit(),
+          ),
+          BlocProvider<ProfileCubit>(
+            create: (context) => ProfileCubit.get(context),
+          ),
           BlocProvider<GetOffersCubit>(
-              create: (context) =>
-                  GetOffersCubit(OfferRepositoryImplementation())),
+            create: (context) => GetOffersCubit(
+              OfferRepositoryImplementation(),
+            ),
+          ),
         ],
         child: Builder(builder: (context) {
           return BlocBuilder<ThemeCubit, ThemeState>(

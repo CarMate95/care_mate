@@ -35,62 +35,60 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: AuthCubit.get(context),
-      child: Builder(
-        builder: (context) {
-          return CustomScaffold(
-            body: SingleChildScrollView(
-              child: Form(
-                key: fromKey,
-                autovalidateMode: startValidation
-                    ? AutovalidateMode.onUserInteraction
-                    : AutovalidateMode.disabled,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const CustomAppBar(),
-                    verticalSpace(16),
-                    CustomText(
-                      text: TextManager.resetPassword,
-                      style: getMediumStyle(
-                        fontSize: 22,
-                        color: context.secondaryColor,
-                      ),
+      child: Builder(builder: (context) {
+        return CustomScaffold(
+          body: SingleChildScrollView(
+            child: Form(
+              key: fromKey,
+              autovalidateMode: startValidation
+                  ? AutovalidateMode.onUserInteraction
+                  : AutovalidateMode.disabled,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CustomAppBar(),
+                  verticalSpace(16),
+                  CustomText(
+                    text: TextManager.resetPassword,
+                    style: getMediumStyle(
+                      fontSize: 22,
+                      color: context.secondaryColor,
                     ),
-                    verticalSpace(16),
-                    CustomText(
-                      text: TextManager.resetPasswordSubtitle,
-                      style: getMediumStyle(
-                        fontSize: 16,
-                        // ignore: deprecated_member_use
-                        color: context.secondaryColor.withOpacity(0.8),
-                      ),
+                  ),
+                  verticalSpace(16),
+                  CustomText(
+                    text: TextManager.resetPasswordSubtitle,
+                    style: getMediumStyle(
+                      fontSize: 16,
+                      // ignore: deprecated_member_use
+                      color: context.secondaryColor.withOpacity(0.8),
                     ),
-                    verticalSpace(32),
-                    // email
-                    EmailField(
-                      controller: _emailController,
-                    ),
-                    verticalSpace(24),
-                    // send code button
-                    VerifyEmailButton(
-                      onPressed: () async {
-                        setState(() {
-                          startValidation = true;
-                        });
-                        if (!fromKey.currentState!.validate()) return;
-          
-                        await AuthCubit.get(context)
-                            .forgetPassword(email: _emailController.text);
-                        // Navigator.pushNamed(context, PageName.verifyOtpScreen);
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  verticalSpace(32),
+                  // email
+                  EmailField(
+                    controller: _emailController,
+                  ),
+                  verticalSpace(24),
+                  // send code button
+                  VerifyEmailButton(
+                    onPressed: () async {
+                      setState(() {
+                        startValidation = true;
+                      });
+                      if (!fromKey.currentState!.validate()) return;
+
+                      await AuthCubit.get(context)
+                          .forgetPassword(email: _emailController.text);
+                      // Navigator.pushNamed(context, PageName.verifyOtpScreen);
+                    },
+                  ),
+                ],
               ),
             ),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
 }

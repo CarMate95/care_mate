@@ -143,10 +143,10 @@ class ProfileService {
           'token': token,
           'Content-Type': 'application/json',
         },
-      ).timeout(const Duration(seconds: 15));
+      );
 
       print('📌 Response Status Code: ${response.statusCode}');
-      print('📌 Response Body: ${response.body}');
+      print('📌 Response Body: ${response.body} mooo');
 
       if (response.statusCode == 200) {
         print('✅ تم حذف الحساب بنجاح');

@@ -18,7 +18,7 @@ class ConnectionTimeOutErrorHandler implements ErrorHandlerService {
 class SendTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return  ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.sendTimeout,
       message: TextManager.sendTimeout.tr(),
     );
@@ -28,7 +28,7 @@ class SendTimeOutErrorHandler implements ErrorHandlerService {
 class ReceiveTimeOutErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return  ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.receiveTimeout,
       message: TextManager.receiveTimeout.tr(),
     );
@@ -38,7 +38,7 @@ class ReceiveTimeOutErrorHandler implements ErrorHandlerService {
 class CancelErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return  ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.cancel,
       message: TextManager.cancelMessage..tr(),
     );
@@ -48,7 +48,7 @@ class CancelErrorHandler implements ErrorHandlerService {
 class BadCertificateErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return  ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.badRequest,
       message: TextManager.badRequest.tr(),
     );
@@ -58,7 +58,7 @@ class BadCertificateErrorHandler implements ErrorHandlerService {
 class UnknownErrorHandler implements ErrorHandlerService {
   @override
   Failure handle(Exception exception) {
-    return  ServerFailure(
+    return ServerFailure(
       statusCode: APIResponseCodes.unknown,
       message: TextManager.unknown.tr(),
     );

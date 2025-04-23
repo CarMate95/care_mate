@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 
 class DeletePost extends StatelessWidget {
   final int postId;
- final postRepository = PostRepository();
+  final postRepository = PostRepository();
 
- DeletePost({super.key, required this.postId});
+  DeletePost({super.key, required this.postId});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,10 @@ class DeletePost extends StatelessWidget {
                         ),
                       );
                       Future.delayed(const Duration(seconds: 1), () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const OwnPostsScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const OwnPostsScreen()));
                       });
                     } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(

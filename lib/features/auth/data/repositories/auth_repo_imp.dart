@@ -1,6 +1,6 @@
 import 'package:car_mate/core/errors/failures.dart';
 import 'package:car_mate/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:car_mate/features/auth/domain/entities/user_entity.dart';
+import 'package:car_mate/features/auth/data/models/user_data.dart';
 import 'package:car_mate/features/auth/domain/repositories/auth_repo.dart';
 import 'package:dartz/dartz.dart';
 
@@ -13,7 +13,7 @@ class AuthRepoImp extends AuthRepo {
 
   // signup
   @override
-  Future<Either<Failure, void>> signup({required UserEntity user}) async {
+  Future<Either<Failure, void>> signup({required UserData user}) async {
     try {
       await _authRemoteDataSource.signup(user: user);
       return const Right(null);

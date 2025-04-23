@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WorkerWidget extends StatelessWidget {
   const WorkerWidget({super.key, required this.workerImage});
-  
+
   final Widget workerImage;
 
   @override
@@ -12,13 +12,13 @@ class WorkerWidget extends StatelessWidget {
       height: 72.h,
       width: 72.w,
       decoration: BoxDecoration(
-        color: Colors.grey[300], 
+        color: Colors.grey[300],
         borderRadius: BorderRadius.circular(16.r),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.r),
         child: FittedBox(
-          fit: BoxFit.cover, 
+          fit: BoxFit.cover,
           child: workerImage,
         ),
       ),

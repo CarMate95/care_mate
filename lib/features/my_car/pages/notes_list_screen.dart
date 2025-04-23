@@ -129,7 +129,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 _notes.add({
                   'id': item['id']?.toString() ?? '',
                   // تنسيق التواريخ
-                  'startDate': _formatIsoDate(item['startDate']?.toString() ?? ''),
+                  'startDate':
+                      _formatIsoDate(item['startDate']?.toString() ?? ''),
                   'endDate': _formatIsoDate(item['endDate']?.toString() ?? ''),
                   'title': item['title']?.toString() ?? '',
                   'cash': item['cash']?.toString() ?? '',
@@ -288,7 +289,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
         final noteId = note['id'] ?? '';
         developer.log('DEBUG (delete): noteId = $noteId');
         final response = await _dio.delete(
-          '/user/deletereminder/$noteId', 
+          '/user/deletereminder/$noteId',
           options: Options(
             headers: {
               'token': token,
@@ -463,8 +464,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                                 style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
-                                                  color:
-                                                      context.secondaryColor,
+                                                  color: context.secondaryColor,
                                                 ),
                                               ),
                                             ),
@@ -491,7 +491,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                                 child: Text(
                                                   TextManager.edit.tr(),
                                                   style: TextStyle(
-                                                    color: context.secondaryColor,
+                                                    color:
+                                                        context.secondaryColor,
                                                   ),
                                                 ),
                                               ),
@@ -506,7 +507,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  color: ColorManager.primaryColor,
+                                                  color:
+                                                      ColorManager.primaryColor,
                                                   borderRadius:
                                                       BorderRadius.circular(8),
                                                 ),
@@ -675,7 +677,6 @@ class _AddNotePopupState extends State<_AddNotePopup> {
                 ),
               ),
               const SizedBox(height: 20),
-
               _buildTextField(_titleController, 'Title'),
               const SizedBox(height: 16),
               Row(
@@ -712,7 +713,6 @@ class _AddNotePopupState extends State<_AddNotePopup> {
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
-
               SizedBox(
                 height: 48,
                 child: ElevatedButton(
@@ -727,7 +727,8 @@ class _AddNotePopupState extends State<_AddNotePopup> {
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text(
                           saveText,
-                          style: const TextStyle(fontSize: 16, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.white),
                         ),
                 ),
               ),
@@ -987,7 +988,6 @@ class _EditNotePopupState extends State<_EditNotePopup> {
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
-
               SizedBox(
                 height: 48,
                 child: ElevatedButton(
@@ -1002,7 +1002,8 @@ class _EditNotePopupState extends State<_EditNotePopup> {
                       ? const CircularProgressIndicator(color: Colors.white)
                       : Text(
                           updateText,
-                          style: const TextStyle(fontSize: 16, color: Colors.white),
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.white),
                         ),
                 ),
               ),

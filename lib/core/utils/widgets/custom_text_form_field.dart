@@ -101,7 +101,7 @@ class CustomTextFormField extends StatelessWidget with InputDecorationGetter {
       cursorHeight: isMobile(context) ? 20.h : 30.h,
       cursorColor: Colors.black,
       maxLines: maxLines,
-      minLines: minLines,
+      // minLines: minLines,
       obscuringCharacter: '*',
       buildCounter: isTablet(context) && maxLength != null
           ? (

@@ -6,15 +6,15 @@ import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
 import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
-import 'package:car_mate/features/auth/data/models/user_model.dart';
-import 'package:car_mate/features/auth/data/repositories/user_repo.dart';
 import 'package:car_mate/features/repair/data/models/post_model.dart';
 import 'package:car_mate/features/repair/data/repo/post_repo.dart';
-import 'package:car_mate/features/repair/presentation/widgets/customcircularavatar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../auth/data/models/user_data.dart';
+import '../../../profile/profile_cubit/profile_cubit.dart';
 
 class EditPostScreen extends StatefulWidget {
   final PostModel post;
@@ -28,10 +28,9 @@ class EditPostScreen extends StatefulWidget {
 class _EditPostScreenState extends State<EditPostScreen> {
   late TextEditingController contentController;
   final PostRepository postRepository = PostRepository();
-  final UserRepository userRepository = UserRepository();
   bool isTextEntered = false;
   List<String> selectedImages = [];
-  UserModel? currentUser;
+  UserData? currentUser;
 
   @override
   void initState() {
@@ -48,7 +47,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
 
   Future<void> _loadUserData() async {
     try {
-      final user = await userRepository.getUser();
+      final user = ProfileCubit.get(context).userModel?.userData;
       setState(() {
         currentUser = user;
       });
@@ -125,9 +124,9 @@ class _EditPostScreenState extends State<EditPostScreen> {
           children: [
             Row(
               children: [
-                CustomCircularAvatar(
-                  image: widget.post.images.first,
-                ),
+                // CustomCircularAvatar(
+                //   image: widget.post.images.first,
+                // ),
                 horizontalSpace(5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

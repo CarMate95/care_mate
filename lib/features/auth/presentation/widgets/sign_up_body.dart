@@ -3,7 +3,7 @@ import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/kprint.dart';
 import 'package:car_mate/core/utils/widgets/email_field.dart';
 import 'package:car_mate/core/utils/widgets/password_field.dart';
-import 'package:car_mate/features/auth/domain/entities/user_entity.dart';
+import 'package:car_mate/features/auth/data/models/user_data.dart';
 import 'package:car_mate/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -186,15 +186,19 @@ class _SignUpBodyState extends State<SignUpBody> {
               });
               if (!formKey.currentState!.validate()) return;
               await AuthCubit.get(context).signup(
-                user: UserEntity(
+                user: UserData(
                   firstName: firstNameController.text,
                   lastName: lastNameController.text,
                   email: emailController.text,
                   password: passwordController.text,
                   role: userRoleValue!,
                   specialization: specializationValue,
-                  location: locationController.text.isEmpty? null: locationController.text,
-                  phoneNumber: phoneController.text.isEmpty? null: phoneController.text,
+                  location: locationController.text.isEmpty
+                      ? null
+                      : locationController.text,
+                  phoneNumber: phoneController.text.isEmpty
+                      ? null
+                      : phoneController.text,
                   // specialization:
                 ),
               );

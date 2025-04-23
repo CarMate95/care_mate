@@ -73,7 +73,6 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  
                   text: TextManager.toDiagnose.tr(),
                   style: getBoldStyle(
                     fontSize: 16,

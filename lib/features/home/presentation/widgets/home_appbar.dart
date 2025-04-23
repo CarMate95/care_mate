@@ -15,9 +15,10 @@ AppBar homeAppbar(BuildContext context) {
     elevation: 0,
     title: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children:  [
+      children: [
         GestureDetector(
-        onTap: () => Navigator.pushNamed(context, PageName.accountdetailsScreen),
+          onTap: () =>
+              Navigator.pushNamed(context, PageName.accountdetailsScreen),
           child: Text(
             TextManager.rawanAyman.tr(),
             style: getBoldStyle(fontSize: 16.sp),
@@ -42,13 +43,15 @@ AppBar homeAppbar(BuildContext context) {
             _iconButton(
               context,
               icon: SvgPicture.asset(AssetsManager.notificationIcon),
-              onTap: () => Navigator.pushNamed(context, PageName.notificationScreen),
+              onTap: () =>
+                  Navigator.pushNamed(context, PageName.notificationScreen),
             ),
             horizontalSpace(8.sp),
             _iconButton(
               context,
               icon: Image.asset(AssetsManager.settingPicturePng),
-              onTap: () => Navigator.pushNamed(context, PageName.settingsScreen),
+              onTap: () =>
+                  Navigator.pushNamed(context, PageName.settingsScreen),
             ),
           ],
         ),
@@ -57,7 +60,8 @@ AppBar homeAppbar(BuildContext context) {
     leading: Padding(
       padding: const EdgeInsets.all(4.0),
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, PageName.accountdetailsScreen),
+        onTap: () =>
+            Navigator.pushNamed(context, PageName.accountdetailsScreen),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8.r),
           child: Image.asset(
@@ -72,7 +76,8 @@ AppBar homeAppbar(BuildContext context) {
   );
 }
 
-Widget _iconButton(BuildContext context, {required Widget icon, required VoidCallback onTap}) {
+Widget _iconButton(BuildContext context,
+    {required Widget icon, required VoidCallback onTap}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(8.r),
     child: Container(

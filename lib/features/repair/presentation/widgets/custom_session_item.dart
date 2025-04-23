@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -18,8 +19,8 @@ import 'package:car_mate/features/repair/presentation/widgets/customcircularavat
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class CustomSessionItem extends StatelessWidget {
   const CustomSessionItem({super.key, required this.sessionModel});

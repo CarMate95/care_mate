@@ -7,5 +7,4 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
   static HomeCubit get(BuildContext context) =>
       BlocProvider.of<HomeCubit>(context);
-      
 }
