@@ -207,13 +207,20 @@ void showAlertDialogToUser(
                                 style: getMediumStyle(color: Colors.red),
                               )
                             : Center(
-                                child: CustomText(
-                                  style: getMediumStyle(
-                                      color: context.secondaryColor),
-                                  text: timeago.format(
-                                    session.endDate!,
-                                    locale: 'ar',
-                                  ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomText(
+                                      style: getMediumStyle(
+                                          color: context.secondaryColor),
+                                      text: timeago.format(
+                                        session.endDate!,
+                                        locale: 'ar',
+                                      ),
+                                    ),
+                                    const CustomText(text: 'Is Done'),
+                                  ],
                                 ),
                               ),
                   ],

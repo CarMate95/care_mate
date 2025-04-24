@@ -138,6 +138,7 @@ class OfferModel {
   final int workerId;
   final int postId;
   final String cash;
+  final String? message;
   final String note;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -154,6 +155,7 @@ class OfferModel {
     required this.isAccepted,
     required this.updatedAt,
     this.worker,
+    this.message,
     this.session,
   });
 

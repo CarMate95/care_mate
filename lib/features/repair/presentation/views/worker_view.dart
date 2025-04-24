@@ -28,64 +28,64 @@ class WorkerView extends StatelessWidget {
             );
           }
           return GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemCount: state.offers.length,
-            itemBuilder: (context, index) {
-              final worker = state.offers[index];
-              final profilePhoto =
-                  (worker.worker!.user.profilePhoto!.isNotEmpty)
-                      ? worker.worker!.user.profilePhoto?.first
-                      : 'assets/png/worker_1.png';
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemCount: state.offers.length,
+              itemBuilder: (context, index) {
+                final worker = state.offers[index];
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    PageName.workerDetailsScreen,
-                    arguments: worker, // Pass the worker data
-                  );
-                },
-                child: Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Container(
-                      width: mediaQuery.width * 0.4,
-                      height: mediaQuery.height * 0.21,
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(width: 2, color: ColorManager.lightGrey),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: profilePhoto!.startsWith('https')
-                              ? NetworkImage(profilePhoto)
-                              : AssetImage(profilePhoto) as ImageProvider,
+                final profilePhoto =
+                    (worker.worker?.user.profilePhoto.isNotEmpty ?? false)
+                        ? worker.worker!.user.profilePhoto.first
+                        : 'assets/png/worker_1.png';
+
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      PageName.workerDetailsScreen,
+                      arguments: worker, // Pass the worker data
+                    );
+                  },
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Container(
+                        width: mediaQuery.width * 0.4,
+                        height: mediaQuery.height * 0.21,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 2, color: ColorManager.lightGrey),
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: profilePhoto.startsWith('https')
+                                ? NetworkImage(profilePhoto)
+                                : AssetImage(profilePhoto) as ImageProvider,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
                         ),
-                        borderRadius: BorderRadius.circular(16),
                       ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(6),
-                      color: Colors.black.withOpacity(0.5),
-                      child: CustomText(
-                        text:
-                            '${worker.worker!.user.firstName} ${worker.worker!.user.lastName}',
-                        style:
-                            getMediumStyle(fontSize: 14, color: Colors.white),
-                        textAlign: TextAlign.center,
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(6),
+                        color: Colors.black.withOpacity(0.5),
+                        child: CustomText(
+                          text:
+                              '${worker.worker?.user.firstName ?? ''} ${worker.worker?.user.lastName ?? ''}',
+                          style:
+                              getMediumStyle(fontSize: 14, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          );
+                    ],
+                  ),
+                );
+              });
         } else if (state is GetOffersFailerState) {
           return Center(
             child: Text(

@@ -157,6 +157,7 @@ class RequestDetailsBody extends StatelessWidget {
                 // ),
                 if (userModel?.worker != null) ...{
                   const Spacer(),
+
                   CustomElevatedButton(
                     onPressed: () {
                       showAlertDialogToMechanic(
@@ -168,6 +169,9 @@ class RequestDetailsBody extends StatelessWidget {
                     },
                     text: TextManager.offerhelp,
                   )
+                  // : const CustomText(
+                  //     text:
+                  // 'Post is already completed by another worker and cannot be offered again')
                 },
               ],
             ),
