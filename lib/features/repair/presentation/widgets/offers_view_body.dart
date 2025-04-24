@@ -51,7 +51,7 @@ class _OffersViewBodyState extends State<OffersViewBody> {
                       imageUrl: AssetsManager.noOffersBg,
                     );
                   }
-                  // Display the offers in a list view
+
                   return ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

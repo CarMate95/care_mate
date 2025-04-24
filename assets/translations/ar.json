@@ -187,5 +187,7 @@
     "yourProblem":"المشكله",
     "noEndAlreadyNow":"لا نهاية بالفعل الآن",
     "noOffersYet" :"لا يوجد عروض بالفعل",
-    "whenyoureceiveanofferfromaworkeryoullseeithere": "عندما تتلقى عرضًا من أحد العمال، فسوف تراه هنا."
+    "whenyoureceiveanofferfromaworkeryoullseeithere": "عندما تتلقى عرضًا من أحد العمال، فسوف تراه هنا.",
+    "offer":"العروض",
+    "sessions":"الجلسات"
 }

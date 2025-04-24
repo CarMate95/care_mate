@@ -231,5 +231,7 @@ abstract class TextManager {
   static const String noEndAlreadyNow = 'noEndAlreadyNow';
   static const String noOffersYet = "noOffersYet";
   static const String whenyoureceiveanofferfromaworkeryoullseeithere =
-      "whenyoureceiveanofferfromaworker,you'llseeithere";
+      'whenyoureceiveanofferfromaworkeryoullseeithere';
+  static const String offer = 'offer';
+  static const String sessions = 'sessions';
 }

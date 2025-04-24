@@ -4,6 +4,7 @@ class PostModel {
   final List<String> images;
   final int userId;
   final DateTime createdAt;
+
   final DateTime updatedAt;
 
   PostModel({

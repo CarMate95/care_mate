@@ -185,5 +185,7 @@
     "yourProblem":"Your Problem",
     "noEndAlreadyNow":"No End Already Now",
     "noOffersYet" :"No Offers Yet",
-   "whenyoureceiveanofferfromaworkeryoullseeithere": "When you receive an offer from a worker, you'll see it here."
+   "whenyoureceiveanofferfromaworkeryoullseeithere": "When you receive an offer from a worker, you'll see it here.",
+   "offer":"Offer",
+   "sessions":"Sessions"
 }

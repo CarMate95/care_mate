@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 import 'package:car_mate/core/utils/constants_manager.dart';
 
 class AddNotePage extends StatefulWidget {
-  const AddNotePage({Key? key}) : super(key: key);
+  const AddNotePage({super.key});
 
   @override
   State<AddNotePage> createState() => _AddNotePageState();

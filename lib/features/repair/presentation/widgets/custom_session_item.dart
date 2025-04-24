@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
@@ -120,6 +119,7 @@ class CustomSessionItem extends StatelessWidget {
                                                   context)
                                               .endSession(
                                             sessionId: sessionModel.id,
+                                            isDone: true,
                                             endDate: DateTime.now()
                                                 .toUtc()
                                                 .toIso8601String(),
@@ -240,6 +240,7 @@ class CustomSessionItem extends StatelessWidget {
                                   await BlocProvider.of<GetOffersCubit>(context)
                                       .endSession(
                                     sessionId: sessionModel.id,
+                                    isDone: true,
                                     endDate: DateTime.now()
                                         .toUtc()
                                         .toIso8601String(),
