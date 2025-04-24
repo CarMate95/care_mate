@@ -30,8 +30,9 @@ class CustomPost extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => RequestDetailsScreen(
+                  builder: (context) => RequestDetailsScreen(
                     postId: post.id,
+                    isCompelted: post.isCompleted,
                   ),
                 ),
               );
