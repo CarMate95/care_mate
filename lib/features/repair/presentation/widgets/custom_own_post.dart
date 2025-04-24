@@ -1,6 +1,6 @@
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
-import 'package:car_mate/core/helpers/time_formate.dart' as TimeFormate;
+import 'package:car_mate/core/helpers/time_formate.dart' as timeformate;
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
@@ -74,7 +74,7 @@ class CustomOwnPost extends StatelessWidget {
                             ),
                             horizontalSpace(5),
                             CustomText(
-                              text: TimeFormate.timeAgo(post.createdAt),
+                              text: timeformate.timeAgo(post.createdAt),
                               style: getLightStyle(
                                 color: context.isDarkMode
                                     ? Colors.white

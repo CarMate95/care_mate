@@ -115,22 +115,27 @@ class CustomSessionItem extends StatelessWidget {
                                       final result = await showDialog<bool>(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                          title:
-                                              const Text('Is your work done?'),
-                                          content: const Text(
-                                              'Do you want to mark this session as done?'),
+                                          title: CustomText(
+                                              text: TextManager.issYourWorkDone
+                                                  .tr()),
+                                          content: CustomText(
+                                              text: TextManager
+                                                  .doYouWantToMarkThisSessionAsDone
+                                                  .tr()),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   context,
                                                   false), // "No" pressed
-                                              child: const Text('No'),
+                                              child: CustomText(
+                                                  text: TextManager.no.tr()),
                                             ),
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   context,
                                                   true), // "Yes" pressed
-                                              child: const Text('Yes'),
+                                              child: CustomText(
+                                                  text: TextManager.yes.tr()),
                                             ),
                                           ],
                                         ),
@@ -156,11 +161,14 @@ class CustomSessionItem extends StatelessWidget {
 
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
-                                            const SnackBar(
-                                              content:
-                                                  Text('تم إغلاق الجلسة بنجاح'),
+                                            SnackBar(
+                                              content: CustomText(
+                                                  text: TextManager
+                                                      .theSessionWasClosedSuccessFully
+                                                      .tr()),
                                               backgroundColor: Colors.green,
-                                              duration: Duration(seconds: 2),
+                                              duration:
+                                                  const Duration(seconds: 2),
                                             ),
                                           );
 
@@ -187,11 +195,15 @@ class CustomSessionItem extends StatelessWidget {
 
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                  'تم إغلاق الجلسة ولكن لم يتم تفعيل العمل'),
+                                            SnackBar(
+                                              content: CustomText(
+                                                text: TextManager
+                                                    .theSessionClosedButoperationNotActivated
+                                                    .tr(),
+                                              ),
                                               backgroundColor: Colors.orange,
-                                              duration: Duration(seconds: 2),
+                                              duration:
+                                                  const Duration(seconds: 2),
                                             ),
                                           );
 
@@ -310,19 +322,25 @@ class CustomSessionItem extends StatelessWidget {
                                   final result = await showDialog<bool>(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: const Text('Is your work done?'),
-                                      content: const Text(
-                                          'Do you want to mark this session as done?'),
+                                      title: CustomText(
+                                          text:
+                                              TextManager.issYourWorkDone.tr()),
+                                      content: CustomText(
+                                          text: TextManager
+                                              .doYouWantToMarkThisSessionAsDone
+                                              .tr()),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               context, false), // "No" pressed
-                                          child: const Text('No'),
+                                          child: CustomText(
+                                              text: TextManager.no.tr()),
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               context, true), // "Yes" pressed
-                                          child: const Text('Yes'),
+                                          child: CustomText(
+                                              text: TextManager.yes.tr()),
                                         ),
                                       ],
                                     ),
@@ -348,11 +366,13 @@ class CustomSessionItem extends StatelessWidget {
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(
-                                          content:
-                                              Text('تم إغلاق الجلسة بنجاح'),
+                                        SnackBar(
+                                          content: CustomText(
+                                              text: TextManager
+                                                  .theSessionWasClosedSuccessFully
+                                                  .tr()),
                                           backgroundColor: Colors.green,
-                                          duration: Duration(seconds: 2),
+                                          duration: const Duration(seconds: 2),
                                         ),
                                       );
 
@@ -379,11 +399,14 @@ class CustomSessionItem extends StatelessWidget {
 
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                              'تم إغلاق الجلسة ولكن لم يتم تفعيل العمل'),
+                                        SnackBar(
+                                          content: CustomText(
+                                            text: TextManager
+                                                .theSessionClosedButoperationNotActivated
+                                                .tr(),
+                                          ),
                                           backgroundColor: Colors.orange,
-                                          duration: Duration(seconds: 2),
+                                          duration: const Duration(seconds: 2),
                                         ),
                                       );
 

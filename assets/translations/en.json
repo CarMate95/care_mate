@@ -187,5 +187,11 @@
     "noOffersYet" :"No Offers Yet",
    "whenyoureceiveanofferfromaworkeryoullseeithere": "When you receive an offer from a worker, you'll see it here.",
    "offer":"Offer",
-   "sessions":"Sessions"
+   "sessions":"Sessions",
+   "yes":"Yes",
+   "no":"No",
+   "theSessionWasClosedSuccessFully":"The Session Was Closed SuccessFully",
+   "theSessionClosedButoperationNotActivated":"The Session Closed ,but operation Not Activated",
+   "issYourWorkDone":"Is your work done?",
+   "doyouWantToMarkThisSessionAsDone":"Do you want to mark this session as done?"
 }

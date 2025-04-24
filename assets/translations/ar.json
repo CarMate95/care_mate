@@ -189,5 +189,11 @@
     "noOffersYet" :"لا يوجد عروض بالفعل",
     "whenyoureceiveanofferfromaworkeryoullseeithere": "عندما تتلقى عرضًا من أحد العمال، فسوف تراه هنا.",
     "offer":"العروض",
-    "sessions":"الجلسات"
+    "sessions":"الجلسات",
+    "yes":"نعم",
+    "no":"لا",
+    "theSessionWasClosedSuccessFully":"تم إغلاق الجلسه بنجاح",
+    "theSessionClosedButoperationNotActivated":"تم إغلاق الجلسة ولكن لم يتم تفعيل العمل",
+    "doyouWantToMarkThisSessionAsDone":"هل تريد وضع علامه علي هذه الجلسه كمنتهيه ؟",
+    "issYourWorkDone":" هل انتهيت من عمللك؟"
 }
