@@ -6,6 +6,7 @@ class GetAllPostsModel {
   final DateTime createdAt;
   final DateTime updatedAt;
   final AuthorModel author;
+  final bool isCompleted;
 
   GetAllPostsModel({
     required this.id,
@@ -15,12 +16,10 @@ class GetAllPostsModel {
     required this.createdAt,
     required this.updatedAt,
     required this.author,
+    required this.isCompleted,
   });
 
   factory GetAllPostsModel.fromJson(Map<String, dynamic> json) {
-    if (json == null) {
-      throw Exception('Invalid post data');
-    }
     return GetAllPostsModel(
       id: json['id'] ?? 0,
       postContent: json['postContent'] ?? "",
@@ -29,6 +28,7 @@ class GetAllPostsModel {
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
       author: AuthorModel.fromJson(json['author'] ?? {}),
+      isCompleted: json['isCompleted'],
     );
   }
 }

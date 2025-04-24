@@ -20,10 +20,8 @@ import 'custom_alert_dialog_to_mechanic.dart';
 
 class RequestDetailsBody extends StatelessWidget {
   final int postId;
-  const RequestDetailsBody({
-    super.key,
-    required this.postId,
-  });
+
+  const RequestDetailsBody({super.key, required this.postId});
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +144,6 @@ class RequestDetailsBody extends StatelessWidget {
                     ),
                   ),
                 },
-
                 // if (userRole == UserRole.worker)
                 // CustomOfferHelp(
                 //   onTap: () {

@@ -1,5 +1,6 @@
 import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
@@ -9,18 +10,14 @@ import 'package:car_mate/features/repair/presentation/manager/cubit/get_offers_s
 import 'package:car_mate/features/repair/presentation/widgets/custom_no_offers_sessions_view.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_session_appbar.dart';
 import 'package:car_mate/features/repair/presentation/widgets/custom_session_item.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SessionScreenBody extends StatefulWidget {
+class SessionScreenBody extends StatelessWidget {
   const SessionScreenBody({super.key});
 
-  @override
-  State<SessionScreenBody> createState() => _SessionScreenBodyState();
-}
-
-class _SessionScreenBodyState extends State<SessionScreenBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +31,9 @@ class _SessionScreenBodyState extends State<SessionScreenBody> {
                 builder: (context, state) {
                   if (state is GetSessionsSuccessState) {
                     if (state.sessionsList.isEmpty) {
-                      return const CustomNoDataYet(
-                        title: 'No Active Session Yet',
-                        description:
-                            'When you Accept an offer from worker,\nyou\'ll see here your session with him.',
+                      return CustomNoDataYet(
+                        title: TextManager.noActiveSessionYet.tr(),
+                        description: TextManager.descriptionSessionScreen.tr(),
                         imageUrl: AssetsManager.noSessionsBg,
                       );
                     }

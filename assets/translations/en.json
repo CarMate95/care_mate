@@ -175,5 +175,17 @@
     "askAI": "Ask AI..",
     "myPosts":"My Posts",
     "editPost":"Edit Post",
-    "deletePost":"Delete Post"
+    "deletePost":"Delete Post",
+    "noActiveSessionYet":"No Active Session Yet",
+    "whenyouAcceptnofferfromworkeryoullseehereyoursessionwithhim":"When you Accept an offer from worker,\nyou'll see here your session with him.",
+    "problemDetails":"Problem Details",
+    "endSession":"End Session",
+    "areYouSurethatyouwanttoEndthisSession":"Are You Sure that you want to End this Session .",
+    "loadingSession":"Loading....",
+    "yourProblem":"Your Problem",
+    "noEndAlreadyNow":"No End Already Now",
+    "noOffersYet" :"No Offers Yet",
+   "whenyoureceiveanofferfromaworkeryoullseeithere": "When you receive an offer from a worker, you'll see it here.",
+   "offer":"Offer",
+   "sessions":"Sessions"
 }
