@@ -15,6 +15,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 void showAlertDialogToUser(
   BuildContext context,
@@ -29,6 +30,7 @@ void showAlertDialogToUser(
     title: TextManager.requests,
     content: BlocConsumer<GetOffersCubit, GetOffersStates>(
       listener: (context, state) async {
+        timeago.setLocaleMessages('en', timeago.ArMessages());
         if (state is StartSessionSuccessState) {
           if (context.mounted) {
             Navigator.pop(context);
@@ -195,10 +197,21 @@ void showAlertDialogToUser(
                                     ),
                             ),
                           )
-                        : CustomText(
-                            text: 'In Progress',
-                            style: getMediumStyle(color: Colors.red),
-                          ),
+                        : session.endDate == null
+                            ? CustomText(
+                                text: 'In Progress',
+                                style: getMediumStyle(color: Colors.red),
+                              )
+                            : Center(
+                                child: CustomText(
+                                  style: getMediumStyle(
+                                      color: context.secondaryColor),
+                                  text: timeago.format(
+                                    session.endDate!,
+                                    locale: 'ar',
+                                  ),
+                                ),
+                              ),
                   ],
                 ),
                 Positioned(

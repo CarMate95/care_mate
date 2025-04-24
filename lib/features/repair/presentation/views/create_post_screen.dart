@@ -1,13 +1,11 @@
 import 'dart:io';
 
-import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
-import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/data/models/add_post_model.dart';
 import 'package:car_mate/features/repair/data/repo/add_post_repo.dart';
@@ -120,18 +118,18 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               size: 30,
             )),
       ),
-      floatingActionButton: CustomFloatingActionButton(
-          onPressed: () {},
-          icon: Icons.photo_library_rounded,
-          backgroundColor: ColorManager.darkGrey),
+      // floatingActionButton: CustomFloatingActionButton(
+      //     onPressed: () {},
+      //     icon: Icons.photo_library_rounded,
+      //     backgroundColor: ColorManager.darkGrey),
       body: Padding(
         padding: EdgeInsets.all(8.0.h),
         child: ListView(
           children: [
             Row(
               children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage(AssetsManager.worker1),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(userData?.profileImage ?? ''),
                 ),
                 horizontalSpace(5),
                 Column(
