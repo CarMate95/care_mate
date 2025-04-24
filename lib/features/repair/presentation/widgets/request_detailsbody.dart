@@ -11,7 +11,6 @@ import 'package:car_mate/features/repair/data/models/get_specific_post_model.dar
 import 'package:car_mate/features/repair/data/repo/get_specific_post_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../config/routes/page_name.dart';
 import '../../../../core/helpers/time_formate.dart';
 import '../../../../core/utils/widgets/custom_divider.dart';
@@ -20,8 +19,10 @@ import 'custom_alert_dialog_to_mechanic.dart';
 
 class RequestDetailsBody extends StatelessWidget {
   final int postId;
+  final bool isCompleted;
 
-  const RequestDetailsBody({super.key, required this.postId});
+  const RequestDetailsBody(
+      {super.key, required this.postId, required this.isCompleted});
 
   @override
   Widget build(BuildContext context) {
@@ -144,30 +145,24 @@ class RequestDetailsBody extends StatelessWidget {
                     ),
                   ),
                 },
-                // if (userRole == UserRole.worker)
-                // CustomOfferHelp(
-                //   onTap: () {
-                //     showAlertDialogToMechanic(
-                //       context,
-                //       postId,
-                //       post.userId,
-                //       '${author.firstName} ${author.lastName}',
-                //     );
-                //   },
-                // ),
                 if (userModel?.worker != null) ...{
                   const Spacer(),
-                  CustomElevatedButton(
-                    onPressed: () {
-                      showAlertDialogToMechanic(
-                        context,
-                        postId,
-                        post.userId,
-                        '${author.firstName} ${author.lastName}',
-                      );
-                    },
-                    text: TextManager.offerhelp,
-                  )
+                  isCompleted == true
+                      ? const CustomText(
+                          textAlign: TextAlign.center,
+                          text:
+                              'Post is already completed by another worker and cannot be offered again')
+                      : CustomElevatedButton(
+                          onPressed: () {
+                            showAlertDialogToMechanic(
+                              context,
+                              postId,
+                              post.userId,
+                              '${author.firstName} ${author.lastName}',
+                            );
+                          },
+                          text: TextManager.offerhelp,
+                        )
                 },
               ],
             ),
