@@ -90,7 +90,7 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
               //   return const Center(child: Text('فشل تحميل البيانات'));
               // }
               if (snapshot.hasData) {
-                currentUser = snapshot.data!;
+                currentUser = snapshot.data?['user']!;
                 firstNameController.text = currentUser!['firstName'];
                 lastNameController.text = currentUser!['lastName'];
                 emailController.text = currentUser!['email'];
