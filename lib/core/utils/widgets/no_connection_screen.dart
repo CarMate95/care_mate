@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,7 +29,7 @@ class NoConnectionScreen extends StatelessWidget {
             ),
           ),
           CustomText(
-            text: TextManager.noInternet,
+            text: TextManager.noInternet.tr(),
             style: getBoldStyle(fontSize: 22.sp),
           ),
         ],

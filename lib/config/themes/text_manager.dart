@@ -234,4 +234,14 @@ abstract class TextManager {
       'whenyoureceiveanofferfromaworkeryoullseeithere';
   static const String offer = 'offer';
   static const String sessions = 'sessions';
+  static const String yes = 'yes';
+  static const String no = 'no';
+
+  static const String theSessionWasClosedSuccessFully =
+      'theSessionWasClosedSuccessFully';
+  static const String theSessionClosedButoperationNotActivated =
+      'theSessionClosedButoperationNotActivated';
+  static const String issYourWorkDone = 'issYourWorkDone';
+  static const String doYouWantToMarkThisSessionAsDone =
+      'doYouWantToMarkThisSessionAsDone';
 }
