@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:ui';
 import 'package:car_mate/config/routes/page_name.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
@@ -32,89 +31,117 @@ class CustomSessionItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         showCustomAlertDialog(
-            context: context,
-            title: TextManager.problemDetails.tr(),
-            content: Container(
-              width: double.infinity,
-              constraints: BoxConstraints(minHeight: 100.h),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: context.tertiaryColor,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        CustomCircularAvatar(
-                          image: sessionModel.user.profilePhoto!.first,
-                          backgroundColor: ColorManager.lightPrimaryColor,
-                        ),
-                        horizontalSpace(8),
-                        SizedBox(
-                          width: 120.w,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text:
-                                    '${sessionModel.worker.user.firstName}${sessionModel.worker.user.lastName}',
-                                style: getMediumStyle(
-                                  color: context.secondaryColor,
-                                ),
-                              ),
-                              CustomText(
-                                lines: 1,
-                                text: sessionModel.user.email,
-                                style: getMediumStyle(
-                                  color: context.secondaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    verticalSpace(16),
-                    CustomDivider(color: context.secondaryColor),
-                    verticalSpace(9),
-                    CustomText(
-                      text: '${TextManager.yourProblem}:',
-                      style: getMediumStyle(
-                        color: context.secondaryColor,
+          context: context,
+          title: TextManager.problemDetails.tr(),
+          content: Container(
+            width: double.infinity,
+            constraints: BoxConstraints(minHeight: 100.h),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: context.tertiaryColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      CustomCircularAvatar(
+                        image: sessionModel.user.profilePhoto!.first,
+                        backgroundColor: ColorManager.lightPrimaryColor,
                       ),
+                      horizontalSpace(8),
+                      SizedBox(
+                        width: 120.w,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(
+                              text:
+                                  '${sessionModel.worker.user.firstName}${sessionModel.worker.user.lastName}',
+                              style: getMediumStyle(
+                                color: context.secondaryColor,
+                              ),
+                            ),
+                            CustomText(
+                              lines: 1,
+                              text: sessionModel.user.email,
+                              style: getMediumStyle(
+                                color: context.secondaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  verticalSpace(16),
+                  CustomDivider(color: context.secondaryColor),
+                  verticalSpace(9),
+                  CustomText(
+                    text: '${TextManager.yourProblem.tr()}:',
+                    style: getMediumStyle(
+                      color: context.secondaryColor,
                     ),
-                    verticalSpace(5),
-                    CustomText(
-                      text: sessionModel.post.postContent,
-                      style: getRegularStyle(
-                          fontSize: 12.sp, color: context.secondaryColor),
-                    ),
-                    verticalSpace(5),
-                    sessionModel.endDate == null
-                        ? CustomElevatedButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                backgroundColor:
-                                    context.scaffoldBackgroundColor,
-                                builder: (BuildContext context) {
-                                  return BackdropFilter(
-                                    filter: ImageFilter.blur(
-                                        sigmaX: 10.0, sigmaY: 10.0),
-                                    child: customBuildConfirmationDialog(
-                                      context: context,
-                                      btnText: TextManager.endSession.tr(),
-                                      description: TextManager
-                                          .areYouSurethatyouwanttoEndthisSession
-                                          .tr(),
-                                      onPressed: () async {
-                                        if (context.mounted) {
+                  ),
+                  verticalSpace(5),
+                  CustomText(
+                    text: sessionModel.post.postContent,
+                    style: getRegularStyle(
+                        fontSize: 12.sp, color: context.secondaryColor),
+                  ),
+                  verticalSpace(5),
+                  sessionModel.endDate == null
+                      ? CustomElevatedButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: context.scaffoldBackgroundColor,
+                              builder: (BuildContext context) {
+                                return BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                      sigmaX: 10.0, sigmaY: 10.0),
+                                  child: customBuildConfirmationDialog(
+                                    context: context,
+                                    btnText: TextManager.endSession.tr(),
+                                    description: TextManager
+                                        .areYouSurethatyouwanttoEndthisSession
+                                        .tr(),
+                                    onPressed: () async {
+                                      final result = await showDialog<bool>(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                          title:
+                                              const Text('Is your work done?'),
+                                          content: const Text(
+                                              'Do you want to mark this session as done?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  context,
+                                                  false), // "No" pressed
+                                              child: const Text('No'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  context,
+                                                  true), // "Yes" pressed
+                                              child: const Text('Yes'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+
+                                      if (result != null) {
+                                        // If result is not null, handle it
+                                        if (result == true) {
+                                          // "Yes" was pressed
+                                          if (!context.mounted) return;
+
                                           await BlocProvider.of<GetOffersCubit>(
                                                   context)
                                               .endSession(
@@ -124,39 +151,82 @@ class CustomSessionItem extends StatelessWidget {
                                                 .toUtc()
                                                 .toIso8601String(),
                                           );
-                                          log('End Session Request Sent');
-                                          BlocProvider.of<GetOffersCubit>(
-                                                  context)
-                                              .fetchSessions();
+
+                                          if (!context.mounted) return;
+
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content:
+                                                  Text('تم إغلاق الجلسة بنجاح'),
+                                              backgroundColor: Colors.green,
+                                              duration: Duration(seconds: 2),
+                                            ),
+                                          );
 
                                           Navigator.pushReplacementNamed(
-                                              context, PageName.getOfferScreen,
-                                              arguments: sessionModel.postId);
+                                            context,
+                                            PageName.layoutScreen,
+                                          );
+                                        } else {
+                                          // "No" was pressed
+                                          if (!context.mounted) return;
+
+                                          await BlocProvider.of<GetOffersCubit>(
+                                                  context)
+                                              .endSession(
+                                            sessionId: sessionModel.id,
+                                            isDone:
+                                                false, // Set isDone to false for "No"
+                                            endDate: DateTime.now()
+                                                .toUtc()
+                                                .toIso8601String(),
+                                          );
+
+                                          if (!context.mounted) return;
+
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                  'تم إغلاق الجلسة ولكن لم يتم تفعيل العمل'),
+                                              backgroundColor: Colors.orange,
+                                              duration: Duration(seconds: 2),
+                                            ),
+                                          );
+
+                                          Navigator.pushReplacementNamed(
+                                            context,
+                                            PageName.layoutScreen,
+                                          );
                                         }
-                                      },
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                            text: State is EndSessionLoadingState
-                                ? TextManager.loadingSession.tr()
-                                : TextManager.endSession.tr())
-                        : Center(
-                            child: CustomText(
-                              style:
-                                  getMediumStyle(color: context.secondaryColor),
-                              text: sessionModel.endDate == null
-                                  ? TextManager.noEndAlreadyNow.tr()
-                                  : timeago.format(
-                                      DateTime.parse(sessionModel.endDate!),
-                                      locale: 'ar'),
-                            ),
+                                      }
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          text: State is EndSessionLoadingState
+                              ? TextManager.loadingSession.tr()
+                              : TextManager.endSession.tr(),
+                        )
+                      : Center(
+                          child: CustomText(
+                            style:
+                                getMediumStyle(color: context.secondaryColor),
+                            text: sessionModel.endDate == null
+                                ? TextManager.noEndAlreadyNow.tr()
+                                : timeago.format(
+                                    DateTime.parse(sessionModel.endDate!),
+                                    locale: 'ar'),
                           ),
-                  ],
-                ),
+                        ),
+                ],
               ),
-            ));
+            ),
+          ),
+        );
       },
       child: Container(
         width: double.infinity,
@@ -237,19 +307,92 @@ class CustomSessionItem extends StatelessWidget {
                                     .areYouSurethatyouwanttoEndthisSession
                                     .tr(),
                                 onPressed: () async {
-                                  await BlocProvider.of<GetOffersCubit>(context)
-                                      .endSession(
-                                    sessionId: sessionModel.id,
-                                    isDone: true,
-                                    endDate: DateTime.now()
-                                        .toUtc()
-                                        .toIso8601String(),
+                                  final result = await showDialog<bool>(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('Is your work done?'),
+                                      content: const Text(
+                                          'Do you want to mark this session as done?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              context, false), // "No" pressed
+                                          child: const Text('No'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              context, true), // "Yes" pressed
+                                          child: const Text('Yes'),
+                                        ),
+                                      ],
+                                    ),
                                   );
-                                  log('End Session Successfully');
 
-                                  Navigator.pushReplacementNamed(
-                                      context, PageName.getOfferScreen,
-                                      arguments: sessionModel.postId);
+                                  if (result != null) {
+                                    // If result is not null, handle it
+                                    if (result == true) {
+                                      // "Yes" was pressed
+                                      if (!context.mounted) return;
+
+                                      await BlocProvider.of<GetOffersCubit>(
+                                              context)
+                                          .endSession(
+                                        sessionId: sessionModel.id,
+                                        isDone: true,
+                                        endDate: DateTime.now()
+                                            .toUtc()
+                                            .toIso8601String(),
+                                      );
+
+                                      if (!context.mounted) return;
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content:
+                                              Text('تم إغلاق الجلسة بنجاح'),
+                                          backgroundColor: Colors.green,
+                                          duration: Duration(seconds: 2),
+                                        ),
+                                      );
+
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        PageName.layoutScreen,
+                                      );
+                                    } else {
+                                      // "No" was pressed
+                                      if (!context.mounted) return;
+
+                                      await BlocProvider.of<GetOffersCubit>(
+                                              context)
+                                          .endSession(
+                                        sessionId: sessionModel.id,
+                                        isDone:
+                                            false, // Set isDone to false for "No"
+                                        endDate: DateTime.now()
+                                            .toUtc()
+                                            .toIso8601String(),
+                                      );
+
+                                      if (!context.mounted) return;
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                              'تم إغلاق الجلسة ولكن لم يتم تفعيل العمل'),
+                                          backgroundColor: Colors.orange,
+                                          duration: Duration(seconds: 2),
+                                        ),
+                                      );
+
+                                      Navigator.pushReplacementNamed(
+                                        context,
+                                        PageName.layoutScreen,
+                                      );
+                                    }
+                                  }
                                 },
                               ),
                             );

@@ -7,7 +7,6 @@ import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/auth/data/models/user_model.dart';
-import 'package:car_mate/features/repair/data/models/get_all_posts_model.dart';
 import 'package:car_mate/features/repair/data/models/get_specific_post_model.dart';
 import 'package:car_mate/features/repair/data/repo/get_specific_post_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -21,9 +20,8 @@ import 'custom_alert_dialog_to_mechanic.dart';
 
 class RequestDetailsBody extends StatelessWidget {
   final int postId;
-  final bool isCompleted;
-  const RequestDetailsBody(
-      {super.key, required this.postId, required this.isCompleted});
+
+  const RequestDetailsBody({super.key, required this.postId});
 
   @override
   Widget build(BuildContext context) {
@@ -159,19 +157,17 @@ class RequestDetailsBody extends StatelessWidget {
                 // ),
                 if (userModel?.worker != null) ...{
                   const Spacer(),
-                  isCompleted == true
-                      ? const SizedBox()
-                      : CustomElevatedButton(
-                          onPressed: () {
-                            showAlertDialogToMechanic(
-                              context,
-                              postId,
-                              post.userId,
-                              '${author.firstName} ${author.lastName}',
-                            );
-                          },
-                          text: TextManager.offerhelp,
-                        )
+                  CustomElevatedButton(
+                    onPressed: () {
+                      showAlertDialogToMechanic(
+                        context,
+                        postId,
+                        post.userId,
+                        '${author.firstName} ${author.lastName}',
+                      );
+                    },
+                    text: TextManager.offerhelp,
+                  )
                 },
               ],
             ),

@@ -32,7 +32,6 @@ class CustomPost extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (_) => RequestDetailsScreen(
                     postId: post.id,
-                    isCompleted: post.isCompleted,
                   ),
                 ),
               );

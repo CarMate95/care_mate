@@ -35,8 +35,8 @@ class CustomOfferWidget extends StatelessWidget {
                   CircleAvatar(
                     radius: 24,
                     backgroundImage: (user?.profilePhoto != null &&
-                            user!.profilePhoto!.isNotEmpty)
-                        ? NetworkImage(user.profilePhoto!.first)
+                            user!.profilePhoto.isNotEmpty)
+                        ? NetworkImage(user.profilePhoto.first)
                         : const AssetImage('assets/png/worker_2.png')
                             as ImageProvider,
                   ),
