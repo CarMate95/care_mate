@@ -195,5 +195,7 @@
     "theSessionWasClosedSuccessFully":"تم إغلاق الجلسه بنجاح",
     "theSessionClosedButoperationNotActivated":"تم إغلاق الجلسة ولكن لم يتم تفعيل العمل",
     "doyouWantToMarkThisSessionAsDone":"هل تريد وضع علامه علي هذه الجلسه كمنتهيه ؟",
-    "issYourWorkDone":" هل انتهيت من عمللك؟"
+    "issYourWorkDone":" هل انتهيت من عمللك؟",
+    "postisalreadycompletedbyanotherworkerandcannotbeofferedagain":"تم إكمال الوظيفة بالفعل بواسطة عامل آخر ولا يمكن تقديمها مرة أخرى"
+
 }
