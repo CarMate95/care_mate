@@ -236,7 +236,6 @@ abstract class TextManager {
   static const String sessions = 'sessions';
   static const String yes = 'yes';
   static const String no = 'no';
-
   static const String theSessionWasClosedSuccessFully =
       'theSessionWasClosedSuccessFully';
   static const String theSessionClosedButoperationNotActivated =
@@ -244,4 +243,7 @@ abstract class TextManager {
   static const String issYourWorkDone = 'issYourWorkDone';
   static const String doYouWantToMarkThisSessionAsDone =
       'doYouWantToMarkThisSessionAsDone';
+  static const String
+      postisalreadycompletedbyanotherworkerandcannotbeofferedagain =
+      'postisalreadycompletedbyanotherworkerandcannotbeofferedagain';
 }

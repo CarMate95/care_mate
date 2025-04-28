@@ -11,6 +11,7 @@ import 'package:car_mate/features/repair/data/models/get_specific_post_model.dar
 import 'package:car_mate/features/repair/data/repo/get_specific_post_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/routes/page_name.dart';
 import '../../../../core/helpers/time_formate.dart';
 import '../../../../core/utils/widgets/custom_divider.dart';
@@ -148,10 +149,13 @@ class RequestDetailsBody extends StatelessWidget {
                 if (userModel?.worker != null) ...{
                   const Spacer(),
                   isCompleted == true
-                      ? const CustomText(
+                      ? CustomText(
                           textAlign: TextAlign.center,
-                          text:
-                              'Post is already completed by another worker and cannot be offered again')
+                          text: TextManager
+                              .postisalreadycompletedbyanotherworkerandcannotbeofferedagain
+                              .tr(),
+                          style: getLightStyle(fontSize: 20.sp),
+                        )
                       : CustomElevatedButton(
                           onPressed: () {
                             showAlertDialogToMechanic(

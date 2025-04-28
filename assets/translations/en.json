@@ -193,5 +193,6 @@
    "theSessionWasClosedSuccessFully":"The Session Was Closed SuccessFully",
    "theSessionClosedButoperationNotActivated":"The Session Closed ,but operation Not Activated",
    "issYourWorkDone":"Is your work done?",
-   "doyouWantToMarkThisSessionAsDone":"Do you want to mark this session as done?"
+   "doyouWantToMarkThisSessionAsDone":"Do you want to mark this session as done?",
+   "postisalreadycompletedbyanotherworkerandcannotbeofferedagain":"Post is already completed by another worker and cannot be offered again"
 }
