@@ -1,5 +1,6 @@
 import 'package:car_mate/core/utils/widgets/custom_bottom_navigation.dart';
 import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/chat/presentation/pages/car_price_screen.dart';
 import 'package:car_mate/features/home/presentation/pages/home_screen.dart';
 import 'package:car_mate/features/my_car/pages/NoteDetailsScreen.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
@@ -187,6 +188,12 @@ class RouteManager {
       case PageName.getOfferScreen:
         return _getPageTransition(
           const OffersView(),
+          settings: routeSettings,
+        );
+
+      case PageName.carPriceScreen:
+        return _getPageTransition(
+          const CarPriceScreen(),
           settings: routeSettings,
         );
 

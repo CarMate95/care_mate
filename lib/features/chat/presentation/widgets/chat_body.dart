@@ -39,7 +39,9 @@ class _ChatBodyState extends State<ChatBody> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // custom app bar
-              const MainAppBar(),
+              const MainAppBar(
+                isChatbotScreen: true,
+              ),
 
               Expanded(
                   child: ListView.builder(

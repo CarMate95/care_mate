@@ -11,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../config/themes/text_style.dart';
 import '../../../../core/utils/enums/user_type.dart';
 import '../../../../core/utils/functions/spacing.dart';
-import '../../../../core/utils/widgets/custom_app_bar.dart';
 import '../../../../core/utils/widgets/custom_text.dart';
 import '../../../../core/utils/widgets/location_field.dart';
 import '../../../../core/utils/widgets/phone_field.dart';
@@ -65,28 +64,28 @@ class _SignUpBodyState extends State<SignUpBody> {
           : AutovalidateMode.disabled,
       child: Column(
         children: [
-          // custom app bar
-          CustomAppBar(
-            suffex: Row(
-              children: [
-                // change language
-                IconButton(
-                  onPressed: () {
-                    context.changeLanguage();
-                  },
-                  icon: const Icon(Icons.language),
-                ),
-                horizontalSpace(10),
-                // change theme
-                IconButton(
-                  onPressed: () {
-                    context.changeTheme();
-                  },
-                  icon: const Icon(Icons.brightness_4),
-                )
-              ],
-            ),
-          ),
+          // // custom app bar
+          // CustomAppBar(
+          //   suffex: Row(
+          //     children: [
+          //       // change language
+          //       IconButton(
+          //         onPressed: () {
+          //           context.changeLanguage();
+          //         },
+          //         icon: const Icon(Icons.language),
+          //       ),
+          //       horizontalSpace(10),
+          //       // change theme
+          //       IconButton(
+          //         onPressed: () {
+          //           context.changeTheme();
+          //         },
+          //         icon: const Icon(Icons.brightness_4),
+          //       )
+          //     ],
+          //   ),
+          // ),
           FittedBox(
             fit: BoxFit.scaleDown,
             child: CustomText(
