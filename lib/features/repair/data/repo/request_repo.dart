@@ -11,5 +11,5 @@ abstract class RequestRepo {
   Future<Either<String, String>> sentStartSession(
       {required int postId, required int offerId, required String startDate});
   Future<Either<String, String>> endSession(
-      {required int sessionId, required String endDate});
+      {required int sessionId, required String endDate, required bool isDone});
 }

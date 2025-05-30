@@ -4,16 +4,17 @@ class PostModel {
   final List<String> images;
   final int userId;
   final DateTime createdAt;
+  final bool isCompleted;
   final DateTime updatedAt;
 
-  PostModel({
-    required this.id,
-    required this.postContent,
-    required this.images,
-    required this.userId,
-    required this.createdAt,
-    required this.updatedAt,
-  });
+  PostModel(
+      {required this.id,
+      required this.postContent,
+      required this.images,
+      required this.userId,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.isCompleted});
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
@@ -23,6 +24,7 @@ class PostModel {
       userId: json['userId'],
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
+      isCompleted: json['isCompleted'],
     );
   }
   PostModel copyWith({
@@ -30,6 +32,7 @@ class PostModel {
     String? postContent,
     List<String>? images,
     int? userId,
+    bool? isCompleted,
     DateTime? updatedAt,
     DateTime? createdAt,
   }) {
@@ -40,6 +43,7 @@ class PostModel {
       userId: userId ?? this.userId,
       updatedAt: updatedAt ?? this.updatedAt,
       createdAt: createdAt ?? this.createdAt,
+      isCompleted: isCompleted ?? this.isCompleted,
     );
   }
 }

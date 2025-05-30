@@ -15,6 +15,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 void showAlertDialogToUser(
   BuildContext context,
@@ -29,6 +30,7 @@ void showAlertDialogToUser(
     title: TextManager.requests,
     content: BlocConsumer<GetOffersCubit, GetOffersStates>(
       listener: (context, state) async {
+        timeago.setLocaleMessages('en', timeago.ArMessages());
         if (state is StartSessionSuccessState) {
           if (context.mounted) {
             Navigator.pop(context);
@@ -154,51 +156,73 @@ void showAlertDialogToUser(
                     ),
                     verticalSpace(20),
                     session == null
-                        ? InkWell(
-                            onTap: () async {
-                              if (context.mounted) {
-                                final cubit =
-                                    BlocProvider.of<GetOffersCubit>(context);
+                        ? offerModel.isAccepted == true
+                            ? const SizedBox()
+                            : InkWell(
+                                onTap: () async {
+                                  if (context.mounted) {
+                                    final cubit =
+                                        BlocProvider.of<GetOffersCubit>(
+                                            context);
 
-                                await cubit.startSession(
-                                  postId: offerModel.postId,
-                                  offerId: offerModel.id,
-                                  startDate:
-                                      DateTime.now().toUtc().toIso8601String(),
-                                );
-                              }
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: 48.h,
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(15),
-                                ),
-                              ),
-                              child: state is StartSessionLoadingState
-                                  ? Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        '${TextManager.loading.tr()}...',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  : Center(
-                                      child: CustomText(
-                                        text: 'Start Work Together',
-                                        style: getRegularStyle(
-                                          color: Colors.white,
+                                    await cubit.startSession(
+                                      postId: offerModel.postId,
+                                      offerId: offerModel.id,
+                                      startDate: DateTime.now()
+                                          .toUtc()
+                                          .toIso8601String(),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 48.h,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(15),
+                                    ),
+                                  ),
+                                  child: state is StartSessionLoadingState
+                                      ? Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            '${TextManager.loading.tr()}...',
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )
+                                      : Center(
+                                          child: CustomText(
+                                            text: 'Start Work Together',
+                                            style: getRegularStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         ),
+                                ),
+                              )
+                        : session.endDate == null
+                            ? CustomText(
+                                text: 'In Progress',
+                                style: getMediumStyle(color: Colors.red),
+                              )
+                            : Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    CustomText(
+                                      style: getMediumStyle(
+                                          color: context.secondaryColor),
+                                      text: timeago.format(
+                                        session.endDate!,
+                                        locale: 'ar',
                                       ),
                                     ),
-                            ),
-                          )
-                        : CustomText(
-                            text: 'In Progress',
-                            style: getMediumStyle(color: Colors.red),
-                          ),
+                                    const CustomText(text: 'Is Done'),
+                                  ],
+                                ),
+                              ),
                   ],
                 ),
                 Positioned(

@@ -15,7 +15,7 @@ class CustomOffersAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomAppBar(
       title: CustomText(
-        text: TextManager.offers.tr(),
+        text: TextManager.offer.tr(),
         style: getSemiBoldStyle(
           fontSize: 24.sp,
           color: context.secondaryColor,

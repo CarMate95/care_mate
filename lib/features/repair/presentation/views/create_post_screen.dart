@@ -31,15 +31,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   List<File> selectedImages = [];
   File? _imageFile;
   Future<void> _pickImageFromGallery() async {
-  final picker = ImagePicker();
-  final pickedFiles = await picker.pickMultiImage(); // allows multiple images
+    final picker = ImagePicker();
+    final pickedFiles = await picker.pickMultiImage(); // allows multiple images
 
-  if (pickedFiles != null && pickedFiles.isNotEmpty) {
-    setState(() {
-      selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
-    });
+    if (pickedFiles != null && pickedFiles.isNotEmpty) {
+      setState(() {
+        selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
+      });
+    }
   }
-}
 
   // UserModel? currentUser;
 
@@ -143,8 +143,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           children: [
             Row(
               children: [
-                const CircleAvatar(
-                  backgroundImage: AssetImage(AssetsManager.worker1),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(userData?.profileImage ?? ''),
                 ),
                 horizontalSpace(5),
                 Column(
@@ -206,52 +206,51 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 border: InputBorder.none,
               ),
             ),
-           if (selectedImages.isNotEmpty)
-  Wrap(
-    spacing: 8.0,
-    runSpacing: 8.0,
-    children: selectedImages.asMap().entries.map((entry) {
-      final index = entry.key;
-      final image = entry.value;
+            if (selectedImages.isNotEmpty)
+              Wrap(
+                spacing: 8.0,
+                runSpacing: 8.0,
+                children: selectedImages.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final image = entry.value;
 
-      return Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.file(
-              image,
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            top: 2,
-            right: 2,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedImages.removeAt(index);
-                });
-              },
-              child: Container(
-                decoration:const BoxDecoration(
-                  color: Colors.black54,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.close,
-                  color: Colors.white,
-                  size: 18,
-                ),
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.file(
+                          image,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 2,
+                        right: 2,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedImages.removeAt(index);
+                            });
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.black54,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
-            ),
-          ),
-        ],
-      );
-    }).toList(),
-  ),
-
           ],
         ),
       ),

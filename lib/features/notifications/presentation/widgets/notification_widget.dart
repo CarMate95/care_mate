@@ -4,6 +4,7 @@ import 'package:car_mate/core/helpers/time_formate.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/features/notifications/data/models/notification_model.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,8 +31,9 @@ class NotificationWidget extends StatelessWidget {
                 CircleAvatar(
                   radius: 20.r,
                   backgroundColor: Colors.white,
-                  child: const Icon(Icons.notifications,
-                      color: ColorManager.primaryColor),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20.r),
+                      child: Image.network(notification.profilePicture)),
                 ),
                 horizontalSpace(10.sp),
                 Expanded(
@@ -43,7 +45,7 @@ class NotificationWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              notification.message,
+                              notification.type,
                               style: getBoldStyle(fontSize: 12.sp),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -72,7 +74,9 @@ class NotificationWidget extends StatelessWidget {
                       SizedBox(height: 2.sp),
                       Flexible(
                         child: Text(
-                          'Tap to view details',
+                          context.locale.languageCode == 'ar'
+                              ? notification.arabicMessage
+                              : notification.message,
                           style: getRegularStyle(
                             fontSize: 12.sp,
                             color: context.isDarkMode

@@ -19,7 +19,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       final result = await ProfileService.getProfile();
       if (result != null) {
         userModel = UserModel.fromJson(result);
-        kprint(userModel?.userData.profileImage ?? 'null image');
+        kprint(userModel?.worker?.specialization ?? 'No Specialization');
         emit(ProfileSuccess());
       }
     } on Exception catch (e) {

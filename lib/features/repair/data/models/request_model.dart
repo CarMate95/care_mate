@@ -3,12 +3,13 @@ class OfferModel {
   final int workerId;
   final int postId;
   final String cash;
+  final String? message;
   final String note;
   final DateTime createdAt;
   final DateTime updatedAt;
   final Worker? worker;
   final Session? session;
-
+  final bool isAccepted;
   OfferModel({
     required this.id,
     required this.workerId,
@@ -16,23 +17,26 @@ class OfferModel {
     required this.cash,
     required this.note,
     required this.createdAt,
+    required this.isAccepted,
     required this.updatedAt,
     this.worker,
+    this.message,
     this.session,
   });
 
   factory OfferModel.fromJson(Map<String, dynamic> json) {
     return OfferModel(
-      id: json['id'],
-      workerId: json['workerId'],
-      postId: json['postId'],
-      cash: json['cash'],
-      note: json['note'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      id: json['id'] ?? 0,
+      workerId: json['workerId'] ?? 0,
+      postId: json['postId'] ?? 0,
+      cash: json['cash']?.toString() ?? '',
+      note: json['note']?.toString() ?? '',
+      createdAt: DateTime.tryParse(json['createdAt'] ?? '') ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(json['updatedAt'] ?? '') ?? DateTime.now(),
       worker: json['worker'] != null ? Worker.fromJson(json['worker']) : null,
       session:
           json['session'] != null ? Session.fromJson(json['session']) : null,
+      isAccepted: json['isAccepted'],
     );
   }
 }
@@ -54,10 +58,10 @@ class Worker {
 
   factory Worker.fromJson(Map<String, dynamic> json) {
     return Worker(
-      id: json['id'],
-      specialization: json['specialization'],
-      rating: json['rating'].toDouble(),
-      location: json['location'],
+      id: json['id'] ?? 0,
+      specialization: json['specialization']?.toString() ?? '',
+      rating: (json['rating'] ?? 0).toDouble(),
+      location: json['location']?.toString() ?? '',
       user: User.fromJson(json['User']),
     );
   }
@@ -75,11 +79,11 @@ class Worker {
 
 class User {
   final int id;
-  final String? firstName;
-  final String? lastName;
-  final String? email;
-  final String? phone;
-  final List<String>? profilePhoto;
+  final String firstName;
+  final String lastName;
+  final String email;
+  final String phone;
+  final List<String> profilePhoto;
 
   User({
     required this.id,
@@ -92,14 +96,14 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      email: json['email'],
-      phone: json['phone'],
-      profilePhoto: json['profilePhoto'] != null
-          ? List<String>.from(json['profilePhoto'])
-          : [],
+      id: json['id'] ?? 0,
+      firstName: json['firstName']?.toString() ?? '',
+      lastName: json['lastName']?.toString() ?? '',
+      email: json['email']?.toString() ?? '',
+      phone: json['phone']?.toString() ?? '',
+      profilePhoto:
+          (json['profilePhoto'] as List?)?.map((e) => e.toString()).toList() ??
+              [],
     );
   }
 
@@ -126,7 +130,7 @@ class Session {
 
   factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
-      startDate: DateTime.parse(json['startDate']),
+      startDate: DateTime.tryParse(json['startDate'] ?? '') ?? DateTime.now(),
       endDate:
           json['endDate'] != null ? DateTime.tryParse(json['endDate']) : null,
     );

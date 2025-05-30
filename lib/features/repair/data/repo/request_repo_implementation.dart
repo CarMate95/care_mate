@@ -59,8 +59,7 @@ class OfferRepositoryImplementation implements RequestRepo {
       Uri.parse('$baseUrl/offer/$postId'),
       headers: {
         'Content-Type': 'application/json',
-        'token':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFiZG93ODg5NUBnbWFpbC5jb20iLCJpZCI6Mywicm9sZSI6IndvcmtlciIsImlhdCI6MTczODg5MzE2MywiZXhwIjoxNzQ3NTMzMTYzfQ.jmHbrEHS9oUKnG_JruJLvQDT9Cgqw5hdugb9h0G2_5g',
+        'token': '${ConstantsManager.token}'
       },
     );
 
@@ -159,15 +158,16 @@ class OfferRepositoryImplementation implements RequestRepo {
   }
 
   @override
-  Future<Either<String, String>> endSession({
-    required int sessionId,
-    required String endDate,
-  }) async {
+  Future<Either<String, String>> endSession(
+      {required int sessionId,
+      required String endDate,
+      required bool isDone}) async {
     try {
       final response = await Dio().put(
         '$baseUrl/session/endsession/$sessionId',
         data: {
           "endDate": endDate,
+          "isDone": isDone,
         },
         options: Options(
           headers: {

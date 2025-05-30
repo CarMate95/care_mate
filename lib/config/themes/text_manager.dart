@@ -215,4 +215,35 @@ abstract class TextManager {
   static const String pickAnImage = "pickAnImage";
   static const String askAI = "askAI";
   static const String offers = 'offers';
+  //session screen
+  static const String descriptionSessionScreen = 'descriptionSessionScreen';
+  static const String noActiveSessionYet = 'noActiveSessionYet';
+  static const String problemDetails = 'problemDetails';
+  static const String areYouSurethatyouwanttoEndthisSession =
+      'areYouSurethatyouwanttoEndthisSession';
+  static const String endSession = 'endSession';
+  static const String loadingSession = 'loadingSession';
+
+  static const String
+      whenyouAcceptnofferfromworkeryoullseehereyoursessionwithhim =
+      "WhenyouAcceptnofferfromworker,you'llseehereyoursessionwithhim.";
+  static const String yourProblem = 'yourProblem';
+  static const String noEndAlreadyNow = 'noEndAlreadyNow';
+  static const String noOffersYet = "noOffersYet";
+  static const String whenyoureceiveanofferfromaworkeryoullseeithere =
+      'whenyoureceiveanofferfromaworkeryoullseeithere';
+  static const String offer = 'offer';
+  static const String sessions = 'sessions';
+  static const String yes = 'yes';
+  static const String no = 'no';
+  static const String theSessionWasClosedSuccessFully =
+      'theSessionWasClosedSuccessFully';
+  static const String theSessionClosedButoperationNotActivated =
+      'theSessionClosedButoperationNotActivated';
+  static const String issYourWorkDone = 'issYourWorkDone';
+  static const String doYouWantToMarkThisSessionAsDone =
+      'doYouWantToMarkThisSessionAsDone';
+  static const String
+      postisalreadycompletedbyanotherworkerandcannotbeofferedagain =
+      'postisalreadycompletedbyanotherworkerandcannotbeofferedagain';
 }
