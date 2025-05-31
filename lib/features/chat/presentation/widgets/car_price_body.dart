@@ -27,6 +27,11 @@ class _CarPriceBodyState extends State<CarPriceBody> {
           const MainAppBar(isChatbotScreen: true),
           verticalSpace(20),
           CustomTextFormField(
+            labelText: 'Enter Car Make',
+            controller: widget.carPriceForm.carMakeController,
+          ),
+          verticalSpace(12),
+          CustomTextFormField(
             labelText: 'Enter Car Model',
             controller: widget.carPriceForm.carModelController,
           ),

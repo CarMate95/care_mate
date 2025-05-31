@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CarPriceForm {
   final formKey = GlobalKey<FormState>();
+  final carMakeController = TextEditingController();
   final carModelController = TextEditingController();
   final yearController = TextEditingController();
   final millageController = TextEditingController();
