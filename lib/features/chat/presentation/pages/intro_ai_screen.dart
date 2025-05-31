@@ -59,12 +59,15 @@ class IntroAiScreen extends StatelessWidget {
               height: 0.3.sh,
               child: Row(
                 children: [
-                  const Flexible(
+                  Flexible(
                     child: CustomAiIntroCard(
                       backgroundColor: ColorManager.lightPrimaryColor,
                       text: TextManager.estimateYourCarsValue,
                       // dollar sign icon
                       icon: Icons.attach_money,
+                      onTap: () {
+                        Navigator.pushNamed(context, PageName.carPriceScreen);
+                      },
                     ),
                   ),
                   SizedBox(width: 8.w),

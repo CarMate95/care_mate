@@ -17,6 +17,18 @@ class AddPostModel {
     required this.userData,
   });
 
+  factory AddPostModel.fromJson(Map<String, dynamic> json) {
+    return AddPostModel(
+      id: json['id'],
+      postContent: json['postContent'],
+      images: List<String>.from(json['images'] ?? []),
+      userId: json['userId'],
+      updatedAt: json['updatedAt'],
+      createdAt: json['createdAt'],
+      userData: UserDataModel.fromJson(json['userData'] ?? json['userdata']),
+    );
+  }
+
   Map<String, String> toFormData() {
     return {
       'postContent': postContent,
@@ -59,4 +71,12 @@ class UserDataModel {
     required this.lastName,
     required this.profilePhoto,
   });
+
+  factory UserDataModel.fromJson(Map<String, dynamic> json) {
+    return UserDataModel(
+      firstName: json['firstName'] ?? '',
+      lastName: json['lastName'] ?? '',
+      profilePhoto: List<String>.from(json['profilePhoto'] ?? []),
+    );
+  }
 }
