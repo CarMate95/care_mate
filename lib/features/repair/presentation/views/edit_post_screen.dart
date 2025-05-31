@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
@@ -29,32 +31,26 @@ class _EditPostScreenState extends State<EditPostScreen> {
   late TextEditingController contentController;
   final PostRepository postRepository = PostRepository();
   bool isTextEntered = false;
-  List<String> selectedImages = [];
+
+  List<String> existingImages = []; // الصور القديمة
+  List<String> newImages = []; // الصور الجديدة
   UserData? currentUser;
 
   @override
   void initState() {
     super.initState();
     contentController = TextEditingController(text: widget.post.postContent);
-    selectedImages = List.from(widget.post.images);
+    existingImages = List.from(widget.post.images);
+
     contentController.addListener(() {
       setState(() {
         isTextEntered = contentController.text.isNotEmpty;
       });
     });
-    _loadUserData();
-  }
 
-  Future<void> _loadUserData() async {
-    try {
-      final user = ProfileCubit.get(context).userModel?.userData;
-      setState(() {
-        currentUser = user;
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to load user data: $e')),
-      );
+    final user = ProfileCubit.get(context).userModel?.userData;
+    if (user != null) {
+      currentUser = user;
     }
   }
 
@@ -62,7 +58,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
     final ImagePicker picker = ImagePicker();
     final List<XFile> images = await picker.pickMultiImage();
     setState(() {
-      selectedImages.addAll(images.map((e) => e.path));
+      newImages.addAll(images.map((e) => e.path));
     });
   }
 
@@ -70,7 +66,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
     if (isTextEntered && currentUser != null) {
       final updatedPost = widget.post.copyWith(
         postContent: contentController.text,
-        images: selectedImages,
+        images: [...existingImages, ...newImages],
         updatedAt: DateTime.now(),
       );
 
@@ -78,7 +74,8 @@ class _EditPostScreenState extends State<EditPostScreen> {
         await postRepository.editPost(
           widget.post.id,
           updatedPost.postContent,
-          selectedImages,
+          [...existingImages, ...newImages],
+          currentUser!.id!,
         );
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Post Updated Successfully')),
@@ -115,18 +112,16 @@ class _EditPostScreenState extends State<EditPostScreen> {
             )),
       ),
       floatingActionButton: CustomFloatingActionButton(
-          onPressed: _pickImages,
-          icon: Icons.photo_library_rounded,
-          backgroundColor: ColorManager.darkGrey),
+        onPressed: _pickImages,
+        icon: Icons.photo_library_rounded,
+        backgroundColor: ColorManager.darkGrey,
+      ),
       body: Padding(
         padding: EdgeInsets.all(8.0.h),
         child: ListView(
           children: [
             Row(
               children: [
-                // CustomCircularAvatar(
-                //   image: widget.post.images.first,
-                // ),
                 horizontalSpace(5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,29 +180,97 @@ class _EditPostScreenState extends State<EditPostScreen> {
                 border: InputBorder.none,
               ),
             ),
-            if (widget.post.images.isNotEmpty)
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemCount: widget.post.images.length,
-                itemBuilder: (context, index) {
-                  return Image.network(
-                    widget.post.images[index],
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const Icon(Icons.broken_image),
+
+            // صور قديمة
+            if (existingImages.isNotEmpty)
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: existingImages.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final url = entry.value;
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          url,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 2,
+                        right: 2,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              existingImages.removeAt(index);
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   );
-                },
-              )
-            else
-              CustomText(
-                text: '',
-                style: getLightStyle().copyWith(color: Colors.grey),
+                }).toList(),
+              ),
+
+            // صور جديدة
+            if (newImages.isNotEmpty)
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: newImages.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final path = entry.value;
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.file(
+                          File(path),
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 2,
+                        right: 2,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              newImages.removeAt(index);
+                            });
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black54,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
           ],
         ),

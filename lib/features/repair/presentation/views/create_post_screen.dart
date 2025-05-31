@@ -1,18 +1,19 @@
 import 'dart:io';
-
+import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
 import 'package:car_mate/core/utils/widgets/custom_divider.dart';
+import 'package:car_mate/core/utils/widgets/custom_floating_action_button.dart';
 import 'package:car_mate/core/utils/widgets/custom_text.dart';
 import 'package:car_mate/features/repair/data/models/add_post_model.dart';
 import 'package:car_mate/features/repair/data/repo/add_post_repo.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../auth/data/models/user_data.dart';
 import '../../../profile/profile_cubit/profile_cubit.dart';
 
@@ -27,7 +28,19 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final TextEditingController contentController = TextEditingController();
   final AddPostRepository addPostRepository = AddPostRepository();
   bool isTextEntered = false;
-  List<String> selectedImages = [];
+  List<File> selectedImages = [];
+  File? _imageFile;
+  Future<void> _pickImageFromGallery() async {
+    final picker = ImagePicker();
+    final pickedFiles = await picker.pickMultiImage(); // allows multiple images
+
+    if (pickedFiles != null && pickedFiles.isNotEmpty) {
+      setState(() {
+        selectedImages.addAll(pickedFiles.map((e) => File(e.path)));
+      });
+    }
+  }
+
   // UserModel? currentUser;
 
   @override
@@ -65,7 +78,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (isTextEntered && userData != null) {
       final newPost = AddPostModel(
         postContent: contentController.text,
-        images: selectedImages,
+        images: selectedImages.map((file) => file.path).toList(),
         userId: userData.id!,
         createdAt: DateTime.now().toIso8601String(),
         updatedAt: DateTime.now().toIso8601String(),
@@ -79,7 +92,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       try {
         await addPostRepository.createPost(
           newPost,
-          selectedImages.map((path) => File(path)).toList(),
+          selectedImages,
         );
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Post Created Successfully')),
@@ -118,10 +131,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               size: 30,
             )),
       ),
-      // floatingActionButton: CustomFloatingActionButton(
-      //     onPressed: () {},
-      //     icon: Icons.photo_library_rounded,
-      //     backgroundColor: ColorManager.darkGrey),
+      floatingActionButton: CustomFloatingActionButton(
+          onPressed: () {
+            _pickImageFromGallery();
+          },
+          icon: Icons.photo_library_rounded,
+          backgroundColor: ColorManager.darkGrey),
       body: Padding(
         padding: EdgeInsets.all(8.0.h),
         child: ListView(
@@ -194,10 +209,47 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             if (selectedImages.isNotEmpty)
               Wrap(
                 spacing: 8.0,
-                children: selectedImages
-                    .map((image) =>
-                        Image.network(image, width: 100, height: 100))
-                    .toList(),
+                runSpacing: 8.0,
+                children: selectedImages.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final image = entry.value;
+
+                  return Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.file(
+                          image,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned(
+                        top: 2,
+                        right: 2,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedImages.removeAt(index);
+                            });
+                          },
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.black54,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
               ),
           ],
         ),
