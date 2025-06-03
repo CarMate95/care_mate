@@ -1,15 +1,16 @@
 import 'dart:io';
-import 'package:car_mate/config/routes/page_name.dart';
-import 'package:car_mate/config/themes/assets_manager.dart';
-import 'package:car_mate/config/themes/text_manager.dart';
-import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
-import 'package:car_mate/features/home/presentation/pages/home_screen.dart';
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:dotted_border/dotted_border.dart';
+import 'package:car_mate/config/routes/page_name.dart';
+import 'package:car_mate/config/themes/assets_manager.dart';
+import 'package:car_mate/core/utils/extensions/theme_extension.dart';
+import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+// بعد إضافة الشاشة اليدوية إلى ملفات المشروع، استوردها هنا:
+import 'manual_licence_entry_screen.dart';
 
 class UploadLicenceScreen extends StatefulWidget {
   const UploadLicenceScreen({super.key});
@@ -28,32 +29,41 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
       setState(() {
         _imagePath = pickedFile.path;
       });
-    }
+
+         }
   }
 
   void _showImagePickerOptions() {
     showModalBottomSheet(
       context: context,
       builder: (ctx) {
-        return Wrap(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: Text(TextManager.camera.tr()),
-              onTap: () {
-                Navigator.pop(ctx);
-                _pickImage(ImageSource.camera);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo),
-              title: Text(TextManager.gallery.tr()),
-              onTap: () {
-                Navigator.pop(ctx);
-                _pickImage(ImageSource.gallery);
-              },
-            ),
-          ],
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(Icons.camera_alt),
+                title: Text('كاميرا'), // يمكن استخدام TextManager.camera.tr() لو لديك مفتاح في localization
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _pickImage(ImageSource.camera);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.edit), // أيقونة تشير إلى "إدخال يدوي"
+                title: Text('إدخال يدوي'),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  // نقوم بالتنقل إلى شاشة الإدخال اليدوي
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const ManualLicenceEntryScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
         );
       },
     );
@@ -61,28 +71,28 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // 1) نحدّد هل الثيم الحالي داكن أم فاتح
+    // نتحقق من الثيم فقط إن احتجنا لتلوين حدود أو أي شيء
     final bool isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
       appBar: AppBar(
-          centerTitle: true,
-          title: Text(TextManager.myCar.tr()),
-          actions: [
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, PageName.settingsScreen);
-              },
-              child: CustomSvgIcon(
-                iconPath: AssetsManager.settingsIcon,
-                size: 24,
-                color: context.secondaryColor,
-              ),
+        centerTitle: true,
+        title: Text('رخصتي'), // يمكنك استخدام TextManager.myCar.tr()
+        actions: [
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, PageName.settingsScreen);
+            },
+            child: CustomSvgIcon(
+              iconPath: AssetsManager.settingsIcon,
+              size: 24,
+              color: context.secondaryColor,
             ),
-          ]),
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          // Expanded لملء المساحة المتبقية
           Expanded(
             child: Center(
               child: GestureDetector(
@@ -103,7 +113,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                             children: [
                               const Icon(Icons.add, size: 40),
                               Text(
-                                TextManager.uploadYourCarLicence.tr(),
+                                'ارفع صورة الرخصة', // أو TextManager.uploadYourCarLicence.tr()
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -120,7 +130,8 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
               ),
             ),
           ),
-          // إذا تم اختيار صورة، نظهر زر "Done" في الأسفل
+
+          // إذا تم اختيار صورة، نظهر زر "تم" للانتقال إلى التفاصيل
           if (_imagePath != null) ...[
             const SizedBox(height: 16),
             ElevatedButton.icon(
@@ -135,7 +146,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                 );
               },
               icon: const Icon(Icons.check),
-              label: Text(TextManager.done.tr()),
+              label: Text('تم'), // أو TextManager.done.tr()
             ),
           ],
           const SizedBox(height: 20),
