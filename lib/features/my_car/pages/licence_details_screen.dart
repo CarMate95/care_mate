@@ -3,15 +3,12 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:car_mate/config/routes/page_name.dart';
-import 'package:car_mate/config/themes/assets_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
-import 'package:car_mate/core/utils/widgets/custom_svg_icon.dart';
 import 'package:car_mate/features/my_car/pages/add_note_page.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:http/http.dart' as http;
 
 class LicenceDetailsScreen extends StatefulWidget {
@@ -22,10 +19,10 @@ class LicenceDetailsScreen extends StatefulWidget {
   final Map<String, dynamic>? manualData;
 
   const LicenceDetailsScreen({
-    Key? key,
+    super.key,
     this.licenceImagePath,
     this.manualData,
-  }) : super(key: key);
+  });
 
   @override
   State<LicenceDetailsScreen> createState() => _LicenceDetailsScreenState();
@@ -57,7 +54,7 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
       _carName = data['carName']?.toString() ?? '';
       _plateNumber = data['plateNumber']?.toString() ?? '';
       // قد يكون المستخدم لم يمرّر expiryDate يدويًا؛ إذا كان موجودًا في الخريطة، نعرضه
-      _expiryDate = data['expiryDate']?.toString() ?? '';
+      _expiryDate = data['expiry']?.toString() ?? '';
       _isLoading = false;
     });
   }
@@ -68,10 +65,12 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
       _errorMessage = null;
     });
 
-    final uri = Uri.parse('https://carmate.smartsminds.com/api/ocr/extract_plate_info/');
+    final uri = Uri.parse(
+        'https://carmate.smartsminds.com/api/ocr/extract_plate_info/');
     try {
       var request = http.MultipartRequest('POST', uri);
-      request.files.add(await http.MultipartFile.fromPath('image', widget.licenceImagePath!));
+      request.files.add(
+          await http.MultipartFile.fromPath('image', widget.licenceImagePath!));
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
 
@@ -81,14 +80,23 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
           final List<dynamic> blocks = respBody['data'] as List<dynamic>;
           if (blocks.isNotEmpty) {
             // استخراج أول ثلاثة حقول من البلوكات
-            final firstOcr = (blocks[0]['ocr_data'] as Map<String, dynamic>)['recognized_text']?.toString() ?? '';
+            final firstOcr = (blocks[0]['ocr_data']
+                        as Map<String, dynamic>)['recognized_text']
+                    ?.toString() ??
+                '';
             String secondOcr = '';
             if (blocks.length > 1) {
-              secondOcr = (blocks[1]['ocr_data'] as Map<String, dynamic>)['recognized_text']?.toString() ?? '';
+              secondOcr = (blocks[1]['ocr_data']
+                          as Map<String, dynamic>)['recognized_text']
+                      ?.toString() ??
+                  '';
             }
             String thirdOcr = '';
             if (blocks.length > 2) {
-              thirdOcr = (blocks[2]['ocr_data'] as Map<String, dynamic>)['recognized_text']?.toString() ?? '';
+              thirdOcr = (blocks[2]['ocr_data']
+                          as Map<String, dynamic>)['recognized_text']
+                      ?.toString() ??
+                  '';
             }
             setState(() {
               _carName = firstOcr;
@@ -104,7 +112,8 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
           }
         } else {
           setState(() {
-            _errorMessage = respBody['message']?.toString() ?? 'خطأ في قراءة البيانات من الـ OCR';
+            _errorMessage = respBody['message']?.toString() ??
+                'خطأ في قراءة البيانات من الـ OCR';
             _isLoading = false;
           });
         }
@@ -169,7 +178,8 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
                   // حالة الخطأ
                   else if (_errorMessage != null) ...[
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 16.0),
                       child: Text(
                         _errorMessage!,
                         textAlign: TextAlign.center,
@@ -185,7 +195,8 @@ class _LicenceDetailsScreenState extends State<LicenceDetailsScreen> {
                     ListTile(
                       title: Text(
                         _carName ?? '',
-                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         'License: ${_plateNumber ?? ''}\nExpiry: ${_expiryDate ?? ''}',
