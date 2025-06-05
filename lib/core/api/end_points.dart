@@ -13,4 +13,8 @@ abstract class EndPoints {
   static const String updateNote = "/user/updatereminder/1";
   static const String getNote = "/user/getreminder";
   static const String deleteNote = "/user/deletereminder/2";
+  static const String getCarProblem =
+      "https://carmate.smartsminds.com/api/car_problem/diagnose/";
+  static const String getCarPrice =
+      "https://carmate.smartsminds.com/api/car_price/predict/";
 }

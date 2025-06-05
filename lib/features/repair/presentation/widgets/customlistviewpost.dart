@@ -21,10 +21,12 @@ class CustomListViewPosts extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Center(child: Text('No posts found'));
           }
+          List<GetAllPostsModel> reversedItems =
+              snapshot.data!.reversed.toList();
           return ListView.builder(
             shrinkWrap: true,
             itemBuilder: (context, index) =>
-                CustomPost(post: snapshot.data![index]),
+                CustomPost(post: reversedItems[index]),
             itemCount: snapshot.data!.length,
           );
         },

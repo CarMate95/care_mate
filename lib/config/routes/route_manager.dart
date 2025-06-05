@@ -29,6 +29,7 @@ import '../../features/auth/presentation/pages/new_password_screen.dart';
 import '../../features/auth/presentation/pages/reset_password_screen.dart';
 import '../../features/auth/presentation/pages/sign_up_screen.dart';
 import '../../features/auth/presentation/pages/verify_otp_screen.dart';
+import '../../features/chat/presentation/pages/car_problem_screen.dart';
 import '../../features/chat/presentation/pages/chat_screen.dart';
 import '../../features/layout/presentation/pages/layout_screen.dart';
 import '../../features/splash/presentation/pages/on_boarding_screen.dart';
@@ -194,6 +195,12 @@ class RouteManager {
       case PageName.carPriceScreen:
         return _getPageTransition(
           const CarPriceScreen(),
+          settings: routeSettings,
+        );
+
+      case PageName.carProblemScreen:
+        return _getPageTransition(
+          const CarProblemScreen(),
           settings: routeSettings,
         );
 

@@ -27,7 +27,7 @@ class VerifyOtpScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<VerifyOtpCubit>(
-          create: (context) => VerifyOtpCubit.of(context),
+          create: (context) => VerifyOtpCubit(),
         ),
         BlocProvider.value(
           value: sl.get<AuthCubit>(),

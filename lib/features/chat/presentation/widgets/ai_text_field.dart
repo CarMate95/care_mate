@@ -2,7 +2,7 @@ import 'package:car_mate/config/themes/color_manager.dart';
 import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_alert_dialog.dart';
-import 'package:car_mate/features/chat/presentation/cubit/chat_cubit.dart';
+import 'package:car_mate/features/chat/presentation/cubits/chat_cubit/chat_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

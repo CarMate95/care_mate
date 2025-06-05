@@ -23,7 +23,7 @@ class DioConsumer implements ApiConsumer {
     );
 
     dio.options = BaseOptions(
-      baseUrl: EndPoints.baseUrl,
+      // baseUrl: EndPoints.baseUrl,
       receiveDataWhenStatusError: true,
       sendTimeout: const Duration(seconds: 30),
       receiveTimeout: const Duration(seconds: 30),
@@ -94,7 +94,7 @@ class DioConsumer implements ApiConsumer {
     Map<String, dynamic>? queryParameters,
   }) async {
     final response = await dio.get(
-      path,
+      EndPoints.baseUrl + path,
       queryParameters: queryParameters,
     );
     return response.data;
@@ -107,7 +107,7 @@ class DioConsumer implements ApiConsumer {
     Map<String, dynamic>? queryParameters,
   }) async {
     final response = await dio.patch(
-      path,
+      EndPoints.baseUrl + path,
       data: body,
     );
 
@@ -120,9 +120,10 @@ class DioConsumer implements ApiConsumer {
     bool isFormData = false,
     Map<String, dynamic>? body,
     Map<String, dynamic>? queryParameters,
+    bool isFullUrl = false,
   }) async {
     final response = await dio.post(
-      path,
+      isFullUrl ? path : EndPoints.baseUrl + path,
       data: isFormData ? FormData.fromMap(body!) : body,
     );
 
@@ -136,7 +137,7 @@ class DioConsumer implements ApiConsumer {
     Map<String, dynamic>? queryParameters,
   }) async {
     final response = await dio.put(
-      path,
+      EndPoints.baseUrl + path,
       data: body,
     );
 
@@ -149,7 +150,7 @@ class DioConsumer implements ApiConsumer {
     Map<String, dynamic>? queryParameters,
   }) async {
     final resposne = await dio.delete(
-      path,
+      EndPoints.baseUrl + path,
       queryParameters: queryParameters,
     );
 

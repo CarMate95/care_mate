@@ -42,6 +42,8 @@ class IntroAiScreen extends StatelessWidget {
             SizedBox(height: 24.h),
 
             // Cards
+
+            // chat with AI
             SizedBox(
               height: 0.2.sh,
               child: CustomAiIntroCard(
@@ -55,6 +57,8 @@ class IntroAiScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
+
+            // car price
             SizedBox(
               height: 0.3.sh,
               child: Row(
@@ -71,11 +75,16 @@ class IntroAiScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 8.w),
-                  const Flexible(
+
+                  // car problems
+                  Flexible(
                     child: CustomAiIntroCard(
                       backgroundColor: ColorManager.secondaryColor2,
                       text: TextManager.aIDrivenCarHealthCheck,
                       icon: Icons.monitor_heart_outlined,
+                      onTap: () {
+                        Navigator.pushNamed(context, PageName.carProblemScreen);
+                      },
                     ),
                   )
                 ],
