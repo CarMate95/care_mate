@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../../core/utils/services/image_picker_service.dart';
-import '../../../../core/utils/widgets/custom_scaffold_message.dart';
+import '../../../../../core/utils/services/image_picker_service.dart';
+import '../../../../../core/utils/widgets/custom_scaffold_message.dart';
 
 part 'chat_state.dart';
 

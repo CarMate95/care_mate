@@ -246,4 +246,5 @@ abstract class TextManager {
   static const String
       postisalreadycompletedbyanotherworkerandcannotbeofferedagain =
       'postisalreadycompletedbyanotherworkerandcannotbeofferedagain';
+  static const String close = 'close';
 }

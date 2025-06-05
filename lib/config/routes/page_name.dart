@@ -28,4 +28,5 @@ class PageName {
   static const String sessionScreen = '/sessionScreen';
   static const String getOfferScreen = '/getOfferScreen';
   static const String carPriceScreen = '/carPriceScreen';
+  static const String carProblemScreen = '/carProblemScreen';
 }

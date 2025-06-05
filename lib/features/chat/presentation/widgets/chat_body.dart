@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../config/themes/text_manager.dart';
-import '../cubit/chat_cubit.dart';
+import '../cubits/chat_cubit/chat_cubit.dart';
 import 'ai_text_field.dart';
 import 'main_app_bar.dart';
 import 'message_widget.dart';
