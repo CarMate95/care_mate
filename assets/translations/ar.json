@@ -197,5 +197,19 @@
     "doyouWantToMarkThisSessionAsDone": "هل تريد وضع علامه علي هذه الجلسه كمنتهيه ؟",
     "issYourWorkDone": " هل انتهيت من عمللك؟",
     "postisalreadycompletedbyanotherworkerandcannotbeofferedagain": "تم إكمال الوظيفة بالفعل بواسطة عامل آخر ولا يمكن تقديمها مرة أخرى",
-    "close": "اغلاق"
+    "close": "اغلاق",
+    "enterYourCarProblem": "ادخل مشكله سيارتك",
+    "expectedCarProblem": "مشكله سيارتك المتوقعه",
+    "expectedCarPrice": "سعر سيارتك المتوقع",
+    "getProblem": "احصل على المشكله",
+    "getPrice": "احصل على السعر",
+    "enterCarMake": "أدخل نوع السيارة",
+    "enterCarModel": "أدخل موديل السيارة",
+    "enterAge": "أدخل عمر السيارة",
+    "enterMillage": "أدخل عدد الكيلومترات",
+    "enterCity": "أدخل المدينة",
+    "automaticTransmission": "ناقل حركة أوتوماتيكي",
+    "remoteControl": "التحكم عن بعد",
+    "airConditioner": "مكيف الهواء",
+    "powerSteering": "عجلة قيادة كهربائية"
 }

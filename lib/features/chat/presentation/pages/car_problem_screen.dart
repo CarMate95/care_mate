@@ -1,5 +1,6 @@
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/widgets/custom_scaffold_message.dart';
-import 'package:car_mate/features/chat/presentation/cubits/car_problem_cubit/car_problem_cubit.dart';
+import 'package:car_mate/features/chat/presentation/cubits/ai_model_cubit/ai_model_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +25,7 @@ class _CarProblemScreenState extends State<CarProblemScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CarProblemCubit(),
+      create: (context) => AiModelCubit(),
       child: CustomScaffold(
         body: SingleChildScrollView(
           // sign up body
@@ -36,7 +37,7 @@ class _CarProblemScreenState extends State<CarProblemScreen> {
                 const MainAppBar(isChatbotScreen: true),
                 verticalSpace(20),
                 CustomTextFormField(
-                  labelText: 'Enter Your Car Problem',
+                  labelText: TextManager.enterYourCarProblem,
                   maxLines: 4,
                   controller: problemController,
                 ),
@@ -44,36 +45,36 @@ class _CarProblemScreenState extends State<CarProblemScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BlocConsumer<CarProblemCubit, CarProblemState>(
+        bottomNavigationBar: BlocConsumer<AiModelCubit, AiModelState>(
           listener: (context, state) {
-            if (state is CarProblemSuccess) {
+            if (state is AiModelSuccess) {
               // show dialog with problem
               showSuccessAiDialog(
                 context,
-                title: 'Car Problem',
-                message: state.problem,
+                title: TextManager.expectedCarProblem,
+                message: state.message,
               );
             }
-            if (state is CarProblemError) {
+            if (state is AiModelError) {
               // show error message
               showScaffoldMessage(context, message: state.message);
             }
           },
           builder: (context, state) {
-            var carProblemCubit = CarProblemCubit.get(context);
+            var aiModelCubit = AiModelCubit.get(context);
             return IntrinsicHeight(
               child: Padding(
                 padding: const EdgeInsets.all(24),
                 child: CustomElevatedButton(
-                  isLoading: state is CarProblemLoading,
+                  isLoading: state is AiModelLoading,
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      await carProblemCubit.getCarProblem(
+                      await aiModelCubit.getCarProblem(
                         problem: problemController.text,
                       );
                     }
                   },
-                  text: 'Get Problem',
+                  text: TextManager.getProblem,
                 ),
               ),
             );

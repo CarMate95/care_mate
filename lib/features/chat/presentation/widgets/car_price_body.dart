@@ -1,3 +1,4 @@
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/config/themes/text_style.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/functions/spacing.dart';
@@ -27,36 +28,36 @@ class _CarPriceBodyState extends State<CarPriceBody> {
           const MainAppBar(isChatbotScreen: true),
           verticalSpace(20),
           CustomTextFormField(
-            labelText: 'Enter Car Make',
+            labelText: TextManager.enterCarMake,
             controller: widget.carPriceForm.carMakeController,
           ),
           verticalSpace(12),
           CustomTextFormField(
-            labelText: 'Enter Car Model',
+            labelText: TextManager.enterCarModel,
             controller: widget.carPriceForm.carModelController,
           ),
           verticalSpace(12),
           CustomTextFormField(
-            labelText: 'Enter Year',
+            labelText: TextManager.enterAge,
             keyboardType: TextInputType.number,
-            controller: widget.carPriceForm.yearController,
+            controller: widget.carPriceForm.ageController,
           ),
           verticalSpace(12),
           CustomTextFormField(
-            labelText: 'Enter Millage',
+            labelText: TextManager.enterMillage,
             keyboardType: TextInputType.number,
             controller: widget.carPriceForm.millageController,
           ),
           verticalSpace(12),
           CustomTextFormField(
-            labelText: 'Enter City',
+            labelText: TextManager.enterCity,
             controller: widget.carPriceForm.cityController,
           ),
           verticalSpace(12),
           // optional features
           SwitchListTile(
             title: CustomText(
-              text: 'Automatic Transmission',
+              text: TextManager.automaticTransmission,
               style: getMediumStyle(
                 color: context.secondaryColor,
                 fontSize: 16,
@@ -71,7 +72,7 @@ class _CarPriceBodyState extends State<CarPriceBody> {
           ),
           SwitchListTile(
             title: CustomText(
-              text: 'Remote Control',
+              text: TextManager.remoteControl,
               style: getMediumStyle(
                 color: context.secondaryColor,
                 fontSize: 16,
@@ -99,7 +100,7 @@ class _CarPriceBodyState extends State<CarPriceBody> {
                   title: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: CustomText(
-                      text: 'Air Conditioner',
+                      text: TextManager.airConditioner,
                       style: getMediumStyle(
                         color: context.secondaryColor,
                         fontSize: 16,
@@ -121,7 +122,7 @@ class _CarPriceBodyState extends State<CarPriceBody> {
                   title: FittedBox(
                     fit: BoxFit.scaleDown,
                     child: CustomText(
-                      text: 'Power Steering ',
+                      text: TextManager.powerSteering,
                       style: getMediumStyle(
                         color: context.secondaryColor,
                         fontSize: 16,

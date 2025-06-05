@@ -195,5 +195,19 @@
     "issYourWorkDone": "Is your work done?",
     "doyouWantToMarkThisSessionAsDone": "Do you want to mark this session as done?",
     "postisalreadycompletedbyanotherworkerandcannotbeofferedagain": "Post is already completed by another worker and cannot be offered again",
-    "close": "Close"
+    "close": "Close",
+    "enterYourCarProblem": "Enter Your Car Problem",
+    "expectedCarProblem": "Expected Car Problem",
+    "expectedCarPrice": "Expected Car Price",
+    "getProblem": "Get Problem",
+    "getPrice": "Get Price",
+    "enterCarMake": "Enter Car Make",
+    "enterCarModel": "Enter Car Model",
+    "enterAge": "Enter Age",
+    "enterMillage": "Enter Mileage",
+    "enterCity": "Enter City",
+    "automaticTransmission": "Automatic Transmission",
+    "remoteControl": "Remote Control",
+    "airConditioner": "Air Conditioner",
+    "powerSteering": "Power Steering"
 }

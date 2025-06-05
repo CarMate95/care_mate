@@ -1,4 +1,5 @@
 import 'package:car_mate/core/errors/failures.dart';
+import 'package:car_mate/features/chat/domain/params/car_price_params.dart';
 
 import 'package:dartz/dartz.dart';
 
@@ -12,6 +13,7 @@ class AiRepositoryImplementer implements AiRepository {
 
   AiRepositoryImplementer(this._dioConsumer);
 
+  // get car problem
   @override
   Future<Either<Failure, String>> getCarProblem(
       {required String problem}) async {
@@ -24,6 +26,22 @@ class AiRepositoryImplementer implements AiRepository {
         isFullUrl: true,
       );
       return Right(result['classification_recommendation'] as String);
+    } on Exception catch (e) {
+      return Left(ErrorHandlerService().handle(e));
+    }
+  }
+
+  // get car price
+  @override
+  Future<Either<Failure, String>> getCarPrice(
+      {required CarPriceParams params}) async {
+    try {
+      final result = await _dioConsumer.post(
+        path: EndPoints.getCarPrice,
+        body: params.toMap(),
+        isFullUrl: true,
+      );
+      return Right(result['predicted_price_formatted'] as String);
     } on Exception catch (e) {
       return Left(ErrorHandlerService().handle(e));
     }

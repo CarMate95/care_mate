@@ -4,7 +4,7 @@ class CarPriceForm {
   final formKey = GlobalKey<FormState>();
   final carMakeController = TextEditingController();
   final carModelController = TextEditingController();
-  final yearController = TextEditingController();
+  final ageController = TextEditingController();
   final millageController = TextEditingController();
   final cityController = TextEditingController();
   bool isAutomaticTransmission = false;
@@ -14,7 +14,7 @@ class CarPriceForm {
 
   void dispose() {
     carModelController.dispose();
-    yearController.dispose();
+    ageController.dispose();
     millageController.dispose();
     cityController.dispose();
   }

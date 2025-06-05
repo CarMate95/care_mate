@@ -9,7 +9,7 @@ void showSuccessAiDialog(BuildContext context,
     barrierDismissible: false,
     context: context,
     builder: (context) => AlertDialog(
-      title: Text(title),
+      title: Text(title.tr()),
       content: Text(message),
       actions: [
         TextButton(

@@ -247,4 +247,20 @@ abstract class TextManager {
       postisalreadycompletedbyanotherworkerandcannotbeofferedagain =
       'postisalreadycompletedbyanotherworkerandcannotbeofferedagain';
   static const String close = 'close';
+
+  static const String enterYourCarProblem = 'enterYourCarProblem';
+  static const String expectedCarProblem = 'expectedCarProblem';
+  static const String expectedCarPrice = 'expectedCarPrice';
+  static const String getProblem = 'getProblem';
+  static const String getPrice = 'getPrice';
+  
+  static const String enterCarMake = 'enterCarMake';
+  static const String enterCarModel = 'enterCarModel';
+  static const String enterAge = 'enterAge';
+  static const String enterMillage = 'enterMillage';
+  static const String enterCity = 'enterCity';
+  static const String automaticTransmission = 'automaticTransmission';
+  static const String remoteControl = 'remoteControl';
+  static const String airConditioner = 'airConditioner';
+  static const String powerSteering = 'powerSteering';
 }
