@@ -1,38 +1,31 @@
-// lib/features/my_car/pages/manual_licence_entry_screen.dart
-
 import 'dart:convert';
 
-import 'package:car_mate/config/themes/text_style.dart';
+import 'package:car_mate/config/themes/color_manager.dart';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/core/utils/constants_manager.dart';
 import 'package:car_mate/core/utils/extensions/theme_extension.dart';
 import 'package:car_mate/core/utils/widgets/custom_elevated_button.dart';
-// استورد شاشة التفاصيل التي عدّلناها
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../config/themes/text_manager.dart';
-
 class ManualLicenceEntryScreen extends StatefulWidget {
   const ManualLicenceEntryScreen({super.key});
 
   @override
-  State<ManualLicenceEntryScreen> createState() =>
-      _ManualLicenceEntryScreenState();
+  State<ManualLicenceEntryScreen> createState() => _ManualLicenceEntryScreenState();
 }
 
 class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
-  final TextEditingController _nameController =
-      TextEditingController(); // (اختياري)
-  final TextEditingController _nationalityController = TextEditingController();
-  final TextEditingController _carTypeController = TextEditingController();
-  final TextEditingController _plateNumberController = TextEditingController();
-  final TextEditingController _carModelController = TextEditingController();
-  final TextEditingController _trafficDeptController = TextEditingController();
-  final TextEditingController _expiryDateController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _nationalityController = TextEditingController();
+  final _carTypeController = TextEditingController();
+  final _plateNumberController = TextEditingController();
+  final _carModelController = TextEditingController();
+  final _trafficDeptController = TextEditingController();
+  final _expiryDateController = TextEditingController();
 
-  // رابط الـ API الأساسي والمسار
   final String baseUrl = 'https://fb-m90x.onrender.com';
   final String endpoint = '/user/addcar';
 
@@ -46,16 +39,18 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
     _plateNumberController.dispose();
     _carModelController.dispose();
     _trafficDeptController.dispose();
+    _expiryDateController.dispose();
     super.dispose();
   }
 
   Future<void> _onSavePressed() async {
     setState(() => isLoading = true);
-    String? token = ConstantsManager.token?.trim();
+    final token = ConstantsManager.token?.trim();
     if (token == null || token.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('لا يوجد توكين مخزن، سجلّ الدخول أولًا')),
+         SnackBar(content: Text(TextManager.noTokenPleaseLoginFirst.tr())),
       );
+      setState(() => isLoading = false);
       return;
     }
 
@@ -66,18 +61,18 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
         _trafficDeptController.text.trim().isEmpty ||
         _expiryDateController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-         SnackBar(content: Text(TextManager.fillYourLiecenceData.tr())),
+        SnackBar(content: Text(TextManager.fillYourLiecenceData.tr())),
       );
+      setState(() => isLoading = false);
       return;
     }
 
-    final Map<String, dynamic> manualData = {
+    final manualData = {
       "carName": _carTypeController.text.trim(),
       "carModel": _carModelController.text.trim(),
       "nationality": _nationalityController.text.trim(),
       "plateNumber": _plateNumberController.text.trim(),
       "trafficDepartment": _trafficDeptController.text.trim(),
-      // "ownerName": _nameController.text.trim(),  // اختياري
       "expiry": _expiryDateController.text.trim(),
     };
 
@@ -94,21 +89,14 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
         body: jsonEncode(manualData),
       );
 
-      debugPrint('🔸 addCar status code: ${response.statusCode}');
-      debugPrint('🔸 addCar response body: ${response.body}');
-
       if (response.statusCode == 200 || response.statusCode == 201) {
         setState(() => isLoading = false);
-        // نأخذ الـ id من الرد ونضيفه إلى manualData (اختياري إن لزمّ)
-        final Map<String, dynamic> respBody = jsonDecode(response.body);
-        if (respBody['success'] == true && respBody['data'] != null) {
-          final id = (respBody['data'] as Map<String, dynamic>)['id'];
-          if (id != null) {
-            manualData['id'] = id.toString();
-          }
+        final respBody = jsonDecode(response.body) as Map<String, dynamic>?;
+        if (respBody?['success'] == true && respBody?['data'] != null) {
+          final id = (respBody!['data'] as Map<String, dynamic>)['id'];
+          if (id != null) manualData['id'] = id.toString();
         }
 
-        // 9) ننقل إلى LicenceDetailsScreen ولكن مع تمرير manualData (بدون مسار صورة)
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -121,13 +109,11 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
       } else {
         setState(() => isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text('فشل في إضافة السيارة: ${response.statusCode}')),
+          SnackBar(content: Text('فشل في إضافة السيارة: ${response.statusCode}')),
         );
       }
     } catch (e) {
       setState(() => isLoading = false);
-      debugPrint('❗Exception during addCar: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('خطأ أثناء الإرسال: $e')),
       );
@@ -136,36 +122,33 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
 
   Widget _buildTextField({
     required TextEditingController controller,
-    required String labelText,
+    required String label,
+    bool readOnly = false,
+    VoidCallback? onTap,
+    int maxLines = 1,
     TextInputType keyboardType = TextInputType.text,
-    bool enabled = true,
-    void Function()? onTap,
   }) {
     return TextField(
-      onTap: onTap,
-      enabled: enabled,
       controller: controller,
+      readOnly: readOnly,
+      onTap: onTap,
+      maxLines: maxLines,
+      style: TextStyle(color: context.secondaryColor),
       keyboardType: keyboardType,
-      textAlign: TextAlign.right,
       decoration: InputDecoration(
-        labelText: labelText,
+        labelText: label,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        labelStyle:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        labelStyle: TextStyle(color: context.secondaryColor.withOpacity(0.7)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide:
-              BorderSide(color: context.secondaryColor.withOpacity(0.8)),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: context.secondaryColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: context.primaryColor),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: context.tertiaryColor),
         ),
       ),
-      style: const TextStyle(color: Colors.black),
     );
   }
 
@@ -175,30 +158,23 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
       backgroundColor: context.scaffoldBackgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title:  Text(TextManager.fillYourLiecenceData.tr()),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
+        title: Text(TextManager.fillYourLiecenceData.tr()),
       ),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(
-                    color: Colors.black26, blurRadius: 8, offset: Offset(0, 3)),
-              ],
+              color: context.scaffoldBackgroundColor,
+              borderRadius: BorderRadius.circular(16),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 _buildTextField(
                   controller: _nameController,
-                  labelText:TextManager.name.tr(),
+                  label: TextManager.name.tr(),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -206,14 +182,14 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: _nationalityController,
-                        labelText:TextManager.nationality.tr(),
+                        label: TextManager.nationality.tr(),
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: _buildTextField(
                         controller: _carTypeController,
-                        labelText: TextManager.carName.tr(),
+                        label: TextManager.carName.tr(),
                       ),
                     ),
                   ],
@@ -224,14 +200,14 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: _plateNumberController,
-                        labelText: TextManager.plateNumber,
+                        label: TextManager.plateNumber.tr(),
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: _buildTextField(
                         controller: _carModelController,
-                        labelText: TextManager.carModel.tr(),
+                        label: TextManager.carModel.tr(),
                         keyboardType: TextInputType.number,
                       ),
                     ),
@@ -240,50 +216,37 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: _trafficDeptController,
-                  labelText: TextManager.trafficDepartment.tr(),
+                  label: TextManager.trafficDepartment.tr(),
                 ),
-                const SizedBox(height: 24),
-
-                // expiration date picker
-                InkWell(
-                  onTap: () {
-                    showDatePicker(
+                const SizedBox(height: 16),
+                // Pick expiry date
+                _buildTextField(
+                  controller: _expiryDateController,
+                  label: TextManager.expiryDate.tr(),
+                  readOnly: true,
+                  onTap: () async {
+                    final picked = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
-                      firstDate:
-                          DateTime.now().subtract(const Duration(days: 365)),
+                      firstDate: DateTime.now().subtract(const Duration(days: 365)),
                       lastDate: DateTime(2100),
-                    ).then((value) {
-                      if (value != null) {
-                        _expiryDateController.text =
-                            DateFormat('dd/MM/yyyy').format(value);
-                        setState(() {});
-                      }
-                    });
+                    );
+                    if (picked != null) {
+                      _expiryDateController.text = DateFormat('dd/MM/yyyy').format(picked);
+                      setState(() {});
+                    }
                   },
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                    ),
-                    child: Text(
-                      _expiryDateController.text.isEmpty
-                          ? TextManager.expiryDate.tr()
-                          : _expiryDateController.text,
-                      style: getMediumStyle(color: Colors.black),
-                    ),
-                  ),
                 ),
-
-                // ),
                 const SizedBox(height: 24),
-                CustomElevatedButton(
-                  isLoading: isLoading,
-                  onPressed: _onSavePressed,
-                  text: TextManager.save,
+                SizedBox(
+                  height: 48,
+                  width: double.infinity,
+                  child: CustomElevatedButton(
+                    isLoading: isLoading,
+                    onPressed: _onSavePressed,
+                    text: TextManager.save.tr(),
+                    backgroundColor: ColorManager.primaryColor,
+                  ),
                 ),
               ],
             ),
