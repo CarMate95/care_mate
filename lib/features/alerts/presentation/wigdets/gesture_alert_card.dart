@@ -1,5 +1,5 @@
-import 'package:car_mate/features/alerts/presentation/wigdets/alert_card.dart';
-import 'package:car_mate/features/alerts/presentation/wigdets/alert_message.dart';
+import 'package:car_mate/features/alerts/presentation/wigdets/alert_sign_card.dart';
+import 'package:car_mate/features/alerts/presentation/wigdets/alert_sign_message.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +29,7 @@ class GestureAlertCard extends StatelessWidget {
             },
           );
         },
-        child: AlertCard(
+        child: AlertSignCard(
           title: title,
           image: image,
         ),

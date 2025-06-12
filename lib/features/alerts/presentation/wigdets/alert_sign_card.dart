@@ -6,8 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AlertCard extends StatelessWidget {
-  const AlertCard({super.key, required this.title, required this.image});
+class AlertSignCard extends StatelessWidget {
+  const AlertSignCard({super.key, required this.title, required this.image});
   final String title;
   final Image image;
 

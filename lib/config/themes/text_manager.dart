@@ -253,7 +253,7 @@ abstract class TextManager {
   static const String expectedCarPrice = 'expectedCarPrice';
   static const String getProblem = 'getProblem';
   static const String getPrice = 'getPrice';
-  
+
   static const String enterCarMake = 'enterCarMake';
   static const String enterCarModel = 'enterCarModel';
   static const String enterAge = 'enterAge';
@@ -263,4 +263,22 @@ abstract class TextManager {
   static const String remoteControl = 'remoteControl';
   static const String airConditioner = 'airConditioner';
   static const String powerSteering = 'powerSteering';
+
+  static const String turnLeft = 'Turn left';
+  static const String turnRight = 'Turn right';
+  static const String stop = 'Stop';
+  static const String noParking = 'No parking';
+  static const String noUTurns = 'No u-turns';
+  static const String keepLeftRight = 'Keep left/right';
+  static const String sharedPath = 'Shared path';
+  static const String cycleway = 'Cycleway';
+
+  static const String turnLeftMessage = 'Turn left message';
+  static const String turnRightMessage = 'Turn right message';
+  static const String stopMessage = 'Stop message';
+  static const String noParkingMessage = 'No parking message';
+  static const String noUTurnsMessage = 'No u-turns message';
+  static const String keepLeftRightMessage = 'Keep left/right message';
+  static const String sharedPathMessage = 'Shared path message';
+  static const String cyclewayMessage = 'Cycleway message';
 }
