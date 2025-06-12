@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:car_mate/config/themes/text_manager.dart';
 import 'package:car_mate/features/my_car/pages/licence_details_screen.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
             children: [
               ListTile(
                 leading: const Icon(Icons.camera_alt),
-                title: Text('كاميرا'), // يمكن استخدام TextManager.camera.tr() لو لديك مفتاح في localization
+                title: Text(TextManager.camera.tr()), // يمكن استخدام TextManager.camera.tr() لو لديك مفتاح في localization
                 onTap: () {
                   Navigator.pop(ctx);
                   _pickImage(ImageSource.camera);
@@ -50,7 +51,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.edit), // أيقونة تشير إلى "إدخال يدوي"
-                title: Text('إدخال يدوي'),
+                title: Text(TextManager.enterManually.tr()), // يمكن استخدام TextManager.manualEntry.tr() لو لديك مفتاح في localization
                 onTap: () {
                   Navigator.pop(ctx);
                   // نقوم بالتنقل إلى شاشة الإدخال اليدوي
@@ -77,7 +78,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('رخصتي'), // يمكنك استخدام TextManager.myCar.tr()
+        title: Text(TextManager.myCar.tr()),
         actions: [
           InkWell(
             onTap: () {
@@ -113,7 +114,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                             children: [
                               const Icon(Icons.add, size: 40),
                               Text(
-                                'ارفع صورة الرخصة', // أو TextManager.uploadYourCarLicence.tr()
+                               TextManager.uploadYourCarLicence.tr(),
                                 textAlign: TextAlign.center,
                               ),
                             ],
@@ -146,7 +147,7 @@ class _UploadLicenceScreenState extends State<UploadLicenceScreen> {
                 );
               },
               icon: const Icon(Icons.check),
-              label: Text('تم'), // أو TextManager.done.tr()
+              label: Text(TextManager.done.tr()), 
             ),
           ],
           const SizedBox(height: 20),

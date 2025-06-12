@@ -221,7 +221,8 @@
     "plateNumber":"أرقام اللوحة",
     "carModel":"موديل السيارة ",
     "trafficDepartment":"قسم المرور",
-    "expiryDate":"تاريخ الانتهاء"
+    "expiryDate":"تاريخ الانتهاء",
+    "enterManually":"إدخال يدوي "
     
     
 }

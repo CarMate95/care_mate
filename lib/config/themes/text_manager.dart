@@ -164,6 +164,8 @@ abstract class TextManager {
   static const String carModel = "carModel";
   static const String trafficDepartment = "ntrafficDepartmentame";
   static const String expiryDate = "expiryDate";
+  static const String enterManually = "enterManually";
+  
   
 
   //Alerts screen

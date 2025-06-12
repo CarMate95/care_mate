@@ -210,14 +210,16 @@
     "remoteControl": "Remote Control",
     "airConditioner": "Air Conditioner",
     "pleaseFillAllFields":"please Fill All Fields",
-    "failToAddCar":"failToAddCar",
-    "noTokenPleaseLoginFirst":"noTokenPleaseLoginFirst",
-    "fillYourLiecenceData":"fillYourLiecenceData",
+    "failToAddCar":"fail To Add Car",
+    "noTokenPleaseLoginFirst":"no Token Please Login First",
+    "fillYourLiecenceData":"fill Your Liecence Data",
     "name":"name",
-    "carName":"carName",
+    "carName":"car Name",
     "nationality":"nationality",
-    "plateNumber":"plateNumber",
-    "carModel":"carModel",
-    "trafficDepartment":"trafficDepartment",
-    "expiryDate":"expiryDate"
+    "plateNumber":"plate Number",
+    "carModel":"car Model",
+    "trafficDepartment":"traffic Department",
+    "expiryDate":"expiry Date",
+    "enterManually":"enter Manually"
+    
 }
