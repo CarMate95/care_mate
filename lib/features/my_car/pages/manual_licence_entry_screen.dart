@@ -66,7 +66,7 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
         _trafficDeptController.text.trim().isEmpty ||
         _expiryDateController.text.trim().isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('يرجى تعبئة جميع الحقول')),
+         SnackBar(content: Text(TextManager.fillYourLiecenceData.tr())),
       );
       return;
     }
@@ -175,7 +175,7 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
       backgroundColor: context.scaffoldBackgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('املأ بيانات رخصتك'),
+        title:  Text(TextManager.fillYourLiecenceData.tr()),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -198,7 +198,7 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
               children: [
                 _buildTextField(
                   controller: _nameController,
-                  labelText: 'الاسم (اختياري)',
+                  labelText:TextManager.name.tr(),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -206,14 +206,14 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: _nationalityController,
-                        labelText: 'الجنسية',
+                        labelText:TextManager.nationality.tr(),
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: _buildTextField(
                         controller: _carTypeController,
-                        labelText: 'اسم السيارة',
+                        labelText: TextManager.carName.tr(),
                       ),
                     ),
                   ],
@@ -224,14 +224,14 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                     Expanded(
                       child: _buildTextField(
                         controller: _plateNumberController,
-                        labelText: 'أرقام اللوحة',
+                        labelText: TextManager.plateNumber,
                       ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: _buildTextField(
                         controller: _carModelController,
-                        labelText: 'موديل السيارة',
+                        labelText: TextManager.carModel.tr(),
                         keyboardType: TextInputType.number,
                       ),
                     ),
@@ -240,7 +240,7 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                 const SizedBox(height: 16),
                 _buildTextField(
                   controller: _trafficDeptController,
-                  labelText: 'قسم المرور',
+                  labelText: TextManager.trafficDepartment.tr(),
                 ),
                 const SizedBox(height: 24),
 
@@ -271,7 +271,7 @@ class _ManualLicenceEntryScreenState extends State<ManualLicenceEntryScreen> {
                     ),
                     child: Text(
                       _expiryDateController.text.isEmpty
-                          ? 'تاريخ الانتهاء'
+                          ? TextManager.expiryDate.tr()
                           : _expiryDateController.text,
                       style: getMediumStyle(color: Colors.black),
                     ),

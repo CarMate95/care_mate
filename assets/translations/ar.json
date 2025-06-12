@@ -211,5 +211,17 @@
     "automaticTransmission": "ناقل حركة أوتوماتيكي",
     "remoteControl": "التحكم عن بعد",
     "airConditioner": "مكيف الهواء",
-    "powerSteering": "عجلة قيادة كهربائية"
+    "pleaseFillAllFields":"يرجى تعبئة جميع الحقول",
+    "failToAddCar":"فشل في إضافة السيارة",
+    "noTokenPleaseLoginFirst":"لا يوجد توكين مخزن، سجلّ الدخول أولًا",
+    "fillYourLiecenceData":"املأ بيانات رخصتك",
+    "name":"الاسم",
+    "carName":"اسم السيارة",
+    "nationality":"الجنسية",
+    "plateNumber":"أرقام اللوحة",
+    "carModel":"موديل السيارة ",
+    "trafficDepartment":"قسم المرور",
+    "expiryDate":"تاريخ الانتهاء"
+    
+    
 }

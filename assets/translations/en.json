@@ -209,5 +209,15 @@
     "automaticTransmission": "Automatic Transmission",
     "remoteControl": "Remote Control",
     "airConditioner": "Air Conditioner",
-    "powerSteering": "Power Steering"
+    "pleaseFillAllFields":"please Fill All Fields",
+    "failToAddCar":"failToAddCar",
+    "noTokenPleaseLoginFirst":"noTokenPleaseLoginFirst",
+    "fillYourLiecenceData":"fillYourLiecenceData",
+    "name":"name",
+    "carName":"carName",
+    "nationality":"nationality",
+    "plateNumber":"plateNumber",
+    "carModel":"carModel",
+    "trafficDepartment":"trafficDepartment",
+    "expiryDate":"expiryDate"
 }

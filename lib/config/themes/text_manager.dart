@@ -153,6 +153,18 @@ abstract class TextManager {
   static const String validationPass3 = "validationPass3";
   static const String addNote = "addNote";
   static const String edit = "edit";
+  static const String pleaseFillAllFields = "pleaseFillAllFields";
+  static const String failToAddCar = "failToAddCar";
+  static const String noTokenPleaseLoginFirst = "noTokenPleaseLoginFirst";
+  static const String fillYourLiecenceData = "fillYourLiecenceData";
+  static const String name = "name";
+  static const String carName = "carName";
+  static const String nationality = "nationality";
+  static const String plateNumber = "plateNumber";
+  static const String carModel = "carModel";
+  static const String trafficDepartment = "ntrafficDepartmentame";
+  static const String expiryDate = "expiryDate";
+  
 
   //Alerts screen
   static const String checkEngine = "checkEngine";
