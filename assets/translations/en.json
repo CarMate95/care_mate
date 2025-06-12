@@ -220,6 +220,24 @@
     "carModel":"car Model",
     "trafficDepartment":"traffic Department",
     "expiryDate":"expiry Date",
-    "enterManually":"enter Manually"
+    "enterManually":"enter Manually",
     
+    "powerSteering": "Power Steering",
+    "Turn left message":"This sign tells drivers that they must turn left at the next intersection or junction. It's a mandatory direction sign to guide traffic safely.",
+    "Turn right message":"This sign tells drivers that they must turn right. Ignoring it may cause confusion or accidents, especially in one-way streets.",
+    "Stop message":"This sign means you must stop completely before proceeding. It ensures safety at intersections by giving way to other vehicles or pedestrians.",
+    "No parking message":"This sign means you are not allowed to park in this area. Parking here may result in fines or the vehicle being towed.",
+    "No u-turns message":"This sign tells drivers that making a U-turn is not allowed. It's usually placed where U-turns would be dangerous or disrupt traffic flow.",
+    "Keep left/right message":"This sign instructs drivers to keep either to the left or right side of an obstacle or road divider. It helps maintain smooth traffic movement.",
+    "Shared path message":"This sign indicates that the path is shared between cyclists and pedestrians. Both should use the space with care and be aware of each other.",
+    "Cycleway message":"This sign shows a dedicated lane or path for bicycles only. It ensures cyclists have a safe route away from cars and pedestrians.",
+    "Turn left":"Turn left",
+    "Turn right":"Turn Right",
+    "Stop":"Stop",
+    "No parking":"No parking",
+    "No u-turns":"No U-turns",
+    "Keep left/right":"Keep left/right",
+    "Shared path":"Shared path",
+    "Cycleway":"cycleway"
+
 }

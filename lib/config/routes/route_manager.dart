@@ -1,5 +1,5 @@
 import 'package:car_mate/core/utils/widgets/custom_bottom_navigation.dart';
-import 'package:car_mate/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:car_mate/features/alerts/presentation/pages/alerts_signs_screen.dart';
 import 'package:car_mate/features/chat/presentation/pages/car_price_screen.dart';
 import 'package:car_mate/features/home/presentation/pages/home_screen.dart';
 import 'package:car_mate/features/my_car/pages/NoteDetailsScreen.dart';
@@ -84,7 +84,7 @@ class RouteManager {
 
       case PageName.alertsScreen:
         return _getPageTransition(
-          const AlertsScreen(),
+          const AlertsSignsScreen(),
           settings: routeSettings,
         );
 
