@@ -45,12 +45,20 @@ class NotificationWidget extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              notification.type,
+                              notification.firstName +
+                                  " " +
+                                  notification.lastName,
                               style: getBoldStyle(fontSize: 12.sp),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           horizontalSpace(7.sp),
+                          Text(
+                            notification.type,
+                            style: getBoldStyle(fontSize: 12.sp),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          horizontalSpace(10.sp),
                           if (!notification.isRead)
                             Container(
                               height: 5.h,

@@ -64,6 +64,15 @@ class AssetsManager {
   static const String noOffersBg = '${_svgPath}no_offers_bg.svg';
   static const String noSessionsBg = 'assets/svg/sessions_no_data_bg.svg';
 
+  static const String turnLeftSign = '${_pngPath}turnLeftSign.png';
+  static const String turnRightSign = '${_pngPath}turnRightSign.png';
+  static const String stopSign = '${_pngPath}stopSign.png';
+  static const String sharedPathSign = '${_pngPath}sharedPathSign.png';
+  static const String noUTurnSign = '${_pngPath}noUTurnsSign.png';
+  static const String noParkingSign = '${_pngPath}noParkingSign.png';
+  static const String keepLeftRightSign = '${_pngPath}keepLeftRightSign.png';
+  static const String cyclewaySign = '${_pngPath}cyclewaySign.png';
+
   /// Icons
 
   /// Fonts
